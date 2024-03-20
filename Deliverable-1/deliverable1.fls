@@ -1,7 +1,7 @@
-PWD /home/zivi/Ing SW/Deliverable-1
+PWD /home/zivi/Ing SW/BeeLive/Deliverable-1
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/zivi/Ing SW/Deliverable-1/deliverable1.tex
+INPUT /home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex
 OUTPUT deliverable1.log
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls

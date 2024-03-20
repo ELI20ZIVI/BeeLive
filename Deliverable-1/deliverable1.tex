@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{fancyhdr} % Required for header and footer configuration
+\usepackage[a4paper, margin=2.5cm, left=1.5cm, right=1.5cm, bottom=4cm]{geometry} % Required for setting page margins
+\usepackage[T1]{fontenc}
+\usepackage[default,oldstyle,scale=1]{opensans} % Utilizzo del font Open Sans
+\usepackage{lipsum} 
+\usepackage{makeidx}
+
+% Configure header and footer for the first page
+\fancypagestyle{firstpage}{
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule line
+    \lhead{} % Header on the left
+    \chead{} % Header in the center
+    \rhead{} % Header on the right
+    \lfoot{} % Footer on the left
+    \cfoot{\vspace{5pt}\\\hrulefill\\\vspace{10pt}\textbf{BeeLive}\\Gruppo 21} % Footer in the center
+    \rfoot{\vspace{32.5pt}\\\thepage} % Footer on the right
+}
+
+% Configure header and footer for non-plain pages (second page onwards)
+\fancypagestyle{nonplain}{
+    \fancyhf{} % Clear header and footer
+    \lhead{} % Header on the left
+    \chead{} % Header in the center
+    \rhead{\includegraphics[width=2cm]{Images/BeeLive-Logo.png}\\\vspace{2pt}} % Header on the right
+    \lfoot{} % Footer on the left
+    \cfoot{\vspace{5pt}\\\hrulefill\\\vspace{10pt}\textbf{BeeLive}\\Gruppo 21} % Footer in the center
+    \rfoot{\vspace{32.5pt}\\\thepage} % Footer on the right
+}
+
+% Adjust vertical space between header and text
+\setlength{\headsep}{65pt} 
+% Adjust vertical space between text and footer
+\setlength{\footskip}{0pt} 
+
+\title{\includegraphics[width=1\textwidth]{Images/BeeLive-Logo.png}\\\vspace{100pt}
+\LARGE{\textbf{BeeLive\\Deliverable 1}}}
+\author{Gruppo 21:\\
+Cipriani Pietro, 226959\\
+Orlando Dennis, 227688\\
+Ziviani Elia, 228172}
+\date{28 Marzo 2024}
+
+\makeindex % Indica che vogliamo creare un indice
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firstpage} % Apply firstpage style to the first page
+\clearpage
+
+\pagestyle{nonplain} % Apply non-plain style to subsequent pages
+
+\renewcommand{\contentsname}{Indice}
+\tableofcontents
+
+\clearpage
+\section{Descrizione dell'applicativo}
+\index{Descrizione dell'applicativo} % Aggiunge una voce all'indice
+Ci e' stato chiesto dall'ente comunale della citta' di Trento di pensare a quali problemi avesse la citta' e di come poterli risolvere tramite la realizzazione di un software ad-hoc.
+
+Dopo una fase di brainstorming e' emerso che solitamente e' difficile ottenere informazioni riguardo ad eventi che modificano la viabilità stradale, le informazioni che emergono sono per la maggior parte solo testuali e inoltre per la loro ricerca e' richiesto impegno attivo, in quanto attualmente non e' presente alcun sistema di notifica che avvisa i cittadini.
+
+L'idea che quindi abbiamo deciso di sviluppare e' un sistema composto da due interfaccie.
+La prima e' utile agli enti pubblici per eseguire la pubblicazione di queste modifiche/news/informazioni, mentre la seconda e' utile per informare i cittadini di quanto viene pubblicato
+
+Gli scenari in cui verrebbe utilizzato un sistema di questo tipo sono per esempio
+
+\clearpage
+
+\section{Obiettivi}
+\index{Obiettivi} % Aggiunge una voce all'indice
+\clearpage
+
+\section{Attori di sistema}
+\index{Attori di sistema} % Aggiunge una voce all'indice
+\clearpage
+
+\section{Prototipo}
+\index{Prototipo} % Aggiunge una voce all'indice
+\clearpage
+
+\section{Requirements}
+\subsection{Requirements funzionali}
+\index{Requirements funzionali} % Aggiunge una voce all'indice
+\clearpage
+
+\subsection{Requirements non funzionali}
+\index{Requirements non funzionali} % Aggiunge una voce all'indice
+\clearpage
+
+\section{Grafo BPMN}
+\index{Grafo BPMN} % Aggiunge una voce all'indice
+\clearpage
+
+\section{Diagramma dei casi d'uso}
+\index{Diagramma dei casi d'uso} % Aggiunge una voce all'indice
+\clearpage
+
+\section{Resoconto}
+\index{Resoconto} % Aggiunge una voce all'indice
+
+\printindex % Stampa l'indice
+\end{document}

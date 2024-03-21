@@ -6,6 +6,8 @@
 \usepackage[default,oldstyle,scale=1]{opensans} % Utilizzo del font Open Sans
 \usepackage{lipsum} 
 \usepackage{makeidx}
+\usepackage{booktabs}
+\usepackage{tabularray}
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -97,10 +99,36 @@ Gli scenari in cui verrebbe utilizzato un sistema di questo tipo sono per esempi
 
 \section{Diagramma dei casi d'uso}
 \index{Diagramma dei casi d'uso} % Aggiunge una voce all'indice
+
+% Template tabella casi d'uso
+
+\begin{table}[htbp]
+\begin{tabular*}{\textwidth}{ @{\extracolsep{\fill}} || l | p{0.8\textwidth} || }
+    \hline
+    Nome caso d'uso & *Nome* \\
+    \hline\hline
+    ID & AF \\
+    \hline
+    Description & AX \\
+    \hline
+    Primary actors & AL \\
+    \hline
+    Secondary actors & DZ \\
+    \hline
+    Preconditions & AS \\
+    \hline
+    Main flow & AD \\
+    \hline
+    Postconditions & AO \\
+    \hline
+    Alternative flows & AZ \\
+    \hline
+\end{tabular*}
+\end{table}
+
 \clearpage
 
 \section{Resoconto}
 \index{Resoconto} % Aggiunge una voce all'indice
 
-\printindex % Stampa l'indice
 \end{document}

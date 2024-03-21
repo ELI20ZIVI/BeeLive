@@ -1,24 +1,25 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2024.3.15)  20 MAR 2024 17:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.21)  21 MAR 2024 09:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **"/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex"
 (/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex
-LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-02-22> (/usr/share/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+(/usr/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
+\c@part=\count188
+\c@section=\count189
+\c@subsection=\count190
+\c@subsubsection=\count191
+\c@paragraph=\count192
+\c@subparagraph=\count193
+\c@figure=\count194
+\c@table=\count195
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
@@ -26,7 +27,7 @@ File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks16
+\KV@toks@=\toks17
 ) (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
  (/usr/share/texmf-dist/tex/latex/graphics/trig.sty
@@ -58,9 +59,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count193
-\Gm@cntv=\count194
-\c@Gm@tempcnt=\count195
+\Gm@cnth=\count196
+\Gm@cntv=\count197
+\c@Gm@tempcnt=\count198
 \Gm@bindingoffset=\dimen143
 \Gm@wd@mp=\dimen144
 \Gm@odd@mp=\dimen145
@@ -69,7 +70,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layoutheight=\dimen148
 \Gm@layouthoffset=\dimen149
 \Gm@layoutvoffset=\dimen150
-\Gm@dimlist=\toks17
+\Gm@dimlist=\toks18
 ) (/usr/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (/usr/share/texmf-dist/tex/latex/opensans/opensans.sty
@@ -93,68 +94,178 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 ) (/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
  (/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks18
-\XKV@tempa@toks=\toks19
+\XKV@toks=\toks19
+\XKV@tempa@toks=\toks20
 )
-\XKV@depth=\count196
+\XKV@depth=\count199
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))) (/usr/share/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2023-02-22 L3 programming layer (loader) 
+Package: expl3 2024-02-20 L3 programming layer (loader) 
  (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count197
+File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count266
 \l__pdf_internal_box=\box51
 ))
-Package: l3keys2e 2023-02-02 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2024-02-18 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count198
-\l__lipsum_a_int=\count199
-\l__lipsum_b_int=\count266
+\g__lipsum_par_int=\count267
+\l__lipsum_a_int=\count268
+\l__lipsum_b_int=\count269
  (/usr/share/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/usr/share/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
+) (/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen151
+\lightrulewidth=\dimen152
+\cmidrulewidth=\dimen153
+\belowrulesep=\dimen154
+\belowbottomsep=\dimen155
+\aboverulesep=\dimen156
+\abovetopsep=\dimen157
+\cmidrulesep=\dimen158
+\cmidrulekern=\dimen159
+\defaultaddspace=\dimen160
+\@cmidla=\count270
+\@cmidlb=\count271
+\@aboverulesep=\dimen161
+\@belowrulesep=\dimen162
+\@thisruleclass=\count272
+\@lastruleclass=\count273
+\@thisrulewidth=\dimen163
+) (/usr/share/texmf-dist/tex/latex/tabularray/tabularray.sty
+Package: tabularray 2024-02-16 v2024A Typeset tabulars and arrays with LaTeX3
+\l__tblr_a_int=\count274
+\l__tblr_c_int=\count275
+\l__tblr_r_int=\count276
+\l__tblr_d_dim=\dimen164
+\l__tblr_h_dim=\dimen165
+\l__tblr_o_dim=\dimen166
+\l__tblr_p_dim=\dimen167
+\l__tblr_q_dim=\dimen168
+\l__tblr_r_dim=\dimen169
+\l__tblr_s_dim=\dimen170
+\l__tblr_t_dim=\dimen171
+\l__tblr_v_dim=\dimen172
+\l__tblr_w_dim=\dimen173
+\l__tblr_a_box=\box52
+\l__tblr_b_box=\box53
+\l__tblr_c_box=\box54
+\l__tblr_d_box=\box55
+\g__tblr_table_count_int=\count277
+\c@rownum=\count278
+\c@colnum=\count279
+\c@rowcount=\count280
+\c@colcount=\count281
+\abovesep=\dimen174
+\belowsep=\dimen175
+\leftsep=\dimen176
+\rightsep=\dimen177
+\g_tblr_level_int=\count282
+\g__tblr_data_row_key_count_int=\count283
+\g__tblr_data_column_key_count_int=\count284
+\g__tblr_data_cell_key_count_int=\count285
+\g__tblr_array_int=\count286
+\l__tblr_key_count_int=\count287
+\l__tblr_key_quotient_int=\count288
+\l__tblr_key_quotient_two_int=\count289
+\l__tblr_key_remainder_int=\count290
+\g__tblr_data_str_value_count_int=\count291
+\rulewidth=\dimen178
+\l__tblr_strut_dp_dim=\dimen179
+\l__tblr_strut_ht_dim=\dimen180
+\g__tblr_cell_wd_dim=\dimen181
+\g__tblr_cell_ht_dim=\dimen182
+\g__tblr_cell_head_dim=\dimen183
+\g__tblr_cell_foot_dim=\dimen184
+\l__column_target_dim=\dimen185
+\l__tblr_caption_box=\box56
+\l__tblr_caption_left_box=\box57
+\l__tblr_row_head_box=\box58
+\l__tblr_row_foot_box=\box59
+\l__tblr_row_head_foot_dim=\dimen186
+\tablewidth=\dimen187
+\l__tblr_table_firsthead_box=\box60
+\l__tblr_table_middlehead_box=\box61
+\l__tblr_table_lasthead_box=\box62
+\l__tblr_table_firstfoot_box=\box63
+\l__tblr_table_middlefoot_box=\box64
+\l__tblr_table_lastfoot_box=\box65
+\l__tblr_remain_height_dim=\dimen188
+\l__tblr_long_from_int=\count292
+\l__tblr_long_to_int=\count293
+\l__tblr_curr_i_int=\count294
+\l__tblr_prev_i_int=\count295
+\l__tblr_table_page_int=\count296
+\l__tblr_table_head_box=\box66
+\l__tblr_table_foot_box=\box67
+\l__tblr_table_head_foot_dim=\dimen189
+\l__tblr_table_head_body_foot_dim=\dimen190
+\l__tblr_table_box=\box68
+\l__tblr_table_hlines_box=\box69
+\l__tblr_hline_box=\box70
+\l__tblr_row_box=\box71
+\l__tblr_col_o_wd_dim=\dimen191
+\l__tblr_col_b_wd_dim=\dimen192
+\l__tblr_hline_leftskip_dim=\dimen193
+\l__tblr_hline_rightskip_dim=\dimen194
+\l__tblr_row_ht_dim=\dimen195
+\l__tblr_row_dp_dim=\dimen196
+\l__tblr_row_abovesep_dim=\dimen197
+\l__tblr_row_belowsep_dim=\dimen198
+\l__tblr_row_vlines_box=\box72
+\l__tblr_vline_box=\box73
+\l__tblr_cell_box=\box74
+\l__row_upper_dim=\dimen199
+\l__row_lower_dim=\dimen256
+\l__row_vpace_dim=\dimen257
+\l__tblr_vline_aboveskip_dim=\dimen258
+\l__tblr_vline_belowskip_dim=\dimen259
+\l__tblr_cell_wd_dim=\dimen260
+\l__tblr_cell_ht_dim=\dimen261
+\l__tblr_diag_box=\box75
 )
 \@indexfile=\write3
 \openout3 = `deliverable1.idx'.
 
 
 Writing index file deliverable1.idx
-LaTeX Font Info:    Trying to load font information for T1+opensans-TOsF on input line 48.
+LaTeX Font Info:    Trying to load font information for T1+opensans-TOsF on input line 50.
 (/usr/share/texmf-dist/tex/latex/opensans/T1opensans-TOsF.fd
 File: T1opensans-TOsF.fd 2019/06/24 Font definitions for T1/opensans-TOsF.
 )
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 48.
+(Font)              scaled to size 10.0pt on input line 50.
  (./deliverable1.aux)
 \openout1 = `deliverable1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count267
-\scratchdimen=\dimen151
-\scratchbox=\box52
-\nofMPsegments=\count268
-\nofMParguments=\count269
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count270
-\MPscratchDim=\dimen152
-\MPnumerator=\count271
-\makeMPintoPDFobject=\count272
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count297
+\scratchdimen=\dimen262
+\scratchbox=\box76
+\nofMPsegments=\count298
+\nofMParguments=\count299
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count300
+\MPscratchDim=\dimen263
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
+\everyMPtoPDFconversion=\toks22
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -195,27 +306,27 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count273
-\c@mv@boldtabular=\count274
+\c@mv@tabular=\count303
+\c@mv@boldtabular=\count304
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 50.
+(Font)              scaled to size 17.28pt on input line 52.
 <Images/BeeLive-Logo.png, id=1, 133.85007pt x 94.55325pt>
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 50.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 52.
 (pdftex.def)             Requested size: 384.11221pt x 271.35223pt.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 50.
+(Font)              scaled to size 17.28pt on input line 52.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 50.
+(Font)              scaled to size 12.0pt on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 50.
+(Font)              <12> on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 50.
+(Font)              <8> on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 50.
+(Font)              <6> on input line 52.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 52.
+(Font)              scaled to size 10.0pt on input line 54.
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 3.60004pt, for example:
@@ -225,9 +336,9 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_p2vepx.enc} <./Images/BeeLive-Logo.png>]
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 57.
+(Font)              scaled to size 14.4pt on input line 59.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 57.
+(Font)              scaled to size 14.4pt on input line 59.
  (./deliverable1.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 6.
@@ -239,7 +350,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 59.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 61.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -259,7 +370,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 71.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 73.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -279,7 +390,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 75.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 77.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -299,7 +410,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 79.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 81.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -319,7 +430,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 83.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 85.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -338,10 +449,10 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 ]
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 86.
+(Font)              scaled to size 12.0pt on input line 88.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 88.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 90.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -361,7 +472,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 92.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 94.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -381,7 +492,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 96.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 98.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -399,11 +510,14 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [9
 
 ]
+Overfull \hbox (5.76352pt too wide) in alignment at lines 106--126
+[] []
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 100.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 129.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 57.79832pt, for example:
@@ -418,10 +532,10 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [10
 
-] (./deliverable1.ind
+]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 1.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 134.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -438,23 +552,25 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [11
 
-] [12
-
-
-]) (./deliverable1.aux) ) 
+] (./deliverable1.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+ ***********
+ ) 
 Here is how much of TeX's memory you used:
- 3324 strings out of 477985
- 58418 string characters out of 5840058
- 1854388 words of memory out of 5000000
- 23482 multiletter control sequences out of 15000+600000
- 521474 words of font info for 56 fonts, out of 8000000 for 9000
+ 5157 strings out of 476076
+ 103860 string characters out of 5793775
+ 1933187 words of memory out of 5000000
+ 27221 multiletter control sequences out of 15000+600000
+ 567256 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,15n,77p,445b,379s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,15n,93p,445b,377s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable1.pdf (12 pages, 78275 bytes).
+Output written on deliverable1.pdf (11 pages, 81198 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 54 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

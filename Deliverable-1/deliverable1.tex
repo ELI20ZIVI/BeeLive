@@ -8,6 +8,7 @@
 \usepackage{makeidx}
 \usepackage{booktabs}
 \usepackage{tabularray}
+\usepackage{subfig} % Importa il pacchetto subfig
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -75,6 +76,31 @@ Il primo ambiente consentirà all'amministrazione di inserire e modificare le in
 Il secondo sarà un'applicazione mobile installabile sui dispositivi dei cittadini, che consentirà loro di visualizzare graficamente le zone interessate dai cambiamenti, selezionare le aree di loro interesse e ricevere notifiche push in tempo reale.
 
 Ogni variazione inserita nel sistema dall'amministrazione sarà caratterizzata dalla zona interessata, visualizzabile sulla mappa, da una descrizione che ne spiega la natura e da una stima della durata della variazione, tutte informazioni che i cittadini potranno visualizzare tramite l'applicazione mobile dal loro dispositivo.
+\clearpage
+
+\section{Mockup}
+\index{Mockup} % Aggiunge una voce all'indice
+\subsection{Mockup applicazione mobile}
+\index{Mockup applicazione mobile} % Aggiunge una voce all'indice
+
+\begin{figure}[htbp]
+    \centering
+    \subfloat[Vista iniziale all'apertura dell'applicazione]{\includegraphics[width=0.25\textwidth]{Images/Mockup1 - Mobile.png}\label{fig:immagine1}}
+    \vspace{2cm}
+    \subfloat[Informazioni dell'evento selezionato]{\includegraphics[width=0.25\textwidth]{Images/Mockup2 - Mobile.png}\label{fig:immagine2}}
+    \caption{Mockup dell'applicazione mobile}
+  \end{figure}
+
+\clearpage
+
+\subsection{Mockup interfaccia desktop}
+\index{Mockup interfaccia desktop} % Aggiunge una voce all'indice
+%Immagine singola
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/Mockup1 - Desktop.png}
+    \caption{Mockup dell'interfaccia amministrativa}
+\end{figure}
 \clearpage
 
 \section{Obiettivi}

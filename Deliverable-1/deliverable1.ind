@@ -1,28 +1,34 @@
 \begin{theindex}
 
-  \item Attori di sistema, 5
+  \item Attori di sistema, 7
 
   \indexspace
 
   \item Descrizione dell'applicativo, 3
-  \item Diagramma dei casi d'uso, 10
+  \item Diagramma dei casi d'uso, 12
 
   \indexspace
 
-  \item Grafo BPMN, 9
+  \item Grafo BPMN, 11
 
   \indexspace
 
-  \item Obiettivi, 4
+  \item Mockup, 4
+  \item Mockup applicazione mobile, 4
+  \item Mockup interfaccia desktop, 5
 
   \indexspace
 
-  \item Prototipo, 6
+  \item Obiettivi, 6
 
   \indexspace
 
-  \item Requirements funzionali, 7
-  \item Requirements non funzionali, 8
-  \item Resoconto, 11
+  \item Prototipo, 8
+
+  \indexspace
+
+  \item Requirements funzionali, 9
+  \item Requirements non funzionali, 10
+  \item Resoconto, 13
 
 \end{theindex}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.21)  21 MAR 2024 12:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.21)  22 MAR 2024 10:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -224,47 +224,79 @@ Package: tabularray 2024-02-16 v2024A Typeset tabulars and arrays with LaTeX3
 \l__tblr_cell_wd_dim=\dimen260
 \l__tblr_cell_ht_dim=\dimen261
 \l__tblr_diag_box=\box75
+) (/usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+ (/usr/share/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen262
+\captionmargin=\dimen263
+\caption@leftmargin=\dimen264
+\caption@rightmargin=\dimen265
+\caption@width=\dimen266
+\caption@indent=\dimen267
+\caption@parindent=\dimen268
+\caption@hangindent=\dimen269
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count297
+\c@continuedfloat=\count298
+)
+\c@KVtest=\count299
+\sf@farskip=\skip59
+\sf@captopadj=\dimen270
+\sf@capskip=\skip60
+\sf@nearskip=\skip61
+\c@subfigure=\count300
+\c@subfigure@save=\count301
+\c@lofdepth=\count302
+\c@subtable=\count303
+\c@subtable@save=\count304
+\c@lotdepth=\count305
+\sf@top=\skip62
+\sf@bottom=\skip63
 )
 \@indexfile=\write3
 \openout3 = `deliverable1.idx'.
 
 
 Writing index file deliverable1.idx
-LaTeX Font Info:    Trying to load font information for T1+opensans-TOsF on input line 50.
+LaTeX Font Info:    Trying to load font information for T1+opensans-TOsF on input line 51.
 (/usr/share/texmf-dist/tex/latex/opensans/T1opensans-TOsF.fd
 File: T1opensans-TOsF.fd 2019/06/24 Font definitions for T1/opensans-TOsF.
 )
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 50.
+(Font)              scaled to size 10.0pt on input line 51.
  (./deliverable1.aux)
 \openout1 = `deliverable1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count297
-\scratchdimen=\dimen262
+\scratchcounter=\count306
+\scratchdimen=\dimen271
 \scratchbox=\box76
-\nofMPsegments=\count298
-\nofMParguments=\count299
+\nofMPsegments=\count307
+\nofMParguments=\count308
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count300
-\MPscratchDim=\dimen263
-\MPnumerator=\count301
-\makeMPintoPDFobject=\count302
+\MPscratchCnt=\count309
+\MPscratchDim=\dimen272
+\MPnumerator=\count310
+\makeMPintoPDFobject=\count311
 \everyMPtoPDFconversion=\toks22
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -306,27 +338,30 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count303
-\c@mv@boldtabular=\count304
+\c@mv@tabular=\count312
+\c@mv@boldtabular=\count313
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 52.
+(Font)              scaled to size 17.28pt on input line 53.
 <Images/BeeLive-Logo.png, id=1, 133.85007pt x 94.55325pt>
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 52.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 53.
 (pdftex.def)             Requested size: 384.11221pt x 271.35223pt.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 52.
+(Font)              scaled to size 17.28pt on input line 53.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 52.
+(Font)              scaled to size 12.0pt on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 52.
+(Font)              <12> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 52.
+(Font)              <8> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 52.
+(Font)              <6> on input line 53.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 54.
+(Font)              scaled to size 10.0pt on input line 55.
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 3.60004pt, for example:
@@ -336,21 +371,21 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_p2vepx.enc} <./Images/BeeLive-Logo.png>]
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 59.
+(Font)              scaled to size 14.4pt on input line 60.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 59.
+(Font)              scaled to size 14.4pt on input line 60.
  (./deliverable1.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 6.
+(Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 6.
+(Font)              <5> on input line 3.
 )
 \tf@toc=\write4
 \openout4 = `deliverable1.toc'.
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 61.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 62.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -368,28 +403,28 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [2
 
 ]
-Overfull \hbox (2.02684pt too wide) in paragraph at lines 66--67
+Overfull \hbox (2.02684pt too wide) in paragraph at lines 67--68
 []\T1/opensans-TOsF/m/n/10 Dopo un pro-cesso di ideazione, è emerso che a Trento risulta spesso dif-fi-cile reperire in-for-mazioni riguardanti
  []
 
 
-Overfull \hbox (9.00684pt too wide) in paragraph at lines 66--67
+Overfull \hbox (9.00684pt too wide) in paragraph at lines 67--68
 \T1/opensans-TOsF/m/n/10 gli eventi che in-fluen-zano la vi-a-bil-ità stradale. Le in-for-mazioni disponi-bili sono prin-ci-pal-mente tes-tu-ali e richiedono
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--72
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
 
  []
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 78.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 79.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -406,11 +441,34 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [3
 
 ]
+LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
+(Font)              scaled to size 12.0pt on input line 83.
+<Images/Mockup1 - Mobile.png, id=17, 1074.0125pt x 2327.69624pt>
+File: Images/Mockup1 - Mobile.png Graphic file (type png)
+<use Images/Mockup1 - Mobile.png>
+Package pdftex.def Info: Images/Mockup1 - Mobile.png  used on input line 88.
+(pdftex.def)             Requested size: 128.0374pt x 277.46457pt.
+LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 88.
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--88
+[]\T1/opensans-TOsF/m/n/8 (a) |Vista in-iziale all'apertura
+ []
+
+<Images/Mockup2 - Mobile.png, id=18, 1084.05pt x 2348.775pt>
+File: Images/Mockup2 - Mobile.png Graphic file (type png)
+<use Images/Mockup2 - Mobile.png>
+Package pdftex.def Info: Images/Mockup2 - Mobile.png  used on input line 90.
+(pdftex.def)             Requested size: 128.0374pt x 277.39676pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--90
+[]\T1/opensans-TOsF/m/n/8 (b) |In-for-mazioni dell'evento se-
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 82.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 94.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 57.79832pt, for example:
@@ -425,10 +483,15 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [4
 
-]
+ <./Images/Mockup1 - Mobile.png> <./Images/Mockup2 - Mobile.png>]
+<Images/Mockup1 - Desktop.png, id=24, 1371.1225pt x 770.88pt>
+File: Images/Mockup1 - Desktop.png Graphic file (type png)
+<use Images/Mockup1 - Desktop.png>
+Package pdftex.def Info: Images/Mockup1 - Desktop.png  used on input line 101.
+(pdftex.def)             Requested size: 384.11221pt x 215.95079pt.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 86.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 104.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -445,10 +508,10 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [5
 
-]
+ <./Images/Mockup1 - Desktop.png (PNG copy)>]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 90.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 108.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -466,11 +529,9 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [6
 
 ]
-LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 93.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 95.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 112.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -490,7 +551,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 99.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 116.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -510,7 +571,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 103.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 121.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -528,14 +589,11 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [9
 
 ]
-Overfull \hbox (5.76352pt too wide) in alignment at lines 111--131
-[] []
- []
-
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 134.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 125.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 57.79832pt, for example:
@@ -553,7 +611,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 139.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 129.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -570,6 +628,49 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [11
 
+]
+Overfull \hbox (5.76352pt too wide) in alignment at lines 137--157
+[] []
+ []
+
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 160.
+(pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 57.79832pt, for example:
+(fancyhdr)                \setlength{\headheight}{57.79832pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-45.79832pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[12
+
+]
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 165.
+(pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 57.79832pt, for example:
+(fancyhdr)                \setlength{\headheight}{57.79832pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-45.79832pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[13
+
 ] (./deliverable1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -577,18 +678,18 @@ L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5157 strings out of 476076
- 103860 string characters out of 5793775
+ 6708 strings out of 476076
+ 133532 string characters out of 5793775
  1933187 words of memory out of 5000000
- 27221 multiletter control sequences out of 15000+600000
- 567256 words of font info for 60 fonts, out of 8000000 for 9000
+ 28761 multiletter control sequences out of 15000+600000
+ 568065 words of font info for 62 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 79i,15n,93p,454b,377s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 85i,15n,133p,454b,478s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable1.pdf (11 pages, 82194 bytes).
+Output written on deliverable1.pdf (13 pages, 3504946 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

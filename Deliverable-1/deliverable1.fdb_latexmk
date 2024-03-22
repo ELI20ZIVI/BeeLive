@@ -1,12 +1,12 @@
 # Fdb version 4
-["makeindex deliverable1.idx"] 1711011326.30925 "deliverable1.idx" "deliverable1.ind" "deliverable1" 1711018961.69485 0
-  "deliverable1.idx" 1711018961.65167 311 39a7cba8daef65c727e6d9b99d9f1424 "pdflatex"
+["makeindex deliverable1.idx"] 1711098307.58004 "deliverable1.idx" "deliverable1.ind" "deliverable1" 1711098328.17558 0
+  "deliverable1.idx" 1711098328.12227 422 77574dccdb10db7843b80a49bde9e059 "pdflatex"
   (generated)
   "deliverable1.ilg"
   "deliverable1.ind"
   (rewritten before read)
-["pdflatex"] 1711018961.2295 "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" "deliverable1.pdf" "deliverable1" 1711018961.69496 0
-  "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" 1711018961.04834 5612 35261b9adb8d947594522b9dcc464d8b ""
+["pdflatex"] 1711098326.9302 "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" "deliverable1.pdf" "deliverable1" 1711098328.1757 0
+  "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" 1711098325.4189 6563 64af3f59bd4989f510768b54b24e7b82 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_p2vepx.enc" 1710713493 2985 9e8c82fa04ebb93b5bf8c2b1abd30ca6 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1710713493 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF--base.tfm" 1710713493 1684 fc50bcb8232bdf49a94ddfb6103f1168 ""
@@ -39,6 +39,8 @@
   "/usr/share/texmf-dist/tex/latex/base/makeidx.sty" 1710713493 1939 3225e20a81cec31e51c1e216d6385103 ""
   "/usr/share/texmf-dist/tex/latex/base/size10.clo" 1710713493 8448 dbc0dbf4156c0bb9ba01a1c685d3bad0 ""
   "/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty" 1710713493 6078 f1cb470c9199e7110a27851508ed7a5c ""
+  "/usr/share/texmf-dist/tex/latex/caption/caption.sty" 1710713493 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
+  "/usr/share/texmf-dist/tex/latex/caption/caption3.sty" 1710713493 72619 ee90b6612147680fd73c3b1406a74245 ""
   "/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1710713493 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty" 1710713493 18450 88279bf67c81e69f8e3f1c1bad1a26c5 ""
   "/usr/share/texmf-dist/tex/latex/fontaxes/fontaxes.sty" 1710713493 14310 41fdb35c51be792ddf00696848d0cfef ""
@@ -57,16 +59,20 @@
   "/usr/share/texmf-dist/tex/latex/lipsum/lipsum.sty" 1710713493 14690 c2c754218a7108db7823a4839c1bc3cd ""
   "/usr/share/texmf-dist/tex/latex/opensans/T1opensans-TOsF.fd" 1710713493 2859 ebee80744d9839284e12147eba7ea104 ""
   "/usr/share/texmf-dist/tex/latex/opensans/opensans.sty" 1710713493 4729 2f3fa396b35bfcb3436e9499ce6b0a67 ""
+  "/usr/share/texmf-dist/tex/latex/subfig/subfig.sty" 1710713493 21369 9ef165ca6df8815c92e693146a376c92 ""
   "/usr/share/texmf-dist/tex/latex/tabularray/tabularray.sty" 1710713493 255677 5fa41b80e5de95b8eaa15ecb137e1cf0 ""
   "/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1710713493 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1710713493 41588 b43d3e860a4f94167ee1e725ff526a72 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1711007460.35251 5312047 b07fcd2a9090df96fc745b92a3db793b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1711007453 7112993 1599db20095b1cf5ff170bf3655240af ""
   "Images/BeeLive-Logo.png" 1710952884.56966 50009 4d7e516e5320fda0c9d1e826dda84285 ""
-  "deliverable1.aux" 1711018961.65167 1093 f55890ec4e19826e781bc2f783bd6b98 "pdflatex"
-  "deliverable1.ind" 1711011326.35723 380 ebbf3eca4acb7a6cc8e0290955d20d39 "makeindex deliverable1.idx"
-  "deliverable1.tex" 1711018961.04834 5612 35261b9adb8d947594522b9dcc464d8b ""
-  "deliverable1.toc" 1711018961.65167 650 b7daf28ba4244a15c52cda234ab25c0a "pdflatex"
+  "Images/Mockup1 - Desktop.png" 1711097175.45547 162777 6cd8c41660efe85f81095a4a2c192a01 ""
+  "Images/Mockup1 - Mobile.png" 1711097687.13353 1368748 faeb02f39e11db96b6e455070d9285bb ""
+  "Images/Mockup2 - Mobile.png" 1711098108.5828 2164627 7e441f81af69c6fa90d3c4a3bb51f1c5 ""
+  "deliverable1.aux" 1711098328.12227 2223 b27c1834a737310dcb8021f091ffdda6 "pdflatex"
+  "deliverable1.ind" 1711098307.63529 492 7aadac8ac51a73caba2c813250bc356c "makeindex deliverable1.idx"
+  "deliverable1.tex" 1711098325.4189 6563 64af3f59bd4989f510768b54b24e7b82 ""
+  "deliverable1.toc" 1711098328.12227 861 2c619a6c7a232e1e142e725907e3df23 "pdflatex"
   (generated)
   "deliverable1.aux"
   "deliverable1.idx"

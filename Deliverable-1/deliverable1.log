@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.23)  23 MAR 2024 22:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.23)  23 MAR 2024 22:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -686,7 +686,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  85i,15n,133p,454b,478s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable1.pdf (13 pages, 5227614 bytes).
+Output written on deliverable1.pdf (13 pages, 5227521 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

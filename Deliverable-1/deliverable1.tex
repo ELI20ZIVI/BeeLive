@@ -8,7 +8,7 @@
 \usepackage{makeidx}
 \usepackage{booktabs}
 \usepackage{tabularray}
-\usepackage{subfig} % Importa il pacchetto subfig
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{hyperref}
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -83,13 +83,32 @@ Ogni variazione inserita nel sistema dall'amministrazione sarà caratterizzata d
 \subsection{Mockup applicazione mobile}
 \index{Mockup applicazione mobile} % Aggiunge una voce all'indice
 
+\subsubsection{Schermata principale}
+\index{Schermata principale} % Aggiunge una voce all'indice
 \begin{figure}[htbp]
     \centering
-    \subfloat[Vista iniziale all'apertura dell'applicazione]{\includegraphics[width=0.25\textwidth]{Images/Mockup1 - Mobile.png}\label{fig:immagine1}}
-    \hspace{100pt}
-    \subfloat[Informazioni dell'evento selezionato]{\includegraphics[width=0.25\textwidth]{Images/Mockup2 - Mobile.png}\label{fig:immagine2}}
-    \caption{Mockup dell'applicazione mobile}
+    \includegraphics[width=0.25\textwidth]{Images/Mockup1 - Mobile.png}
+    \caption{Mockup schermata principale dell'applicazione mobile}
 \end{figure}
+
+E' rappresentata la schermata principale dell'applicazione mobile che il cittadino installerà sul proprio smartphone.\\
+La schermata principale mostra una mappa della città di Trento con le zone interessate dalle variazioni della viabilità.\\
+La lista sottostante la mappa riporta tutte le variazioni presenti nel sistema che si trovano nel periodo di visualizzazione, con la possibilità di selezionare una variazione per visualizzarne i dettagli.\\
+\clearpage
+
+\subsubsection{Dettagli variazione selezionata}
+\index{Dettagli variazione selezionata} % Aggiunge una voce all'indice
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Images/Mockup2 - Mobile.png}
+    \caption{Mockup schermata principale dell'applicazione mobile}
+\end{figure}
+
+In questo caso invece è riportata la schermata di visualizzazione dei dettagli di una variazione della viabilità.\\
+E' stato selezionato il precedente evento "Incontro G7", quindi sono visualizzati tutti i dettagli relativi a tale evento.\\
+Nella fattispecie sono presenti la descrizione dell'evento, la data di inizio e fine, la zona interessata e la mappa con la visualizzazione della zona interessata.\\
+Inoltre è presente un pulsante per tornare alla schermata principale dell'applicazione.\\
+
 
 \clearpage
 

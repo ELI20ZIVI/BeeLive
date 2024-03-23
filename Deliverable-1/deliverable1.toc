@@ -1,13 +1,15 @@
-\contentsline {section}{\numberline {1}Descrizione dell'applicativo}{3}{}%
-\contentsline {section}{\numberline {2}Mockup}{4}{}%
-\contentsline {subsection}{\numberline {2.1}Mockup applicazione mobile}{4}{}%
-\contentsline {subsection}{\numberline {2.2}Mockup interfaccia desktop}{5}{}%
-\contentsline {section}{\numberline {3}Obiettivi}{6}{}%
-\contentsline {section}{\numberline {4}Attori di sistema}{7}{}%
-\contentsline {section}{\numberline {5}Prototipo}{8}{}%
-\contentsline {section}{\numberline {6}Requirements}{9}{}%
-\contentsline {subsection}{\numberline {6.1}Requirements funzionali}{9}{}%
-\contentsline {subsection}{\numberline {6.2}Requirements non funzionali}{10}{}%
-\contentsline {section}{\numberline {7}Grafo BPMN}{11}{}%
-\contentsline {section}{\numberline {8}Diagramma dei casi d'uso}{12}{}%
-\contentsline {section}{\numberline {9}Resoconto}{13}{}%
+\contentsline {section}{\numberline {1}Descrizione dell'applicativo}{3}{section.1}%
+\contentsline {section}{\numberline {2}Mockup}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Mockup applicazione mobile}{4}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Schermata principale}{4}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Dettagli variazione selezionata}{5}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}Mockup interfaccia desktop}{6}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Obiettivi}{7}{section.3}%
+\contentsline {section}{\numberline {4}Attori di sistema}{8}{section.4}%
+\contentsline {section}{\numberline {5}Prototipo}{9}{section.5}%
+\contentsline {section}{\numberline {6}Requirements}{10}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Requirements funzionali}{10}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Requirements non funzionali}{11}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Grafo BPMN}{12}{section.7}%
+\contentsline {section}{\numberline {8}Diagramma dei casi d'uso}{13}{section.8}%
+\contentsline {section}{\numberline {9}Resoconto}{14}{section.9}%

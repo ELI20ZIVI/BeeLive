@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.23)  23 MAR 2024 22:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.23)  24 MAR 2024 16:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -433,7 +433,7 @@ Package hyperref Info: Link coloring ON on input line 51.
 
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 54.
-<Images/BeeLive-Logo.png, id=64, 133.85007pt x 94.55325pt>
+<Images/BeeLive-Logo.png, id=68, 133.85007pt x 94.55325pt>
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
 Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 54.
@@ -532,19 +532,19 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 83.
-<Images/Mockup1 - Mobile.png, id=98, 1084.05pt x 2348.775pt>
+<Images/Mockup1 - Mobile.png, id=103, 1084.05pt x 2348.775pt>
 File: Images/Mockup1 - Mobile.png Graphic file (type png)
 <use Images/Mockup1 - Mobile.png>
-Package pdftex.def Info: Images/Mockup1 - Mobile.png  used on input line 90.
+Package pdftex.def Info: Images/Mockup1 - Mobile.png  used on input line 91.
 (pdftex.def)             Requested size: 128.0374pt x 277.39676pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
+Underfull \hbox (badness 10000) in paragraph at lines 95--98
 
  []
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 97.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 98.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -561,13 +561,13 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [4
 
  <./Images/Mockup1 - Mobile.png>]
-<Images/Mockup2 - Mobile.png, id=105, 1074.0125pt x 2327.69624pt>
+<Images/Mockup2 - Mobile.png, id=110, 1074.0125pt x 2327.69624pt>
 File: Images/Mockup2 - Mobile.png Graphic file (type png)
 <use Images/Mockup2 - Mobile.png>
-Package pdftex.def Info: Images/Mockup2 - Mobile.png  used on input line 103.
+Package pdftex.def Info: Images/Mockup2 - Mobile.png  used on input line 105.
 (pdftex.def)             Requested size: 128.0374pt x 277.46457pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
 
  []
 
@@ -590,16 +590,20 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [5
 
  <./Images/Mockup2 - Mobile.png>]
-<Images/Mockup1 - Desktop.png, id=112, 5213.4775pt x 2654.91875pt>
-File: Images/Mockup1 - Desktop.png Graphic file (type png)
-<use Images/Mockup1 - Desktop.png>
-Package pdftex.def Info: Images/Mockup1 - Desktop.png  used on input line 120.
-(pdftex.def)             Requested size: 384.11221pt x 195.58588pt.
+<Images/Mockup3 - Mobile.png, id=117, 593.21625pt x 1284.8pt>
+File: Images/Mockup3 - Mobile.png Graphic file (type png)
+<use Images/Mockup3 - Mobile.png>
+Package pdftex.def Info: Images/Mockup3 - Mobile.png  used on input line 121.
+(pdftex.def)             Requested size: 128.0374pt x 277.30486pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--128
+
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 123.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 130.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 57.79832pt, for example:
@@ -614,12 +618,21 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [6
 
- <./Images/Mockup1 - Desktop.png>]
+ <./Images/Mockup3 - Mobile.png>]
+<Images/Mockup1 - Desktop.png, id=125, 5213.4775pt x 2654.91875pt>
+File: Images/Mockup1 - Desktop.png Graphic file (type png)
+<use Images/Mockup1 - Desktop.png>
+Package pdftex.def Info: Images/Mockup1 - Desktop.png  used on input line 138.
+(pdftex.def)             Requested size: 384.11221pt x 195.58588pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
+
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 127.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 148.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 57.79832pt, for example:
@@ -634,10 +647,10 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [7
 
-]
+ <./Images/Mockup1 - Desktop.png>]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 131.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 152.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -657,7 +670,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 135.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 156.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -677,7 +690,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 140.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 160.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -697,7 +710,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 144.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 165.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -717,7 +730,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 148.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 169.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
 
 
@@ -735,14 +748,11 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [12
 
 ]
-Overfull \hbox (5.76352pt too wide) in alignment at lines 156--176
-[] []
- []
-
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 179.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 173.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 57.79832pt, for example:
@@ -758,11 +768,14 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [13
 
 ]
+Overfull \hbox (5.76352pt too wide) in alignment at lines 181--201
+[] []
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 184.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 204.
 (pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 57.79832pt, for example:
@@ -777,27 +790,47 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [14
 
+]
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 209.
+(pdftex.def)             Requested size: 56.9055pt x 40.19829pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 57.79832pt, for example:
+(fancyhdr)                \setlength{\headheight}{57.79832pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-45.79832pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[15
+
 ] (./deliverable1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `deliverable1.out' has not changed.
-(rerunfilecheck)             Checksum: 48A0B6246442332C12A72557043AA52D;2191.
+(rerunfilecheck)             Checksum: AE46ABE5C03D5B041280E9970AF606F6;2413.
  ) 
 Here is how much of TeX's memory you used:
- 12216 strings out of 476076
- 212478 string characters out of 5793775
+ 12231 strings out of 476076
+ 212880 string characters out of 5793775
  1933187 words of memory out of 5000000
- 34140 multiletter control sequences out of 15000+600000
+ 34152 multiletter control sequences out of 15000+600000
  567256 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 79i,15n,93p,454b,467s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,15n,93p,480b,467s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable1.pdf (14 pages, 5231769 bytes).
+Output written on deliverable1.pdf (15 pages, 5366312 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 191 PDF objects out of 1000 (max. 8388607)
+ 158 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 154 words of extra memory for PDF output out of 10000 (max. 10000000)
 

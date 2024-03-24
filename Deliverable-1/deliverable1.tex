@@ -86,6 +86,7 @@ Ogni variazione inserita nel sistema dall'amministrazione sarà caratterizzata d
 \subsubsection{Schermata principale}
 \index{Schermata principale} % Aggiunge una voce all'indice
 \begin{figure}[htbp]
+    \label{fig:Schermata_principale_mobile}
     \centering
     \includegraphics[width=0.25\textwidth]{Images/Mockup1 - Mobile.png}
     \caption{Mockup schermata principale dell'applicazione mobile}
@@ -99,15 +100,31 @@ La lista sottostante la mappa riporta tutte le variazioni presenti nel sistema c
 \subsubsection{Dettagli variazione selezionata}
 \index{Dettagli variazione selezionata} % Aggiunge una voce all'indice
 \begin{figure}[htbp]
+    \label{fig:Dettaglio_evento}
     \centering
     \includegraphics[width=0.25\textwidth]{Images/Mockup2 - Mobile.png}
-    \caption{Mockup schermata principale dell'applicazione mobile}
+    \caption{Mockup schermata detagli di un evento dell'applicazione mobile}
 \end{figure}
 
 In questo caso invece è riportata la schermata di visualizzazione dei dettagli di una variazione della viabilità.\\
 E' stato selezionato il precedente evento "Incontro G7", quindi sono visualizzati tutti i dettagli relativi a tale evento.\\
 Nella fattispecie sono presenti la descrizione dell'evento, la data di inizio e fine, la zona interessata e la mappa con la visualizzazione della zona interessata.\\
 Inoltre è presente un pulsante per tornare alla schermata principale dell'applicazione.\\
+\clearpage
+
+\subsubsection{Mockup notifiche degli eventi}
+\index{Mockup notifiche degli eventi} % Aggiunge una voce all'indice
+
+\begin{figure}[htbp]
+    \label{fig:Notifica_evento}
+    \centering
+    \includegraphics[width=0.25\textwidth]{Images/Mockup3 - Mobile.png}
+    \caption{Mockup notifiche generate da un'evento dall'applicazione mobile}
+\end{figure}
+
+L'evento preso nell'esempio precedente era impostato per generare delle notifiche push.\\
+Quella riportata nell'esempio soprastante rappresenta la notifica di inizio dell'evento "Incontro G7".\\
+Interagendo con essa sarà quindi aperta l'applicazione mobile sulla schermata riportata in \hyperref[fig:Dettaglio_evento]{figura 2}, permettendo quindi la consultazione delle modifiche per intero.\\
 
 
 \clearpage
@@ -116,10 +133,18 @@ Inoltre è presente un pulsante per tornare alla schermata principale dell'appli
 \index{Mockup interfaccia desktop} % Aggiunge una voce all'indice
 %Immagine singola
 \begin{figure}[htbp]
+    \label{fig:Schermata_principale_desktop}
     \centering
     \includegraphics[width=0.75\textwidth]{Images/Mockup1 - Desktop.png}
     \caption{Mockup dell'interfaccia amministrativa}
 \end{figure}
+
+L'immagine rappresenta come dovrebbe essere strutturata l'interfaccia dell'applicativo desktop, utilizzato dagli enti pubblici con potere di amministrazione per la pobblicazione degli eventi in città che ne influenzano la viabilità.\\
+L'interfaccia comprende un menu laterale per la navigazione tra le varie sezioni dell'applicativo e la schermata dove il sottomen selezionato presenta tutte le sue specifiche funzionalità disponibili.
+
+Il sottomenù selezionato in questo caso è "Gestione Eventi", la sezione in cui è possibile inserire un nuovo evento che modifica la viabilità cittadina. Infatti sono riportati tutti i campi necessari per la creazione di un evento, come il titolo, il riassunto, la data di inizio e fine di validità dell'evento e di visibilità sull'applicativo mobile, e le categorie che caratterizzano l'evento.
+
+L'interfaccia è strutturata in modo che ogni evento abbia la possibilità di essere composto da più sottoeventi. Nella sezione di destra è possibile visualizzare l'inderimento del sottoevento "Arrivo delle delegazioni", dove è possibile inserire il titolo, la descrizione, la data di validità e la zona interessata direttamente su mappa.\\
 \clearpage
 
 \section{Obiettivi}

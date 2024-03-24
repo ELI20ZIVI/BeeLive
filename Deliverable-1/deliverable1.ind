@@ -1,36 +1,37 @@
 \begin{theindex}
 
-  \item Attori di sistema, \hyperpage{8}
+  \item Attori di sistema, \hyperpage{9}
 
   \indexspace
 
   \item Descrizione dell'applicativo, \hyperpage{3}
   \item Dettagli variazione selezionata, \hyperpage{5}
-  \item Diagramma dei casi d'uso, \hyperpage{13}
+  \item Diagramma dei casi d'uso, \hyperpage{14}
 
   \indexspace
 
-  \item Grafo BPMN, \hyperpage{12}
+  \item Grafo BPMN, \hyperpage{13}
 
   \indexspace
 
   \item Mockup, \hyperpage{4}
   \item Mockup applicazione mobile, \hyperpage{4}
-  \item Mockup interfaccia desktop, \hyperpage{6}
+  \item Mockup interfaccia desktop, \hyperpage{7}
+  \item Mockup notifiche degli eventi, \hyperpage{6}
 
   \indexspace
 
-  \item Obiettivi, \hyperpage{7}
+  \item Obiettivi, \hyperpage{8}
 
   \indexspace
 
-  \item Prototipo, \hyperpage{9}
+  \item Prototipo, \hyperpage{10}
 
   \indexspace
 
-  \item Requirements funzionali, \hyperpage{10}
-  \item Requirements non funzionali, \hyperpage{11}
-  \item Resoconto, \hyperpage{14}
+  \item Requirements funzionali, \hyperpage{11}
+  \item Requirements non funzionali, \hyperpage{12}
+  \item Resoconto, \hyperpage{15}
 
   \indexspace
 

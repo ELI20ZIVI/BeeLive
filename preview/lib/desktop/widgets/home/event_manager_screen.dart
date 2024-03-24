@@ -1,11 +1,11 @@
-import 'package:BeeLive/desktop/widgets/home/category_picker.dart';
+import 'package:beelive/desktop/widgets/home/category_picker.dart';
 import 'package:collection/collection.dart';
 
-import 'package:BeeLive/common/dao/dao.dart';
-import 'package:BeeLive/common/map/map.dart';
-import 'package:BeeLive/common/map/tiles.dart';
-import 'package:BeeLive/common/problem.dart';
-import 'package:BeeLive/desktop/widgets/home/datetime_range_picker.dart';
+import 'package:beelive/common/dao/dao.dart';
+import 'package:beelive/common/map/map.dart';
+import 'package:beelive/common/map/tiles.dart';
+import 'package:beelive/common/problem.dart';
+import 'package:beelive/desktop/widgets/home/datetime_range_picker.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 
@@ -32,7 +32,6 @@ class EventManagerScreen extends StatelessWidget {
 
 class _EventWidget extends StatelessWidget {
   const _EventWidget({
-    super.key,
     required this.problem,
   });
 
@@ -59,7 +58,6 @@ class _EventWidget extends StatelessWidget {
 
 class _SubEventsWidget extends StatelessWidget {
   const _SubEventsWidget({
-    super.key,
     required this.problem,
   });
 
@@ -87,7 +85,6 @@ class _SubEventsWidget extends StatelessWidget {
 
 class _SubEventWidget extends StatelessWidget {
   const _SubEventWidget({
-    super.key,
     required this.event,
   });
 
@@ -145,7 +142,6 @@ class _SubEventWidget extends StatelessWidget {
 
 class _MapManager extends StatelessWidget {
   const _MapManager({
-    super.key,
     required this.event,
   });
 
@@ -196,7 +192,6 @@ class _MapManager extends StatelessWidget {
 
 class _EventGenericForm extends StatelessWidget {
   const _EventGenericForm({
-    super.key,
     required this.problem,
   });
 

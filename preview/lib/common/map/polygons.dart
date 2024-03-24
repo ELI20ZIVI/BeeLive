@@ -1,6 +1,4 @@
-import 'package:flutter_map/flutter_map.dart' hide Polygon;
 import 'package:latlong2/latlong.dart';
-import 'package:polybool/polybool.dart';
 
 typedef PolygonCoords = List<LatLng>;
 

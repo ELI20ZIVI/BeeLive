@@ -1,5 +1,5 @@
-import 'package:BeeLive/common/map/polygons.dart';
-import 'package:BeeLive/common/model/nullable_datetime_range.dart';
+import 'package:beelive/common/map/polygons.dart';
+import 'package:beelive/common/model/nullable_datetime_range.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:polybool/polybool.dart';
 

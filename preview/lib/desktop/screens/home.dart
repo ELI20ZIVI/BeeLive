@@ -1,5 +1,5 @@
-import 'package:BeeLive/common/dao/dao.dart';
-import 'package:BeeLive/desktop/widgets/home/event_manager_screen.dart';
+import 'package:beelive/common/dao/dao.dart';
+import 'package:beelive/desktop/widgets/home/event_manager_screen.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
 class HomePage extends StatefulWidget {

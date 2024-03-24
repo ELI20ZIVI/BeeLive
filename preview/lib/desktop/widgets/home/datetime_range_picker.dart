@@ -1,4 +1,4 @@
-import 'package:BeeLive/common/model/nullable_datetime_range.dart';
+import 'package:beelive/common/model/nullable_datetime_range.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide DateTimeRange;
 import 'package:intl/intl.dart';
 
@@ -66,7 +66,6 @@ class NullableDateTimeRangePickerState
 
 class _DateTimeRangeHeader extends StatelessWidget {
   const _DateTimeRangeHeader({
-    super.key,
     required this.range,
   });
 

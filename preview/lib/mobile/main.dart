@@ -1,6 +1,33 @@
-import 'package:BeeLive/common/dao/static_dao.dart';
-import 'package:BeeLive/mobile/screens/home.dart';
+import 'package:beelive/common/dao/static_dao.dart';
+import 'package:beelive/mobile/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterLocalNotificationsPlugin notify = FlutterLocalNotificationsPlugin();
+  notify
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestNotificationsPermission();
+
+  notify.show(
+    1,
+    'Incontro G7',
+    'Modifiche al trasporto pubblico',
+    const NotificationDetails(
+      android: AndroidNotificationDetails(
+        "info",
+        "viability",
+        icon: '@mipmap/ic_launcher',
+        category: AndroidNotificationCategory.reminder,
+      ),
+    ),
+  );
+
+  runApp(const MobileApp());
+}
 
 class MobileApp extends StatelessWidget {
   const MobileApp({super.key});

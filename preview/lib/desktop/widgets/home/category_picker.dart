@@ -1,4 +1,4 @@
-import 'package:BeeLive/common/problem.dart';
+import 'package:beelive/common/problem.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
 class CategoryPicker extends StatelessWidget {

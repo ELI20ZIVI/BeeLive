@@ -1,7 +1,7 @@
-import 'package:BeeLive/common/dao/dao.dart';
-import 'package:BeeLive/common/map/map.dart';
-import 'package:BeeLive/common/map/tiles.dart';
-import 'package:BeeLive/mobile/widgets/events.dart';
+import 'package:beelive/common/dao/dao.dart';
+import 'package:beelive/common/map/map.dart';
+import 'package:beelive/common/map/tiles.dart';
+import 'package:beelive/mobile/widgets/events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 

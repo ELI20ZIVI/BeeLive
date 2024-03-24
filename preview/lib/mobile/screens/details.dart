@@ -1,9 +1,9 @@
-import 'package:BeeLive/common/map/polygons.dart';
-import 'package:BeeLive/common/map/tiles.dart';
-import 'package:BeeLive/common/problem.dart';
-import 'package:BeeLive/common/widgets/title_widget.dart';
+import 'package:beelive/common/map/polygons.dart';
+import 'package:beelive/common/map/tiles.dart';
+import 'package:beelive/common/problem.dart';
+import 'package:beelive/common/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:BeeLive/common/map/map.dart';
+import 'package:beelive/common/map/map.dart';
 import 'package:flutter_map/flutter_map.dart';
 
 class Details extends StatelessWidget {
@@ -24,7 +24,6 @@ class Details extends StatelessWidget {
 
 class _SubEventDetails extends StatefulWidget {
   const _SubEventDetails({
-    super.key,
     required this.event,
   });
 
@@ -98,7 +97,6 @@ class _SubEventDetailsState extends State<_SubEventDetails> {
 
 class _PolygonDetails extends StatelessWidget {
   const _PolygonDetails({
-    super.key,
     required this.polygon,
   });
 

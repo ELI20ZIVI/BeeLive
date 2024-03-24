@@ -1,6 +1,6 @@
-import 'package:BeeLive/common/dao/dao.dart';
-import 'package:BeeLive/common/problem.dart';
-import 'package:BeeLive/mobile/screens/details.dart';
+import 'package:beelive/common/dao/dao.dart';
+import 'package:beelive/common/problem.dart';
+import 'package:beelive/mobile/screens/details.dart';
 import 'package:flutter/material.dart';
 
 class ProblemsList extends StatelessWidget {

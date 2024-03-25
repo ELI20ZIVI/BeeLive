@@ -1,38 +1,48 @@
-\indexentry{Descrizione dell'applicativo|hyperpage}{3}
-\indexentry{Obiettivi|hyperpage}{4}
-\indexentry{Attori di sistema e Mind map|hyperpage}{5}
-\indexentry{Attori di sistema Interni|hyperpage}{5}
-\indexentry{Utente anonimo|hyperpage}{5}
-\indexentry{Utente autenticato|hyperpage}{5}
-\indexentry{Dipendente del Comune di trento|hyperpage}{5}
-\indexentry{Aziende delegate|hyperpage}{5}
-\indexentry{Amministratore di sistema|hyperpage}{5}
-\indexentry{Attori di sistema Esterni|hyperpage}{5}
-\indexentry{Aziende delegate|hyperpage}{5}
-\indexentry{Componenti di sistema Interni|hyperpage}{5}
-\indexentry{Applicativo mobile|hyperpage}{5}
-\indexentry{Applicativo desktop|hyperpage}{5}
-\indexentry{Web server|hyperpage}{5}
-\indexentry{Database|hyperpage}{5}
-\indexentry{Componenti di sistema Esterni|hyperpage}{5}
-\indexentry{Autenticazione|hyperpage}{5}
-\indexentry{Server provider|hyperpage}{5}
-\indexentry{Mind map|hyperpage}{6}
-\indexentry{Prototipo del sistema|hyperpage}{7}
-\indexentry{Mockup applicazione mobile|hyperpage}{7}
-\indexentry{Schermata principale|hyperpage}{7}
-\indexentry{Dettagli variazione selezionata|hyperpage}{8}
-\indexentry{Mockup notifiche degli eventi|hyperpage}{9}
-\indexentry{Mockup interfaccia desktop|hyperpage}{10}
-\indexentry{Requirements|hyperpage}{11}
-\indexentry{Requirements funzionali|hyperpage}{11}
-\indexentry{Utente anonimo tramite applicativo mobile|hyperpage}{11}
-\indexentry{Requirements non funzionali|hyperpage}{12}
-\indexentry{Usabilità|hyperpage}{12}
-\indexentry{Scalabilità|hyperpage}{12}
-\indexentry{Robustness|hyperpage}{12}
-\indexentry{Prestazioni|hyperpage}{12}
-\indexentry{Reliability|hyperpage}{12}
-\indexentry{Grafo BPMN|hyperpage}{13}
-\indexentry{Diagramma dei casi d'uso|hyperpage}{14}
-\indexentry{Resoconto|hyperpage}{15}
+\indexentry{Descrizione dell'applicativo|hyperpage}{4}
+\indexentry{Obiettivi|hyperpage}{5}
+\indexentry{Attori di sistema e Mind map|hyperpage}{6}
+\indexentry{Attori di sistema Interni|hyperpage}{6}
+\indexentry{Utente anonimo|hyperpage}{6}
+\indexentry{Utente autenticato|hyperpage}{6}
+\indexentry{Dipendente del Comune di trento|hyperpage}{6}
+\indexentry{Aziende delegate|hyperpage}{6}
+\indexentry{Amministratore di sistema|hyperpage}{6}
+\indexentry{Attori di sistema Esterni|hyperpage}{6}
+\indexentry{Aziende delegate|hyperpage}{6}
+\indexentry{Componenti di sistema Interni|hyperpage}{6}
+\indexentry{Applicativo mobile|hyperpage}{6}
+\indexentry{Applicativo desktop|hyperpage}{6}
+\indexentry{Web server|hyperpage}{6}
+\indexentry{Database|hyperpage}{6}
+\indexentry{Componenti di sistema Esterni|hyperpage}{6}
+\indexentry{Autenticazione|hyperpage}{6}
+\indexentry{Server provider|hyperpage}{6}
+\indexentry{Mind map|hyperpage}{7}
+\indexentry{Prototipo del sistema|hyperpage}{8}
+\indexentry{Mockup applicazione mobile|hyperpage}{8}
+\indexentry{Schermata principale|hyperpage}{8}
+\indexentry{Dettagli variazione selezionata|hyperpage}{9}
+\indexentry{Mockup notifiche degli eventi|hyperpage}{10}
+\indexentry{Mockup interfaccia desktop|hyperpage}{11}
+\indexentry{Requirements funzionali|hyperpage}{12}
+\indexentry{Utente anonimo tramite applicativo mobile|hyperpage}{12}
+\indexentry{Deve poter visualizzare la lista degli eventi|hyperpage}{12}
+\indexentry{Deve poter filtrare gli eventi per categoria|hyperpage}{12}
+\indexentry{Deve poter nascondere eventi che non gli interessano|hyperpage}{12}
+\indexentry{Deve poter visualizzare gli eventi su mappa|hyperpage}{12}
+\indexentry{Deve potersi registrare|hyperpage}{12}
+\indexentry{Deve potersi autenticare|hyperpage}{12}
+\indexentry{Deve poter indicare aree di interesse|hyperpage}{12}
+\indexentry{Deve poter indicare percorsi di interesse|hyperpage}{12}
+\indexentry{Deve poter indicare linee di bus di interesse|hyperpage}{12}
+\indexentry{Deve poter indicare categorie di interesse|hyperpage}{12}
+\indexentry{Deve poter ricevere notifiche riguardo agli eventi|hyperpage}{12}
+\indexentry{Requirements non funzionali|hyperpage}{13}
+\indexentry{Usabilità|hyperpage}{13}
+\indexentry{Scalabilità|hyperpage}{13}
+\indexentry{Robustness|hyperpage}{13}
+\indexentry{Prestazioni|hyperpage}{13}
+\indexentry{Reliability|hyperpage}{13}
+\indexentry{Grafo BPMN|hyperpage}{14}
+\indexentry{Diagramma dei casi d'uso|hyperpage}{15}
+\indexentry{Resoconto|hyperpage}{16}

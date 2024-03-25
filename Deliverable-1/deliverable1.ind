@@ -1,71 +1,83 @@
 \begin{theindex}
 
-  \item Amministratore di sistema, \hyperpage{5}
-  \item Applicativo desktop, \hyperpage{5}
-  \item Applicativo mobile, \hyperpage{5}
-  \item Attori di sistema e Mind map, \hyperpage{5}
-  \item Attori di sistema Esterni, \hyperpage{5}
-  \item Attori di sistema Interni, \hyperpage{5}
-  \item Autenticazione, \hyperpage{5}
-  \item Aziende delegate, \hyperpage{5}
+  \item Amministratore di sistema, \hyperpage{6}
+  \item Applicativo desktop, \hyperpage{6}
+  \item Applicativo mobile, \hyperpage{6}
+  \item Attori di sistema e Mind map, \hyperpage{6}
+  \item Attori di sistema Esterni, \hyperpage{6}
+  \item Attori di sistema Interni, \hyperpage{6}
+  \item Autenticazione, \hyperpage{6}
+  \item Aziende delegate, \hyperpage{6}
 
   \indexspace
 
-  \item Componenti di sistema Esterni, \hyperpage{5}
-  \item Componenti di sistema Interni, \hyperpage{5}
+  \item Componenti di sistema Esterni, \hyperpage{6}
+  \item Componenti di sistema Interni, \hyperpage{6}
 
   \indexspace
 
-  \item Database, \hyperpage{5}
-  \item Descrizione dell'applicativo, \hyperpage{3}
-  \item Dettagli variazione selezionata, \hyperpage{8}
-  \item Diagramma dei casi d'uso, \hyperpage{14}
-  \item Dipendente del Comune di trento, \hyperpage{5}
+  \item Database, \hyperpage{6}
+  \item Descrizione dell'applicativo, \hyperpage{4}
+  \item Dettagli variazione selezionata, \hyperpage{9}
+  \item Deve poter filtrare gli eventi per categoria, \hyperpage{12}
+  \item Deve poter indicare aree di interesse, \hyperpage{12}
+  \item Deve poter indicare categorie di interesse, \hyperpage{12}
+  \item Deve poter indicare linee di bus di interesse, \hyperpage{12}
+  \item Deve poter indicare percorsi di interesse, \hyperpage{12}
+  \item Deve poter nascondere eventi che non gli interessano, 
+		\hyperpage{12}
+  \item Deve poter ricevere notifiche riguardo agli eventi, 
+		\hyperpage{12}
+  \item Deve poter visualizzare gli eventi su mappa, \hyperpage{12}
+  \item Deve poter visualizzare la lista degli eventi, \hyperpage{12}
+  \item Deve potersi autenticare, \hyperpage{12}
+  \item Deve potersi registrare, \hyperpage{12}
+  \item Diagramma dei casi d'uso, \hyperpage{15}
+  \item Dipendente del Comune di trento, \hyperpage{6}
 
   \indexspace
 
-  \item Grafo BPMN, \hyperpage{13}
+  \item Grafo BPMN, \hyperpage{14}
 
   \indexspace
 
-  \item Mind map, \hyperpage{6}
-  \item Mockup applicazione mobile, \hyperpage{7}
-  \item Mockup interfaccia desktop, \hyperpage{10}
-  \item Mockup notifiche degli eventi, \hyperpage{9}
+  \item Mind map, \hyperpage{7}
+  \item Mockup applicazione mobile, \hyperpage{8}
+  \item Mockup interfaccia desktop, \hyperpage{11}
+  \item Mockup notifiche degli eventi, \hyperpage{10}
 
   \indexspace
 
-  \item Obiettivi, \hyperpage{4}
+  \item Obiettivi, \hyperpage{5}
 
   \indexspace
 
-  \item Prestazioni, \hyperpage{12}
-  \item Prototipo del sistema, \hyperpage{7}
+  \item Prestazioni, \hyperpage{13}
+  \item Prototipo del sistema, \hyperpage{8}
 
   \indexspace
 
-  \item Reliability, \hyperpage{12}
-  \item Requirements, \hyperpage{11}
-  \item Requirements funzionali, \hyperpage{11}
-  \item Requirements non funzionali, \hyperpage{12}
-  \item Resoconto, \hyperpage{15}
-  \item Robustness, \hyperpage{12}
+  \item Reliability, \hyperpage{13}
+  \item Requirements funzionali, \hyperpage{12}
+  \item Requirements non funzionali, \hyperpage{13}
+  \item Resoconto, \hyperpage{16}
+  \item Robustness, \hyperpage{13}
 
   \indexspace
 
-  \item Scalabilità, \hyperpage{12}
-  \item Schermata principale, \hyperpage{7}
-  \item Server provider, \hyperpage{5}
+  \item Scalabilità, \hyperpage{13}
+  \item Schermata principale, \hyperpage{8}
+  \item Server provider, \hyperpage{6}
 
   \indexspace
 
-  \item Usabilità, \hyperpage{12}
-  \item Utente anonimo, \hyperpage{5}
-  \item Utente anonimo tramite applicativo mobile, \hyperpage{11}
-  \item Utente autenticato, \hyperpage{5}
+  \item Usabilità, \hyperpage{13}
+  \item Utente anonimo, \hyperpage{6}
+  \item Utente anonimo tramite applicativo mobile, \hyperpage{12}
+  \item Utente autenticato, \hyperpage{6}
 
   \indexspace
 
-  \item Web server, \hyperpage{5}
+  \item Web server, \hyperpage{6}
 
 \end{theindex}

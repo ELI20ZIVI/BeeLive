@@ -1,14 +1,26 @@
 \begin{theindex}
 
-  \item Affidabilità delle informazioni pubblicate, \hyperpage{12}
-  \item Attori di sistema, \hyperpage{5}
+  \item Amministratore di sistema, \hyperpage{5}
+  \item Applicativo desktop, \hyperpage{5}
+  \item Applicativo mobile, \hyperpage{5}
   \item Attori di sistema e Mind map, \hyperpage{5}
+  \item Attori di sistema Esterni, \hyperpage{5}
+  \item Attori di sistema Interni, \hyperpage{5}
+  \item Autenticazione, \hyperpage{5}
+  \item Aziende delegate, \hyperpage{5}
 
   \indexspace
 
+  \item Componenti di sistema Esterni, \hyperpage{5}
+  \item Componenti di sistema Interni, \hyperpage{5}
+
+  \indexspace
+
+  \item Database, \hyperpage{5}
   \item Descrizione dell'applicativo, \hyperpage{3}
   \item Dettagli variazione selezionata, \hyperpage{8}
   \item Diagramma dei casi d'uso, \hyperpage{14}
+  \item Dipendente del Comune di trento, \hyperpage{5}
 
   \indexspace
 
@@ -27,25 +39,33 @@
 
   \indexspace
 
-  \item Portabilità, \hyperpage{12}
-  \item Prototipo, \hyperpage{7}
+  \item Prestazioni, \hyperpage{12}
+  \item Prototipo del sistema, \hyperpage{7}
 
   \indexspace
 
+  \item Reliability, \hyperpage{12}
   \item Requirements, \hyperpage{11}
   \item Requirements funzionali, \hyperpage{11}
   \item Requirements non funzionali, \hyperpage{12}
   \item Resoconto, \hyperpage{15}
-  \item Responsività applicazione mobile, \hyperpage{12}
-  \item Responsività programma desktop, \hyperpage{12}
+  \item Robustness, \hyperpage{12}
 
   \indexspace
 
   \item Scalabilità, \hyperpage{12}
   \item Schermata principale, \hyperpage{7}
+  \item Server provider, \hyperpage{5}
 
   \indexspace
 
   \item Usabilità, \hyperpage{12}
+  \item Utente anonimo, \hyperpage{5}
+  \item Utente anonimo tramite applicativo mobile, \hyperpage{11}
+  \item Utente autenticato, \hyperpage{5}
+
+  \indexspace
+
+  \item Web server, \hyperpage{5}
 
 \end{theindex}

@@ -1,13 +1,13 @@
 \begin{theindex}
 
+  \item Affidabilità dei dati forniti, \hyperpage{15}
   \item Amministratore di sistema, \hyperpage{6}
+  \item Amministrazione di sistema, \hyperpage{13}
   \item Applicativo desktop, \hyperpage{6}
   \item Applicativo mobile, \hyperpage{6}
   \item Attori di sistema e Mind map, \hyperpage{6}
   \item Attori di sistema Esterni, \hyperpage{6}
   \item Attori di sistema Interni, \hyperpage{6}
-  \item Autenticazione, \hyperpage{6}
-  \item Aziende delegate, \hyperpage{6}
 
   \indexspace
 
@@ -16,28 +16,67 @@
 
   \indexspace
 
+  \item DataBase, \hyperpage{14}
   \item Database, \hyperpage{6}
   \item Descrizione dell'applicativo, \hyperpage{4}
   \item Dettagli variazione selezionata, \hyperpage{9}
+  \item Deve avere accesso privilegiato al sistema, \hyperpage{13}
+  \item Deve avere esclusività di gestione durante il corso dell'operazione, 
+		\hyperpage{13}
+  \item Deve avere le impostazioni sincronizzate tra i vari dispositivi, 
+		\hyperpage{12}
+  \item Deve garantire l'accesso al servizio ai soli utenti autorizzati, 
+		\hyperpage{14}
+  \item Deve poter caricare elementi geografici provenienti da file esterni, 
+		\hyperpage{13}
+  \item Deve poter creare un evento a partire da file con strutture specifiche, 
+		\hyperpage{13}
+  \item Deve poter definire elementi geografici di interesse per facilitare la selezione delle aree interessate all'evento, 
+		\hyperpage{13}
+  \item Deve poter definire le aree di competenza delle entità di gestione, 
+		\hyperpage{13}
+  \item Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}, 
+		\hyperpage{13}
+  \item Deve poter definire sottocategorie, \hyperpage{12}
+  \item Deve poter eseguire query spaziali, \hyperpage{14}
   \item Deve poter filtrare gli eventi per categoria, \hyperpage{12}
+  \item Deve poter gestire gli eventi che non sono di sua competenza, 
+		\hyperpage{12}
+  \item Deve poter gestire gli eventi di sua competenza, \hyperpage{12}
+  \item Deve poter gestire le policies di access control, 
+		\hyperpage{13}
   \item Deve poter indicare aree di interesse, \hyperpage{12}
   \item Deve poter indicare categorie di interesse, \hyperpage{12}
-  \item Deve poter indicare linee di bus di interesse, \hyperpage{12}
   \item Deve poter indicare percorsi di interesse, \hyperpage{12}
-  \item Deve poter nascondere eventi che non gli interessano, 
+  \item Deve poter nascondere eventi specifici che non gli interessano, 
 		\hyperpage{12}
   \item Deve poter ricevere notifiche riguardo agli eventi, 
 		\hyperpage{12}
+  \item Deve poter risalire al dipendente autorizzato che ha gestito un evento specifico, 
+		\hyperpage{13}
+  \item Deve poter sospendere la gestione di un evento e riprenderla successivamente, 
+		\hyperpage{13}
+  \item Deve poter visionare lo storico della gestione degli eventi, 
+		\hyperpage{13}
   \item Deve poter visualizzare gli eventi su mappa, \hyperpage{12}
   \item Deve poter visualizzare la lista degli eventi, \hyperpage{12}
   \item Deve potersi autenticare, \hyperpage{12}
-  \item Deve potersi registrare, \hyperpage{12}
-  \item Diagramma dei casi d'uso, \hyperpage{15}
-  \item Dipendente del Comune di trento, \hyperpage{6}
+  \item Deve potersi registrare senza perdita di impostazioni, 
+		\hyperpage{12}
+  \item Diagramma dei casi d'uso, \hyperpage{17}
+  \item Dipendente autorizzato del Comune di Trento tramite applicativo desktop, 
+		\hyperpage{12}
+  \item Dipendente del Comune di Trento, \hyperpage{6}
 
   \indexspace
 
-  \item Grafo BPMN, \hyperpage{14}
+  \item Enti delegati, \hyperpage{6}
+  \item Enti delegati tramite API gestionali del Web Server, 
+		\hyperpage{13}
+
+  \indexspace
+
+  \item Grafo BPMN, \hyperpage{16}
 
   \indexspace
 
@@ -48,36 +87,45 @@
 
   \indexspace
 
+  \item Non deve avere altri vantaggi rispetto l'utente non autenticato, 
+		\hyperpage{12}
+
+  \indexspace
+
   \item Obiettivi, \hyperpage{5}
 
   \indexspace
 
-  \item Prestazioni, \hyperpage{13}
+  \item Prestazioni di notifica, \hyperpage{15}
   \item Prototipo del sistema, \hyperpage{8}
 
   \indexspace
 
-  \item Reliability, \hyperpage{13}
+  \item Reliability, \hyperpage{15}
   \item Requisiti funzionali, \hyperpage{12}
-  \item Requisiti non funzionali, \hyperpage{13}
-  \item Resoconto, \hyperpage{16}
-  \item Robustness, \hyperpage{13}
+  \item Requisiti non funzionali, \hyperpage{15}
+  \item Resoconto, \hyperpage{18}
+  \item Robustness, \hyperpage{15}
 
   \indexspace
 
-  \item Scalabilità, \hyperpage{13}
+  \item Scalabilità, \hyperpage{15}
   \item Schermata principale, \hyperpage{8}
+  \item Server di autenticazione, \hyperpage{6}
   \item Server provider, \hyperpage{6}
 
   \indexspace
 
-  \item Usabilità, \hyperpage{13}
+  \item Usabilità, \hyperpage{15}
   \item Utente anonimo, \hyperpage{6}
   \item Utente anonimo tramite applicativo mobile, \hyperpage{12}
   \item Utente autenticato, \hyperpage{6}
+  \item Utente autenticato tramite applicativo mobile, \hyperpage{12}
 
   \indexspace
 
   \item Web server, \hyperpage{6}
+  \item WebServer, \hyperpage{14}
+  \item WebServer diviso, \hyperpage{15}
 
 \end{theindex}

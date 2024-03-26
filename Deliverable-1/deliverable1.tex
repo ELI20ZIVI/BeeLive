@@ -102,12 +102,12 @@ Archiviazione eventi\\
 \subsubsection{Utente autenticato}
 \index{Utente autenticato} % Aggiunge una voce all'indice
 
-\subsubsection{Dipendente autorizzato del Comune di trento}
-\index{Dipendente del Comune di trento} % Aggiunge una voce all'indice
+\subsubsection{Dipendente autorizzato del Comune di Trento}
+\index{Dipendente del Comune di Trento} % Aggiunge una voce all'indice
 
-\subsubsection{Aziende delegate}
-\index{Aziende delegate} % Aggiunge una voce all'indice
-I dati che arrivano da queste aziende vengono ritenuti affidabili.
+\subsubsection{Enti delegati}
+\index{Enti delegati} % Aggiunge una voce all'indice
+I dati che arrivano da questi enti vengono ritenuti affidabili.
 
 \subsubsection{Amministratore di sistema}
 \index{Amministratore di sistema} % Aggiunge una voce all'indice
@@ -115,8 +115,8 @@ I dati che arrivano da queste aziende vengono ritenuti affidabili.
 \subsection{Attori di sistema Esterni}
 \index{Attori di sistema Esterni}
 
-\subsubsection{Aziende delegate}
-\index{Aziende delegate} % Aggiunge una voce all'indice
+\subsubsection{Enti delegati}
+\index{Enti delegati} % Aggiunge una voce all'indice
 
 \subsection{Componenti di sistema Interni}
 \index{Componenti di sistema Interni}
@@ -138,8 +138,8 @@ Ogniuna con utenti autenticati
 \subsection{Componenti di sistema Esterni}
 \index{Componenti di sistema Esterni}
 
-\subsubsection{Autenticazione}
-\index{Autenticazione}
+\subsubsection{Server di autenticazione}
+\index{Server di autenticazione}
 
 \subsubsection{Server provider}
 \index{Server provider}
@@ -241,14 +241,14 @@ L'interfaccia è strutturata in modo che ogni evento abbia la possibilità di es
 \subsubsection{Deve poter filtrare gli eventi per categoria}
 \index{Deve poter filtrare gli eventi per categoria} % Aggiunge una voce all'indice
 
-\subsubsection{Deve poter nascondere eventi che non gli interessano}
-\index{Deve poter nascondere eventi che non gli interessano} % Aggiunge una voce all'indice
+\subsubsection{Deve poter nascondere eventi specifici che non gli interessano}
+\index{Deve poter nascondere eventi specifici che non gli interessano} % Aggiunge una voce all'indice
 
 \subsubsection{Deve poter visualizzare gli eventi su mappa}
 \index{Deve poter visualizzare gli eventi su mappa} % Aggiunge una voce all'indice
 
-\subsubsection{Deve potersi registrare}
-\index{Deve potersi registrare} % Aggiunge una voce all'indice
+\subsubsection{Deve potersi registrare senza perdita di impostazioni}
+\index{Deve potersi registrare senza perdita di impostazioni} % Aggiunge una voce all'indice
 
 \subsubsection{Deve potersi autenticare}
 \index{Deve potersi autenticare} % Aggiunge una voce all'indice
@@ -259,24 +259,120 @@ L'interfaccia è strutturata in modo che ogni evento abbia la possibilità di es
 \subsubsection{Deve poter indicare percorsi di interesse}
 \index{Deve poter indicare percorsi di interesse} % Aggiunge una voce all'indice
 
-\subsubsection{Deve poter indicare linee di bus di interesse}
-\index{Deve poter indicare linee di bus di interesse} % Aggiunge una voce all'indice
-
 \subsubsection{Deve poter indicare categorie di interesse}
 \index{Deve poter indicare categorie di interesse} % Aggiunge una voce all'indice
 
+Deve poter indicare categorie di interesse in maniera indipendente per eventi in zone di interesse (Aree e percorsi) e non.
+
 \subsubsection{Deve poter ricevere notifiche riguardo agli eventi}
 \index{Deve poter ricevere notifiche riguardo agli eventi} % Aggiunge una voce all'indice
+
+\subsection{Utente autenticato tramite applicativo mobile}
+\index{Utente autenticato tramite applicativo mobile} % Aggiunge una voce all'indice
+
+\subsubsection{Deve avere le impostazioni sincronizzate tra i vari dispositivi}
+\index{Deve avere le impostazioni sincronizzate tra i vari dispositivi} % Aggiunge una voce all'indice
+Siccome l'utente autenticato tramite applicativo mobile eredita le caratteristiche dell'utente anonimo, valgono tutti i suoi requisiti, con l'aggiunta che in questo caso l'utente ha tutte le impostazioni sincronizzate su tutti i dispositivi in cui è autenticato.
+
+\subsubsection{Non deve avere altri vantaggi rispetto l'utente non autenticato}
+\index{Non deve avere altri vantaggi rispetto l'utente non autenticato} % Aggiunge una voce all'indice
+L'applicativo deve poter essere utilizzato in maniera completa senza forzare l'autenticazione dell'utente, che ne comporta una barriera d'utilizzo, salvo evetuali problematiche implementative.
+
+\subsection{Dipendente autorizzato del Comune di Trento tramite applicativo desktop}
+\index{Dipendente autorizzato del Comune di Trento tramite applicativo desktop} % Aggiunge una voce all'indice
+
+\subsubsection{Deve poter definire sottocategorie}
+\index{Deve poter definire sottocategorie}
+Le categorie sono organizzate in modo gerarchico per migliorare la granularità di filtraggio.
+
+\subsubsection{Deve poter gestire gli eventi di sua competenza}
+\index{Deve poter gestire gli eventi di sua competenza}
+La gestione degli eventi di un dipendente include la creazione, la modifica, l'eliminazione e la pubblicazione (Solo se \textit{trusted}) degli eventi di sua competenza.
+
+
+\subsubsection{Non deve poter gestire gli eventi che non sono di sua competenza}
+\index{Deve poter gestire gli eventi che non sono di sua competenza}
+Il dipendente ha accesso solamente alle operazioni riguardanti gli eventi di sua competenza e non può gestire tutti gli altri.
+
+\subsubsection{Deve poter risalire al dipendente autorizzato che ha gestito un evento specifico}
+\index{Deve poter risalire al dipendente autorizzato che ha gestito un evento specifico}
+Deve sempre essere possibile inividuare gli utenti autorizzati dal comune che hanno eseguito azioni sugli eventi pubblicati a sistema.
+
+\subsubsection{Deve poter visionare lo storico della gestione degli eventi}
+\index{Deve poter visionare lo storico della gestione degli eventi}
+L'utente autorizzato deve poter visionare lo storico delle interazioni sugli eventi, con la possibilità di visionare chi ha effettuato l'attività e quando.
+
+\subsubsection{Deve poter definire elementi geografici di interesse per facilitare la selezione delle aree interessate all'evento}
+\index{Deve poter definire elementi geografici di interesse per facilitare la selezione delle aree interessate all'evento}
+Per facilitare la selezione delle aree interessate all'evento, l'utente autorizzato deve poter definire elementi geografici notevoli.
+
+\subsubsection{Deve poter sospendere la gestione di un evento e riprenderla successivamente}
+\index{Deve poter sospendere la gestione di un evento e riprenderla successivamente}
+Si deve avere la possibilità di sospendere la gestione di un evento, potendola riprendere successivamente senza alcuna perdita di dati.
+
+\subsubsection{Deve poter caricare elementi geografici provenienti da file esterni}
+\index{Deve poter caricare elementi geografici provenienti da file esterni}
+L'utente, in fase di pubblicazione di un nuovo evento, deve avere la possibilità di indicare la zona d'interesse tramite il caricamento di un file contenente tutte le sue informazioni geografiche.
+
+\subsubsection{Deve poter creare un evento a partire da file di strutture specifiche}
+\index{Deve poter creare un evento a partire da file con strutture specifiche}
+I dipartimenti devono poter continuare ad utilizzare i loro file attuali che determinano e caratterizzano gli eventi per la loro gestione sul sistema.
+
+\subsection{Enti delegati tramite API gestionali del Web Server}
+\index{Enti delegati tramite API gestionali del Web Server}
+Questo attore estende eredita le capacità di "Dipendente autorizzato del Comune di Trento", integrandone di caratteristiche.
+
+\subsubsection{Deve avere esclusività di gestione durante il corso dell'operazione}
+\index{Deve avere esclusività di gestione durante il corso dell'operazione}
+
+\subsection{Amministratore di sistema}
+\index{Amministrazione di sistema}
+
+\subsubsection{Deve poter gestire le policies di access control}
+\index{Deve poter gestire le policies di access control}
+Essendo l'amministratore di sistema, ha il compito di gestire tutte le policies di access control del sistema.
+
+\subsubsection{Deve poter definire le aree di competenza delle entità di gestione}
+\index{Deve poter definire le aree di competenza delle entità di gestione}
+E' compito suo definire tutte le aree di competenza di Dipendenti autorizzati del comune e Enti delegati.
+
+\subsubsection{Deve avere accesso privilegiato al sistema}
+\index{Deve avere accesso privilegiato al sistema}
+Deve avere libertà nell'apportare modifiche specifiche alle componenti (Come il salvataggio dei dati)
+
+\subsubsection{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}}
+\index{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}}
+E' necessaria questa distinzione, solamente gli utenti \textit{trusted} possono accedere ai servizi offerti dal sistema.
+
+\subsection{WebServer}
+\index{WebServer}
+
+\subsubsection{Deve garantire l'accesso al servizio ai soli utenti autorizzati}
+\index{Deve garantire l'accesso al servizio ai soli utenti autorizzati}
+
+Solamente gli utenti autorizzati (Anche i non autenticati, solo per alcuni servizi) possono accedere al servizio.
+
+\subsection{DataBase}
+\index{DataBase}
+
+\subsubsection{Deve poter eseguire query spaziali}
+\index{Deve poter eseguire query spaziali}
+Sul DataBase sono salvati anche dati caratterizzati da coordinate. Deve essere possibile eseguire operazioni di ricerca su di esse.
+
 
 \clearpage
 
 \section{Requisiti non funzionali}
 \index{Requisiti non funzionali} % Aggiunge una voce all'indice
 
+\subsubsection{Affidabilità dei dati forniti}
+\index{Affidabilità dei dati forniti}
+Tutti i dati che provengono dagli enti delegati devono essere considerati affidabili dal resto del sistema.
+
 \subsubsection{Usabilità}
 \index{Usabilità} % Aggiunge una voce all'indice
 Per quanto riguarda l'applicazione mobile, i cittadini devono essere in grado di utilizzarla dal primo momento in cui è intallata sul dispositivo.\\
-Per invece l'applicativo desktop, precedentemente al primo utilizzo è necessaria al più una specificazione delle funzionalità per il loro completo utilizzo.\\
+Per invece l'applicativo desktop, precedentemente al primo utilizzo è necessaria al più una specificazione delle funzionalità per il loro completo utilizzo.
 
 \subsubsection{Scalabilità}
 \index{Scalabilità} % Aggiunge una voce all'indice
@@ -286,16 +382,19 @@ L'applicativo desktop invece non ha bisogno di scalabilità, in quanto è utiliz
 \subsubsection{Robustness}
 \index{Robustness} % Aggiunge una voce all'indice
 Un guasto al webserver di visualizzazione non deve compromettere il funzionamento del webserver di gestione, e viceversa.
-In caso di guasto fisico, il sistema deve essere in grado di ripristinare correttamente tutti i dati senza alcuna perdita. 
 
-\subsubsection{Prestazioni}
-\index{Prestazioni} % Aggiunge una voce all'indice
+\subsubsection{Prestazioni di notifica}
+\index{Prestazioni di notifica} % Aggiunge una voce all'indice
 La notifica di un nuovo evento deve raggiungere tutti i dispositivi mobili, connessi ad internet e con l'applicazione installata, entro un tempo di 10 minuti
 
 \subsubsection{Reliability}
 \index{Reliability} % Aggiunge una voce all'indice
-Il sistema non deve essere soggetto a errori imprevisti di alcun tipo, ed eventuali bug non devono compromettere eventuali dati sensibili presenti sul server.
+Il sistema non deve essere soggetto a errori imprevisti di alcun tipo, ed eventuali bug non devono compromettere eventuali dati sensibili presenti sul server.\\
 Il sistema gestionale usato dagli utenti autorizzati non deve essere soggetto a vulnerabilità che ne compromettano la sicurezza. 
+
+\subsubsection{WebServer diviso}
+\index{WebServer diviso}
+Ci sono due webserver, uno inerente il gestionale desktop e uno per gestire l'aplicazione mobile.
 
 \clearpage
 

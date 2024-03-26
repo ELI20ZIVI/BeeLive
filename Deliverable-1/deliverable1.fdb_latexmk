@@ -1,17 +1,21 @@
 # Fdb version 4
-["makeindex deliverable1.idx"] 1711465316.35713 "deliverable1.idx" "deliverable1.ind" "deliverable1" 1711465319.09224 0
-  "deliverable1.idx" 1711465319.03028 2486 97cf343742e4e16d84279fb7d0645366 "pdflatex"
+["makeindex deliverable1.idx"] 1711475164.19776 "deliverable1.idx" "deliverable1.ind" "deliverable1" 1711475167.05506 0
+  "deliverable1.idx" 1711475166.98668 4594 1c1a0aa814ea4aff6f50b7255e71fca8 "pdflatex"
   (generated)
   "deliverable1.ilg"
   "deliverable1.ind"
   (rewritten before read)
-["pdflatex"] 1711465316.41984 "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" "deliverable1.pdf" "deliverable1" 1711465319.09239 0
-  "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" 1711465313.41698 16031 ee61f3c64e765ceb2b9006eb06087e0c ""
+["pdflatex"] 1711475164.26591 "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" "deliverable1.pdf" "deliverable1" 1711475167.0552 0
+  "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" 1711475161.33672 22382 5b8efc1d9a1d2acf9acc664cc3b85b41 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_nvvucy.enc" 1711186958 3364 7c78cdd102714be824555fc722b51d02 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_p2vepx.enc" 1711186958 2985 9e8c82fa04ebb93b5bf8c2b1abd30ca6 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1711186958 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF--base.tfm" 1711186958 1684 fc50bcb8232bdf49a94ddfb6103f1168 ""
   "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF.tfm" 1711186958 1752 c97a0ae807f8ae5c6c39ddaa8534181a ""
+  "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-BoldItalic-T1-TOsF--base.tfm" 1711186958 1880 000e5203408cae79a2b7121c8180e29d ""
+  "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-BoldItalic-T1-TOsF.tfm" 1711186958 1948 e9fdedda5fd150784467877d26a53c36 ""
+  "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Italic-T1-TOsF--base.tfm" 1711186958 1876 017bb7b5c74d23733d4ad3c6398b0b02 ""
+  "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Italic-T1-TOsF.tfm" 1711186958 1944 35693dfcfcf6883f94f21d35227ef9fa ""
   "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Regular-T1-TOsF--base.tfm" 1711186958 1680 da0a6dd0b8c7a7c20799d8021c442dc9 ""
   "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Regular-T1-TOsF.tfm" 1711186958 1748 75675233f5759eabd245710da7080709 ""
   "/usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Regular-TS1-TOsF--base.tfm" 1711186958 1424 001faf20f50ff5aa7a98d3705675a8cb ""
@@ -27,8 +31,12 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1711186958 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1711186958 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb" 1711186958 105654 40eb631c967694632bf8681b75fd745b ""
+  "/usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-BoldItalic.pfb" 1711186958 109035 9a108870700a94eb2421d94638257ebf ""
+  "/usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Italic.pfb" 1711186958 105699 fc0365f5957b8f18396fd3fdbf18b8c3 ""
   "/usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb" 1711186958 100962 9a830a6477c526fbf4a9696e1678f3f0 ""
   "/usr/share/texmf-dist/fonts/vf/ascender/opensans/OpenSans-Bold-T1-TOsF.vf" 1711186958 1768 cbec55df837a02abdda9473e656e6ffe ""
+  "/usr/share/texmf-dist/fonts/vf/ascender/opensans/OpenSans-BoldItalic-T1-TOsF.vf" 1711186958 1772 a2f9caa99d9a1cb7cba27444f9df032f ""
+  "/usr/share/texmf-dist/fonts/vf/ascender/opensans/OpenSans-Italic-T1-TOsF.vf" 1711186958 1768 3f7926fbb1f33cf2ad7facf6c87be552 ""
   "/usr/share/texmf-dist/fonts/vf/ascender/opensans/OpenSans-Regular-T1-TOsF.vf" 1711186958 1772 df5fbabed5a91df747b60ebe07a98039 ""
   "/usr/share/texmf-dist/fonts/vf/ascender/opensans/OpenSans-Regular-TS1-TOsF.vf" 1711186958 952 3706c51ec9c263b3def051631a8134e0 ""
   "/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1711186958 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -105,11 +113,11 @@
   "Images/Mockup1 - Mobile.png" 1711352424.88582 2164627 7e441f81af69c6fa90d3c4a3bb51f1c5 ""
   "Images/Mockup2 - Mobile.png" 1711352424.88915 1368748 faeb02f39e11db96b6e455070d9285bb ""
   "Images/Mockup3 - Mobile.png" 1711352424.88915 140994 91ce40c6827987ea532ed963d9173fa7 ""
-  "deliverable1.aux" 1711465319.03028 8193 a6203e6a1254bcf208f44620a00c5580 "pdflatex"
-  "deliverable1.ind" 1711465316.41363 2502 2696eda630e1c8497097941b9bbd13a8 "makeindex deliverable1.idx"
-  "deliverable1.out" 1711465319.03028 9204 9880c43622504d108e51fdc1a2da1723 "pdflatex"
-  "deliverable1.tex" 1711465313.41698 16031 ee61f3c64e765ceb2b9006eb06087e0c ""
-  "deliverable1.toc" 1711465319.03028 4594 aab68169e5dc426f11e64670f242cbda "pdflatex"
+  "deliverable1.aux" 1711475166.98334 12495 bede9295bc6d9806ed8c3266cb9606a7 "pdflatex"
+  "deliverable1.ind" 1711475164.26003 4621 d99a06b91803c67b4ec80d134bc35589 "makeindex deliverable1.idx"
+  "deliverable1.out" 1711475166.98668 18339 f6d2953f33f8f07f71b20d584224e2ad "pdflatex"
+  "deliverable1.tex" 1711475161.33672 22382 5b8efc1d9a1d2acf9acc664cc3b85b41 ""
+  "deliverable1.toc" 1711475166.98668 7869 466bfc41854d844a5b8923705676f130 "pdflatex"
   (generated)
   "deliverable1.aux"
   "deliverable1.idx"

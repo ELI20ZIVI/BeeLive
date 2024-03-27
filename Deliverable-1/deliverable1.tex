@@ -289,10 +289,6 @@ L'utente deve poter essere notificato all'insorgere determinati eventi.
 \index{Deve avere le impostazioni sincronizzate tra i vari dispositivi} % Aggiunge una voce all'indice
 Siccome l'utente autenticato tramite applicativo mobile eredita le caratteristiche dell'utente anonimo, valgono tutti i suoi requisiti, con l'aggiunta che in questo caso l'utente ha tutte le impostazioni sincronizzate su tutti i dispositivi in cui è autenticato.
 
-\subsubsection{Non deve avere altri vantaggi rispetto l'utente non autenticato}
-\index{Non deve avere altri vantaggi rispetto l'utente non autenticato} % Aggiunge una voce all'indice
-L'applicativo deve poter essere utilizzato in maniera completa senza forzare l'autenticazione dell'utente, che ne comporta una barriera d'utilizzo, salvo evetuali problematiche implementative.
-
 \subsection{Dipendente autorizzato del Comune di Trento tramite applicativo desktop}
 \index{Dipendente autorizzato del Comune di Trento tramite applicativo desktop} % Aggiunge una voce all'indice
 
@@ -377,6 +373,10 @@ Sul DataBase sono salvati anche dati caratterizzati da coordinate. Deve essere p
 
 \section{Requisiti non funzionali}
 \index{Requisiti non funzionali} % Aggiunge una voce all'indice
+
+\subsubsection{L'utente autenticato non deve avere altri vantaggi rispetto l'utente non autenticato}
+\index{L'utente autenticato non deve avere altri vantaggi rispetto l'utente non autenticato} % Aggiunge una voce all'indice
+L'applicativo deve poter essere utilizzato in maniera completa senza forzare l'autenticazione dell'utente, che ne comporta una barriera d'utilizzo, salvo evetuali problematiche implementative.
 
 \subsubsection{Affidabilità dei dati forniti}
 \index{Affidabilità dei dati forniti}
@@ -796,14 +796,14 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 
 \clearpage
 
-\subsubsection{Modifica di un evento}
-\index{Modifica di un evento}
+\subsubsection{Eliminazione di un evento}
+\index{Eliminzione di un evento}
 
 \begin{table}[htbp]
     \centering
     \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
         \Xhline{2pt} % Linea spessa
-        Nome caso d'uso & Modifica di un evento \\
+        Nome caso d'uso & Eliminazione di un evento \\
         \Xhline{2pt} % Linea spessa
         ID & 008 \\
         \hline

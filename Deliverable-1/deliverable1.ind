@@ -2,7 +2,7 @@
 
   \item Affidabilità dei dati forniti, \hyperpage{15}
   \item Amministratore di sistema, \hyperpage{6}
-  \item Amministrazione di sistema, \hyperpage{13}
+  \item Amministrazione di sistema, \hyperpage{14}
   \item Applicativo desktop, \hyperpage{6}
   \item Applicativo mobile, \hyperpage{6}
   \item Attori di sistema e Mind map, \hyperpage{6}
@@ -20,9 +20,9 @@
   \item Database, \hyperpage{6}
   \item Descrizione dell'applicativo, \hyperpage{4}
   \item Dettagli variazione selezionata, \hyperpage{9}
-  \item Deve avere accesso privilegiato al sistema, \hyperpage{13}
+  \item Deve avere accesso privilegiato al sistema, \hyperpage{14}
   \item Deve avere esclusività di gestione durante il corso dell'operazione, 
-		\hyperpage{13}
+		\hyperpage{14}
   \item Deve avere le impostazioni sincronizzate tra i vari dispositivi, 
 		\hyperpage{12}
   \item Deve garantire l'accesso al servizio ai soli utenti autorizzati, 
@@ -34,17 +34,17 @@
   \item Deve poter definire elementi geografici di interesse per facilitare la selezione delle aree interessate all'evento, 
 		\hyperpage{13}
   \item Deve poter definire le aree di competenza delle entità di gestione, 
-		\hyperpage{13}
+		\hyperpage{14}
   \item Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}, 
-		\hyperpage{13}
-  \item Deve poter definire sottocategorie, \hyperpage{12}
+		\hyperpage{14}
+  \item Deve poter definire sottocategorie, \hyperpage{13}
   \item Deve poter eseguire query spaziali, \hyperpage{14}
   \item Deve poter filtrare gli eventi per categoria, \hyperpage{12}
   \item Deve poter gestire gli eventi che non sono di sua competenza, 
-		\hyperpage{12}
-  \item Deve poter gestire gli eventi di sua competenza, \hyperpage{12}
-  \item Deve poter gestire le policies di access control, 
 		\hyperpage{13}
+  \item Deve poter gestire gli eventi di sua competenza, \hyperpage{13}
+  \item Deve poter gestire le policies di access control, 
+		\hyperpage{14}
   \item Deve poter indicare aree di interesse, \hyperpage{12}
   \item Deve poter indicare categorie di interesse, \hyperpage{12}
   \item Deve poter indicare percorsi di interesse, \hyperpage{12}
@@ -65,14 +65,14 @@
 		\hyperpage{12}
   \item Diagramma dei casi d'uso, \hyperpage{17}
   \item Dipendente autorizzato del Comune di Trento tramite applicativo desktop, 
-		\hyperpage{12}
+		\hyperpage{13}
   \item Dipendente del Comune di Trento, \hyperpage{6}
 
   \indexspace
 
   \item Enti delegati, \hyperpage{6}
   \item Enti delegati tramite API gestionali del Web Server, 
-		\hyperpage{13}
+		\hyperpage{14}
 
   \indexspace
 
@@ -88,7 +88,7 @@
   \indexspace
 
   \item Non deve avere altri vantaggi rispetto l'utente non autenticato, 
-		\hyperpage{12}
+		\hyperpage{13}
 
   \indexspace
 

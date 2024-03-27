@@ -32,30 +32,30 @@
 \indexentry{Deve poter visualizzare gli eventi su mappa|hyperpage}{12}
 \indexentry{Deve potersi registrare senza perdita di impostazioni|hyperpage}{12}
 \indexentry{Deve potersi autenticare|hyperpage}{12}
+\indexentry{Deve poter indicare categorie di interesse|hyperpage}{12}
 \indexentry{Deve poter indicare aree di interesse|hyperpage}{12}
 \indexentry{Deve poter indicare percorsi di interesse|hyperpage}{12}
-\indexentry{Deve poter indicare categorie di interesse|hyperpage}{12}
 \indexentry{Deve poter ricevere notifiche riguardo agli eventi|hyperpage}{12}
 \indexentry{Utente autenticato tramite applicativo mobile|hyperpage}{12}
 \indexentry{Deve avere le impostazioni sincronizzate tra i vari dispositivi|hyperpage}{12}
-\indexentry{Non deve avere altri vantaggi rispetto l'utente non autenticato|hyperpage}{12}
-\indexentry{Dipendente autorizzato del Comune di Trento tramite applicativo desktop|hyperpage}{12}
-\indexentry{Deve poter definire sottocategorie|hyperpage}{12}
-\indexentry{Deve poter gestire gli eventi di sua competenza|hyperpage}{12}
-\indexentry{Deve poter gestire gli eventi che non sono di sua competenza|hyperpage}{12}
+\indexentry{Non deve avere altri vantaggi rispetto l'utente non autenticato|hyperpage}{13}
+\indexentry{Dipendente autorizzato del Comune di Trento tramite applicativo desktop|hyperpage}{13}
+\indexentry{Deve poter definire sottocategorie|hyperpage}{13}
+\indexentry{Deve poter gestire gli eventi di sua competenza|hyperpage}{13}
+\indexentry{Deve poter gestire gli eventi che non sono di sua competenza|hyperpage}{13}
 \indexentry{Deve poter risalire al dipendente autorizzato che ha gestito un evento specifico|hyperpage}{13}
 \indexentry{Deve poter visionare lo storico della gestione degli eventi|hyperpage}{13}
 \indexentry{Deve poter definire elementi geografici di interesse per facilitare la selezione delle aree interessate all'evento|hyperpage}{13}
 \indexentry{Deve poter sospendere la gestione di un evento e riprenderla successivamente|hyperpage}{13}
 \indexentry{Deve poter caricare elementi geografici provenienti da file esterni|hyperpage}{13}
 \indexentry{Deve poter creare un evento a partire da file con strutture specifiche|hyperpage}{13}
-\indexentry{Enti delegati tramite API gestionali del Web Server|hyperpage}{13}
-\indexentry{Deve avere esclusività di gestione durante il corso dell'operazione|hyperpage}{13}
-\indexentry{Amministrazione di sistema|hyperpage}{13}
-\indexentry{Deve poter gestire le policies di access control|hyperpage}{13}
-\indexentry{Deve poter definire le aree di competenza delle entità di gestione|hyperpage}{13}
-\indexentry{Deve avere accesso privilegiato al sistema|hyperpage}{13}
-\indexentry{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}|hyperpage}{13}
+\indexentry{Enti delegati tramite API gestionali del Web Server|hyperpage}{14}
+\indexentry{Deve avere esclusività di gestione durante il corso dell'operazione|hyperpage}{14}
+\indexentry{Amministrazione di sistema|hyperpage}{14}
+\indexentry{Deve poter gestire le policies di access control|hyperpage}{14}
+\indexentry{Deve poter definire le aree di competenza delle entità di gestione|hyperpage}{14}
+\indexentry{Deve avere accesso privilegiato al sistema|hyperpage}{14}
+\indexentry{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}|hyperpage}{14}
 \indexentry{WebServer|hyperpage}{14}
 \indexentry{Deve garantire l'accesso al servizio ai soli utenti autorizzati|hyperpage}{14}
 \indexentry{DataBase|hyperpage}{14}

@@ -32,30 +32,30 @@
 \contentsline {subsubsection}{\numberline {5.1.4}Deve poter visualizzare gli eventi su mappa}{12}{subsubsection.5.1.4}%
 \contentsline {subsubsection}{\numberline {5.1.5}Deve potersi registrare senza perdita di impostazioni}{12}{subsubsection.5.1.5}%
 \contentsline {subsubsection}{\numberline {5.1.6}Deve potersi autenticare}{12}{subsubsection.5.1.6}%
-\contentsline {subsubsection}{\numberline {5.1.7}Deve poter indicare aree di interesse}{12}{subsubsection.5.1.7}%
-\contentsline {subsubsection}{\numberline {5.1.8}Deve poter indicare percorsi di interesse}{12}{subsubsection.5.1.8}%
-\contentsline {subsubsection}{\numberline {5.1.9}Deve poter indicare categorie di interesse}{12}{subsubsection.5.1.9}%
+\contentsline {subsubsection}{\numberline {5.1.7}Deve poter indicare categorie di interesse}{12}{subsubsection.5.1.7}%
+\contentsline {subsubsection}{\numberline {5.1.8}Deve poter indicare aree di interesse}{12}{subsubsection.5.1.8}%
+\contentsline {subsubsection}{\numberline {5.1.9}Deve poter indicare percorsi di interesse}{12}{subsubsection.5.1.9}%
 \contentsline {subsubsection}{\numberline {5.1.10}Deve poter ricevere notifiche riguardo agli eventi}{12}{subsubsection.5.1.10}%
 \contentsline {subsection}{\numberline {5.2}Utente autenticato tramite applicativo mobile}{12}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Deve avere le impostazioni sincronizzate tra i vari dispositivi}{12}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Non deve avere altri vantaggi rispetto l'utente non autenticato}{12}{subsubsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.3}Dipendente autorizzato del Comune di Trento tramite applicativo desktop}{12}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Deve poter definire sottocategorie}{12}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Deve poter gestire gli eventi di sua competenza}{12}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Non deve poter gestire gli eventi che non sono di sua competenza}{12}{subsubsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.2.2}Non deve avere altri vantaggi rispetto l'utente non autenticato}{13}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Dipendente autorizzato del Comune di Trento tramite applicativo desktop}{13}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Deve poter definire sottocategorie}{13}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Deve poter gestire gli eventi di sua competenza}{13}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Non deve poter gestire gli eventi che non sono di sua competenza}{13}{subsubsection.5.3.3}%
 \contentsline {subsubsection}{\numberline {5.3.4}Deve poter risalire al dipendente autorizzato che ha gestito un evento specifico}{13}{subsubsection.5.3.4}%
 \contentsline {subsubsection}{\numberline {5.3.5}Deve poter visionare lo storico della gestione degli eventi}{13}{subsubsection.5.3.5}%
 \contentsline {subsubsection}{\numberline {5.3.6}Deve poter definire elementi geografici di interesse per facilitare la selezione delle aree interessate all'evento}{13}{subsubsection.5.3.6}%
 \contentsline {subsubsection}{\numberline {5.3.7}Deve poter sospendere la gestione di un evento e riprenderla successivamente}{13}{subsubsection.5.3.7}%
 \contentsline {subsubsection}{\numberline {5.3.8}Deve poter caricare elementi geografici provenienti da file esterni}{13}{subsubsection.5.3.8}%
 \contentsline {subsubsection}{\numberline {5.3.9}Deve poter creare un evento a partire da file di strutture specifiche}{13}{subsubsection.5.3.9}%
-\contentsline {subsection}{\numberline {5.4}Enti delegati tramite API gestionali del Web Server}{13}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Deve avere esclusività di gestione durante il corso dell'operazione}{13}{subsubsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.5}Amministratore di sistema}{13}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Deve poter gestire le policies di access control}{13}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Deve poter definire le aree di competenza delle entità di gestione}{13}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Deve avere accesso privilegiato al sistema}{13}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Deve poter definire le entità di gestione come \textit {trusted} o \textit {un-trusted}}{13}{subsubsection.5.5.4}%
+\contentsline {subsection}{\numberline {5.4}Enti delegati tramite API gestionali del Web Server}{14}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Deve avere esclusività di gestione durante il corso dell'operazione}{14}{subsubsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.5}Amministratore di sistema}{14}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Deve poter gestire le policies di access control}{14}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Deve poter definire le aree di competenza delle entità di gestione}{14}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Deve avere accesso privilegiato al sistema}{14}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Deve poter definire le entità di gestione come \textit {trusted} o \textit {un-trusted}}{14}{subsubsection.5.5.4}%
 \contentsline {subsection}{\numberline {5.6}WebServer}{14}{subsection.5.6}%
 \contentsline {subsubsection}{\numberline {5.6.1}Deve garantire l'accesso al servizio ai soli utenti autorizzati}{14}{subsubsection.5.6.1}%
 \contentsline {subsection}{\numberline {5.7}DataBase}{14}{subsection.5.7}%

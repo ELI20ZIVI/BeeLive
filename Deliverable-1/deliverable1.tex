@@ -96,23 +96,25 @@ Archiviazione eventi\\
 \subsection{Attori di sistema Interni}
 \index{Attori di sistema Interni}
 
-\subsubsection{Utente anonimo}
+\subsubsection{Utente anonimo}\label{Attori_UtenteAnonimo}
 \index{Utente anonimo} % Aggiunge una voce all'indice
 Si tratta del cittadino che utilizza l'applicativo. Ha accesso a tutte le funzionalità ma non è disponibile la sincronizzazione tra più dispositivi.
 
 \subsubsection{Utente autenticato}
 \index{Utente autenticato} % Aggiunge una voce all'indice
+L'utente autenticato eredita tutte le caratteristiche dall'utente anonimo (\ref{Attori_UtenteAnonimo}), integrando però la sincronizzazione tra i dispositivi su cui l'utente esegue l'accesso.
 
-
-\subsubsection{Dipendente autorizzato del Comune di Trento}
+\subsubsection{Dipendente autorizzato del Comune di Trento}\label{Attori_DipendenteAutorizzato}
 \index{Dipendente del Comune di Trento} % Aggiunge una voce all'indice
+Il dipendente autorizzato del Comune di Trento è colui che ha il compito di gestire gli eventi che influenzano la viabilità cittadina.
 
 \subsubsection{Enti delegati}
 \index{Enti delegati} % Aggiunge una voce all'indice
-I dati che arrivano da questi enti vengono ritenuti affidabili.
+Gli enti delegati ereditano le caratteristiche dall'entità "Dipendente autorizzato del Comune di Trento" (\ref{Attori_DipendenteAutorizzato}), essendo però esterno alla gestione comunale del territorio.
 
 \subsubsection{Amministratore di sistema}
 \index{Amministratore di sistema} % Aggiunge una voce all'indice
+L'entità che si occupa della gestione del sistema, con la possibilità di modificare le policies di access control e definire le aree di competenza delle entità di gestione.
 
 \subsection{Attori di sistema Esterni}
 \index{Attori di sistema Esterni}
@@ -151,12 +153,12 @@ Ogniuna con utenti autenticati
 \subsection{Mind map}
 \index{Mind map}
 
-%\begin{figure}[htbp]
-%    \label{fig:Mind_map}
-%    \centering
-%    \includegraphics[width=0.5\textwidth]{Images/MindMap.png}
-%    \caption{Mind map degli attori che interagiscono con il sistema}
-%\end{figure}
+\begin{figure}[htbp]
+    \label{fig:Mind_map}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/BeeLive-MindMap.jpg}
+    \caption{Mind map degli attori che interagiscono con il sistema}
+\end{figure}
 
 Tramite la mind map è possibile avere una rappresentazione chiara degli attori che interagistocno con il sistema.\\
 \clearpage
@@ -372,10 +374,6 @@ Solamente gli utenti autorizzati (Anche i non autenticati, solo per alcuni servi
 \index{Deve poter eseguire query spaziali}
 Sul DataBase sono salvati anche dati caratterizzati da coordinate. Deve essere possibile eseguire operazioni di ricerca su di esse.
 
-
-
-
-
 \clearpage
 
 \section{Requisiti non funzionali}
@@ -411,6 +409,10 @@ Il sistema gestionale usato dagli utenti autorizzati non deve essere soggetto a 
 \subsubsection{WebServer diviso}
 \index{WebServer diviso}
 Ci sono due webserver, uno inerente il gestionale desktop e uno per gestire l'aplicazione mobile.
+
+\subsubsection{Tipologia di DataBase}
+\index{Tipologia di DataBase}
+Deve essere utilizzato il DataBase non relazionale MongoDB.
 
 \clearpage
 

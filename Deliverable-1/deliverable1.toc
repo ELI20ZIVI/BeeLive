@@ -68,6 +68,7 @@
 \contentsline {subsubsection}{\numberline {6.0.5}Prestazioni di notifica}{15}{subsubsection.6.0.5}%
 \contentsline {subsubsection}{\numberline {6.0.6}Reliability}{15}{subsubsection.6.0.6}%
 \contentsline {subsubsection}{\numberline {6.0.7}WebServer diviso}{15}{subsubsection.6.0.7}%
+\contentsline {subsubsection}{\numberline {6.0.8}Tipologia di DataBase}{15}{subsubsection.6.0.8}%
 \contentsline {section}{\numberline {7}Grafo BPMN}{16}{section.7}%
 \contentsline {section}{\numberline {8}Diagramma dei casi d'uso}{17}{section.8}%
 \contentsline {section}{\numberline {9}Resoconto}{18}{section.9}%

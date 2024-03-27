@@ -1,12 +1,12 @@
 # Fdb version 4
-["makeindex deliverable1.idx"] 1711530865.23594 "deliverable1.idx" "deliverable1.ind" "deliverable1" 1711530901.01697 0
-  "deliverable1.idx" 1711530900.95419 4598 a2d6d0eefe602d879a3400b59a75f929 "pdflatex"
+["makeindex deliverable1.idx"] 1711533740.18473 "deliverable1.idx" "deliverable1.ind" "deliverable1" 1711533787.16314 0
+  "deliverable1.idx" 1711533787.09747 4647 3e14ea706f39c455fe79ec12edbd51e5 "pdflatex"
   (generated)
   "deliverable1.ilg"
   "deliverable1.ind"
   (rewritten before read)
-["pdflatex"] 1711530898.40753 "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" "deliverable1.pdf" "deliverable1" 1711530901.01713 0
-  "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" 1711530898.1778 23833 5cd5ca875b33d4b84216d0ed89b049f0 ""
+["pdflatex"] 1711533784.42587 "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" "deliverable1.pdf" "deliverable1" 1711533787.16328 0
+  "/home/zivi/Ing SW/BeeLive/Deliverable-1/deliverable1.tex" 1711533784.16749 24668 c4d6b337836398d9f28fbced9a0e8e78 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_nvvucy.enc" 1711186958 3364 7c78cdd102714be824555fc722b51d02 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_p2vepx.enc" 1711186958 2985 9e8c82fa04ebb93b5bf8c2b1abd30ca6 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1711186958 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -109,15 +109,16 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1711223233.57102 5312047 b07fcd2a9090df96fc745b92a3db793b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1711223189 7112996 762a7e68bb84fafdb7eb2d2b36a21559 ""
   "Images/BeeLive-Logo.png" 1711530887.21225 51200 295fd394affc714cee4a923b402f4a24 ""
+  "Images/BeeLive-MindMap.jpg" 1711533606.122 267658 44926fd407c1fc885df293669aeaea53 ""
   "Images/Mockup1 - Desktop.png" 1711352424.87915 1916497 2bcae300b404dfebb758fa1e69ea8db2 ""
   "Images/Mockup1 - Mobile.png" 1711352424.88582 2164627 7e441f81af69c6fa90d3c4a3bb51f1c5 ""
   "Images/Mockup2 - Mobile.png" 1711352424.88915 1368748 faeb02f39e11db96b6e455070d9285bb ""
   "Images/Mockup3 - Mobile.png" 1711352424.88915 140994 91ce40c6827987ea532ed963d9173fa7 ""
-  "deliverable1.aux" 1711530900.95086 12608 58d261881374d25c135327e9f02e21cc "pdflatex"
-  "deliverable1.ind" 1711530865.28449 4625 44ee9a2f990001145314495212ad3f4e "makeindex deliverable1.idx"
-  "deliverable1.out" 1711530900.95419 18339 4833e3c1bd4e908e8fd701bb7796cb32 "pdflatex"
-  "deliverable1.tex" 1711530898.1778 23833 5cd5ca875b33d4b84216d0ed89b049f0 ""
-  "deliverable1.toc" 1711530900.95419 7869 e4873dfea7c50874b546598ec330b6de "pdflatex"
+  "deliverable1.aux" 1711533787.09414 13177 ac34d5cc832ba7ce0b2aa718ecba923e "pdflatex"
+  "deliverable1.ind" 1711533740.22779 4687 e64fff5355367dfbce1944adacd2f122 "makeindex deliverable1.idx"
+  "deliverable1.out" 1711533787.09747 18523 de9b850c75319e5d44873087a13f27d0 "pdflatex"
+  "deliverable1.tex" 1711533784.16749 24668 c4d6b337836398d9f28fbced9a0e8e78 ""
+  "deliverable1.toc" 1711533787.09747 7967 5dfe2ab807435bc1792511021e5be9d6 "pdflatex"
   (generated)
   "deliverable1.aux"
   "deliverable1.idx"

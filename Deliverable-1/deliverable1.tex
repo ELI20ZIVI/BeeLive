@@ -178,7 +178,7 @@ Tramite la mind map è possibile avere una rappresentazione chiara degli attori 
     \caption{Mockup schermata principale dell'applicazione mobile}
 \end{figure}
 
-E' rappresentata la schermata principale dell'applicazione mobile che il cittadino installerà sul proprio smartphone.\\
+È rappresentata la schermata principale dell'applicazione mobile che il cittadino installerà sul proprio smartphone.\\
 La schermata principale mostra una mappa della città di Trento con le zone interessate dalle variazioni della viabilità.\\
 La lista sottostante la mappa riporta tutte le variazioni presenti nel sistema che si trovano nel periodo di visualizzazione, con la possibilità di selezionare una variazione per visualizzarne i dettagli.\\
 \clearpage
@@ -193,7 +193,7 @@ La lista sottostante la mappa riporta tutte le variazioni presenti nel sistema c
 \end{figure}
 
 In questo caso invece è riportata la schermata di visualizzazione dei dettagli di una variazione della viabilità.\\
-E' stato selezionato il precedente evento "Incontro G7", quindi sono visualizzati tutti i dettagli relativi a tale evento.\\
+È stato selezionato il precedente evento "Incontro G7", quindi sono visualizzati tutti i dettagli relativi a tale evento.\\
 Nella fattispecie sono presenti la descrizione dell'evento, la data di inizio e fine, la zona interessata e la mappa con la visualizzazione della zona interessata.\\
 Inoltre è presente un pulsante per tornare alla schermata principale dell'applicazione.\\
 \clearpage
@@ -276,7 +276,7 @@ L'utente deve poter indicare delle zone su mappa per cui dimostra più interesse
 
 \subsubsection{Deve poter indicare percorsi di interesse}
 \index{Deve poter indicare percorsi di interesse} % Aggiunge una voce all'indice
-L'utente deve poter indicare delle percorsi su mappa per cui dimostra più interesse.
+L'utente deve poter indicare dei percorsi su mappa per cui dimostra più interesse.
 
 \subsubsection{Deve poter ricevere notifiche riguardo agli eventi}
 \index{Deve poter ricevere notifiche riguardo agli eventi} % Aggiunge una voce all'indice
@@ -303,7 +303,6 @@ Le categorie sono organizzate in modo gerarchico per migliorare la granularità 
 \subsubsection{Deve poter gestire gli eventi di sua competenza}
 \index{Deve poter gestire gli eventi di sua competenza}
 La gestione degli eventi di un dipendente include la creazione, la modifica, l'eliminazione e la pubblicazione (Solo se \textit{trusted}) degli eventi di sua competenza.
-
 
 \subsubsection{Non deve poter gestire gli eventi che non sono di sua competenza}
 \index{Non deve poter gestire gli eventi che non sono di sua competenza}
@@ -333,12 +332,13 @@ L'utente, in fase di pubblicazione di un nuovo evento, deve avere la possibilit�
 \index{Deve poter creare un evento a partire da file con strutture specifiche}
 I dipartimenti devono poter continuare ad utilizzare i loro file attuali che determinano e caratterizzano gli eventi per la loro gestione sul sistema.
 
-\subsection{Enti delegati tramite API gestionali del Web Server}
-\index{Enti delegati tramite API gestionali del Web Server}
-Questo attore estende eredita le capacità di "Dipendente autorizzato del Comune di Trento", integrandone di caratteristiche.
-
 \subsubsection{Deve avere esclusività di gestione durante il corso dell'operazione}
 \index{Deve avere esclusività di gestione durante il corso dell'operazione}
+Durante l'operazione di gestione di un evento, l'utente deve avere l'esclusività di gestione, impedendo ad altri utenti di effettuare modifiche.
+
+\subsection{Enti delegati tramite API gestionali del Web Server}
+\index{Enti delegati tramite API gestionali del Web Server}
+Questo attore eredita le capacità di "Dipendente autorizzato del Comune di Trento", integrandone le caratteristiche.
 
 \subsection{Amministratore di sistema}
 \index{Amministrazione di sistema}
@@ -349,7 +349,7 @@ Essendo l'amministratore di sistema, ha il compito di gestire tutte le policies 
 
 \subsubsection{Deve poter definire le aree di competenza delle entità di gestione}
 \index{Deve poter definire le aree di competenza delle entità di gestione}
-E' compito suo definire tutte le aree di competenza di Dipendenti autorizzati del comune e Enti delegati.
+È compito suo definire tutte le aree di competenza di Dipendenti autorizzati del comune e Enti delegati.
 
 \subsubsection{Deve avere accesso privilegiato al sistema}
 \index{Deve avere accesso privilegiato al sistema}
@@ -357,14 +357,13 @@ Deve avere libertà nell'apportare modifiche specifiche alle componenti (Come il
 
 \subsubsection{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}}
 \index{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}}
-E' necessaria questa distinzione, solamente gli utenti \textit{trusted} possono accedere ai servizi offerti dal sistema.
+È necessaria questa distinzione, solamente gli utenti \textit{trusted} possono accedere ai servizi offerti dal sistema.
 
 \subsection{WebServer}
 \index{WebServer}
 
 \subsubsection{Deve garantire l'accesso al servizio ai soli utenti autorizzati}
 \index{Deve garantire l'accesso al servizio ai soli utenti autorizzati}
-
 Solamente gli utenti autorizzati (Anche i non autenticati, solo per alcuni servizi) possono accedere al servizio.
 
 \subsection{DataBase}
@@ -420,44 +419,428 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 \index{Grafo BPMN} % Aggiunge una voce all'indice
 \clearpage
 
-\section{Diagramma dei casi d'uso}
-\index{Diagramma dei casi d'uso} % Aggiunge una voce all'indice
+\section{Casi d'uso}
+\index{Casi d'uso} % Aggiunge una voce all'indice
 
-\begin{itemize}
-    \item It represents a functional requirement
-    \item It makes clear what you expect from a system (“what?”)
-    \item It hides the behaviour of the system (“how?”)
-    \item It is a sequence of actions (with variants) that produce a result observable by an actor
-\end{itemize}
+\subsection{Utente anonimo}
+\index{Utente anonimo}
 
-% Template tabella casi d'uso
+\subsubsection{Registrazione ed autenticazione dell' utente anonimo}
+\index{Registrazione ed autenticazione dell' utente anonimo}
 
 \begin{table}[htbp]
     \centering
     \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
         \Xhline{2pt} % Linea spessa
-        Nome caso d'uso & *Nome* \\
+        Nome caso d'uso & Registrazione ed autenticazione dell' utente anonimo \\
         \Xhline{2pt} % Linea spessa
-        ID & Testo \\
+        ID & 001 \\
         \hline
-        Descrizione & Testo \\
+        Descrizione & L'utente decide di creare un nuovo account all'interno del sistema oppure di accedere all'account precedentemente creato\\
         \hline
-        Attori primari & Testo \\
+        Attori primari & Utente anonimo \\
         \hline
-        Attori secondari & Testo \\
+        Attori secondari & Server di autenticazione \\
         \hline
-        Precondizioni & Testo \\
+        Precondizioni & Nessuna \\
         \hline
-        Flusso principale & Testo \\
-        \hline
-        Post-condizioni & Testo \\
-        \hline
-        Flussi alternativi & Testo \\
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperto l'applicativo mobile
+                \item Va selezionata l'opzione di accesso
+                \item Il sistema reindirizza l'utente al form di registrazione dell'autenticatore esterno
+                \item Se la registrazione va a buon fine:
+                \begin{enumerate}
+                    \item Se l'utente si è registrato:
+                    \begin{enumerate}
+                        \item Viene creato il profilo
+                        \item Vengono sincronizzate tutte le preferenze utente
+                    \end{enumerate}
+                    \item L'utente diventa un utente autenticato
+                \end{enumerate}
+                \item Altrimenti:
+                \begin{enumerate}
+                    \item L'utente rimane anonimo.
+                \end{enumerate}
+            \end{enumerate}
+        \\
         \hline
     \end{tabularx}
-    \caption{Tabella riassuntiva}
-    \label{tab:tabella_use_case}
+    \caption{Registrazione ed autenticazione dell' utente anonimo}
+    \label{tab:tabella_use_case001}
 \end{table}
+
+\clearpage
+
+\subsection{Utente anonimo o autenticato}
+\index{Utente anonimo o autenticato}
+
+\subsubsection{Visualizzazione degli eventi}
+\index{Visualizzazione degli eventi}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Visualizzazione degli eventi \\
+        \Xhline{2pt} % Linea spessa
+        ID & 002 \\
+        \hline
+        Descrizione & L'utente intende visualizzare gli eventi disponibili\\
+        \hline
+        Attori primari & Utente anonimo o autenticato\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperto l'applicativo mobile
+                \item Se non vi è connettività internet
+                \begin{enumerate}
+                    \item Viene mostrato un banner che indica la mancanza di connessione
+                \end{enumerate}
+            \end{enumerate}
+        \\
+        \hline
+    \end{tabularx}
+    \caption{Visualizzazione degli eventi}
+    \label{tab:tabella_use_case002}
+\end{table}
+
+\subsubsection{Visualizzazione dei dettagli di un evento}
+\index{Visualizzazione dei dettagli di un evento}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Visualizzazione dei dettagli \\
+        \Xhline{2pt} % Linea spessa
+        ID & 003 \\
+        \hline
+        Descrizione & L'utente intende visualizzare i dettagli di un evento specifico\\
+        \hline
+        Attori primari & Utente anonimo o autenticato\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Se si riceve una notifica push
+                \begin{enumerate}
+                    \item L'utente interagisce con la notifica
+                \end{enumerate}
+                \item Altrimenti
+                \begin{enumerate}
+                    \item Va aperto l'applicativo mobile
+                    \item Viene selezionato un evento dalla lista
+                \end{enumerate}
+                \item Viene visualizzata la schermata dei dettagli
+            \end{enumerate}
+        \\
+        \hline
+    \end{tabularx}
+    \caption{Visualizzazione dei dettagli di un evento}
+    \label{tab:tabella_use_case003}
+\end{table}
+
+\clearpage
+
+\subsubsection{Filtraggio degli eventi}
+\index{Filtraggio degli eventi}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Filtraggio degli eventi \\
+        \Xhline{2pt} % Linea spessa
+        ID & 004 \\
+        \hline
+        Descrizione & L'utente intende filtrare gli eventi disponibili\\
+        \hline
+        Attori primari & Utente anonimo o autenticato\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Viene aperto l'applicativo mobile
+                \item Se l'utente desidera effettuare una selezione temporanea
+                \begin{enumerate}
+                    \item Interagisce con il filtraggio delle categorie su mappa
+                \end{enumerate}
+                \item Altrimenti
+                \begin{enumerate}
+                    \item Sono aperte le impostazioni
+                    \item L'utente seleziona le categorie di suo interesse
+                \end{enumerate}
+            \end{enumerate}
+        \\
+        \hline
+        Postcondizioni & Vengono visualizzati solamente gli eventi selezionati \\
+        \hline
+    \end{tabularx}
+    \caption{Visualizzazione degli eventi}
+    \label{tab:tabella_use_case004}
+\end{table}
+
+\subsubsection{Selezione dei percorsi di interesse}
+\index{Selezione dei percorsi di interesse}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Selezione dei percorsi di interesse \\
+        \Xhline{2pt} % Linea spessa
+        ID & 005 \\
+        \hline
+        Descrizione & L'utente va a selezionare i percorsi di suo interesse\\
+        \hline
+        Attori primari & Utente anonimo o autenticato\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperta l'applicazione mobile
+                \item Viene aperta la sezione di impostazioni
+                \item L'utente va a selezionare in modalità interattiva il percorso d'interesse
+            \end{enumerate}
+        \\
+        \hline
+        Postcondizioni & Il percorso selezionato viene salvato su database \\
+        \hline
+    \end{tabularx}
+    \caption{Selezione dei percorsi di interesse}
+    \label{tab:tabella_use_case004}
+\end{table}
+
+\clearpage
+
+\subsubsection{Selezione delle aree di interesse}
+\index{Selezione delle aree di interesse}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Selezione delle aree di interesse \\
+        \Xhline{2pt} % Linea spessa
+        ID & 005 \\
+        \hline
+        Descrizione & L'utente va a selezionare le aree di suo interesse\\
+        \hline
+        Attori primari & Utente anonimo o autenticato\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperta l'applicazione mobile
+                \item Viene aperta la sezione di impostazioni
+                \item L'utente va a selezionare in modalità interattiva le aree di suo interesse
+            \end{enumerate}
+        \\
+        \hline
+        Postcondizioni & L'area selezionata viene salvata su database \\
+        \hline
+    \end{tabularx}
+    \caption{Selezione dei percorsi di interesse}
+    \label{tab:tabella_use_case004}
+\end{table}
+
+
+
+\subsection{Dipendente autorizzato del Comune di Trento}
+\index{Dipendente autorizzato del Comune di Trento}
+
+\subsubsection{Definizione delle sottocategorie}
+\index{Definizione delle sottocategorie}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Definizione delle sottocategorie \\
+        \Xhline{2pt} % Linea spessa
+        ID & 005 \\
+        \hline
+        Descrizione & Il dipendente autorizzato del Comune di Trento vuole creare una nuova sottoategoria per eventi di sua competenza\\
+        \hline
+        Attori primari & Dipendente autorizzato del Comune di trento\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperto l'applicativo desktop
+                \item L'utente va a selezionare l'opzione \textit{Gestione Eventi}
+                \item Procede con la compilazione di tutti i campi necessari alla creazione della sottocategoria
+                \item Se la creazione va a buon fine:
+                \begin{enumerate}
+                    \item La nuova sottocategoria ssarà visibile a sistema
+                \end{enumerate}
+                \item Altrimenti:
+                \begin{enumerate}
+                    \item Sarà visualizzato un alert che avvisa dell'errore
+                \end{enumerate}
+            \end{enumerate}
+        \\
+        \hline
+    \end{tabularx}
+    \caption{Definizione delle sottocategorie}
+    \label{tab:tabella_use_case006}
+\end{table}
+
+\clearpage
+
+\subsubsection{Creazione degli eventi}
+\index{Creazione degli eventi}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Creazione degli eventi \\
+        \Xhline{2pt} % Linea spessa
+        ID & 006 \\
+        \hline
+        Descrizione & Il dipendente autorizzato del Comune di Trento crea gli eventi di sua competenza\\
+        \hline
+        Attori primari & Dipendente autorizzato del Comune di trento\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperto l'applicativo desktop
+                \item È selezionata la sezione \textit{Gestione Eventi}
+                \item Viene scelta la voce \textit{Nuovo Evento}
+                \item Sono compilati tutti i campi che caratterizzano il nuovo evento
+                \item L'evento viene salvato e/o pubblicato a sistema
+                \item Se la creazione va a buon fine:
+                \begin{enumerate}
+                    \item L'evento verrà memorizzato (e comunicato tempestivamente)
+                \end{enumerate}
+                \item Altrimenti:
+                \begin{enumerate}
+                    \item Sarà visualizzato un alert che avvisa dell'errore
+                \end{enumerate}
+            \end{enumerate}
+        \\
+        \hline
+    \end{tabularx}
+    \caption{Creazione nuovi eventi}
+    \label{tab:tabella_use_case006}
+\end{table}
+
+\clearpage
+
+\subsubsection{Modifica di un evento}
+\index{Modifica di un evento}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Modifica di un evento \\
+        \Xhline{2pt} % Linea spessa
+        ID & 007 \\
+        \hline
+        Descrizione & Il dipendente autorizzato del Comune di Trento intende modificare un evento di sua competenza\\
+        \hline
+        Attori primari & Dipendente autorizzato del Comune di trento\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperto l'applicativo desktop
+                \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
+                \item Viene scelta l'icona di modifica
+                \item Sono modificati i campi che il dipendente del Comune intende aggiornare
+                \item L'evento viene salvato e/o pubblicato a sistema
+                \item Se la modifica va a buon fine:
+                \begin{enumerate}
+                    \item L'evento verrà memorizzato (e comunicato tempestivamente)
+                \end{enumerate}
+                \item Altrimenti:
+                \begin{enumerate}
+                    \item Sarà visualizzato un alert che avvisa dell'errore
+                \end{enumerate}
+            \end{enumerate}
+        \\
+        \hline
+    \end{tabularx}
+    \caption{Modifica di un evento}
+    \label{tab:tabella_use_case007}
+\end{table}
+
+\clearpage
+
+\subsubsection{Modifica di un evento}
+\index{Modifica di un evento}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
+        \Xhline{2pt} % Linea spessa
+        Nome caso d'uso & Modifica di un evento \\
+        \Xhline{2pt} % Linea spessa
+        ID & 008 \\
+        \hline
+        Descrizione & Il dipendente autorizzato del Comune di Trento intende eliminare un evento di sua competenza\\
+        \hline
+        Attori primari & Dipendente autorizzato del Comune di trento\\
+        \hline
+        Attori secondari & Nessuno \\
+        \hline
+        Precondizioni & Nessuna \\
+        \hline
+        Flusso principale & 
+            \begin{enumerate}
+                \item Va aperto l'applicativo desktop
+                \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
+                \item Viene scelta l'icona di eliminazione dell'evento che si intende modificare
+                \item Se la cancellazione va a buon fine:
+                \begin{enumerate}
+                    \item L'evento verrà eliminato dal sistema
+                    \item Viene confermata l'eliminazione
+                \end{enumerate}
+                \item Altrimenti:
+                \begin{enumerate}
+                    \item Sarà visualizzato un alert che avvisa dell'errore
+                \end{enumerate}
+            \end{enumerate}
+        \\
+        \hline
+    \end{tabularx}
+    \caption{Eliminazione di un evento}
+    \label{tab:tabella_use_case008}
+\end{table}
+
+\clearpage
+
+\section{Diagramma dei casi d'uso}
+\index{Diagramma dei casi d'uso} % Aggiunge una voce all'indice
 
 \clearpage
 

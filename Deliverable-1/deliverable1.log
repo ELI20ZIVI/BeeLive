@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.23)  27 MAR 2024 11:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.23)  27 MAR 2024 11:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -895,13 +895,13 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [17
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 469--470
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
 
  []
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 484.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 482.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -934,7 +934,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  79i,16n,93p,779b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-BoldItalic.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Italic.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable1.pdf (18 pages, 5673544 bytes).
+Output written on deliverable1.pdf (18 pages, 5673515 bytes).
 PDF statistics:
  529 PDF objects out of 1000 (max. 8388607)
  484 compressed objects within 5 object streams

@@ -1,4 +1,6 @@
 import 'package:beelive/common/problem.dart';
+import 'package:beelive/common/dao/dao.dart';
+import 'package:beelive/common/dao/static_dao.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
 class CategoryPicker extends StatelessWidget {
@@ -9,12 +11,23 @@ class CategoryPicker extends StatelessWidget {
 
   final Problem problem;
 
+  static TreeViewItem _toTreeViewItem(final MapEntry<String, dynamic> cat) {
+    return TreeViewItem(
+      content: Text(cat.key),
+      value: cat.key,
+      children: cat.value?.entries.map<TreeViewItem>(_toTreeViewItem).toList(growable: false) ?? const [],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    const suggestBox = Expanded(
-      child: AutoSuggestBox(
-        items: [],
-        placeholder: "Tag",
+    Categories categories = StaticDao().categories();
+
+    final suggestBox = Expanded(
+      child: TreeView(
+        selectionMode: TreeViewSelectionMode.multiple,
+        shrinkWrap: true,
+        items: [_toTreeViewItem(MapEntry('Tutto', categories))],
       ),
     );
 

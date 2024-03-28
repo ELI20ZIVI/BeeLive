@@ -11,6 +11,8 @@
 \usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{hyperref}
 \usepackage{tabularx}
 \usepackage{makecell}
+\usepackage{enumitem} % Pacchetto per la personalizzazione degli elenchi
+\usepackage{booktabs}
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -445,24 +447,24 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperto l'applicativo mobile
-                \item Va selezionata l'opzione di accesso
-                \item Il sistema reindirizza l'utente al form di registrazione dell'autenticatore esterno
-                \item Se la registrazione va a buon fine:
-                \begin{enumerate}
-                    \item Se l'utente si è registrato:
-                    \begin{enumerate}
-                        \item Viene creato il profilo
-                        \item Vengono sincronizzate tutte le preferenze utente
-                    \end{enumerate}
-                    \item L'utente diventa un utente autenticato
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperto l'applicativo mobile
+            \item Va selezionata l'opzione di accesso
+            \item Il sistema reindirizza l'utente al form di registrazione dell'autenticatore esterno
+            \item Se la registrazione va a buon fine:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Se l'utente si è registrato:
+                \begin{enumerate}[leftmargin=*, nosep]
+                    \item Viene creato il profilo
+                    \item Vengono sincronizzate tutte le preferenze utente
                 \end{enumerate}
-                \item Altrimenti:
-                \begin{enumerate}
-                    \item L'utente rimane anonimo.
-                \end{enumerate}
+                \item L'utente diventa un utente autenticato
             \end{enumerate}
+            \item Altrimenti:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item L'utente rimane anonimo.
+            \end{enumerate}
+        \end{enumerate}
         \\
         \hline
     \end{tabularx}
@@ -495,13 +497,13 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperto l'applicativo mobile
-                \item Se non vi è connettività internet
-                \begin{enumerate}
-                    \item Viene mostrato un banner che indica la mancanza di connessione
-                \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperto l'applicativo mobile
+            \item Se non vi è connettività internet
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Viene mostrato un banner che indica la mancanza di connessione
             \end{enumerate}
+        \end{enumerate}
         \\
         \hline
     \end{tabularx}
@@ -529,18 +531,18 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Se si riceve una notifica push
-                \begin{enumerate}
-                    \item L'utente interagisce con la notifica
-                \end{enumerate}
-                \item Altrimenti
-                \begin{enumerate}
-                    \item Va aperto l'applicativo mobile
-                    \item Viene selezionato un evento dalla lista
-                \end{enumerate}
-                \item Viene visualizzata la schermata dei dettagli
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Se si riceve una notifica push
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item L'utente interagisce con la notifica
             \end{enumerate}
+            \item Altrimenti
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Va aperto l'applicativo mobile
+                \item Viene selezionato un evento dalla lista
+            \end{enumerate}
+            \item Viene visualizzata la schermata dei dettagli
+        \end{enumerate}
         \\
         \hline
     \end{tabularx}
@@ -570,18 +572,18 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Viene aperto l'applicativo mobile
-                \item Se l'utente desidera effettuare una selezione temporanea
-                \begin{enumerate}
-                    \item Interagisce con il filtraggio delle categorie su mappa
-                \end{enumerate}
-                \item Altrimenti
-                \begin{enumerate}
-                    \item Sono aperte le impostazioni
-                    \item L'utente seleziona le categorie di suo interesse
-                \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Viene aperto l'applicativo mobile
+            \item Se l'utente desidera effettuare una selezione temporanea
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Interagisce con il filtraggio delle categorie su mappa
             \end{enumerate}
+            \item Altrimenti
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Sono aperte le impostazioni
+                \item L'utente seleziona le categorie di suo interesse
+            \end{enumerate}
+        \end{enumerate}
         \\
         \hline
         Postcondizioni & Vengono visualizzati solamente gli eventi selezionati \\
@@ -611,11 +613,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperta l'applicazione mobile
-                \item Viene aperta la sezione di impostazioni
-                \item L'utente va a selezionare in modalità interattiva il percorso d'interesse
-            \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperta l'applicazione mobile
+            \item Viene aperta la sezione di impostazioni
+            \item L'utente va a selezionare in modalità interattiva il percorso d'interesse
+        \end{enumerate}
         \\
         \hline
         Postcondizioni & Il percorso selezionato viene salvato su database \\
@@ -647,11 +649,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperta l'applicazione mobile
-                \item Viene aperta la sezione di impostazioni
-                \item L'utente va a selezionare in modalità interattiva le aree di suo interesse
-            \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperta l'applicazione mobile
+            \item Viene aperta la sezione di impostazioni
+            \item L'utente va a selezionare in modalità interattiva le aree di suo interesse
+        \end{enumerate}
         \\
         \hline
         Postcondizioni & L'area selezionata viene salvata su database \\
@@ -686,19 +688,19 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperto l'applicativo desktop
-                \item L'utente va a selezionare l'opzione \textit{Gestione Eventi}
-                \item Procede con la compilazione di tutti i campi necessari alla creazione della sottocategoria
-                \item Se la creazione va a buon fine:
-                \begin{enumerate}
-                    \item La nuova sottocategoria ssarà visibile a sistema
-                \end{enumerate}
-                \item Altrimenti:
-                \begin{enumerate}
-                    \item Sarà visualizzato un alert che avvisa dell'errore
-                \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperto l'applicativo desktop
+            \item L'utente va a selezionare l'opzione \textit{Gestione Eventi}
+            \item Procede con la compilazione di tutti i campi necessari alla creazione della sottocategoria
+            \item Se la creazione va a buon fine:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item La nuova sottocategoria ssarà visibile a sistema
             \end{enumerate}
+            \item Altrimenti:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Sarà visualizzato un alert che avvisa dell'errore
+            \end{enumerate}
+        \end{enumerate}
         \\
         \hline
     \end{tabularx}
@@ -728,21 +730,21 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperto l'applicativo desktop
-                \item È selezionata la sezione \textit{Gestione Eventi}
-                \item Viene scelta la voce \textit{Nuovo Evento}
-                \item Sono compilati tutti i campi che caratterizzano il nuovo evento
-                \item L'evento viene salvato e/o pubblicato a sistema
-                \item Se la creazione va a buon fine:
-                \begin{enumerate}
-                    \item L'evento verrà memorizzato (e comunicato tempestivamente)
-                \end{enumerate}
-                \item Altrimenti:
-                \begin{enumerate}
-                    \item Sarà visualizzato un alert che avvisa dell'errore
-                \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperto l'applicativo desktop
+            \item È selezionata la sezione \textit{Gestione Eventi}
+            \item Viene scelta la voce \textit{Nuovo Evento}
+            \item Sono compilati tutti i campi che caratterizzano il nuovo evento
+            \item L'evento viene salvato e/o pubblicato a sistema
+            \item Se la creazione va a buon fine:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item L'evento verrà memorizzato (e comunicato tempestivamente)
             \end{enumerate}
+            \item Altrimenti:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Sarà visualizzato un alert che avvisa dell'errore
+            \end{enumerate}
+        \end{enumerate}
         \\
         \hline
     \end{tabularx}
@@ -772,21 +774,21 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperto l'applicativo desktop
-                \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
-                \item Viene scelta l'icona di modifica
-                \item Sono modificati i campi che il dipendente del Comune intende aggiornare
-                \item L'evento viene salvato e/o pubblicato a sistema
-                \item Se la modifica va a buon fine:
-                \begin{enumerate}
-                    \item L'evento verrà memorizzato (e comunicato tempestivamente)
-                \end{enumerate}
-                \item Altrimenti:
-                \begin{enumerate}
-                    \item Sarà visualizzato un alert che avvisa dell'errore
-                \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperto l'applicativo desktop
+            \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
+            \item Viene scelta l'icona di modifica
+            \item Sono modificati i campi che il dipendente del Comune intende aggiornare
+            \item L'evento viene salvato e/o pubblicato a sistema
+            \item Se la modifica va a buon fine:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item L'evento verrà memorizzato (e comunicato tempestivamente)
             \end{enumerate}
+            \item Altrimenti:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Sarà visualizzato un alert che avvisa dell'errore
+            \end{enumerate}
+        \end{enumerate}
         \\
         \hline
     \end{tabularx}
@@ -816,20 +818,20 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
-            \begin{enumerate}
-                \item Va aperto l'applicativo desktop
-                \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
-                \item Viene scelta l'icona di eliminazione dell'evento che si intende modificare
-                \item Se la cancellazione va a buon fine:
-                \begin{enumerate}
-                    \item L'evento verrà eliminato dal sistema
-                    \item Viene confermata l'eliminazione
-                \end{enumerate}
-                \item Altrimenti:
-                \begin{enumerate}
-                    \item Sarà visualizzato un alert che avvisa dell'errore
-                \end{enumerate}
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
+            \item Va aperto l'applicativo desktop
+            \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
+            \item Viene scelta l'icona di eliminazione dell'evento che si intende modificare
+            \item Se la cancellazione va a buon fine:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item L'evento verrà eliminato dal sistema
+                \item Viene confermata l'eliminazione
             \end{enumerate}
+            \item Altrimenti:
+            \begin{enumerate}[leftmargin=*, nosep]
+                \item Sarà visualizzato un alert che avvisa dell'errore
+            \end{enumerate}
+        \end{enumerate}
         \\
         \hline
     \end{tabularx}

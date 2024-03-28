@@ -37,7 +37,7 @@
     \rfoot{\vspace{32.5pt}\\\thepage} % Footer on the right
 }
 
-% Adjust vertical space between header and text
+% Adjust vertical space between header and text                                    
 \setlength{\headsep}{65pt} 
 % Adjust vertical space between text and footer
 \setlength{\footskip}{0pt} 
@@ -64,33 +64,38 @@ Ziviani Elia, 228172}
 \tableofcontents
 
 \clearpage
-\section{Descrizione dell'applicativo}
-\index{Descrizione dell'applicativo} % Aggiunge una voce all'indice
-La Municipalità di Trento ha richiesto la valutazione dei problemi cittadini e la proposta di soluzioni attraverso lo sviluppo di un'applicazione web ad-hoc.
+\section{Introduzione}
+\index{Introduzione} % Aggiunge una voce all'indice
 
-Dopo un processo di ideazione, è emerso che a Trento risulta spesso difficile reperire informazioni riguardanti gli eventi che influenzano la viabilità stradale. Le informazioni disponibili sono principalmente testuali e richiedono un impegno attivo da parte dei cittadini per essere trovate, poiché attualmente manca un sistema di notifica automatica per tali modifiche.
+La Municipalità di Trento, in collaborazione con l'Università, ha richiesto che come oggetto di valutzione del corso di "Ingegneria del Software" ideassimo un progetto a tema "Ideare la Trento del futuro".\\
+Non sono state date molte altre informazioni o suggerimenti, in modo che il processo di design thinking non fosse contaminato da schemi mentali, limitazioni o idee precedenti. \\
+\\
+Questo documento è il primo "Deliberable" di 'BeeLive', i.e. il progetto da noi proposto per affrontare la suddetta consegna. \\
+\\
+Un primo processo di brainstorming ci ha permesso di notare come a Trento risulti difficile reperire informazioni riguardanti ad alcuni eventi, in particolare quelli che influenzano la viabilità stradale. Le informazioni disponibili sono principalmente testuali e richiedono un impegno attivo da parte dei cittadini per essere trovate.
+Ciò causa una generale difficoltà nel reperire tali informazioni, aggravato dal fatto che, attualmente, manca un sistema di notifica automatica per tali modifiche.\\
+\\
+'BeeLive' è una soluzione che si pone come un affronto a questo problema. 
 
-Di conseguenza, l'idea concepita prevede lo sviluppo di un sistema informativo che consenta ai cittadini di accedere rapidamente ed intuitivamente a tutte le variazioni della viabilità, senza la necessità di una ricerca attiva.\\
 
-Il nucleo concettuale si basa sulla rappresentazione grafica delle zone coinvolte nelle modifiche della viabilità, per facilitare la comprensione delle informazioni.\\
-È inoltre previsto un sistema di notifiche push per informare i cittadini in tempo reale sugli eventi che coinvolgono l'intera città o solo le zone da loro selezionate.\\
+\section{Obiettivi e descrizione dell'applicativo}
+\index{Obiettivi}
 
+L'obiettivi che si ripropone questo applicativo è di risolvere i problemi precedentemente menzionati attraverso l'implementazione dei seguenti punti:\\
+1. sviluppare un sistema informativo che consenta ai cittadini di accedere rapidamente, intuitivamente e sopratutto \textbf{visivamente} a tutte le variazioni della viabilità, all'interno del comune di Trento\\
+2. Informare attivamente gli utenti di eventuali modifiche alla viabilità, con particolare attenzione agli eventi che potrebbero colpirli direttamente\\ % l'ho tenuto generale
+\\
+Il primo punto prevede lo sviluppo di un sistema informativo che mostri ai cittadini una rappresentazione grafica delle zone interessate da determinati eventi, con focus particolare per le zone coinvolte in eventuali modifiche alla viabilità. \\
+Il secondo punto prevede la creazione di un sistema di notifiche push, associato al suddetto applicativo mobile, che permetta di notificare attivamente gli utenti di eventuali eventi e modifiche alla viabilità.\\
+Prevediamo di sviluppare un sistema per cui gli utenti possano impostare dei percorsi abituali in modo che, all'insorgere di un evento che vada a colpire un punto qualunque di tale percorso, l'utente ne sia avvisato. \\
+Prevediamo di dar voce agli interessi individuali di ogni utente, in modo che essi possano indicare delle preferenze per determinate notifiche rispetto ad altre. % molto vago, di proposito
+ \\
+ \\
 Saranno sviluppati due ambienti distinti: Uno riservato all'amministrazione e uno accessibile ai cittadini.\\
 Il primo ambiente consentirà all'amministrazione di inserire e modificare le informazioni sulle variazioni della viabilità attraverso un'interfaccia grafica intuitiva e compatibile con gli standard per la visualizzazione dei dati su mappa.\\
-Il secondo sarà un'applicazione mobile installabile sui dispositivi dei cittadini, che consentirà loro di visualizzare graficamente le zone interessate dai cambiamenti, selezionare le aree di loro interesse e ricevere notifiche push in tempo reale.
-
-Ogni variazione inserita nel sistema dall'amministrazione sarà caratterizzata dalla zona interessata, visualizzabile sulla mappa, da una descrizione che ne spiega la natura e da una stima della durata della variazione, tutte informazioni che i cittadini potranno visualizzare tramite l'applicazione mobile dal loro dispositivo.
-\clearpage
-
-\clearpage
-
-\section{Obiettivi}
-\index{Obiettivi} % Aggiunge una voce all'indice
-
-L'obiettivo di questo progetto è di fornire una soluzione che dia la possibilità, ai cittadini di Trento, di visualizzare intuitivamente gli eventi che modificano la viabilità all'interno della città, in modo da capire facilmente se ci siano problemi o meno a seguire un percorso.\\
-Questa soluzione si ripromette di informare attivamente gli utenti di eventuali eventi, nel caso in cui questi vadano a insorgere in zone direttamente interessate all'utente\\
-
-
+Il secondo sarà rappresentato dall'applicativo mobile installabile sui dispositivi dei cittadini, che come precedentemente menzionato consentirà loro di visualizzare graficamente le zone interessate dai cambiamenti, selezionare le aree di loro interesse e ricevere notifiche push in tempo reale.\\
+\\
+Ogni variazione inserita nel sistema dall'amministrazione sarà associata alla zona interessata (visualizzabile sulla mappa), da una descrizione che ne spiega la natura e da una stima della durata della variazione. Tutte queste informazioni saranno poi visualizzabili, dai cittadini, tramite l'applicazione mobile sul loro dispositivo. 
 \clearpage
 
 \section{Attori di sistema e Mind map}

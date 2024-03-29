@@ -23,7 +23,10 @@ class EventManagerScreen extends StatelessWidget {
       children: [
         const ActionBar(),
         Expanded(
-          child: _EventWidget(problem: dao.problems()[1]),
+          child: _EventWidget(
+            key: ValueKey(dao.problems()[1]),
+            problem: dao.problems()[1],
+          ),
         ),
       ],
     );
@@ -32,6 +35,7 @@ class EventManagerScreen extends StatelessWidget {
 
 class _EventWidget extends StatelessWidget {
   const _EventWidget({
+    required super.key,
     required this.problem,
   });
 
@@ -202,12 +206,12 @@ class _EventGenericForm extends StatelessWidget {
     const separator = SizedBox(height: 20);
 
     final title = InfoLabel(
-        label: "Titolo",
-        child: TextFormBox(
-          initialValue: problem.title,
-          textAlignVertical: TextAlignVertical.center,
-        ),
-      );
+      label: "Titolo",
+      child: TextFormBox(
+        initialValue: problem.title,
+        textAlignVertical: TextAlignVertical.center,
+      ),
+    );
 
     final summary = InfoLabel(
       label: "Riassunto",

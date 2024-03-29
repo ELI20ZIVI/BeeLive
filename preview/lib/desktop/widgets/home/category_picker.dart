@@ -15,13 +15,14 @@ class CategoryPicker extends StatelessWidget {
     return TreeViewItem(
       content: Text(cat.key),
       value: cat.key,
+      expanded: false,
       children: cat.value?.entries.map<TreeViewItem>(_toTreeViewItem).toList(growable: false) ?? const [],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Categories categories = StaticDao().categories();
+    Categories categories = const StaticDao().categories();
 
     final suggestBox = Expanded(
       child: TreeView(
@@ -33,15 +34,13 @@ class CategoryPicker extends StatelessWidget {
 
     final actualPicker = InfoLabel(
       label: "Categorie",
-      child: SizedBox(
-        height: 34,
-        child: Row(
-          children: [
-            suggestBox,
-            const SizedBox(width: 8),
-            RiskLevelPicker(onChanged: (_) {}),
-          ],
-        ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          suggestBox,
+          const SizedBox(width: 8),
+          RiskLevelPicker(onChanged: (_) {}),
+        ],
       ),
     );
 
@@ -51,11 +50,11 @@ class CategoryPicker extends StatelessWidget {
       }).toList(growable: false),
     );
 
-    return Column(
+    return actualPicker;/*Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [actualPicker, viewer],
-    );
+    );*/
   }
 }
 

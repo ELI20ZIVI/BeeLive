@@ -47,10 +47,9 @@ class _HomePageState extends State<HomePage> {
             body: const SizedBox.shrink(),
           ),
           PaneItem(
-            icon: const Icon(FluentIcons.lock),
-            title: const Text("Autorizza"),
+            icon: const Icon(FluentIcons.tag),
+            title: const Text("Gestione Categorie"),
             body: const SizedBox.shrink(),
-            infoBadge: const Text('3'),
           ),
           PaneItem(
             icon: const Icon(FluentIcons.map_layers),

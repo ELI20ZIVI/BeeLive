@@ -67,21 +67,21 @@ Ziviani Elia, 228172}
 \section{Introduzione}
 \index{Introduzione} % Aggiunge una voce all'indice
 
-La Municipalità di Trento, in collaborazione con l'Università, ha richiesto che come oggetto di valutzione del corso di "Ingegneria del Software" ideassimo un progetto a tema "Ideare la Trento del futuro".\\
+La Municipalità di Trento, in collaborazione con l'Università, ha richiesto che come oggetto di valutazione del corso di \textit{Ingegneria del Software} ideassimo un progetto a tema "Ideare la Trento del futuro".\\
 Non sono state date molte altre informazioni o suggerimenti, in modo che il processo di design thinking non fosse contaminato da schemi mentali, limitazioni o idee precedenti. \\
 \\
-Questo documento è il primo "Deliberable" di 'BeeLive', i.e. il progetto da noi proposto per affrontare la suddetta consegna. \\
+Questo documento è il primo "deliverable" di \textit{BeeLive}, i.e. il progetto da noi proposto per affrontare la suddetta consegna. \\
 \\
-Un primo processo di brainstorming ci ha permesso di notare come a Trento risulti difficile reperire informazioni riguardanti ad alcuni eventi, in particolare quelli che influenzano la viabilità stradale. Le informazioni disponibili sono principalmente testuali e richiedono un impegno attivo da parte dei cittadini per essere trovate.
+Un primo processo di brainstorming ci ha permesso di notare come a Trento risulti difficile reperire informazioni riguardanti alcuni eventi, in particolare quelli che influenzano la viabilità stradale. Le informazioni disponibili sono principalmente testuali e richiedono un impegno attivo da parte dei cittadini per essere trovate.
 Ciò causa una generale difficoltà nel reperire tali informazioni, aggravato dal fatto che, attualmente, manca un sistema di notifica automatica per tali modifiche.\\
 \\
-'BeeLive' è una soluzione che si pone come un affronto a questo problema. 
+\textit{BeeLive} è una soluzione a questo problema. 
 
 
 \section{Obiettivi e descrizione dell'applicativo}
 \index{Obiettivi}
 
-L'obiettivi che si ripropone questo applicativo è di risolvere i problemi precedentemente menzionati attraverso l'implementazione dei seguenti punti:\\
+L'obiettivo che si ripropone questo applicativo è di risolvere i problemi precedentemente menzionati attraverso l'implementazione dei seguenti punti:\\
 1. sviluppare un sistema informativo che consenta ai cittadini di accedere rapidamente, intuitivamente e sopratutto \textbf{visivamente} a tutte le variazioni della viabilità, all'interno del comune di Trento\\
 2. Informare attivamente gli utenti di eventuali modifiche alla viabilità, con particolare attenzione agli eventi che potrebbero colpirli direttamente\\ % l'ho tenuto generale
 \\
@@ -110,15 +110,11 @@ Si tratta del cittadino che utilizza l'applicativo. Ha accesso a tutte le funzio
 
 \subsubsection{Utente autenticato}
 \index{Utente autenticato} % Aggiunge una voce all'indice
-L'utente autenticato eredita tutte le caratteristiche dall'utente anonimo (\ref{Attori_UtenteAnonimo}), integrando però la sincronizzazione tra i dispositivi su cui l'utente esegue l'accesso.
+L'utente autenticato eredita tutte le caratteristiche dall'\textit{utente anonimo} (\ref{Attori_UtenteAnonimo}), integrando però la sincronizzazione tra i dispositivi su cui l'utente esegue l'accesso.
 
 \subsubsection{Dipendente autorizzato del Comune di Trento}\label{Attori_DipendenteAutorizzato}
 \index{Dipendente del Comune di Trento} % Aggiunge una voce all'indice
-Il dipendente autorizzato del Comune di Trento è colui che ha il compito di gestire gli eventi che influenzano la viabilità cittadina.
-
-\subsubsection{Enti delegati}
-\index{Enti delegati} % Aggiunge una voce all'indice
-Gli enti delegati ereditano le caratteristiche dall'entità "Dipendente autorizzato del Comune di Trento" (\ref{Attori_DipendenteAutorizzato}), essendo però esterno alla gestione comunale del territorio.
+Il \textit{dipendente autorizzato del Comune di Trento} è colui che ha il compito di gestire gli eventi che influenzano la viabilità cittadina.
 
 \subsubsection{Amministratore di sistema}
 \index{Amministratore di sistema} % Aggiunge una voce all'indice
@@ -129,6 +125,7 @@ L'entità che si occupa della gestione del sistema, con la possibilità di modif
 
 \subsubsection{Enti delegati}
 \index{Enti delegati} % Aggiunge una voce all'indice
+Gli enti delegati ereditano le caratteristiche dall'entità \textit{Dipendente autorizzato del Comune di Trento} (\ref{Attori_DipendenteAutorizzato}), essendo però esterno alla gestione comunale del territorio.
 
 \subsection{Componenti di sistema Interni}
 \index{Componenti di sistema Interni}
@@ -141,8 +138,8 @@ L'entità che si occupa della gestione del sistema, con la possibilità di modif
 \subsubsection{Web server}
 \index{Web server}
 
-Separato in due parti\\
-Ogniuna con utenti autenticati
+Separato in più sottoservizi per \textit{separation of concerns} e questioni di sicurezza.\\
+Ognuna con utenti autenticati.
 
 \subsubsection{Database}
 \index{Database}
@@ -168,7 +165,7 @@ Ogniuna con utenti autenticati
     \caption{Mind map degli attori che interagiscono con il sistema}
 \end{figure}
 
-Tramite la mind map è possibile avere una rappresentazione chiara degli attori che interagistocno con il sistema.\\
+Tramite la mind map è possibile avere una rappresentazione chiara degli attori che interagiscono con il sistema.\\
 \clearpage
 
 \section{Prototipo del sistema}
@@ -186,7 +183,7 @@ Tramite la mind map è possibile avere una rappresentazione chiara degli attori 
     \caption{Mockup schermata principale dell'applicazione mobile}
 \end{figure}
 
-È rappresentata la schermata principale dell'applicazione mobile che il cittadino installerà sul proprio smartphone.\\
+È rappresentata la schermata principale dell'\textit{applicazione mobile} che il cittadino installerà sul proprio smartphone.\\
 La schermata principale mostra una mappa della città di Trento con le zone interessate dalle variazioni della viabilità.\\
 La lista sottostante la mappa riporta tutte le variazioni presenti nel sistema che si trovano nel periodo di visualizzazione, con la possibilità di selezionare una variazione per visualizzarne i dettagli.\\
 \clearpage
@@ -232,8 +229,8 @@ Interagendo con essa sarà quindi aperta l'applicazione mobile sulla schermata r
     \caption{Mockup dell'interfaccia amministrativa}
 \end{figure}
 
-L'immagine rappresenta come dovrebbe essere strutturata l'interfaccia dell'applicativo desktop, utilizzato dagli enti pubblici con potere di amministrazione per la pobblicazione degli eventi in città che ne influenzano la viabilità.\\
-L'interfaccia comprende un menu laterale per la navigazione tra le varie sezioni dell'applicativo e la schermata dove il sottomen selezionato presenta tutte le sue specifiche funzionalità disponibili.
+L'immagine rappresenta come dovrebbe essere strutturata l'interfaccia dell'\textit{applicativo desktop}, utilizzato dagli enti pubblici con potere di amministrazione per la pobblicazione degli eventi in città che ne influenzano la viabilità.\\
+L'interfaccia comprende un menu laterale per la navigazione tra le varie sezioni dell'applicativo e la schermata dove il sottomenù selezionato presenta tutte le sue specifiche funzionalità disponibili.
 
 Il sottomenù selezionato in questo caso è "Gestione Eventi", la sezione in cui è possibile inserire un nuovo evento che modifica la viabilità cittadina. Infatti sono riportati tutti i campi necessari per la creazione di un evento, come il titolo, il riassunto, la data di inizio e fine di validità dell'evento e di visibilità sull'applicativo mobile, e le categorie che caratterizzano l'evento.
 
@@ -275,7 +272,7 @@ Gli utenti devono avere la possibilità di autenticarsi a sistema per usufruire 
 \index{Deve poter indicare categorie di interesse} % Aggiunge una voce all'indice
 Deve poter indicare categorie di interesse in maniera indipendente per eventi in \textit{zone di interesse} (Aree e percorsi) e non.
 \begin{itemize}
-    \item Granularità maggiori (ad esempio: per zona di interesse e per label di rischio) non sono previste, in quanto \textbf{rischiano} di compromettere l'user experience
+    \item Granularità maggiori (ad esempio: per zona di interesse e per label di rischio) non sono previste, in quanto rischiano di compromettere l'user experience
 \end{itemize}
 
 \subsubsection{Deve poter indicare aree di interesse}
@@ -306,7 +303,7 @@ Le categorie sono organizzate in modo gerarchico per migliorare la granularità 
 
 \subsubsection{Deve poter gestire gli eventi di sua competenza}
 \index{Deve poter gestire gli eventi di sua competenza}
-La gestione degli eventi di un dipendente include la creazione, la modifica, l'eliminazione e la pubblicazione (Solo se \textit{trusted}) degli eventi di sua competenza.
+La gestione degli eventi di un dipendente include la creazione, la modifica, l'eliminazione e la pubblicazione (solo se \textit{trusted}) degli eventi di sua competenza.
 
 \subsubsection{Non deve poter gestire gli eventi che non sono di sua competenza}
 \index{Non deve poter gestire gli eventi che non sono di sua competenza}
@@ -353,11 +350,11 @@ Essendo l'amministratore di sistema, ha il compito di gestire tutte le policies 
 
 \subsubsection{Deve poter definire le aree di competenza delle entità di gestione}
 \index{Deve poter definire le aree di competenza delle entità di gestione}
-È compito suo definire tutte le aree di competenza di Dipendenti autorizzati del comune e Enti delegati.
+È compito suo definire tutte le aree di competenza di \textit{Dipendenti autorizzati del Comune di Trento} e \textit{Enti delegati}.
 
 \subsubsection{Deve avere accesso privilegiato al sistema}
 \index{Deve avere accesso privilegiato al sistema}
-Deve avere libertà nell'apportare modifiche specifiche alle componenti (Come il salvataggio dei dati)
+Deve avere libertà nell'apportare modifiche specifiche alle componenti (come il salvataggio dei dati)
 
 \subsubsection{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}}
 \index{Deve poter definire le entità di gestione come \textit{trusted} o \textit{un-trusted}}
@@ -382,9 +379,9 @@ Sul DataBase sono salvati anche dati caratterizzati da coordinate. Deve essere p
 \section{Requisiti non funzionali}
 \index{Requisiti non funzionali} % Aggiunge una voce all'indice
 
-\subsubsection{L'utente autenticato non deve avere altri vantaggi rispetto l'utente non autenticato}
+\subsubsection{L'utente autenticato non deve avere altri vantaggi rispetto all'utente non autenticato}
 \index{L'utente autenticato non deve avere altri vantaggi rispetto l'utente non autenticato} % Aggiunge una voce all'indice
-L'applicativo deve poter essere utilizzato in maniera completa senza forzare l'autenticazione dell'utente, che ne comporta una barriera d'utilizzo, salvo evetuali problematiche implementative.
+L'applicativo deve poter essere utilizzato in maniera completa senza forzare l'autenticazione dell'utente, che ne comporta una barriera d'utilizzo, salvo eventuali problematiche implementative.
 
 \subsubsection{Affidabilità dei dati forniti}
 \index{Affidabilità dei dati forniti}
@@ -392,13 +389,13 @@ Tutti i dati che provengono dagli enti delegati devono essere considerati affida
 
 \subsubsection{Usabilità}
 \index{Usabilità} % Aggiunge una voce all'indice
-Per quanto riguarda l'applicazione mobile, i cittadini devono essere in grado di utilizzarla dal primo momento in cui è intallata sul dispositivo.\\
-Per invece l'applicativo desktop, precedentemente al primo utilizzo è necessaria al più una specificazione delle funzionalità per il loro completo utilizzo.
+Per quanto riguarda l'\textit{applicazione mobile}, i cittadini devono essere in grado di utilizzarla dal primo momento in cui è intallata sul dispositivo.\\
+Per invece l'\textit{applicativo desktop}, precedentemente al primo utilizzo è necessaria al più una specificazione delle funzionalità per il loro completo utilizzo.
 
 \subsubsection{Scalabilità}
 \index{Scalabilità} % Aggiunge una voce all'indice
-Il requirement di scalabilità riguarda solamente l'applicazione mobile, perchè deve essere in grado di gestire un elevato numero di utenti, che rispecchi il numero dgli abitanti di Trento.\\
-L'applicativo desktop invece non ha bisogno di scalabilità, in quanto è utilizzato solo da un numero limitato di utenti.
+Il requirement di scalabilità riguarda solamente l'\textit{applicazione mobile}, perchè deve essere in grado di gestire un elevato numero di utenti, che rispecchi il numero dgli abitanti di Trento.\\
+L'\textit{applicativo desktop} invece non ha bisogno di scalabilità, in quanto è utilizzato solo da un numero limitato di utenti.
 
 \subsubsection{Robustness}
 \index{Robustness} % Aggiunge una voce all'indice
@@ -415,7 +412,7 @@ Il sistema gestionale usato dagli utenti autorizzati non deve essere soggetto a 
 
 \subsubsection{WebServer diviso}
 \index{WebServer diviso}
-Ci sono due webserver, uno inerente il gestionale desktop e uno per gestire l'aplicazione mobile.
+Ci sono tre webserver: uno inerente il gestionale desktop, uno per gestire l'aplicazione mobile e uno dedicato alle notifiche.
 
 \subsubsection{Tipologia di DataBase}
 \index{Tipologia di DataBase}
@@ -700,7 +697,7 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
             \item Procede con la compilazione di tutti i campi necessari alla creazione della sottocategoria
             \item Se la creazione va a buon fine:
             \begin{enumerate}[leftmargin=*, nosep]
-                \item La nuova sottocategoria ssarà visibile a sistema
+                \item La nuova sottocategoria sarà visibile a sistema
             \end{enumerate}
             \item Altrimenti:
             \begin{enumerate}[leftmargin=*, nosep]

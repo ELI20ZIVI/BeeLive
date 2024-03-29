@@ -4,7 +4,7 @@
 \usepackage[a4paper, margin=2.5cm, left=1.5cm, right=1.5cm, bottom=4cm]{geometry} % Required for setting page margins
 \usepackage[T1]{fontenc}
 \usepackage[default,oldstyle,scale=1]{opensans} % Utilizzo del font Open Sans
-\usepackage{lipsum} 
+\usepackage{lipsum}
 \usepackage{makeidx}
 \usepackage{booktabs}
 \usepackage{tabularray}
@@ -77,9 +77,10 @@ Ciò causa una generale difficoltà nel reperire tali informazioni, aggravato da
 \\
 \textit{BeeLive} è una soluzione a questo problema. 
 
+\clearpage
 
 \section{Obiettivi e descrizione dell'applicativo}
-\index{Obiettivi}
+\index{Obiettivi e descrizione dell'applicativo}
 
 L'obiettivo che si ripropone questo applicativo è di risolvere i problemi precedentemente menzionati attraverso l'implementazione dei seguenti punti:\\
 1. sviluppare un sistema informativo che consenta ai cittadini di accedere rapidamente, intuitivamente e sopratutto \textbf{visivamente} a tutte le variazioni della viabilità, all'interno del comune di Trento\\
@@ -89,8 +90,8 @@ Il primo punto prevede lo sviluppo di un sistema informativo che mostri ai citta
 Il secondo punto prevede la creazione di un sistema di notifiche push, associato al suddetto applicativo mobile, che permetta di notificare attivamente gli utenti di eventuali eventi e modifiche alla viabilità.\\
 Prevediamo di sviluppare un sistema per cui gli utenti possano impostare dei percorsi abituali in modo che, all'insorgere di un evento che vada a colpire un punto qualunque di tale percorso, l'utente ne sia avvisato. \\
 Prevediamo di dar voce agli interessi individuali di ogni utente, in modo che essi possano indicare delle preferenze per determinate notifiche rispetto ad altre. % molto vago, di proposito
- \\
- \\
+\\
+\\
 Saranno sviluppati due ambienti distinti: Uno riservato all'amministrazione e uno accessibile ai cittadini.\\
 Il primo ambiente consentirà all'amministrazione di inserire e modificare le informazioni sulle variazioni della viabilità attraverso un'interfaccia grafica intuitiva e compatibile con gli standard per la visualizzazione dei dati su mappa.\\
 Il secondo sarà rappresentato dall'applicativo mobile installabile sui dispositivi dei cittadini, che come precedentemente menzionato consentirà loro di visualizzare graficamente le zone interessate dai cambiamenti, selezionare le aree di loro interesse e ricevere notifiche push in tempo reale.\\
@@ -129,29 +130,32 @@ Gli enti delegati ereditano le caratteristiche dall'entità \textit{Dipendente a
 
 \subsection{Componenti di sistema Interni}
 \index{Componenti di sistema Interni}
+
 \subsubsection{Applicativo mobile}
 \index{Applicativo mobile}
+L'applicativo mobile è l'interfaccia che il cittadino utilizzerà per visualizzare le variazioni della viabilità.\\
 
 \subsubsection{Applicativo desktop}
 \index{Applicativo desktop}
+L'applicativo desktop è l'interfaccia che il dipendente autorizzato del Comune di Trento o l'ente delegato utilizzerà per gestire gli eventi che influenzano la viabilità cittadina.\\
 
 \subsubsection{Web server}
 \index{Web server}
+
 
 Separato in più sottoservizi per \textit{separation of concerns} e questioni di sicurezza.\\
 Ognuna con utenti autenticati.
 
 \subsubsection{Database}
 \index{Database}
+Il database è il componente che si occupa di memorizzare tutti i dati relativi sia agli eventi e alle variazioni della viabilità che agli utenti autenticati per garantire sincronizzazione.
 
 \subsection{Componenti di sistema Esterni}
 \index{Componenti di sistema Esterni}
 
 \subsubsection{Server di autenticazione}
 \index{Server di autenticazione}
-
-\subsubsection{Server provider}
-\index{Server provider}
+Il servizio che si occupa di gestire la registrazione e l'autenticazione degli utenti.
 
 \clearpage
 

@@ -1,5 +1,6 @@
 *
 !.gitignore
 !*.tex
+!*.bpmn
 !Images/
 !Images/**

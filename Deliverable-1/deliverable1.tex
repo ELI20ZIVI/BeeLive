@@ -469,11 +469,14 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 \section{Grafi BPMN}
 \index{Grafi BPMN} % Aggiunge una voce all'indice
 
-\subsection{Autenticazione}
+\subsection{Utente mobile}
+\index{Utente mobile}
+
+\subsubsection{Autenticazione}
 \index{Autenticazione}
 
 \begin{figure}[htbp]
-    \label{7.1}
+    \label{7.1.1}
     \centering
     \includegraphics[width=1\textwidth]{Images/BPMN - authn.png}
     \caption{Grafo BPMN per l'autenticazione dell'utente}
@@ -481,11 +484,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 
 \clearpage
 
-\subsection{Autorizzazione}
+\subsubsection{Autorizzazione}
 \index{Autorizzazione}
 
 \begin{figure}[htbp]
-    \label{7.2}
+    \label{7.1.2}
     \centering
     \includegraphics[width=1\textwidth]{Images/BPMN - authz.png}
     \caption{Grafo BPMN per l'autorizzazione dell'utente}
@@ -493,11 +496,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 
 \clearpage
 
-\subsection{Lista degli eventi}
+\subsubsection{Lista degli eventi}
 \index{Lista degli eventi}
 
 \begin{figure}[htbp]
-    \label{7.3}
+    \label{7.1.3}
     \centering
     \includegraphics[width=1\textwidth]{Images/BPMN - list.png}
     \caption{Grafo BPMN per la visualizzazione della lista degli eventi}
@@ -505,11 +508,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 
 \clearpage
 
-\subsection{Visualizzazione dettagli evento}
+\subsubsection{Visualizzazione dettagli evento}
 \index{Visualizzazione dettagli evento}
 
 \begin{figure}[htbp]
-    \label{7.4}
+    \label{7.1.4}
     \centering
     \includegraphics[width=1\textwidth]{Images/BPMN - details.png}
     \caption{Grafo BPMN per la visualizzazione dei dettagli di un evento}
@@ -517,11 +520,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 
 \clearpage
 
-\subsection{Definizione categorie}
+\subsubsection{Definizione categorie}
 \index{Definizione categorie}
 
 \begin{figure}[htbp]
-    \label{7.5}
+    \label{7.1.5}
     \centering
     \includegraphics[width=1\textwidth]{Images/BPMN - categories.png}
     \caption{Grafo BPMN per la definizione delle categorie degli eventi}
@@ -529,19 +532,55 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 
 \clearpage
 
-\subsection{Definizione zone di interesse}
+\subsubsection{Definizione zone di interesse}
 \index{Definizione zone di interesse}
 
 \begin{figure}[htbp]
-    \label{7.6}
+    \label{7.1.6}
     \centering
     \includegraphics[width=1\textwidth]{Images/BPMN - zone.png}
     \caption{Grafo BPMN per la definizione delle zone di interesse}
 \end{figure}
+\clearpage
+
+\subsection{Utente desktop}
+\index{Utente desktop}
+
+\subsubsection{Definizione sottocategorie}
+\index{Definizione sottocategorie}
+
+\begin{figure}[htbp]
+    \label{7.2.1}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/BPMN - sottocategorie.png}
+    \caption{Grafo BPMN per la definizione delle sottocategorie}
+\end{figure}
+\clearpage
+
+\subsubsection{Visualizzazione storico degli eventi pubblicati}
+\index{Visualizzazione storico degli eventi pubblicati}
+
+\begin{figure}[htbp]
+    \label{7.2.2}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/BPMN - storico.png}
+    \caption{Grafo BPMN per la visualizzazione dello storico degli eventi pubblicati}
+\end{figure}
+\clearpage
+
+\subsubsection{Gestione eventi}
+\index{Gestione eventi}
+
+\begin{figure}[htbp]
+    \label{7.2.3}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/BPMN - gestione_evento.png}
+    \caption{Grafo BPMN per la gestione degli eventi}
+\end{figure}
 
 \clearpage
 
-\section{Casi d'uso}
+\subsection{Casi d'uso}
 \index{Casi d'uso} % Aggiunge una voce all'indice
 
 \subsection{Utente anonimo}
@@ -991,6 +1030,34 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 \section{Diagramma dei casi d'uso}
 \index{Diagramma dei casi d'uso} % Aggiunge una voce all'indice
 
+\subsection{Utente mobile}
+\index{Utente mobile}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/UseCase_Diagram - Utenti.png}
+    \caption{Diagramma dei casi d'uso per gli utenti}
+\end{figure}
+\clearpage
+
+\subsection{Utente desktop}
+\index{Utente desktop}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/UseCase_Diagram - Comune.png}
+    \caption{Diagramma dei casi d'uso per il dipendente del Comune di Trento}
+\end{figure}
+\clearpage
+
+\subsection{Amministratore}
+\index{Amministratore}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/UseCase_Diagram - Amministratore.png}
+    \caption{Diagramma dei casi d'uso per l'amministratore}
+\end{figure}
 \clearpage
 
 \section{Resoconto}

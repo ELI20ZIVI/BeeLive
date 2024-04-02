@@ -17,7 +17,7 @@ class Details extends StatelessWidget {
       appBar: AppBar(
         title: Text(problem.title),
       ),
-      body: _SubEventDetails(event: problem.events[3]),
+      body: _SubEventDetails(event: problem.events[2]),
     );
   }
 }

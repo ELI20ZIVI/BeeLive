@@ -50,7 +50,19 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: map,
       bottomSheet: ProblemsList(dao: widget.dao),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            activeIcon: Icon(Icons.list),
+            label: "Eventi",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.archive),
+            label: "Archivio",
+          ),
+        ],
+      ),
     );
   }
 }
-

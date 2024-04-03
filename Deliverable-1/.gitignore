@@ -4,3 +4,5 @@
 !*.bpmn
 !Images/
 !Images/**
+!BPMN/
+!BPMN/**

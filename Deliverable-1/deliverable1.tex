@@ -313,7 +313,7 @@ L'utente deve poter indicare dei percorsi su mappa per cui dimostra più interes
 \subsubsection{Deve poter ricevere notifiche riguardo agli eventi}
 \index{Deve poter ricevere notifiche riguardo agli eventi} % Aggiunge una voce all'indice
 \label{5.1.10}
-L'utente deve poter essere notificato all'insorgere determinati eventi.
+L'utente deve poter essere notificato all'insorgere di determinati eventi, sopratutto se tali eventi incorrono in un area o un percorso d'interesse indicato dall'utente
 
 \subsection{Utente autenticato tramite applicativo mobile}
 \index{Utente autenticato tramite applicativo mobile} % Aggiunge una voce all'indice
@@ -688,7 +688,7 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
     \centering
     \begin{tabularx}{\textwidth}{| l | X |}
         \Xhline{2pt} % Linea spessa
-        Nome caso d'uso & Visualizzazione dei dettagli \\
+        Nome caso d'uso & Visualizzazione dei dettagli di un evento\\
         \Xhline{2pt} % Linea spessa
         ID & 003 \\
         \hline
@@ -698,12 +698,12 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Attori secondari & Nessuno \\
         \hline
-        Precondizioni & Nessuna (Flusso n.2), oppure l'utente riceve una notifica push (Flusso n.1)\\
+        Precondizioni & Nessuna (Flusso n.2), l'utente ha ricevuto una notifica push riguardo ad un evento (Flusso n.1)\\
         \hline
         Flusso n.1 & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}] 
             \item L'utente clicca la notifica
-            \item Viene automaticamente aperto l'applicativo mobile
+            \item Viene automaticamente aperta l'applicazione mobile
             \item Vene automaticamente visualizzata la schermata dei dettagli
         \end{enumerate}
         \\
@@ -734,7 +734,7 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \Xhline{2pt} % Linea spessa
         ID & 004 \\
         \hline
-        Descrizione & L'utente nascondere alcuni eventi dalla lista\\
+        Descrizione & L'utente intende nascondere alcuni elementi dalla lista\\
         \hline
         Attori primari & Utente anonimo o autenticato\\
         \hline
@@ -742,13 +742,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Precondizioni & Nessuna \\
         \hline
-        Flusso n.1 & 
+        Flusso n.1 &
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
             \item L'utente apre l'applicativo mobile
-            \item Se l'utente desidera effettuare una selezione temporanea
-            \begin{enumerate}[leftmargin=*, nosep]
-                \item Interagisce con il filtraggio delle categorie su mappa
-            \end{enumerate}
+            \item L'utente interagisce con un evento della lista, effettuando la procedura per nasconderlo
+            \item L'evento non appare più nella lista degli eventi
         \end{enumerate}
         \\
         \hline
@@ -756,17 +754,17 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
             \item Viene aperto l'applicativo mobile
             \item Sono aperte le impostazioni
-            \item L'utente seleziona le categorie di suo interesse
+            \item L'utente seleziona le categorie di suo interesse su cui continuare a ricevere informazioni per eventi futuri
         \end{enumerate}
         \\
         \hline
-        Postcondizioni & Vengono visualizzati solamente gli eventi selezionati \\
+        Postcondizioni & Tutti gli eventi futuri verranno filtrati in funzione delle categorie impostate dall'utente nel flusso n.2\\
         \hline
     \end{tabularx}
     \caption{Filtraggio degli eventi}
 \end{table}
 
-\subsubsection{Selezione dei percorsi di interesse}
+\subsubsection{Selezione dei percorsi e aree di interesse}
 \index{Selezione dei percorsi di interesse}
 
 \begin{table}[htbp]
@@ -778,7 +776,7 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \Xhline{2pt} % Linea spessa
         ID & 005 \\
         \hline
-        Descrizione & L'utente va a selezionare i percorsi di suo interesse\\
+        Descrizione & L'utente indica i percorsi di suo interesse\\
         \hline
         Attori primari & Utente anonimo o autenticato\\
         \hline
@@ -788,13 +786,12 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Flusso principale & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperta l'applicazione mobile
-            \item Viene aperta la sezione di impostazioni
-            \item L'utente va a selezionare in modalità interattiva il percorso d'interesse
+            \item L'utente apre l'applicazione mobile
+            \item L'utente entra nella sezione dedicata alle aree e percorsi d'interesse
+            \item L'utente crea in modalità interattiva il percorso o l'area d'interesse
+            \item L'utente salva l'area o il percorso d'interesse appena creato
         \end{enumerate}
         \\
-        \hline
-        Postcondizioni & Il percorso selezionato viene salvato su database \\
         \hline
     \end{tabularx}
     \caption{Selezione dei percorsi di interesse}
@@ -802,42 +799,6 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 \end{table}
 
 \clearpage
-
-\subsubsection{Selezione delle aree di interesse}
-\index{Selezione delle aree di interesse}
-
-\begin{table}[htbp]
-    \label{8.2.5}
-    \centering
-    \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
-        \Xhline{2pt} % Linea spessa
-        Nome caso d'uso & Selezione delle aree di interesse \\
-        \Xhline{2pt} % Linea spessa
-        ID & 005 \\
-        \hline
-        Descrizione & L'utente va a selezionare le aree di suo interesse\\
-        \hline
-        Attori primari & Utente anonimo o autenticato\\
-        \hline
-        Attori secondari & Nessuno \\
-        \hline
-        Precondizioni & Nessuna \\
-        \hline
-        Flusso principale & 
-        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperta l'applicazione mobile
-            \item Viene aperta la sezione di impostazioni
-            \item L'utente va a selezionare in modalità interattiva le aree di suo interesse
-        \end{enumerate}
-        \\
-        \hline
-        Postcondizioni & L'area selezionata viene salvata su database \\
-        \hline
-    \end{tabularx}
-    \caption{Selezione dei percorsi di interesse}
-    \label{tab:tabella_use_case004}
-\end{table}
-
 
 
 \subsection{Dipendente autorizzato del Comune di Trento}

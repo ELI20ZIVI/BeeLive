@@ -594,11 +594,11 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
     \centering
     \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
         \Xhline{2pt} % Linea spessa
-        Nome caso d'uso & Registrazione ed autenticazione dell' utente anonimo \\
+        Nome caso d'uso & Autenticazione o registrazione di un utente anonimo \\
         \Xhline{2pt} % Linea spessa
         ID & 001 \\
         \hline
-        Descrizione & L'utente decide di creare un nuovo account all'interno del sistema oppure di accedere all'account precedentemente creato\\
+        Descrizione & L'utente accede con un account precedentemente creato all'interno del sistema, oppure ne crea uno nuovo \\
         \hline
         Attori primari & Utente anonimo \\
         \hline
@@ -608,17 +608,19 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Flusso principale & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperto l'applicativo mobile
-            \item Va selezionata l'opzione di accesso
-            \item Il sistema reindirizza l'utente al form di registrazione dell'autenticatore esterno
+            \item L'utente apre l'applicativo mobile
+            \item L'utente seleziona l'opzione d'accesso
+            \item Il sistema reindirizza l'utente al servizio di autenticazione esterno
+            \item Se l'utente non è ancora registrato:
             \begin{enumerate}[leftmargin=*, nosep]
-                \item Se l'utente si è registrato:
-                \begin{enumerate}[leftmargin=*, nosep]
-                    \item Viene creato il profilo
-                    \item Vengono sincronizzate tutte le preferenze utente
-                \end{enumerate}
-                \item L'utente diventa un utente autenticato
+                \item L'utente crea un profilo
+                \item Vengono sincronizzate le preferenze utente
             \end{enumerate}
+            \item Se l'utente è già registrato:
+            \begin{enumerate}[leftmargin=*, nosep]
+            	\item L'utente si autentica
+            \end{enumerate}
+            \item l'utente anonimo diventa un utente autenticato
         \end{enumerate}
         \\
         \hline
@@ -655,14 +657,14 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Attori primari & Utente anonimo o autenticato\\
         \hline
-        Attori secondari & Nessuno \\
+        Attori secondari &  Nessuno \\
         \hline
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperto l'applicativo mobile
-            \item Viene visualizzata la lista degli eventi
+            \item L'utente apre l'applicativo mobile
+            \item L'applicativo mobile mostra la lista degli eventi
         \end{enumerate}
         \\
         \hline
@@ -696,24 +698,22 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Attori secondari & Nessuno \\
         \hline
-        Precondizioni & Nessuna \\
+        Precondizioni & Nessuna (Flusso n.2), oppure l'utente riceve una notifica push (Flusso n.1)\\
         \hline
         Flusso n.1 & 
-        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Se si riceve una notifica push
-            \item L'utente interagisce con la notifica
+        \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}] 
+            \item L'utente clicca la notifica
+            \item Viene automaticamente aperto l'applicativo mobile
+            \item Vene automaticamente visualizzata la schermata dei dettagli
         \end{enumerate}
-        \vspace{5pt}
-        Viene visualizzata la schermata dei dettagli
         \\
         \hline
         Flusso n.2 & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperto l'applicativo mobile
-            \item Viene selezionato un evento dalla lista
+            \item L'utente apre l'applicativo mobile
+            \item L'utente clicca un evento della lista
+            \item Viene visualizzata la schermata dei dettagli di tale evento
         \end{enumerate}
-        \vspace{5pt}
-        Viene visualizzata la schermata dei dettagli
         \\
         \hline
     \end{tabularx}
@@ -734,7 +734,7 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \Xhline{2pt} % Linea spessa
         ID & 004 \\
         \hline
-        Descrizione & L'utente intende filtrare gli eventi disponibili\\
+        Descrizione & L'utente nascondere alcuni eventi dalla lista\\
         \hline
         Attori primari & Utente anonimo o autenticato\\
         \hline
@@ -744,7 +744,7 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Flusso n.1 & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Viene aperto l'applicativo mobile
+            \item L'utente apre l'applicativo mobile
             \item Se l'utente desidera effettuare una selezione temporanea
             \begin{enumerate}[leftmargin=*, nosep]
                 \item Interagisce con il filtraggio delle categorie su mappa
@@ -843,7 +843,7 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
 \subsection{Dipendente autorizzato del Comune di Trento}
 \index{Dipendente autorizzato del Comune di Trento}
 
-\subsubsection{Definizione delle sottocategorie}
+\subsubsection{Creazione sottocategorie}
 \index{Definizione delle sottocategorie}
 
 \begin{table}[htbp]
@@ -851,13 +851,13 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
     \centering
     \begin{tabularx}{\textwidth}{| l | p{0.795\textwidth} |}
         \Xhline{2pt} % Linea spessa
-        Nome caso d'uso & Definizione delle sottocategorie \\
+        Nome caso d'uso & Gestione sottocategorie \\
         \Xhline{2pt} % Linea spessa
         ID & 005 \\
         \hline
-        Descrizione & Il dipendente autorizzato del Comune di Trento vuole creare una nuova sottoategoria per eventi di sua competenza\\
+        Descrizione & Il dipendente autorizzato del Comune di Trento (D.A.) intende gestire le sottocategorie per eventi di sua competenza\\
         \hline
-        Attori primari & Dipendente autorizzato del Comune di trento\\
+        Attori primari & Dipendente autorizzato del Comune di Trento\\
         \hline
         Attori secondari & Nessuno \\
         \hline
@@ -865,23 +865,18 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \hline
         Flusso principale & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperto l'applicativo desktop
-            \item L'utente va a selezionare l'opzione \textit{Gestione Eventi}
-            \item Procede con la compilazione di tutti i campi necessari alla creazione della sottocategoria
-            \item La nuova sottocategoria sarà visibile a sistema
-            \begin{enumerate}[leftmargin=*, nosep]
-                \item La nuova sottocategoria sarà visibile a sistema
-            \end{enumerate}
-            \begin{enumerate}[leftmargin=*, nosep]
-                \item Sarà visualizzato un alert che avvisa dell'errore
-            \end{enumerate}
+            \item Il D.A. apre l'applicativo desktop
+            \item Il D.A. si autentica
+            \item Il D.A. entra nella sezione dedicata alla gestione delle sottocategorie
+            \item Il D.A. crea, modifica o elimina una sottocategoria
+            \item Il sistema memorizza la creazione, la modifica o l'eliminazione della sottocategoria
         \end{enumerate}
         \\
         \hline
         Flusso secondario & 
         Se la creazione non va a buon fine:
         \begin{enumerate}[topsep=10pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Sarà visualizzato un alert che avvisa dell'errore
+            \item Il D.A. sarà avvisato dell'errore
         \end{enumerate}
         \\
         \hline
@@ -904,29 +899,29 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \Xhline{2pt} % Linea spessa
         ID & 006 \\
         \hline
-        Descrizione & Il dipendente autorizzato del Comune di Trento crea gli eventi di sua competenza\\
+        Descrizione & Il dipendente autorizzato del Comune di Trento crea un evento di sua competenza\\
         \hline
-        Attori primari & Dipendente autorizzato del Comune di trento\\
+        Attori primari & Dipendente autorizzato del Comune di Trento\\
         \hline
-        Attori secondari & Nessuno \\
+        Attori secondari & Nessuno, oppure tutti o alcuni utenti \\
         \hline
         Precondizioni & Nessuna \\
         \hline
         Flusso principale & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperto l'applicativo desktop
-            \item È selezionata la sezione \textit{Gestione Eventi}
-            \item Viene scelta la voce \textit{Nuovo Evento}
-            \item Sono compilati tutti i campi che caratterizzano il nuovo evento
-            \item L'evento viene salvato e/o pubblicato a sistema
-            \item L'evento verrà memorizzato (e comunicato tempestivamente)
+            \item Il dipendente autorizzato (D.A.) apre l'applicativo desktop
+            \item Il D.A. si autentica
+            \item Il D.A. entra nella sezione dedicata alla creazione di un nuovo evento
+            \item Il D.A. compila tutti i campi che caratterizzano il nuovo evento
+            \item Il D.A. pubblica l'evento
+            \item Tutti gli utenti che hanno le notifiche attivate per quel tipo di eventi riceveranno una notifica
         \end{enumerate}
         \\
         \hline
         Flusso secondario & 
         Se la creazione non va a buon fine:
         \begin{enumerate}[topsep=10pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Sarà visualizzato un alert che avvisa dell'errore
+            \item Il D.A. verrà avvisato dell'errore
         \end{enumerate}
         \\
         \hline
@@ -949,29 +944,30 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \Xhline{2pt} % Linea spessa
         ID & 007 \\
         \hline
-        Descrizione & Il dipendente autorizzato del Comune di Trento intende modificare un evento di sua competenza\\
+        Descrizione & Il dipendente autorizzato del Comune di Trento (D.A.) intende modificare uno o più campi di un evento\\
         \hline
-        Attori primari & Dipendente autorizzato del Comune di trento\\
+        Attori primari & Dipendente autorizzato del Comune di Trento\\
         \hline
-        Attori secondari & Nessuno \\
+        Attori secondari & Nessuno, oppure tutti o alcuni utenti  \\
         \hline
-        Precondizioni & Nessuna \\
+        Precondizioni & Il D.A. ha i permessi sufficienti per modificare l'evento, l'evento è di sua competenza\\
         \hline
         Flusso principale & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperto l'applicativo desktop
-            \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
-            \item Viene scelta l'icona di modifica
-            \item Sono modificati i campi che il dipendente del Comune intende aggiornare
-            \item L'evento viene salvato e/o pubblicato a sistema
-            \item L'evento verrà memorizzato (e comunicato tempestivamente)
+            \item Il D.A. apre l'applicativo desktop
+            \item Il D.A. si autentica
+            \item Il D.A. entra nella sezione dedicata alla modifica degli memorizzati sul sistema
+            \item Il D.A. modificati i campi che intende aggiornare
+            \item Il D.A. pubblica la modifica
+            \item Il sistema memorizza l'evento
+            \item Tutti gli utenti che hanno le notifiche attivate per quel tipo di modifiche, e quel tipo di eventi, riceveranno una notifica
         \end{enumerate}
         \\
         \hline
         Flusso secondario & 
         Se la modifica non va a buon fine
         \begin{enumerate}[topsep=10pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Sarà visualizzato un alert che avvisa dell'errore
+            \item Il D.A. verrà avvisato dell'errore
         \end{enumerate}
         \\
         \hline
@@ -994,29 +990,30 @@ Deve essere utilizzato il DataBase non relazionale MongoDB.
         \Xhline{2pt} % Linea spessa
         ID & 008 \\
         \hline
-        Descrizione & Il dipendente autorizzato del Comune di Trento intende eliminare un evento di sua competenza\\
+        Descrizione & Il dipendente autorizzato del Comune di Trento (D.A.) intende eliminare un evento\\
         \hline
         Attori primari & Dipendente autorizzato del Comune di trento\\
         \hline
         Attori secondari & Nessuno \\
         \hline
-        Precondizioni & Nessuna \\
+        Precondizioni & Il D.A. ha i permessi sufficienti per eliminare l'evento e l'evento è di sua competenza \\
         \hline
         Flusso principale & 
         \begin{enumerate}[topsep=5pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]                
-            \item Va aperto l'applicativo desktop
-            \item È selezionata la sezione \textit{Visualizza Eventi} per visualizzare quelli disponibili a sistema
-            \item Viene scelta l'icona di eliminazione dell'evento che si intende modificare
-            \item Se la cancellazione va a buon fine:
-            \item L'evento verrà eliminato dal sistema
-            \item Viene confermata l'eliminazione
+            \item Il D.A. apre l'applicativo desktop
+            \item Il D.A. si autentica
+            \item Il D.A. entra nella sezione dedicata alla modifica degli eventi memorizzato sul sistema
+            \item Il D.A. indica di voler eliminare un evento
+            \item Il D.A. conferma di voler eliminare l'evento
+            \item Il sistema elimina l'evento
+            \item Il D.A. viene avvisato della corretta eliminazione
         \end{enumerate}
         \\
         \hline
         Flusso secondario & 
         Se la cancellazione non va a buon fine:
         \begin{enumerate}[topsep=10pt,partopsep=0pt,parsep=0pt,itemsep=0pt,before=\vspace{-\baselineskip},after=\vspace{-\baselineskip}]
-            \item Sarà visualizzato un alert che avvisa dell'errore
+            \item Il D.A. verrà avvisato dell'errore
         \end{enumerate}
         \\
         \hline

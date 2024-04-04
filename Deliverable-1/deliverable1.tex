@@ -108,8 +108,8 @@ Ogni variazione inserita nel sistema dall'amministrazione sarà associata alla z
 \section{Attori di sistema e Mind map}
 \index{Attori di sistema e Mind map} % Aggiunge una voce all'indice
 
-\subsection{Utenti Interni}
-\index{Utenti Interni}
+\subsection{Utenti}
+\index{Utenti}
 
 \subsubsection{Utente anonimo}\label{Attori_UtenteAnonimo}
 \index{Utente anonimo} % Aggiunge una voce all'indice
@@ -130,9 +130,6 @@ Il \textit{dipendente autorizzato del Comune di Trento} è colui che ha il compi
 \index{Amministratore di sistema} % Aggiunge una voce all'indice
 \label{3.1.4}
 L'entità che si occupa della gestione del sistema, con la possibilità di modificare le policies di access control e definire le aree di competenza delle entità di gestione.
-
-\subsection{Attori di sistema Esterni}
-\index{Attori di sistema Esterni}
 
 \subsubsection{Enti delegati}
 \index{Enti delegati} % Aggiunge una voce all'indice
@@ -158,17 +155,17 @@ L'applicativo desktop è l'interfaccia che il dipendente autorizzato del Comune 
 Separato in più sottoservizi per \textit{separation of concerns} e questioni di sicurezza.
 Ognuna con utenti autenticati.
 
+\subsection{Enti di sistema Esterni}
+\index{Enti di sistema Esterni}
+
 \subsubsection{Database}
 \index{Database}
 \label{3.3.4}
 Il database è il componente che si occupa di memorizzare tutti i dati relativi sia agli eventi e alle variazioni della viabilità che agli utenti autenticati per garantire sincronizzazione.
 
-\subsection{Utenti Esterni}
-\index{Utenti Esterni}
-
 \subsubsection{Server di autenticazione}
 \index{Server di autenticazione}
-\label{3.4.1}
+\label{3.3.5}
 Il servizio che si occupa di gestire la registrazione e l'autenticazione degli utenti.
 
 \vspace{20pt}
@@ -1033,7 +1030,7 @@ Seguono le tabelle dei riferimenti per ambiente considerato, utili alla comprens
         \hline
         Gestione aree degli eventi significativi & \ref{3.1.1}\newline\ref{3.1.2} & - & \ref{5.1.8}\newline\ref{5.1.9} & \ref{7.1.6} & - \\
         \hline
-        Visualizzazione spaziale degli \newline eventi & \ref{3.1.1}\newline\ref{3.1.2} & \ref{8.2.4}\newline\ref{8.2.5} & \ref{5.1.4} & - & - \\
+        Visualizzazione spaziale degli \newline eventi & \ref{3.1.1}\newline\ref{3.1.2} & \ref{8.2.4} & \ref{5.1.4} & - & - \\
         \hline
         Registrazione e accesso & \ref{3.1.1}\newline\ref{3.1.2} & \ref{8.1.1} & \ref{5.1.5}\newline\ref{5.1.6}\newline\ref{5.2.1} & \ref{7.1.1}\newline\ref{7.1.2} & - \\
         \hline

@@ -13,6 +13,7 @@
 \usepackage{makecell}
 \usepackage{enumitem} % Pacchetto per la personalizzazione degli elenchi
 \usepackage{booktabs}
+\usepackage{subcaption}
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -221,11 +222,21 @@ Inoltre è presente un pulsante per tornare alla schermata principale dell'appli
 \subsubsection{Mockup notifiche degli eventi}
 \index{Mockup notifiche degli eventi} % Aggiunge una voce all'indice
 
-\begin{figure}[htbp]
-    \label{4.1.3}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.35\textwidth]{Images/Mockup3 - Mobile.png}
-    \caption{Mockup notifiche generate da un'evento dall'applicazione mobile}
+    \begin{subfigure}[t]{0.35\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/Mockup3 - Mobile.png}
+        \caption{Esempio di notifica su smartphone}
+        \label{4.1.3}
+    \end{subfigure}%
+    \hspace{0.05\textwidth} % Adjust the horizontal space between subfigures
+    \begin{subfigure}[t]{0.445\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/Mockup1 - Wear.png}
+        \caption{Esempio di notifica su sispositivi indossabili}
+        \label{4.1.4}
+    \end{subfigure}
 \end{figure}
 
 L'evento preso nell'esempio precedente era impostato per generare delle notifiche push.\\
@@ -460,6 +471,11 @@ Ci sono tre webserver: uno inerente il gestionale desktop, uno per gestire l'apl
 \subsubsection{Tipologia di DataBase}
 \index{Tipologia di DataBase}
 Deve essere utilizzato il DataBase non relazionale MongoDB.
+
+\subsubsection{Compliance normativa e sicurezza dei dati}
+\index{Compliance normativa e sicurezza dei dati}
+Il sistema deve essere conforme alle normative vigenti sulla privacy e sulla protezione dei dati personali, come ad esempio il Regolamento Generale sulla Protezione dei Dati (GDPR) nell'Unione Europea.\\
+Deve garantire la sicurezza e l'integrità dei dati sensibili degli utenti, adottando pratiche di crittografia, accesso autorizzato e audit trail per monitorare l'accesso e l'uso dei dati sensibili.
 
 \clearpage
 

@@ -210,11 +210,6 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/opensans/TS1opensans-TOsF.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/opensans/TS1opensans-TOsF.fd
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Regular-TS1-TOsF.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF.tfm
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png
@@ -224,6 +219,15 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Regular-TS
 INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/opensans/a_nvvucy.enc
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/ascender/opensans/OpenSans-Bold-T1-TOsF.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF--base.tfm
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/ComponentDiagram.png
+INPUT ./Images/ComponentDiagram.png
+INPUT ./Images/ComponentDiagram.png
+INPUT ./Images/ComponentDiagram.png
+INPUT ./Images/ComponentDiagram.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.4)  16 APR 2024 19:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.4)  16 APR 2024 22:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -491,7 +491,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 60.
-<Images/BeeLive-Logo.png, id=12, 127.07475pt x 96.81169pt>
+<Images/BeeLive-Logo.png, id=32, 127.07475pt x 96.81169pt>
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
 Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 60.
@@ -562,16 +562,15 @@ LaTeX Font Info:    Font shape `TS1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 80.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 84.
-<Images/ComponentDiagram.png, id=29, 1114.1625pt x 692.5875pt>
-File: Images/ComponentDiagram.png Graphic file (type png)
-<use Images/ComponentDiagram.png>
-Package pdftex.def Info: Images/ComponentDiagram.png  used on input line 221.
-(pdftex.def)             Requested size: 512.14963pt x 318.37218pt.
+
+Underfull \hbox (badness 2229) in paragraph at lines 121--121
+[]|\T1/opensans-TOsF/m/n/10 Il com-po-nente for-nisce all'utente un'interfaccia per reg-is-trarsi at-
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 226.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 125.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 60.95216pt, for example:
@@ -587,9 +586,37 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [3
 
 {c:/texlive/2023/texmf-dist/fonts/enc/dvips/opensans/a_nvvucy.enc}]
+Underfull \hbox (badness 3568) in paragraph at lines 156--156
+[]|\T1/opensans-TOsF/m/n/10 Il com-po-nente of-fre in-ter-na-mente l'interfaccia che per-me-tte
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 226.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 179.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[4
+
+]
+<Images/ComponentDiagram.png, id=66, 1113.15875pt x 691.58376pt>
+File: Images/ComponentDiagram.png Graphic file (type png)
+<use Images/ComponentDiagram.png>
+Package pdftex.def Info: Images/ComponentDiagram.png  used on input line 244.
+(pdftex.def)             Requested size: 512.14963pt x 318.1957pt.
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 249.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -604,10 +631,12 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[4]
+[5
+
+]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 226.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 249.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -622,27 +651,27 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[5 <./Images/ComponentDiagram.png>] (./deliverable2.aux)
+[6 <./Images/ComponentDiagram.png>] (./deliverable2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `deliverable2.out' has not changed.
-(rerunfilecheck)             Checksum: 9BDFB5C69446F7C3AD903A521EE82E1A;266.
+(rerunfilecheck)             Checksum: 216CDC97CD18D03CB90EB0782D03A837;1061.
  ) 
 Here is how much of TeX's memory you used:
- 14265 strings out of 474116
- 250878 string characters out of 5747718
- 1948190 words of memory out of 5000000
- 36429 multiletter control sequences out of 15000+600000
+ 14276 strings out of 474116
+ 251034 string characters out of 5747718
+ 1940190 words of memory out of 5000000
+ 36434 multiletter control sequences out of 15000+600000
  567923 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,15n,131p,348b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 83i,15n,131p,358b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable2.pdf (5 pages, 107763 bytes).
+Output written on deliverable2.pdf (6 pages, 112972 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 27 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 101 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
+ 22 named destinations out of 1000 (max. 500000)
+ 67 words of extra memory for PDF output out of 10000 (max. 10000000)
 

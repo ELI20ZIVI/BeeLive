@@ -81,40 +81,139 @@ Le interfacce sono definite come:
     \item \textbf{Interfacce di INPUT}: Tutte quelle interfacce che ricevono servizi dal sistema.
 \end{itemize} 
 
-\subsection{Gestione }
-\index{Gestione}
+\subsection{Gestione utente}
+\index{Gestione utente}
 
 \begin{table}[htbp]
     \centering
-    \begin{tabularx}{\textwidth}{| l | l | p{0.8075\textwidth} |}
+    \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        INPUT & Nome & Descrizione \\
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-        Ciao & a & tutti \\
+         & Notifiche &  \\
+        \hline
+         & Auth &  \\
+        \hline
+         & Data &  \\
+        \hline
+         & Percorsi &  \\
         \Xhline{2pt}
-        Output & Nome & Descrizione \\
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-        Ciao & a & tutti \\
+        & Login &  \\
+        \hline
+         & Logout &  \\
+        \hline
+         & Registrazione &  \\
+        \hline
+         & Selezione aree &  \\
+        \hline
+         & Visualizzazione evento &  \\
+        \hline
+         & Visualizzazione dettagli &  \\
+        \hline
+         & Filtraggio eventi &  \\
+        \hline
+         & Selezione aree &  \\
+        \hline
+         & Selezione percorsi &  \\
         \hline
     \end{tabularx}
-    \caption{Registrazione ed autenticazione dell' utente anonimo}
+    \caption{Tabella gestione utente}
 \end{table}
 
-%---------------------------------
 \begin{table}[htbp]
     \centering
-    \begin{tabularx}{\textwidth}{| l | l | p{0.8075\textwidth} |}
+    \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        INPUT & Nome & Descrizione \\
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-        Ciao & a & tutti \\
+         & Auth &  \\
+        \hline
+         & Data &  \\
         \Xhline{2pt}
-        Output & Nome & Descrizione \\
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-        Ciao & a & tutti \\
+         & Creazione eventi &  \\
+        \hline
+         & Modifica eventi &  \\
+        \hline
+         & Eliminazione eventi &  \\
+        \hline
+         & Creazione sottocategorie &  \\
+        \hline
+         & Modifica sottocategorie &  \\
+        \hline
+         & Eliminazione sottocategorie &  \\
+        \hline
+         & Data &  \\
         \hline
     \end{tabularx}
-    \caption{Registrazione ed autenticazione dell' utente anonimo}
+    \caption{Tabella gestione amministrazione}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Auth &  \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Notifiche &  \\
+        \hline
+    \end{tabularx}
+    \caption{Tablla gestione notifiche}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data &  \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Percorsi &  \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella gestione percorsi}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & CasDoor &  \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Auth &  \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella gestione autenticazione}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data &  \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data &  \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella gestione database}
 \end{table}
 
 \begin{figure}[htbp]

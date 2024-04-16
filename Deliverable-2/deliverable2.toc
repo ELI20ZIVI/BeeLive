@@ -1,2 +1,2 @@
 \contentsline {section}{\numberline {1}Component Diagram}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Gestione }{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.1}Gestione utente}{3}{subsection.1.1}%

@@ -7,6 +7,9 @@
 \contentsline {subsection}{\numberline {1.6}Gestione database}{5}{subsection.1.6}%
 \contentsline {section}{\numberline {2}Diagramma delle classi}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Tipologie degli oggetti}{7}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Gestori}{8}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Utenti}{9}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.1.1}Evento}{7}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Percorso}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Sottocategoria}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Gestori}{8}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Utenti}{9}{subsection.2.5}%
 \contentsline {section}{\numberline {3}Contstraints con OCL}{10}{section.3}%

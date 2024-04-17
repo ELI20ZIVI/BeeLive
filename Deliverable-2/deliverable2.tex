@@ -81,11 +81,21 @@ Le interfacce sono definite come:
     \item \textbf{Interfacce di INPUT}: Tutte quelle interfacce che ricevono servizi dal sistema.
 \end{itemize} 
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/ComponentDiagram.png}
+    \caption{Diagramma dei componenti}
+    \label{fig:component-diagram}
+\end{figure}
+
+\clearpage
+
 \subsection{Gestione utente}
 \index{Gestione utente}
 
 \begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -96,7 +106,7 @@ Le interfacce sono definite come:
         \hline
          & Data & Il componente utilizza l'interfaccia fornita dal componente di gestione del database per scambiare tutti i dati necessari a garantire un corretto funzionamento dell'applicativo per gli utenti \\
         \hline
-         & Percorsi &  \\
+         & Percorsi & Il componente utilizza l'interfaccia fornita dal componente gestione percorsi per ottenere i percorsi calcolati evitando le criticità presenti in mappa \\
         \Xhline{2pt}
         \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
@@ -129,6 +139,7 @@ Le interfacce sono definite come:
 
 \begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -164,6 +175,7 @@ Le interfacce sono definite come:
 
 \begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -179,7 +191,8 @@ Le interfacce sono definite come:
          & Gestione competenze & Il componente fornisce internamente un'interfaccia per la gestione delle aree di competenza degli utenti \\
         \hline
          & Gestione access policies & Il componente fornisce internamente un'interfaccia utile alla gestione delle access policies degli utenti nel sistema \\
-    \end{tabularx}
+        \hline
+        \end{tabularx}
     \caption{Tabella gestione di sistema}
 \end{table}
 
@@ -188,6 +201,7 @@ Le interfacce sono definite come:
 
 \begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -202,11 +216,14 @@ Le interfacce sono definite come:
     \caption{Tablla gestione notifiche}
 \end{table}
 
+\clearpage
+
 \subsection{Gestione percorsi}
 \index{Gestione percorsi}
 
 \begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -223,13 +240,12 @@ Le interfacce sono definite come:
     \caption{Tabella gestione percorsi}
 \end{table}
 
-\clearpage
-
 \subsection{Gestione autenticazione}
 \index{Gestione autenticazione}
 
 \begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -251,6 +267,7 @@ Le interfacce sono definite come:
 
 \begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -264,13 +281,6 @@ Le interfacce sono definite come:
     \end{tabularx}
     \caption{Tabella gestione database}
 \end{table}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=1\textwidth]{Images/ComponentDiagram.png}
-    \caption{Diagramma dei componenti}
-    \label{fig:component-diagram}
-\end{figure}
 
 \clearpage
 
@@ -296,6 +306,13 @@ Saranno quindi descritte, oltre alle classi, anche tutte le relazioni che interc
 
 \subsection{Gestori}
 \index{Gestori}
+
+Cit. BookEat:
+
+Per mantenere una codebase il più ordinata possibile, abbiamo integrato la figura dei Gestori. 
+Questi non sono altro che raccoglitori di funzioni statiche, che quindi non richiedono di istanziare una classe; in questo modo riusciamo a raggruppare funzioni che riguardano lo stesso ambito assieme, facilitando poi il mantenimento del codice. Di seguito vengono descritti i vari gestori ed i vari metodi al loro interno.
+
+In questo progetto 
 
 \subsubsection{Gestione utente}
 \index{Gestione utente}

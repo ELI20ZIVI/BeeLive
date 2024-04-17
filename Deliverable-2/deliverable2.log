@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.4)  17 APR 2024 11:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.4)  17 APR 2024 11:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -491,7 +491,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 60.
-<Images/BeeLive-Logo.png, id=64, 127.07475pt x 96.81169pt>
+<Images/BeeLive-Logo.png, id=68, 127.07475pt x 96.81169pt>
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
 Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 60.
@@ -592,7 +592,7 @@ Underfull \hbox (badness 3568) in paragraph at lines 156--156
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 179.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 160.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -609,14 +609,9 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [4
 
 ]
-<Images/ComponentDiagram.png, id=106, 848.16875pt x 702.625pt>
-File: Images/ComponentDiagram.png Graphic file (type png)
-<use Images/ComponentDiagram.png>
-Package pdftex.def Info: Images/ComponentDiagram.png  used on input line 244.
-(pdftex.def)             Requested size: 512.14963pt x 424.27998pt.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 249.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 226.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -634,9 +629,14 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [5
 
 ]
+<Images/ComponentDiagram.png, id=117, 848.16875pt x 701.62125pt>
+File: Images/ComponentDiagram.png Graphic file (type png)
+<use Images/ComponentDiagram.png>
+Package pdftex.def Info: Images/ComponentDiagram.png  used on input line 270.
+(pdftex.def)             Requested size: 512.14963pt x 423.67386pt.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 249.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 275.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -651,30 +651,30 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[6 <./Images/ComponentDiagram.png>]
-File: Images/BeeLive-Logo.png Graphic file (type png)
-<use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 269.
-(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 60.95216pt, for example:
-(fancyhdr)                \setlength{\headheight}{60.95216pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
-
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 3.60004pt, for example:
-(fancyhdr)                \setlength{\footskip}{3.60004pt}.
-
-[7
+[6
 
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 274.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 275.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[7 <./Images/ComponentDiagram.png>]
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 295.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -694,7 +694,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 281.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 300.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -714,7 +714,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 286.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 307.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -731,27 +731,47 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [10
 
+]
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 312.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[11
+
 ] (./deliverable2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `deliverable2.out' has not changed.
-(rerunfilecheck)             Checksum: 56BE2B62E7C1EA53ADA664C797BF5BBC;2086.
+(rerunfilecheck)             Checksum: 88D7875143E675BB64AC6BDD2985C64E;2245.
  ) 
 Here is how much of TeX's memory you used:
- 14296 strings out of 474116
- 251309 string characters out of 5747718
+ 14300 strings out of 474116
+ 251361 string characters out of 5747718
  1940190 words of memory out of 5000000
- 36442 multiletter control sequences out of 15000+600000
+ 36443 multiletter control sequences out of 15000+600000
  567923 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,15n,131p,358b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable2.pdf (10 pages, 119677 bytes).
+Output written on deliverable2.pdf (11 pages, 121024 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 139 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 139 words of extra memory for PDF output out of 10000 (max. 10000000)
 

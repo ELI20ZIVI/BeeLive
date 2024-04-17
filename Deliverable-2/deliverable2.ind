@@ -9,33 +9,40 @@
 
   \indexspace
 
-  \item Evento, \hyperpage{8}
+  \item Evento, \hyperpage{8}, \hyperpage{11}
 
   \indexspace
 
-  \item Gestione amministrazione, \hyperpage{4}
-  \item Gestione autenticazione, \hyperpage{6}
-  \item Gestione database, \hyperpage{6}
-  \item Gestione di sistema, \hyperpage{5}
-  \item Gestione notifiche, \hyperpage{5}
-  \item Gestione percorsi, \hyperpage{5}
-  \item Gestione utente, \hyperpage{3}
-  \item Gestori, \hyperpage{9}
+  \item Gestione amministrazione, \hyperpage{4}, \hyperpage{9}, 
+		\hyperpage{12}
+  \item Gestione autenticazione, \hyperpage{6}, \hyperpage{9}, 
+		\hyperpage{12}
+  \item Gestione database, \hyperpage{6}, \hyperpage{9}, \hyperpage{12}
+  \item Gestione di sistema, \hyperpage{5}, \hyperpage{9}, 
+		\hyperpage{12}
+  \item Gestione notifiche, \hyperpage{5}, \hyperpage{9}, 
+		\hyperpage{12}
+  \item Gestione percorsi, \hyperpage{5}, \hyperpage{9}, \hyperpage{12}
+  \item Gestione utente, \hyperpage{3}, \hyperpage{9}, \hyperpage{12}
+  \item Gestori, \hyperpage{9}, \hyperpage{12}
 
   \indexspace
 
-  \item Percorso, \hyperpage{8}
+  \item Percorso, \hyperpage{8}, \hyperpage{11}
 
   \indexspace
 
-  \item Sottocategoria, \hyperpage{8}
+  \item Sottocategoria, \hyperpage{8}, \hyperpage{11}
 
   \indexspace
 
-  \item Tipologie degli oggetti custom, \hyperpage{8}
+  \item Tipologie degli oggetti custom, \hyperpage{8}, \hyperpage{11}
 
   \indexspace
 
-  \item Utenti, \hyperpage{10}
+  \item Utente amministratore, \hyperpage{10}, \hyperpage{13}
+  \item Utente autenticato, \hyperpage{10}, \hyperpage{13}
+  \item Utente non autenticato, \hyperpage{10}, \hyperpage{13}
+  \item Utenti, \hyperpage{10}, \hyperpage{13}
 
 \end{theindex}

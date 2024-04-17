@@ -1,40 +1,41 @@
 \begin{theindex}
 
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{10}
+  \item Constraints con OCL, \hyperpage{11}
 
   \indexspace
 
-  \item Diagramma delle classi, \hyperpage{7}
+  \item Diagramma delle classi, \hyperpage{8}
 
   \indexspace
 
-  \item Evento, \hyperpage{7}
+  \item Evento, \hyperpage{8}
 
   \indexspace
 
   \item Gestione amministrazione, \hyperpage{4}
-  \item Gestione autenticazione, \hyperpage{5}
-  \item Gestione database, \hyperpage{5}
-  \item Gestione notifiche, \hyperpage{4}
+  \item Gestione autenticazione, \hyperpage{6}
+  \item Gestione database, \hyperpage{6}
+  \item Gestione di sistema, \hyperpage{5}
+  \item Gestione notifiche, \hyperpage{5}
   \item Gestione percorsi, \hyperpage{5}
   \item Gestione utente, \hyperpage{3}
-  \item Gestori, \hyperpage{8}
+  \item Gestori, \hyperpage{9}
 
   \indexspace
 
-  \item Percorso, \hyperpage{7}
+  \item Percorso, \hyperpage{8}
 
   \indexspace
 
-  \item Sottocategoria, \hyperpage{7}
+  \item Sottocategoria, \hyperpage{8}
 
   \indexspace
 
-  \item Tipologie degli oggetti custom, \hyperpage{7}
+  \item Tipologie degli oggetti custom, \hyperpage{8}
 
   \indexspace
 
-  \item Utenti, \hyperpage{9}
+  \item Utenti, \hyperpage{10}
 
 \end{theindex}

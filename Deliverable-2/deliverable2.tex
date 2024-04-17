@@ -157,6 +157,32 @@ Le interfacce sono definite come:
     \caption{Tabella gestione amministrazione}
 \end{table}
 
+\clearpage
+
+\subsection{Gestione di sistema}
+\index{Gestione di sistema}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data & Il componente utilizza un’interfaccia fornita dal datalayer per accedere ai dati sul database \\
+        \hline
+         & Auth & Il componente utilizza l'interfaccia fornita dal componente "Gestione Autenticazione" per richiedere il token necessario per effettuare il login \\
+         \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data & Il componente fornisce internamente un’interfaccia per accedere al database \\
+        \hline
+         & Gestione competenze & Il componente fornisce internamente un'interfaccia per la gestione delle aree di competenza degli utenti \\
+        \hline
+         & Gestione access policies & Il componente fornisce internamente un'interfaccia utile alla gestione delle access policies degli utenti nel sistema \\
+    \end{tabularx}
+    \caption{Tabella gestione di sistema}
+\end{table}
+
 \subsection{Gestione notifiche}
 \index{Gestione notifiche}
 
@@ -175,8 +201,6 @@ Le interfacce sono definite come:
     \end{tabularx}
     \caption{Tablla gestione notifiche}
 \end{table}
-
-\clearpage
 
 \subsection{Gestione percorsi}
 \index{Gestione percorsi}
@@ -198,6 +222,8 @@ Le interfacce sono definite come:
     \end{tabularx}
     \caption{Tabella gestione percorsi}
 \end{table}
+
+\clearpage
 
 \subsection{Gestione autenticazione}
 \index{Gestione autenticazione}

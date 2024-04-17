@@ -1,6 +1,11 @@
 \begin{theindex}
 
   \item Component Diagram, \hyperpage{3}
+  \item Constraints con OCL, \hyperpage{10}
+
+  \indexspace
+
+  \item Diagramma delle classi, \hyperpage{7}
 
   \indexspace
 
@@ -10,5 +15,14 @@
   \item Gestione notifiche, \hyperpage{4}
   \item Gestione percorsi, \hyperpage{5}
   \item Gestione utente, \hyperpage{3}
+  \item Gestori, \hyperpage{8}
+
+  \indexspace
+
+  \item Tipologie degli oggetti, \hyperpage{7}
+
+  \indexspace
+
+  \item Utenti, \hyperpage{9}
 
 \end{theindex}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" modified="2024-04-17T09:17:12.762Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0" etag="y6zsgTdAhJoecvmJj9JD" version="24.2.5" type="google">
+<mxfile host="app.diagrams.net" modified="2024-04-17T09:45:57.424Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0" etag="5jG1aCxaf_yuXE8baE7U" version="24.2.5" type="google">
   <diagram name="Pagina-1" id="bZNuDVQKegFYLx4exZVK">
-    <mxGraphModel dx="1602" dy="418" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1930" dy="595" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -440,6 +440,30 @@
         </mxCell>
         <mxCell id="bgRyU9uftjAcLCPm4j8X-32" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;points=[];fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="255" y="540" width="10" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bgRyU9uftjAcLCPm4j8X-37" value="" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=none;startSize=8;curved=0;rounded=0;endFill=0;" edge="1" parent="1">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="370" y="340" as="sourcePoint" />
+            <mxPoint x="330" y="360" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bgRyU9uftjAcLCPm4j8X-38" value="Gestione access policies" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="378" y="324" width="141" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bgRyU9uftjAcLCPm4j8X-40" value="" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=none;startSize=8;curved=0;rounded=0;endFill=0;" edge="1" parent="1">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="290" y="340" as="sourcePoint" />
+            <mxPoint x="330" y="360" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bgRyU9uftjAcLCPm4j8X-41" value="Gestione competenze" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160.5" y="324" width="121.5" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

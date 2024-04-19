@@ -95,7 +95,7 @@ Le interfacce sono definite come:
 
 \begin{table}[htbp]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -139,7 +139,7 @@ Le interfacce sono definite come:
 
 \begin{table}[htbp]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -175,7 +175,7 @@ Le interfacce sono definite come:
 
 \begin{table}[htbp]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -196,56 +196,12 @@ Le interfacce sono definite come:
     \caption{Tabella gestione di sistema}
 \end{table}
 
-\subsection{Gestione notifiche}
-\index{Gestione notifiche}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente utilizza un'interfaccia fornita dal datalayer per accedere ai dati sul database \\
-        \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Notifiche & Il componente fornisce internamente un'interfaccia per l'inoltro delle notifiche \\
-        \hline
-    \end{tabularx}
-    \caption{Tablla gestione notifiche}
-\end{table}
-
-\clearpage
-
-\subsection{Gestione percorsi}
-\index{Gestione percorsi}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente utilizza un'interfaccia fornita dal datalayer per accedere ai dati sul database  \\
-        \hline
-         & OpenRouteService & Il componente utilizza un'interfaccia fornita dal servizio OpenRouteService per il calcolo dei percorsi \\
-         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Percorsi & Il componente fornisce internamente un'interfaccia per la computazione dei percorsi che evitano le zone con criticita' di viabilita' \\
-        \hline
-    \end{tabularx}
-    \caption{Tabella gestione percorsi}
-\end{table}
-
 \subsection{Gestione autenticazione}
 \index{Gestione autenticazione}
 
 \begin{table}[htbp]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -262,12 +218,56 @@ Le interfacce sono definite come:
     \caption{Tabella gestione autenticazione}
 \end{table}
 
+\clearpage
+
+\subsection{Gestione notifiche}
+\index{Gestione notifiche}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data & Il componente utilizza un'interfaccia fornita dal datalayer per accedere ai dati sul database \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Notifiche & Il componente fornisce internamente un'interfaccia per l'inoltro delle notifiche \\
+        \hline
+    \end{tabularx}
+    \caption{Tablla gestione notifiche}
+\end{table}
+
+\subsection{Gestione percorsi}
+\index{Gestione percorsi}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data & Il componente utilizza un'interfaccia fornita dal datalayer per accedere ai dati sul database  \\
+        \hline
+         & OpenRouteService & Il componente utilizza un'interfaccia fornita dal servizio OpenRouteService per il calcolo dei percorsi \\
+         \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Percorsi & Il componente fornisce internamente un'interfaccia per la computazione dei percorsi che evitano le zone con criticita' di viabilita' \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella gestione percorsi}
+\end{table}
+
 \subsection{Gestione database}
 \index{Gestione database}
 
 \begin{table}[htbp]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Imposta lo spazio verticale delle righe
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
@@ -299,8 +299,17 @@ Saranno quindi descritte, oltre alle classi, anche tutte le relazioni che interc
 \subsubsection{Percorso}
 \index{Percorso}
 
-\subsubsection{Sottocategoria}
-\index{Sottocategoria}
+\subsubsection{Zona d'interesse}
+\index{Zona d'interesse}
+
+\subsubsection{Categoria}
+\index{Categoria}
+
+\subsubsection{Policy}
+\index{Policy}
+
+\subsubsection{Competenza}
+\index{Competenza}
 
 \clearpage
 
@@ -346,8 +355,11 @@ In questo progetto
 \subsubsection{Utente autenticato}
 \index{Utente autenticato}
 
+\subsubsection{Utente autorizzato}
+\index{Utente autenticato}
+
 \subsubsection{Utente amministratore}
-\index{Utente amministratore}
+\index{Utente autorizzato}
 
 \clearpage
 

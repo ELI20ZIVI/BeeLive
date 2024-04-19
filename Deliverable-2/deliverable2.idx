@@ -1,42 +1,46 @@
 \indexentry{Component Diagram|hyperpage}{3}
 \indexentry{Gestione utente|hyperpage}{4}
-\indexentry{Gestione amministrazione|hyperpage}{6}
-\indexentry{Gestione di sistema|hyperpage}{7}
+\indexentry{Gestione amministrazione|hyperpage}{5}
+\indexentry{Gestione di sistema|hyperpage}{6}
+\indexentry{Gestione autenticazione|hyperpage}{6}
 \indexentry{Gestione notifiche|hyperpage}{7}
-\indexentry{Gestione percorsi|hyperpage}{8}
-\indexentry{Gestione autenticazione|hyperpage}{8}
-\indexentry{Gestione database|hyperpage}{8}
-\indexentry{Diagramma delle classi|hyperpage}{9}
-\indexentry{Tipologie degli oggetti custom|hyperpage}{9}
-\indexentry{Evento|hyperpage}{9}
-\indexentry{Percorso|hyperpage}{9}
-\indexentry{Sottocategoria|hyperpage}{9}
-\indexentry{Gestori|hyperpage}{10}
-\indexentry{Gestione utente|hyperpage}{10}
-\indexentry{Gestione amministrazione|hyperpage}{10}
-\indexentry{Gestione di sistema|hyperpage}{10}
-\indexentry{Gestione notifiche|hyperpage}{10}
-\indexentry{Gestione percorsi|hyperpage}{10}
-\indexentry{Gestione autenticazione|hyperpage}{10}
-\indexentry{Gestione database|hyperpage}{10}
-\indexentry{Utenti|hyperpage}{11}
-\indexentry{Utente non autenticato|hyperpage}{11}
-\indexentry{Utente autenticato|hyperpage}{11}
-\indexentry{Utente amministratore|hyperpage}{11}
-\indexentry{Constraints con OCL|hyperpage}{12}
-\indexentry{Tipologie degli oggetti custom|hyperpage}{12}
-\indexentry{Evento|hyperpage}{12}
-\indexentry{Percorso|hyperpage}{12}
-\indexentry{Sottocategoria|hyperpage}{12}
-\indexentry{Gestori|hyperpage}{13}
-\indexentry{Gestione utente|hyperpage}{13}
-\indexentry{Gestione amministrazione|hyperpage}{13}
-\indexentry{Gestione di sistema|hyperpage}{13}
-\indexentry{Gestione notifiche|hyperpage}{13}
-\indexentry{Gestione percorsi|hyperpage}{13}
-\indexentry{Gestione autenticazione|hyperpage}{13}
-\indexentry{Gestione database|hyperpage}{13}
-\indexentry{Utenti|hyperpage}{14}
-\indexentry{Utente non autenticato|hyperpage}{14}
-\indexentry{Utente autenticato|hyperpage}{14}
-\indexentry{Utente amministratore|hyperpage}{14}
+\indexentry{Gestione percorsi|hyperpage}{7}
+\indexentry{Gestione database|hyperpage}{7}
+\indexentry{Diagramma delle classi|hyperpage}{8}
+\indexentry{Tipologie degli oggetti custom|hyperpage}{8}
+\indexentry{Evento|hyperpage}{8}
+\indexentry{Percorso|hyperpage}{8}
+\indexentry{Zona d'interesse|hyperpage}{8}
+\indexentry{Categoria|hyperpage}{8}
+\indexentry{Policy|hyperpage}{8}
+\indexentry{Competenza|hyperpage}{8}
+\indexentry{Gestori|hyperpage}{9}
+\indexentry{Gestione utente|hyperpage}{9}
+\indexentry{Gestione amministrazione|hyperpage}{9}
+\indexentry{Gestione di sistema|hyperpage}{9}
+\indexentry{Gestione notifiche|hyperpage}{9}
+\indexentry{Gestione percorsi|hyperpage}{9}
+\indexentry{Gestione autenticazione|hyperpage}{9}
+\indexentry{Gestione database|hyperpage}{9}
+\indexentry{Utenti|hyperpage}{10}
+\indexentry{Utente non autenticato|hyperpage}{10}
+\indexentry{Utente autenticato|hyperpage}{10}
+\indexentry{Utente autenticato|hyperpage}{10}
+\indexentry{Utente autorizzato|hyperpage}{10}
+\indexentry{Constraints con OCL|hyperpage}{11}
+\indexentry{Tipologie degli oggetti custom|hyperpage}{11}
+\indexentry{Evento|hyperpage}{11}
+\indexentry{Percorso|hyperpage}{11}
+\indexentry{Sottocategoria|hyperpage}{11}
+\indexentry{Gestori|hyperpage}{12}
+\indexentry{Gestione utente|hyperpage}{12}
+\indexentry{Gestione amministrazione|hyperpage}{12}
+\indexentry{Gestione di sistema|hyperpage}{12}
+\indexentry{Gestione notifiche|hyperpage}{12}
+\indexentry{Gestione percorsi|hyperpage}{12}
+\indexentry{Gestione autenticazione|hyperpage}{12}
+\indexentry{Gestione database|hyperpage}{12}
+\indexentry{Utenti|hyperpage}{13}
+\indexentry{Utente non autenticato|hyperpage}{13}
+\indexentry{Utente autenticato|hyperpage}{13}
+\indexentry{Utente amministratore|hyperpage}{13}

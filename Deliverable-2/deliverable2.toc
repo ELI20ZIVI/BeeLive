@@ -8,7 +8,7 @@
 \contentsline {subsection}{\numberline {1.7}Gestione database}{7}{subsection.1.7}%
 \contentsline {section}{\numberline {2}Diagramma delle classi}{8}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Utenti}{8}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Utente non autenticato}{8}{subsubsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.2}Utente autenticato}{8}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.1.1}Utente}{8}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Utente autenticato}{9}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Utente autorizzato}{9}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Contstraints con OCL}{10}{section.3}%

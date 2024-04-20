@@ -295,8 +295,8 @@ La descrizione sarà divisa, per motivi di chiarezza, in due sezioni. La prima t
 \subsection{Utenti}
 \index{Utenti}
 
-\subsubsection{Utente non autenticato}
-\index{Utente non autenticato}
+\subsubsection{Utente}
+\index{Utente}
 
 Questa classe rappresenta la figura dell'utente che utilizza l'applciazione mobile senza seguire la procedura di autenticazione.\\
 Come riportato nel primo documento "Deliverable 1" nella sezione relativa agli attori [Ref. 3.1.1, pag. 6], l'utente non autenticato ha accesso a tutte le funzionalità dell'applicazione salvando lo stato solamente sul dispositivo su cui è installata l'applicazione, quindi perdendo i dati una volta cambiato dispositivo.\\
@@ -306,17 +306,19 @@ Come riportato nel primo documento "Deliverable 1" nella sezione relativa agli a
 Gli attributi che caratterizzano questa classe sono:
 \begin{itemize}
     \item \textbf{ID}: Attributo che rappresenta univocamente l'utente non autenticato.
-    \item \textbf{...}: ...
+    \item \textbf{is\_authenticated}: Questo attributo definisce se l'utente è autenticato o meno. Per l'utente non autenticato il valore sarà "False".
+    \item \textbf{zone\_interesse}: Attributo che rappresenta la zona di interesse impostate dall'utente.
+    \item \textbf{percorsi}: Attributo che rappresenta i percorsi che per l'utente risultano di interesse.
 \end{itemize}
 
 \textbf{Metodi:}\\
 
 I metodi a disposizione della classe sono:
 \begin{itemize}
-    \item \textbf{login()}: Metodo utilizzato per effettuare il login all'interno dell'applicazione. Utilizzando questo metodo l'utente diventa un "Utente autenticato".\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il login.
-    \item \textbf{register()}: Metodo che permette all'utente di registrarsi per la prima volta all'interno dell'applicazione.\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare la registrazione. Anche questo metodo fa diventare l'utente un "Utente autenticato".
-    \item \textbf{newZona()}: Metodo utilizzato dall'utente per selezionare la zona di interesse sulla mappa.\\
-    \item \textbf{newPercorso():} Metodo che permette all'utente di selezionare il percorso di interesse sulla mappa.
+    \item \textbf{login(username, password)}: Metodo utilizzato per effettuare il login all'interno dell'applicazione. Utilizzando questo metodo l'utente diventa un "Utente autenticato".\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il login.
+    \item \textbf{register(username, password)}: Metodo che permette all'utente di registrarsi per la prima volta all'interno dell'applicazione.\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare la registrazione. Anche questo metodo fa diventare l'utente un "Utente autenticato".
+    \item \textbf{aggiungiZona(zona)}: Metodo utilizzato dall'utente per selezionare la zona di interesse sulla mappa.\\
+    \item \textbf{aggiungiPercorso(percorso):} Metodo che permette all'utente di selezionare il percorso di interesse sulla mappa.
     \item \textbf{visualizzaEventi()}: Metodo utilizzato per visualizzare gli eventi presenti sulla mappa o all'interno della zona d'interesse precedentemente specificata.
 \end{itemize} 
 
@@ -328,7 +330,7 @@ L'utente autenticato [Ref. 3.1.2, pag. 6] deriva le sue caratteristiche dall'ute
 \textbf{Attributi:}\\
 Sono gli stessi a disposizione dell'utente non autenticato, con l'aggiunta di:
 \begin{itemize}
-    \item \textbf{Token}: Attributo che rappresenta il token di autenticazione dell'utente.
+    \item \textbf{auth\_token}: Attributo che rappresenta il token di autenticazione dell'utente.
 \end{itemize}
 
 \textbf{Metodi:}\\
@@ -336,11 +338,13 @@ Anche i metodi sono gli stessi a disposizione dell'utente non autenticato, aggiu
 \begin{itemize}
     \item \textbf{logout()}: Metodo utilizzato per effettuare il logout dall'applicazione.\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il logout.
 \end{itemize}
+E eliminando la possibilita' di richiamare i metodi "login" e "register", superflui in quanto l'utente è già autenticato.
 
 \subsection{Utente autorizzato}
 \index{Utente autorizzato}
 
-
+L'utente autorizzato [Ref. 3.1.3, pag. 6] è la classe che rappresenta tutte le entita' comunali che hanno i permessi di inserire gli eventi a sistema.\\
+Questi utenti accedono al sistema attraverso l'applicativo desktop
 
 \clearpage
 

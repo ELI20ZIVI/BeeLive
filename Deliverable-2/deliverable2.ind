@@ -1,9 +1,7 @@
 \begin{theindex}
 
-  \item Categoria, \hyperpage{8}
-  \item Competenza, \hyperpage{8}
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{11}
+  \item Constraints con OCL, \hyperpage{10}
 
   \indexspace
 
@@ -11,46 +9,19 @@
 
   \indexspace
 
-  \item Evento, \hyperpage{8}, \hyperpage{11}
+  \item Gestione amministrazione, \hyperpage{5}
+  \item Gestione autenticazione, \hyperpage{6}
+  \item Gestione database, \hyperpage{7}
+  \item Gestione di sistema, \hyperpage{6}
+  \item Gestione notifiche, \hyperpage{7}
+  \item Gestione percorsi, \hyperpage{7}
+  \item Gestione utente, \hyperpage{4}
 
   \indexspace
 
-  \item Gestione amministrazione, \hyperpage{5}, \hyperpage{9}, 
-		\hyperpage{12}
-  \item Gestione autenticazione, \hyperpage{6}, \hyperpage{9}, 
-		\hyperpage{12}
-  \item Gestione database, \hyperpage{7}, \hyperpage{9}, \hyperpage{12}
-  \item Gestione di sistema, \hyperpage{6}, \hyperpage{9}, 
-		\hyperpage{12}
-  \item Gestione notifiche, \hyperpage{7}, \hyperpage{9}, 
-		\hyperpage{12}
-  \item Gestione percorsi, \hyperpage{7}, \hyperpage{9}, \hyperpage{12}
-  \item Gestione utente, \hyperpage{4}, \hyperpage{9}, \hyperpage{12}
-  \item Gestori, \hyperpage{9}, \hyperpage{12}
-
-  \indexspace
-
-  \item Percorso, \hyperpage{8}, \hyperpage{11}
-  \item Policy, \hyperpage{8}
-
-  \indexspace
-
-  \item Sottocategoria, \hyperpage{11}
-
-  \indexspace
-
-  \item Tipologie degli oggetti custom, \hyperpage{8}, \hyperpage{11}
-
-  \indexspace
-
-  \item Utente amministratore, \hyperpage{13}
-  \item Utente autenticato, \hyperpage{10}, \hyperpage{13}
-  \item Utente autorizzato, \hyperpage{10}
-  \item Utente non autenticato, \hyperpage{10}, \hyperpage{13}
-  \item Utenti, \hyperpage{10}, \hyperpage{13}
-
-  \indexspace
-
-  \item Zona d'interesse, \hyperpage{8}
+  \item Utente autenticato, \hyperpage{8}
+  \item Utente autorizzato, \hyperpage{9}
+  \item Utente non autenticato, \hyperpage{8}
+  \item Utenti, \hyperpage{8}
 
 \end{theindex}

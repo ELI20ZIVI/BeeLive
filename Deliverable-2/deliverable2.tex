@@ -288,63 +288,9 @@ Le interfacce sono definite come:
 \index{Diagramma delle classi}
 
 Nella sezione seguente verranno descritte nel dettaglio le classi che formeranno la struttura del sistema attraverso il diagramma delle classi.\\
-Saranno quindi descritte, oltre alle classi, anche tutte le relazioni che intercorrono tra di esse e i ruoli dei gestori.
+Saranno quindi descritte, oltre alle classi, anche tutte le relazioni che intercorrono tra di esse e i ruoli dei gestori.\\
 
-\subsection{Tipi degli oggetti custom}
-\index{Tipologie degli oggetti custom}
-
-\subsubsection{Evento}
-\index{Evento}
-
-\subsubsection{Percorso}
-\index{Percorso}
-
-\subsubsection{Zona d'interesse}
-\index{Zona d'interesse}
-
-\subsubsection{Categoria}
-\index{Categoria}
-
-\subsubsection{Policy}
-\index{Policy}
-
-\subsubsection{Competenza}
-\index{Competenza}
-
-\clearpage
-
-\subsection{Gestori}
-\index{Gestori}
-
-Cit. BookEat:
-
-Per mantenere una codebase il più ordinata possibile, abbiamo integrato la figura dei Gestori. 
-Questi non sono altro che raccoglitori di funzioni statiche, che quindi non richiedono di istanziare una classe; in questo modo riusciamo a raggruppare funzioni che riguardano lo stesso ambito assieme, facilitando poi il mantenimento del codice. Di seguito vengono descritti i vari gestori ed i vari metodi al loro interno.
-
-In questo progetto 
-
-\subsubsection{Gestione utente}
-\index{Gestione utente}
-
-\subsubsection{Gestione amministrazione}
-\index{Gestione amministrazione}
-
-\subsubsection{Gestione di sistema}
-\index{Gestione di sistema}
-
-\subsubsection{Gestione notifiche}
-\index{Gestione notifiche}
-
-\subsubsection{Gestione percorsi}
-\index{Gestione percorsi}
-
-\subsubsection{Gestione autenticazione}
-\index{Gestione autenticazione}
-
-\subsubsection{Gestione database}
-\index{Gestione database}
-
-\clearpage
+La descrizione sarà divisa, per motivi di chiarezza, in due sezioni. La prima tratterà le classi relative agli utenti, mentre la seconda tratterà le rimanenti.\\
 
 \subsection{Utenti}
 \index{Utenti}
@@ -352,70 +298,55 @@ In questo progetto
 \subsubsection{Utente non autenticato}
 \index{Utente non autenticato}
 
-\subsubsection{Utente autenticato}
+Questa classe rappresenta la figura dell'utente che utilizza l'applciazione mobile senza seguire la procedura di autenticazione.\\
+Come riportato nel primo documento "Deliverable 1" nella sezione relativa agli attori [Ref. 3.1.1, pag. 6], l'utente non autenticato ha accesso a tutte le funzionalità dell'applicazione salvando lo stato solamente sul dispositivo su cui è installata l'applicazione, quindi perdendo i dati una volta cambiato dispositivo.\\
+
+\textbf{Attributi:}\\
+
+Gli attributi che caratterizzano questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Attributo che rappresenta univocamente l'utente non autenticato.
+    \item \textbf{...}: ...
+\end{itemize}
+
+\textbf{Metodi:}\\
+
+I metodi a disposizione della classe sono:
+\begin{itemize}
+    \item \textbf{login()}: Metodo utilizzato per effettuare il login all'interno dell'applicazione. Utilizzando questo metodo l'utente diventa un "Utente autenticato".\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il login.
+    \item \textbf{register()}: Metodo che permette all'utente di registrarsi per la prima volta all'interno dell'applicazione.\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare la registrazione. Anche questo metodo fa diventare l'utente un "Utente autenticato".
+    \item \textbf{newZona()}: Metodo utilizzato dall'utente per selezionare la zona di interesse sulla mappa.\\
+    \item \textbf{newPercorso():} Metodo che permette all'utente di selezionare il percorso di interesse sulla mappa.
+    \item \textbf{visualizzaEventi()}: Metodo utilizzato per visualizzare gli eventi presenti sulla mappa o all'interno della zona d'interesse precedentemente specificata.
+\end{itemize} 
+
+\subsection{Utente autenticato}
 \index{Utente autenticato}
 
-\subsubsection{Utente autorizzato}
-\index{Utente autenticato}
+L'utente autenticato [Ref. 3.1.2, pag. 6] deriva le sue caratteristiche dall'utente non autenticato, ma ha la possibilità di salvare i dati sul server permettendo quindi di mantenere lo stato dell'applicazione anche cambiando dispositivo.\\
 
-\subsubsection{Utente amministratore}
+\textbf{Attributi:}\\
+Sono gli stessi a disposizione dell'utente non autenticato, con l'aggiunta di:
+\begin{itemize}
+    \item \textbf{Token}: Attributo che rappresenta il token di autenticazione dell'utente.
+\end{itemize}
+
+\textbf{Metodi:}\\
+Anche i metodi sono gli stessi a disposizione dell'utente non autenticato, aggiungendo però il metodo:
+\begin{itemize}
+    \item \textbf{logout()}: Metodo utilizzato per effettuare il logout dall'applicazione.\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il logout.
+\end{itemize}
+
+\subsection{Utente autorizzato}
 \index{Utente autorizzato}
+
+
 
 \clearpage
 
 \section{Contstraints con OCL}
-\index{Constraints con OCL}
+\index{Constraints con OCL}  
 
-\subsection{Tipi degli oggetti custom}
-\index{Tipologie degli oggetti custom}
 
-\subsubsection{Evento}
-\index{Evento}
-
-\subsubsection{Percorso}
-\index{Percorso}
-
-\subsubsection{Sottocategoria}
-\index{Sottocategoria}
-
-\clearpage
-
-\subsection{Gestori}
-\index{Gestori}
-
-\subsubsection{Gestione utente}
-\index{Gestione utente}
-
-\subsubsection{Gestione amministrazione}
-\index{Gestione amministrazione}
-
-\subsubsection{Gestione di sistema}
-\index{Gestione di sistema}
-
-\subsubsection{Gestione notifiche}
-\index{Gestione notifiche}
-
-\subsubsection{Gestione percorsi}
-\index{Gestione percorsi}
-
-\subsubsection{Gestione autenticazione}
-\index{Gestione autenticazione}
-
-\subsubsection{Gestione database}
-\index{Gestione database}
-
-\clearpage
-
-\subsection{Utenti}
-\index{Utenti}
-
-\subsubsection{Utente non autenticato}
-\index{Utente non autenticato}
-
-\subsubsection{Utente autenticato}
-\index{Utente autenticato}
-
-\subsubsection{Utente amministratore}
-\index{Utente amministratore}
 
 \end{document}

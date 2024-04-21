@@ -299,7 +299,7 @@ La descrizione sarà divisa, per motivi di chiarezza, in due sezioni. La prima t
 \index{Utente}
 
 Questa classe rappresenta la figura dell'utente che utilizza l'applciazione mobile senza seguire la procedura di autenticazione.\\
-Come riportato nel primo documento "Deliverable 1" nella sezione relativa agli attori [Ref. 3.1.1, pag. 6], l'utente non autenticato ha accesso a tutte le funzionalità dell'applicazione salvando lo stato solamente sul dispositivo su cui è installata l'applicazione, quindi perdendo i dati una volta cambiato dispositivo.\\
+Come riportato nel primo documento "Deliverable 1" nella sezione relativa agli attori [Ref. 3.1.1, pag. 6], l'utente non autenticato ha accesso a tutte le funzionalità dell'applicazione salvando lo stato solamente sul dispositivo su cui è installata l'applicazione, quindi perdendo i dati una volta cambiato dispositivo.
 
 \textbf{Attributi:}\\
 
@@ -310,7 +310,7 @@ Gli attributi che caratterizzano questa classe sono:
     \item \textbf{zone\_interesse}: Attributo che rappresenta la zona di interesse impostate dall'utente.
     \item \textbf{percorsi}: Attributo che rappresenta i percorsi che per l'utente risultano di interesse.
 \end{itemize}
-
+ 
 \textbf{Metodi:}\\
 
 I metodi a disposizione della classe sono:
@@ -322,7 +322,7 @@ I metodi a disposizione della classe sono:
     \item \textbf{visualizzaEventi()}: Metodo utilizzato per visualizzare gli eventi presenti sulla mappa o all'interno della zona d'interesse precedentemente specificata.
 \end{itemize} 
 
-\subsection{Utente autenticato}
+\subsubsection{Utente autenticato}
 \index{Utente autenticato}
 
 L'utente autenticato [Ref. 3.1.2, pag. 6] deriva le sue caratteristiche dall'utente non autenticato, ma ha la possibilità di salvare i dati sul server permettendo quindi di mantenere lo stato dell'applicazione anche cambiando dispositivo.\\
@@ -338,13 +338,163 @@ Anche i metodi sono gli stessi a disposizione dell'utente non autenticato, aggiu
 \begin{itemize}
     \item \textbf{logout()}: Metodo utilizzato per effettuare il logout dall'applicazione.\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il logout.
 \end{itemize}
-E eliminando la possibilita' di richiamare i metodi "login" e "register", superflui in quanto l'utente è già autenticato.
+Ed eliminando la possibilita' di richiamare i metodi "login" e "register", superflui in quanto l'utente è già autenticato.
 
-\subsection{Utente autorizzato}
+\subsubsection{Utente amministratore}
+\index{Utente amministratore}
+
+L'utente amministratore [Ref. 3.1.4, pag. 6] è la classe che rappresenta l'utente che ha il controllo totale sul sistema, con la possibilita' di definire competenze e policy di accesso per gli utenti.
+
+\textbf{Attributi:}\\
+Gli attributi che caratterizzano questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Attributo che identifica univocamente l'utente amministratore.
+    \item \textbf{auth\_token}: Attributo che rappresenta il token di autenticazione dell'utente.
+\end{itemize}
+
+\textbf{Metodi:}\\
+I metodi a disposizione della classe sono:
+
+\begin{itemize}
+    \item \textbf{login(username, password)}: Metodo utilizzato per effettuare il login all'interno dell'applicazione. Utilizzando questo metodo l'utente diventa un "Utente autenticato".\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il login.
+    \item \textbf{logout(username, password)}: Metodo utilizzato per effettuare il logout dall'applicazione, cosi' da disconnettere l'utente dal servizio
+    \item \textbf{aggiungiPolicy(policy)}: Metodo che permette all'utente amministratore di definire le policy di accesso per gli utenti.
+    \item \textbf{rimuoviPolicy(policy)}: Metodo che permette all'utente amministratore di rimuovere le policy di accesso per gli utenti.
+    \item \textbf{aggiungiCompetenza(competenza)}: Metodo che permette all'utente amministratore di definire le competenze degli utenti.
+    \item \textbf{rimuoviCompetenza(competenza)}: Metodo che permette all'utente amministratore di rimuovere le competenze degli utenti.
+\end{itemize}
+
+\subsubsection{Utente autorizzato}
 \index{Utente autorizzato}
 
 L'utente autorizzato [Ref. 3.1.3, pag. 6] è la classe che rappresenta tutte le entita' comunali che hanno i permessi di inserire gli eventi a sistema.\\
-Questi utenti accedono al sistema attraverso l'applicativo desktop
+Questi utenti accedono al sistema attraverso l'applicativo desktop, sviluppato apposta per la gestione degli eventi.\\
+
+\textbf{Attributi:}\\
+Gli attributi che definiscono questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Caratteristica che identifica univocamente l'utente autorizzato nel sistema.
+    \item \textbf{auth\_token}: Attributo che rappresenta il token di autenticazione dell'utente.
+    \item \textbf{categorie\_di\_competenza}: Riporta le categorie su cui l'utente ha competenza.
+    \item \textbf{eventi\_creati}: Tutti gli eventi che l'utente ha creato e salvato sul database.
+\end{itemize}
+
+\textbf{Metodi:}\\
+I metodi a disposizione della classe sono:
+\begin{itemize}
+    \item \textbf{login(username, password)}: Metodo utilizzato per effettuare il login all'interno dell'applicazione. Utilizzando questo metodo l'utente diventa un "Utente autenticato".\\Sono utilizzati metodi del gestore "Gestione utente" e del gestore "Gestione autenticazione" per effettuare il login.
+    \item \textbf{logout(username, password)}: Metodo utilizzato per effettuare il logout dall'applicazione, cosi' da disconnettere l'utente dal servizio
+    \item \textbf{aggiungiEvento(evento)}: Metodo che permette all'utente autorizzato di creare ed aggiungere un evento al sistema.
+    \item \textbf{modificaEvento(evento)}: Metodo che permette all'utente autorizzato di modificare ed aggiornare un evento precedentemente creato.
+    \item \textbf{eliminaEvento(evento)}: Metodo che permette all'utente autorizzato di eliminare dal sistema un evento precedentemente creato.
+    \item \textbf{aggiongiSottocategoria(categoria)}: Metodo che permette all'utente autorizzato di creare ed aggiungere una sottocategoria di eventi al sistema.
+    \item \textbf{modificaSottocategoria(categoria)}: Metodo che permette all'utente autorizzato di modificare ed aggiornare una sottocategoria di eventi precedentemente creata.
+    \item \textbf{eliminaSottocategoria(categoria)}: Metodo che permette all'utente autorizzato di eliminare dal sistema una sottocategoria di eventi precedentemente creata.
+\end{itemize}
+
+\clearpage
+
+\subsection{Altre classi}
+\index{Altre classi}
+
+\subsubsection{Evento}
+\index{Evento}
+
+La classe "Evento" rappresenta un evento o criticita' che l'utente amministratore pubblica sul sistema e che e' possibile visualizzare da applicativo mobile.
+
+\textbf{Attributi:}\\
+\begin{itemize}
+    \item \textbf{ID}: Attributo che identifica univocamente l'evento pubblicato sul sistema.
+    \item \textbf{titolo}: Attributo che rappresenta il titolo dell'evento.
+    \item \textbf{descrizione}: Attributo che rappresenta la descrizione dell'evento.
+    \item \textbf{data\_inizio}: Attributo che riporta la data d'inizio dell'evento.
+    \item \textbf{data\_inizio}: Attributo che riporta la data di fine dell'evento.
+    \item \textbf{categoria}: Attributo che rappresenta la categoria a cui l'evento appartiene.
+    \item \textbf{creator}: Attributo che rappresenta l'utente autorizzato che ha creato l'evento.
+    \item \textbf{coordinate}: Attributo che rappresenta il luogo in cui l'evento si svolgera'.\\
+\end{itemize}
+Per la classe in questione non sono previsti metodi.
+
+\subsubsection{Percorso}
+\index{Percorso}
+
+La classe "Percorso" rappresenta un percorso che l'utente richiede di calcolare da un punto d'inizio ad un punto di fine.\\
+Il percorso che risulta rappresenta la via per raggiungere il punto di destinazione evitando tutte le criticita' presenti su mappa.\\
+
+\textbf{Attributi:}\\
+Gli attributi che caratterizzano questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Attributo che identifica univocamente il percorso richiesto dall'utente.
+    \item \textbf{utente}: Attributo che rappresenta univocamente l'utente che ha richiesto il percorso.
+    \item \textbf{coordinate\_inizio}: Attributo che rappresenta le coordinate del punto di partenza del percorso.
+    \item \textbf{coordinate\_fine}: Attributo che rappresenta le coordinate del punto di arrivo del percorso.
+    \item \textbf{coordinate}: Attributo che rappresenta tutte le coordinate tra il punto di partenza e di arrivo del percorso, una volta che e' stato calcolato per evitare situazioni critiche su mappa.
+\end{itemize}
+
+\textbf{Metodi:}\\
+Il metodo a disposizione della classe è:
+\begin{itemize}
+    \item \textbf{calcolaPercorso(coordinate\_inizio, coordinate\_fine)}: Metodo invocato per eseguire il calcolo del percorso dal punto di partenza al punto di arrivo evitando tutte le criticita' presenti su mappa.
+\end{itemize}
+
+\clearpage
+
+\subsubsection{Zone di interesse}
+\index{Zone di interesse}
+
+La classe "Zone di interesse" rappresenta le zone che l'utente ha selezionato come di interesse per la visualizzazione degli eventi e delle criticita' presenti su mappa.\\
+
+\textbf{Attributi:}\\
+Gli attributi che caratterizzano questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Attributo che identifica univocamente la zona di interesse selezionata dall'utente.
+    \item \textbf{utente}: Attributo che rappresenta univocamente l'utente che ha selezionato la zona di interesse.
+    \item \textbf{coordinate}: Attributo che rappresenta le coordinate della zona di interesse selezionata dall'utente.\\
+\end{itemize}
+Per la classe in questione non sono previsti metodi.
+
+\subsubsection{Categoria}
+\index{Categoria}
+
+La classe "Categoria" rappresenta le categorie di eventi presenti sul sistema, definibili dagli utenti autorizzati dal comune di Trento.\\
+
+\textbf{Attributi:}\\
+Gli attributi che caratterizzano questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Attributo che identifica univocamente la categoria di eventi.
+    \item \textbf{nome}: Attributo che rappresenta il nome della categoria di eventi.
+    \item \textbf{supercategoria}: Attributo che rappresenta la supercategoria a cui la categoria appartiene.
+    \item \textbf{sottocategorie}: Attributo che rappresenta le sottocategorie di eventi presenti nella categoria.
+    \item \textbf{owner}: Attributo che rappresenta l'utente autorizzato che ha creato la categoria.\\
+\end{itemize}
+Per la classe in questione non sono previsti metodi.
+
+\subsubsection{Competenza}
+\index{Competenza}
+
+La classe "Competenza" rappresenta le competenze degli utenti autorizzati per la gestione degli eventi.\\
+
+\textbf{Attributi:}\\
+Gli attributi che caratterizzano questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Attributo che identifica univocamente la competenza dell'utente.
+    \item \textbf{id\_utente}: Attributo che rappresenta univocamente l'utente autorizzato che ha la competenza.
+\end{itemize}
+
+Da definire
+
+\subsubsection{Policy}
+\index{Policy}
+
+La classe "Policy" rappresenta le policy di accesso degli utenti al sistema.\\
+
+\textbf{Attributi:}\\
+Gli attributi che caratterizzano questa classe sono:
+\begin{itemize}
+    \item \textbf{ID}: Attributo che identifica univocamente la policy di accesso.
+    \item \textbf{nome}: Attributo che rappresenta il nome della policy di accesso.
+    \item \textbf{utenti}: Attributo che rappresenta gli utenti autorizzati che seguono la policy.
+\end{itemize}
 
 \clearpage
 

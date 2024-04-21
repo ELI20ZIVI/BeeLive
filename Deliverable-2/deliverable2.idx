@@ -10,5 +10,13 @@
 \indexentry{Utenti|hyperpage}{8}
 \indexentry{Utente|hyperpage}{8}
 \indexentry{Utente autenticato|hyperpage}{9}
-\indexentry{Utente autorizzato|hyperpage}{9}
-\indexentry{Constraints con OCL|hyperpage}{10}
+\indexentry{Utente amministratore|hyperpage}{9}
+\indexentry{Utente autorizzato|hyperpage}{10}
+\indexentry{Altre classi|hyperpage}{11}
+\indexentry{Evento|hyperpage}{11}
+\indexentry{Percorso|hyperpage}{11}
+\indexentry{Zone di interesse|hyperpage}{12}
+\indexentry{Categoria|hyperpage}{12}
+\indexentry{Competenza|hyperpage}{12}
+\indexentry{Policy|hyperpage}{12}
+\indexentry{Constraints con OCL|hyperpage}{13}

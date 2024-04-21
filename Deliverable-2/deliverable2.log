@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.4)  20 APR 2024 17:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.4)  21 APR 2024 10:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -491,7 +491,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 60.
-<Images/BeeLive-Logo.png, id=60, 127.07475pt x 96.81169pt>
+<Images/BeeLive-Logo.png, id=92, 127.07475pt x 96.81169pt>
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
 Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 60.
@@ -560,11 +560,11 @@ File: TS1opensans-TOsF.fd 2019/06/24 Font definitions for TS1/opensans-TOsF.
 )
 LaTeX Font Info:    Font shape `TS1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 80.
-<Images/ComponentDiagram.png, id=89, 848.16875pt x 701.62125pt>
+<Images/ComponentDiagram.png, id=129, 899.36pt x 701.62125pt>
 File: Images/ComponentDiagram.png Graphic file (type png)
 <use Images/ComponentDiagram.png>
 Package pdftex.def Info: Images/ComponentDiagram.png  used on input line 86.
-(pdftex.def)             Requested size: 512.14963pt x 423.67386pt.
+(pdftex.def)             Requested size: 512.14963pt x 399.56425pt.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
 Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 91.
@@ -684,11 +684,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 293--294
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 301--303
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 304--305
 
  []
@@ -710,7 +705,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 328--329
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 329.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 330.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -727,11 +722,19 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [8
 
 ]
+Overfull \hbox (1.39256pt too wide) in paragraph at lines 364--365
+[]\T1/opensans-TOsF/b/n/10 rimuoviCompetenza(competenza)\T1/opensans-TOsF/m/n/10 : Metodo che per-me-tte all'utente am-min-is-tra-tore di rimuo-vere le com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 370--372
+
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 348.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 376.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 60.95216pt, for example:
@@ -747,7 +750,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [9]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 355.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 395.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -762,7 +765,106 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[10
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 405--407
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 414--415
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 421--423
+
+ []
+
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 440.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[11
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 445--446
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 452--453
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--460
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 475--476
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 489--490
+
+ []
+
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 499.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[12
+
+]
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 506.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[13
 
 ] (./deliverable2.aux)
  ***********
@@ -770,21 +872,21 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `deliverable2.out' has not changed.
-(rerunfilecheck)             Checksum: FBA6A4E629B99C8DFE86576524194A11;2016.
+(rerunfilecheck)             Checksum: D9D6F6EAA147BE41DB95D1E36A7C7D8C;3027.
  ) 
 Here is how much of TeX's memory you used:
- 14295 strings out of 474116
- 251274 string characters out of 5747718
+ 14314 strings out of 474116
+ 251625 string characters out of 5747718
  1938190 words of memory out of 5000000
- 36441 multiletter control sequences out of 15000+600000
+ 36449 multiletter control sequences out of 15000+600000
  567923 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,15n,131p,445b,467s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 83i,16n,131p,445b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb>
-Output written on deliverable2.pdf (10 pages, 123626 bytes).
+Output written on deliverable2.pdf (13 pages, 132475 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 123 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 215 PDF objects out of 1000 (max. 8388607)
+ 189 compressed objects within 2 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 187 words of extra memory for PDF output out of 10000 (max. 10000000)
 

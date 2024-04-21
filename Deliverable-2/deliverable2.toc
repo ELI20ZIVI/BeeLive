@@ -9,6 +9,14 @@
 \contentsline {section}{\numberline {2}Diagramma delle classi}{8}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Utenti}{8}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}Utente}{8}{subsubsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.2}Utente autenticato}{9}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Utente autorizzato}{9}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Contstraints con OCL}{10}{section.3}%
+\contentsline {subsubsection}{\numberline {2.1.2}Utente autenticato}{9}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Utente amministratore}{9}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Utente autorizzato}{10}{subsubsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.2}Altre classi}{11}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Evento}{11}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Percorso}{11}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Zone di interesse}{12}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Categoria}{12}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Competenza}{12}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}Policy}{12}{subsubsection.2.2.6}%
+\contentsline {section}{\numberline {3}Contstraints con OCL}{13}{section.3}%

@@ -1,11 +1,21 @@
 \begin{theindex}
 
+  \item Altre classi, \hyperpage{11}
+
+  \indexspace
+
+  \item Categoria, \hyperpage{12}
+  \item Competenza, \hyperpage{12}
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{10}
+  \item Constraints con OCL, \hyperpage{13}
 
   \indexspace
 
   \item Diagramma delle classi, \hyperpage{8}
+
+  \indexspace
+
+  \item Evento, \hyperpage{11}
 
   \indexspace
 
@@ -19,9 +29,19 @@
 
   \indexspace
 
+  \item Percorso, \hyperpage{11}
+  \item Policy, \hyperpage{12}
+
+  \indexspace
+
   \item Utente, \hyperpage{8}
+  \item Utente amministratore, \hyperpage{9}
   \item Utente autenticato, \hyperpage{9}
-  \item Utente autorizzato, \hyperpage{9}
+  \item Utente autorizzato, \hyperpage{10}
   \item Utenti, \hyperpage{8}
+
+  \indexspace
+
+  \item Zone di interesse, \hyperpage{12}
 
 \end{theindex}

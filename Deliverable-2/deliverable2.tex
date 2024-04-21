@@ -298,8 +298,15 @@ La descrizione sarà divisa, per motivi di chiarezza, in due sezioni. La prima t
 \subsubsection{Utente}
 \index{Utente}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Images/utente_class.png}
+    \caption{Classe Utente}
+    \label{fig:utente}
+\end{figure}
+
 Questa classe rappresenta la figura dell'utente che utilizza l'applciazione mobile senza seguire la procedura di autenticazione.\\
-Come riportato nel primo documento "Deliverable 1" nella sezione relativa agli attori [Ref. 3.1.1, pag. 6], l'utente non autenticato ha accesso a tutte le funzionalità dell'applicazione salvando lo stato solamente sul dispositivo su cui è installata l'applicazione, quindi perdendo i dati una volta cambiato dispositivo.
+Come riportato nel primo documento "Deliverable 1" nella sezione relativa agli attori [Ref. 3.1.1, pag. 6], l'utente non autenticato ha accesso a tutte le funzionalità dell'applicazione salvando lo stato solamente sul dispositivo su cui è installata l'applicazione, quindi perdendo i dati una volta cambiato dispositivo.\\
 
 \textbf{Attributi:}\\
 
@@ -311,6 +318,8 @@ Gli attributi che caratterizzano questa classe sono:
     \item \textbf{percorsi}: Attributo che rappresenta i percorsi che per l'utente risultano di interesse.
 \end{itemize}
  
+\clearpage
+
 \textbf{Metodi:}\\
 
 I metodi a disposizione della classe sono:
@@ -324,6 +333,13 @@ I metodi a disposizione della classe sono:
 
 \subsubsection{Utente autenticato}
 \index{Utente autenticato}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Images/utenteAut_class.png}
+    \caption{Classe Utente Autenticato}
+    \label{fig:utente_autenticato}
+\end{figure}
 
 L'utente autenticato [Ref. 3.1.2, pag. 6] deriva le sue caratteristiche dall'utente non autenticato, ma ha la possibilità di salvare i dati sul server permettendo quindi di mantenere lo stato dell'applicazione anche cambiando dispositivo.\\
 
@@ -340,8 +356,17 @@ Anche i metodi sono gli stessi a disposizione dell'utente non autenticato, aggiu
 \end{itemize}
 Ed eliminando la possibilita' di richiamare i metodi "login" e "register", superflui in quanto l'utente è già autenticato.
 
+\clearpage
+
 \subsubsection{Utente amministratore}
 \index{Utente amministratore}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Images/utenteAmministratore_class.png}
+    \caption{Classe Utente Amministratore}
+    \label{fig:utente_amministratore}
+\end{figure}
 
 L'utente amministratore [Ref. 3.1.4, pag. 6] è la classe che rappresenta l'utente che ha il controllo totale sul sistema, con la possibilita' di definire competenze e policy di accesso per gli utenti.
 
@@ -364,8 +389,17 @@ I metodi a disposizione della classe sono:
     \item \textbf{rimuoviCompetenza(competenza)}: Metodo che permette all'utente amministratore di rimuovere le competenze degli utenti.
 \end{itemize}
 
+\clearpage
+
 \subsubsection{Utente autorizzato}
 \index{Utente autorizzato}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.275\textwidth]{Images/utenteAutorizzato_class.png}
+    \caption{Classe Utente Autorizzato}
+    \label{fig:utente_autorizzato}
+\end{figure}
 
 L'utente autorizzato [Ref. 3.1.3, pag. 6] è la classe che rappresenta tutte le entita' comunali che hanno i permessi di inserire gli eventi a sistema.\\
 Questi utenti accedono al sistema attraverso l'applicativo desktop, sviluppato apposta per la gestione degli eventi.\\
@@ -400,6 +434,13 @@ I metodi a disposizione della classe sono:
 \subsubsection{Evento}
 \index{Evento}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.15\textwidth]{Images/evento_class.png}
+    \caption{Classe Evento}
+    \label{fig:evento}
+\end{figure}
+
 La classe "Evento" rappresenta un evento o criticita' che l'utente amministratore pubblica sul sistema e che e' possibile visualizzare da applicativo mobile.
 
 \textbf{Attributi:}\\
@@ -415,8 +456,17 @@ La classe "Evento" rappresenta un evento o criticita' che l'utente amministrator
 \end{itemize}
 Per la classe in questione non sono previsti metodi.
 
+\clearpage 
+
 \subsubsection{Percorso}
 \index{Percorso}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Images/percorso_class.png}
+    \caption{Classe Percorso}
+    \label{fig:percorso}
+\end{figure}
 
 La classe "Percorso" rappresenta un percorso che l'utente richiede di calcolare da un punto d'inizio ad un punto di fine.\\
 Il percorso che risulta rappresenta la via per raggiungere il punto di destinazione evitando tutte le criticita' presenti su mappa.\\
@@ -442,6 +492,13 @@ Il metodo a disposizione della classe è:
 \subsubsection{Zone di interesse}
 \index{Zone di interesse}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.175\textwidth]{Images/zona_class.png}
+    \caption{Classe Zona di Interesse}
+    \label{fig:zona}
+\end{figure}
+
 La classe "Zone di interesse" rappresenta le zone che l'utente ha selezionato come di interesse per la visualizzazione degli eventi e delle criticita' presenti su mappa.\\
 
 \textbf{Attributi:}\\
@@ -455,6 +512,13 @@ Per la classe in questione non sono previsti metodi.
 
 \subsubsection{Categoria}
 \index{Categoria}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Images/categoria_class.png}
+    \caption{Classe Categoria}
+    \label{fig:categoria}
+\end{figure}
 
 La classe "Categoria" rappresenta le categorie di eventi presenti sul sistema, definibili dagli utenti autorizzati dal comune di Trento.\\
 
@@ -498,9 +562,112 @@ Gli attributi che caratterizzano questa classe sono:
 
 \clearpage
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/class_diagram.png}
+    \caption{Diagramma delle classi}
+    \label{fig:class-diagram}
+\end{figure}
+
+\clearpage
+
 \section{Contstraints con OCL}
 \index{Constraints con OCL}  
 
+\subsection{Utente}
+\index{Utente}
+
+\begin{verbatim}
+context Utente
+    inv: self.zone_interesse -> forAll(z | z.utente == self)
+    inv: self.percorsi -> forAll(p | p.utente == self)
+    inv: self.auth_token.isEmpty() == self.is_authenticated
+\end{verbatim}
+
+\subsection{Utente autenticabile}
+\index{Utente autenticabile}
+
+\begin{verbatim}
+context UtenteAutenticabile::login(_username, _password)
+    pre: self.is_authenticated == false
+    post: !self.auth_token.isEmpty()
+
+context UtenteAutenticabile::deauthenticate()
+    pre: self.is_authenticated == true
+    post: self.auth_token.isEmpty()
+
+context Utente::aggiungiZona(zona: ZonaDiInteresse)
+    post: self.zone_interesse -> include(zona)
+
+context Utente::aggiungiPercorso(percorso: Percorso)
+    post: self.percorsi -> include(percorso)
+\end{verbatim}
+
+\subsection{Evento}
+\index{Evento}
+
+\begin{verbatim}
+context Evento
+    inv: self.creator.categorie_di_competenza -> includes(self.categoria)
+    inv: self.creator.eventi_creati -> includes(self)
+    inv: self.data_inizio <= self.data_fine
+    inv: !self.info.isEmpty()
+\end{verbatim}
+
+\subsection{Categoria}
+\index{Categoria}
+
+\begin{verbatim}
+# l'Admin può creare solo categorie "root" con profondità massima di 1
+    inv: if instanceof(self.owner) == UtenteAmministratore:
+        self.supercategoria == None || self.supecategoria->forAll(s | s.supercategoria == None)
+
+# ogni sottoalbero di categorie deve avere una radice in un nodo "Root"
+\end{verbatim}
+
+\clearpage
+
+\subsection{Utente Autorizzato}
+\index{Utente Autorizzato}
+
+\begin{verbatim}
+context UtenteAutorizzato
+    inv: self.eventi_creati -> forAll(e | e.creator == self)
+    inv: self.categorie_di_competenza -> forAll()
+
+context UtenteAutorizzato::aggiungiEvento(evento: Evento)
+    post: self.eventi_creati -> include(evento)
+
+context UtenteAutorizzato::aggiungiSottocategoria(categoria: Categoria)
+    pre: !categoria.supercategoria.isEmpty()
+    pre: self.categorie_di_competenza -> includes(categoria.supercategoria)
+    post: self.categorie_di_competenza -> includes(categoria)
+    post: categoria.owner == self
+
+context UtenteAutorizzato::eliminaSottocategoria(categoria: Categoria)
+    pre: self.categorie_di_competenza -> includes(categoria)
+    pre: instanceof(categoria.owner) != UtenteAutorizzato
+    post: self.categorie_di_competenza -> !includes(categoria)
+
+context UtenteAutorizzato::modificaSottocategoria(categoria: Categoria)
+    pre: self.categorie_di_competenza -> includes(categoria)
+    pre: instanceof(categoria.owner) != UtenteAmministratore
+    post: self.categorie_di_competenza -> includes(categoria.supercategoria)
+    post: categoria.owner == categoria@pre.owner
+
+context UtenteAutorizzato::aggiungiEvento(evento: Evento)
+    post: self.categorie_di_competenza -> includes(evento.categoria)
+    post: self.eventi_creati -> includes(evento)
+    post: evento.creator == self
+
+context UtenteAutorizzato::modificaEvento(evento: Evento)
+    pre: evento.creator == self
+    post: evento.creator == self
+
+context UtenteAutorizzato::eliminaEvento(evento: Evento)
+    pre: evento.creator == self
+    post: self.eventi_creati -> !includes(evento)
+\end{verbatim}
 
 
 \end{document}

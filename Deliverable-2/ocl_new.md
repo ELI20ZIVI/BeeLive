@@ -88,11 +88,12 @@ inv: self.eventi_creati -> forAll( e | self.haCompetenza (e) )
 
 context UtenteAutorizzato::aggiungiEvento(evento: Evento)
 
-pre: self.eventi_creati -> includes (evento)
+post: self.eventi_creati -> includes (evento)
 
-post: self.haCompetenza (evento) 
+pre: self.haCompetenza (evento) 
 
 post: Evento.allInstances() -> includes(evento)
+post: self.eventi_creati -> includes(evento)
 
 
 
@@ -101,9 +102,9 @@ context UtenteAutorizzato::eliminaEvento(evento: Evento)
 pre: self.haCompetenza(evento)
 
 // l'utente autorizzato ha il lock dell'evento
-
 pre: evento.locked = self
 
+post: self.eventi_creati -> !includes(evento)
 post: Evento.allInstances() -> !includes (evento)
 
 
@@ -140,7 +141,7 @@ pre: categoria.immutabile = false
 
 pre: self.categorie_di_competenza -> includes(categoria.supercategoria)
 
-post: self.categorie_di_competenza -> includes(categoria)
+post: self.categorie_di_competenza -> !includes(categoria)
 
 
 
@@ -180,11 +181,15 @@ post: Evento.allInstances() -> forAll (e | if self.haCompetenza(e) then result -
 
 --- Evento ---
 
+inv: self.title != empty
+
 inv: self.start_validity <= self.end_validity
 
 inv: self.start_visibility <= self.end_visibility
 
 inv: self.creator.haCompetenza(self)
+
+inv: self.creator.eventi_creati -> includes (self)
 
 /// il creatore dell'evento deve avere competenza su tutti i sottoeventi. Il viceversa invece non è vero. 
 
@@ -196,12 +201,11 @@ inv: self.sottoeventi -> forAll (s | self.creator.haCompetenza (s) )
 
 --- Categoria ---
 
+context Categoria
 /// Le categorie formano delle foreste di alberi, per cui non possono esistere cicli. Questa è una funzione ausiliaria che parte da un nodo (categoria) e ritorna vero se l'albero a cui esso è "attaccato" ha cicli; falso se non ne ha.
 
 def: static haCicli(categoria: Categoria) = FloydCycleAlgorithm /// ...o qualsiasi altro algoritmo
 
-
-
 inv: haCicli(self) = False
 
-
+inv: self.nome != empty

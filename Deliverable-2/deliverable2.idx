@@ -16,29 +16,29 @@
 \indexentry{Preferences manager|hyperpage}{10}
 \indexentry{DAO|hyperpage}{11}
 \indexentry{Diagramma dei componenti di management|hyperpage}{11}
+\indexentry{Event processor|hyperpage}{11}
 \indexentry{Event Manager|hyperpage}{12}
-\indexentry{Management server|hyperpage}{12}
-\indexentry{Event processor|hyperpage}{13}
+\indexentry{DAO|hyperpage}{12}
+\indexentry{Custom event parser|hyperpage}{12}
+\indexentry{Web API|hyperpage}{13}
 \indexentry{Locker|hyperpage}{13}
 \indexentry{Logger|hyperpage}{13}
-\indexentry{DAO|hyperpage}{14}
-\indexentry{Custom event parser|hyperpage}{14}
-\indexentry{Diagramma delle classi|hyperpage}{15}
-\indexentry{Utenti|hyperpage}{15}
-\indexentry{Utente|hyperpage}{15}
-\indexentry{Utente autenticato|hyperpage}{16}
-\indexentry{Utente amministratore|hyperpage}{17}
-\indexentry{Utente autorizzato|hyperpage}{18}
-\indexentry{Altre classi|hyperpage}{19}
-\indexentry{Evento|hyperpage}{19}
-\indexentry{Percorso|hyperpage}{20}
-\indexentry{Zone di interesse|hyperpage}{21}
-\indexentry{Categoria|hyperpage}{21}
-\indexentry{Competenza|hyperpage}{22}
-\indexentry{Policy|hyperpage}{22}
-\indexentry{Constraints con OCL|hyperpage}{24}
-\indexentry{Utente|hyperpage}{24}
-\indexentry{Utente autenticabile|hyperpage}{24}
-\indexentry{Evento|hyperpage}{24}
-\indexentry{Categoria|hyperpage}{24}
-\indexentry{Utente Autorizzato|hyperpage}{25}
+\indexentry{Diagramma delle classi|hyperpage}{14}
+\indexentry{Utenti|hyperpage}{14}
+\indexentry{Utente|hyperpage}{14}
+\indexentry{Utente autenticato|hyperpage}{15}
+\indexentry{Utente amministratore|hyperpage}{16}
+\indexentry{Utente autorizzato|hyperpage}{17}
+\indexentry{Altre classi|hyperpage}{18}
+\indexentry{Evento|hyperpage}{18}
+\indexentry{Percorso|hyperpage}{19}
+\indexentry{Zone di interesse|hyperpage}{20}
+\indexentry{Categoria|hyperpage}{20}
+\indexentry{Competenza|hyperpage}{21}
+\indexentry{Policy|hyperpage}{21}
+\indexentry{Constraints con OCL|hyperpage}{23}
+\indexentry{Utente|hyperpage}{23}
+\indexentry{Utente autenticabile|hyperpage}{23}
+\indexentry{Evento|hyperpage}{23}
+\indexentry{Categoria|hyperpage}{23}
+\indexentry{Utente Autorizzato|hyperpage}{24}

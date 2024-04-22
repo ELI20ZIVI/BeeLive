@@ -16,29 +16,29 @@
 \contentsline {subsubsection}{\numberline {1.3.4}Preferences manager}{10}{subsubsection.1.3.4}%
 \contentsline {subsubsection}{\numberline {1.3.5}DAO}{11}{subsubsection.1.3.5}%
 \contentsline {subsection}{\numberline {1.4}Diagramma dei componenti di management}{11}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Event Manager}{12}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.4.2}Management server}{12}{subsubsection.1.4.2}%
-\contentsline {subsubsection}{\numberline {1.4.3}Event processor}{13}{subsubsection.1.4.3}%
-\contentsline {subsubsection}{\numberline {1.4.4}Locker}{13}{subsubsection.1.4.4}%
-\contentsline {subsubsection}{\numberline {1.4.5}Logger}{13}{subsubsection.1.4.5}%
-\contentsline {subsubsection}{\numberline {1.4.6}DAO}{14}{subsubsection.1.4.6}%
-\contentsline {subsubsection}{\numberline {1.4.7}Custom event parser}{14}{subsubsection.1.4.7}%
-\contentsline {section}{\numberline {2}Diagramma delle classi}{15}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Utenti}{15}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Utente}{15}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Utente autenticato}{16}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Utente amministratore}{17}{subsubsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.4}Utente autorizzato}{18}{subsubsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.2}Altre classi}{19}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Evento}{19}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Percorso}{20}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Zone di interesse}{21}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Categoria}{21}{subsubsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.5}Competenza}{22}{subsubsection.2.2.5}%
-\contentsline {subsubsection}{\numberline {2.2.6}Policy}{22}{subsubsection.2.2.6}%
-\contentsline {section}{\numberline {3}Contstraints con OCL}{24}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Utente}{24}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Utente autenticabile}{24}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Evento}{24}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Categoria}{24}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Utente Autorizzato}{25}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {1.4.1}Event processor}{11}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Event Manager}{12}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.3}DAO}{12}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\numberline {1.4.4}Custom event parser}{12}{subsubsection.1.4.4}%
+\contentsline {subsubsection}{\numberline {1.4.5}Web API}{13}{subsubsection.1.4.5}%
+\contentsline {subsubsection}{\numberline {1.4.6}Locker}{13}{subsubsection.1.4.6}%
+\contentsline {subsubsection}{\numberline {1.4.7}Logger}{13}{subsubsection.1.4.7}%
+\contentsline {section}{\numberline {2}Diagramma delle classi}{14}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Utenti}{14}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Utente}{14}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Utente autenticato}{15}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Utente amministratore}{16}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Utente autorizzato}{17}{subsubsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.2}Altre classi}{18}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Evento}{18}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Percorso}{19}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Zone di interesse}{20}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Categoria}{20}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Competenza}{21}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}Policy}{21}{subsubsection.2.2.6}%
+\contentsline {section}{\numberline {3}Contstraints con OCL}{23}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Utente}{23}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Utente autenticabile}{23}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Evento}{23}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Categoria}{23}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Utente Autorizzato}{24}{subsection.3.5}%

@@ -1,31 +1,31 @@
 \begin{theindex}
 
-  \item Altre classi, \hyperpage{19}
+  \item Altre classi, \hyperpage{18}
   \item Authentication SDK, \hyperpage{4}
 
   \indexspace
 
-  \item Categoria, \hyperpage{21}, \hyperpage{24}
-  \item Competenza, \hyperpage{22}
+  \item Categoria, \hyperpage{20}, \hyperpage{23}
+  \item Competenza, \hyperpage{21}
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{24}
+  \item Constraints con OCL, \hyperpage{23}
   \item Core, \hyperpage{8}
-  \item Custom event parser, \hyperpage{14}
+  \item Custom event parser, \hyperpage{12}
 
   \indexspace
 
-  \item DAO, \hyperpage{7}, \hyperpage{11}, \hyperpage{14}
+  \item DAO, \hyperpage{7}, \hyperpage{11, 12}
   \item Diagramma dei componenti di management, \hyperpage{11}
   \item Diagramma dei componenti di notifica, \hyperpage{7}
   \item Diagramma dei componenti overview, \hyperpage{3}
   \item Diagramma dei componenti pubblici, \hyperpage{9}
-  \item Diagramma delle classi, \hyperpage{15}
+  \item Diagramma delle classi, \hyperpage{14}
 
   \indexspace
 
   \item Event Manager, \hyperpage{12}
-  \item Event processor, \hyperpage{10}, \hyperpage{13}
-  \item Evento, \hyperpage{19}, \hyperpage{24}
+  \item Event processor, \hyperpage{10, 11}
+  \item Evento, \hyperpage{18}, \hyperpage{23}
 
   \indexspace
 
@@ -35,7 +35,6 @@
   \indexspace
 
   \item Management Server, \hyperpage{5}
-  \item Management server, \hyperpage{12}
   \item MongoDB, \hyperpage{5}
 
   \indexspace
@@ -44,8 +43,8 @@
 
   \indexspace
 
-  \item Percorso, \hyperpage{20}
-  \item Policy, \hyperpage{22}
+  \item Percorso, \hyperpage{19}
+  \item Policy, \hyperpage{21}
   \item Preferences manager, \hyperpage{10}
   \item Public server, \hyperpage{4}
 
@@ -55,20 +54,21 @@
 
   \indexspace
 
-  \item Utente, \hyperpage{15}, \hyperpage{24}
-  \item Utente amministratore, \hyperpage{17}
-  \item Utente autenticabile, \hyperpage{24}
-  \item Utente autenticato, \hyperpage{16}
-  \item Utente Autorizzato, \hyperpage{25}
-  \item Utente autorizzato, \hyperpage{18}
-  \item Utenti, \hyperpage{15}
+  \item Utente, \hyperpage{14}, \hyperpage{23}
+  \item Utente amministratore, \hyperpage{16}
+  \item Utente autenticabile, \hyperpage{23}
+  \item Utente autenticato, \hyperpage{15}
+  \item Utente Autorizzato, \hyperpage{24}
+  \item Utente autorizzato, \hyperpage{17}
+  \item Utenti, \hyperpage{14}
 
   \indexspace
 
+  \item Web API, \hyperpage{13}
   \item Web Server, \hyperpage{8}, \hyperpage{10}
 
   \indexspace
 
-  \item Zone di interesse, \hyperpage{21}
+  \item Zone di interesse, \hyperpage{20}
 
 \end{theindex}

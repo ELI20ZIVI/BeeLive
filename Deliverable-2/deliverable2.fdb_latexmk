@@ -1,12 +1,12 @@
 # Fdb version 4
-["makeindex deliverable2.idx"] 1713803039.28693 "deliverable2.idx" "deliverable2.ind" "deliverable2" 1713803040.52497 0
-  "deliverable2.idx" 1713803040.44613 1846 4117a16b03fdb420dfb3c1527be29525 "pdflatex"
+["makeindex deliverable2.idx"] 1713813382.46723 "deliverable2.idx" "deliverable2.ind" "deliverable2" 1713813383.7908 0
+  "deliverable2.idx" 1713813383.70586 1836 5d6d9ec1c515cb5a47337335e346dce7 "pdflatex"
   (generated)
   "deliverable2.ilg"
   "deliverable2.ind"
   (rewritten before read)
-["pdflatex"] 1713803039.34851 "/home/zivi/Ing SW/BeeLive/Deliverable-2/deliverable2.tex" "deliverable2.pdf" "deliverable2" 1713803040.52508 0
-  "/home/zivi/Ing SW/BeeLive/Deliverable-2/deliverable2.tex" 1713803037.76281 41827 6360bbcbbccc1f7573d57387b3cda234 ""
+["pdflatex"] 1713813382.50966 "/home/zivi/Ing SW/BeeLive/Deliverable-2/deliverable2.tex" "deliverable2.pdf" "deliverable2" 1713813383.79094 0
+  "/home/zivi/Ing SW/BeeLive/Deliverable-2/deliverable2.tex" 1713813069.77667 42013 49ff60ef8b836ba93045786c472db53c ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1713199481 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_nvvucy.enc" 1713199481 3364 7c78cdd102714be824555fc722b51d02 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_p2vepx.enc" 1713199481 2985 9e8c82fa04ebb93b5bf8c2b1abd30ca6 ""
@@ -109,10 +109,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1713770311.07705 5312047 b07fcd2a9090df96fc745b92a3db793b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1713770268 7112997 4ebaa45fceb9464c9eeeea610ad74fe7 ""
   "Images/BeeLive-Logo.png" 1713794304.80193 51200 295fd394affc714cee4a923b402f4a24 ""
+  "Images/ComponentDiagram_Management.png" 1713811139.35535 98455 0b5a2bd1b8d4c0f27afcf9f155e626fc ""
   "Images/ComponentDiagram_Notification.drawio.png" 1713801427.72082 117156 ef306808ef24e0dcafdd30697e98318d ""
   "Images/ComponentDiagram_Overview.png" 1713798626.28873 100178 8a66ef7bb54b429c7877cc352e978a44 ""
   "Images/ComponentDiagram_Public.png" 1713801442.48067 129856 7a2101a53cc643da7ed12636ceb713cd ""
-  "Images/ManagementServer - Component.png" 1713794304.80193 59874 dad2b4731eb4b5b06da17ff1b8a5be91 ""
   "Images/categoria_class.png" 1713794304.80193 18020 91eee94e8850f08628f4d40df8da4d00 ""
   "Images/class_diagram.png" 1713794304.80526 209761 2f615fca077f6c400afa3d313a01870e ""
   "Images/evento_class.png" 1713794304.80526 11546 b022eba53bb768549c662bf8915751fc ""
@@ -122,11 +122,11 @@
   "Images/utenteAutorizzato_class.png" 1713794304.80526 18913 be243f1b46b85a93132e3d9ec6dc9a79 ""
   "Images/utente_class.png" 1713794304.80526 16753 1151ffaf0578ad6190c68a887bf341d5 ""
   "Images/zona_class.png" 1713794304.80526 7957 8c01bce7ba09d682780fb9d4cffdd976 ""
-  "deliverable2.aux" 1713803040.44613 11678 102200845964ec756fb0e6c9ac218e73 "pdflatex"
-  "deliverable2.ind" 1713803039.3428 1809 9de9eaada47861c2e5ac38d02f44c1c8 "makeindex deliverable2.idx"
-  "deliverable2.out" 1713803040.44613 6064 14cca95e994bdd627fe6c3d8f72e0a53 "pdflatex"
-  "deliverable2.tex" 1713803037.76281 41827 6360bbcbbccc1f7573d57387b3cda234 ""
-  "deliverable2.toc" 1713803040.44613 3833 5d9318f81bb65dfd15bbaf189406ac35 "pdflatex"
+  "deliverable2.aux" 1713813383.70253 11661 7273cd6ec2aa70732b0c58f01bf39104 "pdflatex"
+  "deliverable2.ind" 1713813382.50587 1775 7b08bd5fc4f9b97daccc8a00b2da40c2 "makeindex deliverable2.idx"
+  "deliverable2.out" 1713813383.70586 6014 9bef7c478f6430902f5f037bf4743d3b "pdflatex"
+  "deliverable2.tex" 1713813069.77667 42013 49ff60ef8b836ba93045786c472db53c ""
+  "deliverable2.toc" 1713813383.70586 3823 fba13d03f80f3470f0e381262c56fbfb "pdflatex"
   (generated)
   "deliverable2.aux"
   "deliverable2.idx"

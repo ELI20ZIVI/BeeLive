@@ -1,27 +1,29 @@
 \indexentry{Component Diagram|hyperpage}{3}
-\indexentry{Gestione utente|hyperpage}{4}
-\indexentry{Gestione amministrazione|hyperpage}{5}
-\indexentry{Gestione di sistema|hyperpage}{6}
-\indexentry{Gestione autenticazione|hyperpage}{6}
-\indexentry{Gestione notifiche|hyperpage}{7}
-\indexentry{Gestione percorsi|hyperpage}{7}
-\indexentry{Gestione database|hyperpage}{7}
-\indexentry{Diagramma delle classi|hyperpage}{8}
-\indexentry{Utenti|hyperpage}{8}
-\indexentry{Utente|hyperpage}{8}
-\indexentry{Utente autenticato|hyperpage}{9}
-\indexentry{Utente amministratore|hyperpage}{10}
-\indexentry{Utente autorizzato|hyperpage}{11}
-\indexentry{Altre classi|hyperpage}{12}
-\indexentry{Evento|hyperpage}{12}
-\indexentry{Percorso|hyperpage}{13}
-\indexentry{Zone di interesse|hyperpage}{14}
-\indexentry{Categoria|hyperpage}{14}
-\indexentry{Competenza|hyperpage}{15}
-\indexentry{Policy|hyperpage}{15}
-\indexentry{Constraints con OCL|hyperpage}{17}
-\indexentry{Utente|hyperpage}{17}
-\indexentry{Utente autenticabile|hyperpage}{17}
-\indexentry{Evento|hyperpage}{17}
-\indexentry{Categoria|hyperpage}{17}
-\indexentry{Utente Autorizzato|hyperpage}{18}
+\indexentry{Diagramma dei componenti di management|hyperpage}{3}
+\indexentry{Management server|hyperpage}{3}
+\indexentry{Gestione utente|hyperpage}{5}
+\indexentry{Gestione amministrazione|hyperpage}{6}
+\indexentry{Gestione di sistema|hyperpage}{7}
+\indexentry{Gestione autenticazione|hyperpage}{7}
+\indexentry{Gestione notifiche|hyperpage}{8}
+\indexentry{Gestione percorsi|hyperpage}{8}
+\indexentry{Gestione database|hyperpage}{8}
+\indexentry{Diagramma delle classi|hyperpage}{9}
+\indexentry{Utenti|hyperpage}{9}
+\indexentry{Utente|hyperpage}{9}
+\indexentry{Utente autenticato|hyperpage}{10}
+\indexentry{Utente amministratore|hyperpage}{11}
+\indexentry{Utente autorizzato|hyperpage}{12}
+\indexentry{Altre classi|hyperpage}{13}
+\indexentry{Evento|hyperpage}{13}
+\indexentry{Percorso|hyperpage}{14}
+\indexentry{Zone di interesse|hyperpage}{15}
+\indexentry{Categoria|hyperpage}{15}
+\indexentry{Competenza|hyperpage}{16}
+\indexentry{Policy|hyperpage}{16}
+\indexentry{Constraints con OCL|hyperpage}{18}
+\indexentry{Utente|hyperpage}{18}
+\indexentry{Utente autenticabile|hyperpage}{18}
+\indexentry{Evento|hyperpage}{18}
+\indexentry{Categoria|hyperpage}{18}
+\indexentry{Utente Autorizzato|hyperpage}{19}

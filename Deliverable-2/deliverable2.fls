@@ -208,11 +208,12 @@ INPUT /usr/share/texmf-dist/tex/latex/opensans/TS1opensans-TOsF.fd
 INPUT /usr/share/texmf-dist/tex/latex/opensans/TS1opensans-TOsF.fd
 INPUT /usr/share/texmf-dist/tex/latex/opensans/TS1opensans-TOsF.fd
 INPUT /usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Regular-TS1-TOsF.tfm
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
-INPUT ./Images/ComponentDiagram.png
+INPUT /usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF.tfm
+INPUT ./Images/ManagementServer - Component.png
+INPUT ./Images/ManagementServer - Component.png
+INPUT ./Images/ManagementServer - Component.png
+INPUT ./Images/ManagementServer - Component.png
+INPUT ./Images/ManagementServer - Component.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png
@@ -220,13 +221,16 @@ INPUT ./Images/BeeLive-Logo.png
 INPUT /usr/share/texmf-dist/fonts/vf/ascender/opensans/OpenSans-Regular-TS1-TOsF.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Regular-TS1-TOsF--base.tfm
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/opensans/a_nvvucy.enc
-INPUT /usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF.tfm
-INPUT ./Images/BeeLive-Logo.png
-INPUT ./Images/BeeLive-Logo.png
-INPUT ./Images/BeeLive-Logo.png
-INPUT ./Images/BeeLive-Logo.png
 INPUT /usr/share/texmf-dist/fonts/vf/ascender/opensans/OpenSans-Bold-T1-TOsF.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/ascender/opensans/OpenSans-Bold-T1-TOsF--base.tfm
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
+INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png
 INPUT ./Images/BeeLive-Logo.png

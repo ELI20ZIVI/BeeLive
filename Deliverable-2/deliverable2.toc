@@ -1,27 +1,29 @@
 \contentsline {section}{\numberline {1}Component Diagram}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Gestione utente}{4}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Gestione amministrazione}{5}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Gestione di sistema}{6}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Gestione autenticazione}{6}{subsection.1.4}%
-\contentsline {subsection}{\numberline {1.5}Gestione notifiche}{7}{subsection.1.5}%
-\contentsline {subsection}{\numberline {1.6}Gestione percorsi}{7}{subsection.1.6}%
-\contentsline {subsection}{\numberline {1.7}Gestione database}{7}{subsection.1.7}%
-\contentsline {section}{\numberline {2}Diagramma delle classi}{8}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Utenti}{8}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Utente}{8}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Utente autenticato}{9}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Utente amministratore}{10}{subsubsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.4}Utente autorizzato}{11}{subsubsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.2}Altre classi}{12}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Evento}{12}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Percorso}{13}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Zone di interesse}{14}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Categoria}{14}{subsubsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.5}Competenza}{15}{subsubsection.2.2.5}%
-\contentsline {subsubsection}{\numberline {2.2.6}Policy}{15}{subsubsection.2.2.6}%
-\contentsline {section}{\numberline {3}Contstraints con OCL}{17}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Utente}{17}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Utente autenticabile}{17}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Evento}{17}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Categoria}{17}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Utente Autorizzato}{18}{subsection.3.5}%
+\contentsline {subsection}{\numberline {1.1}Diagramma dei componenti di management}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Management server}{3}{subsubsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.2}Gestione utente}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Gestione amministrazione}{6}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Gestione di sistema}{7}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Gestione autenticazione}{7}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Gestione notifiche}{8}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Gestione percorsi}{8}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Gestione database}{8}{subsection.1.8}%
+\contentsline {section}{\numberline {2}Diagramma delle classi}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Utenti}{9}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Utente}{9}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Utente autenticato}{10}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Utente amministratore}{11}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Utente autorizzato}{12}{subsubsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.2}Altre classi}{13}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Evento}{13}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Percorso}{14}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Zone di interesse}{15}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Categoria}{15}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Competenza}{16}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}Policy}{16}{subsubsection.2.2.6}%
+\contentsline {section}{\numberline {3}Contstraints con OCL}{18}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Utente}{18}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Utente autenticabile}{18}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Evento}{18}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Categoria}{18}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Utente Autorizzato}{19}{subsection.3.5}%

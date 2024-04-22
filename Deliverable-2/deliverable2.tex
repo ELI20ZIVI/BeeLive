@@ -81,15 +81,41 @@ Le interfacce sono definite come:
     \item \textbf{Interfacce di INPUT}: Tutte quelle interfacce che ricevono servizi dal sistema.
 \end{itemize} 
 
+\subsection{Diagramma dei componenti di management}
+\index{Diagramma dei componenti di management}
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{Images/ComponentDiagram.png}
-    \caption{Diagramma dei componenti}
-    \label{fig:component-diagram}
+    \includegraphics[width=1\textwidth]{Images/ManagementServer - Component.png}
+    \caption{Diagramma dei componenti di management}
+    \label{fig:management-component-diagram}
 \end{figure}
+
+\subsubsection{Management server}
+\index{Management server}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Token validation & Il componente utilizza un'interfaccia esterna per eseguire la validazione del token di accesso. \\
+        \hline
+         & Percorsi & Il componente utilizza l'interfaccia fornita dal componente gestione percorsi per ottenere i percorsi calcolati evitando le criticità presenti in mappa \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Login & Il componente fornisce un'interfaccia per effettuare il login attraverso i servizi del componente esterno CasDoor, che prevede l'inserimento delle specifiche credenziali per generare un token di accesso \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella WEB API}
+\end{table}
 
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gestione utente}
 \index{Gestione utente}
 

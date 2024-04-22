@@ -1,49 +1,54 @@
 \begin{theindex}
 
-  \item Altre classi, \hyperpage{12}
+  \item Altre classi, \hyperpage{13}
 
   \indexspace
 
-  \item Categoria, \hyperpage{14}, \hyperpage{17}
-  \item Competenza, \hyperpage{15}
+  \item Categoria, \hyperpage{15}, \hyperpage{18}
+  \item Competenza, \hyperpage{16}
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{17}
+  \item Constraints con OCL, \hyperpage{18}
 
   \indexspace
 
-  \item Diagramma delle classi, \hyperpage{8}
+  \item Diagramma dei componenti di management, \hyperpage{3}
+  \item Diagramma delle classi, \hyperpage{9}
 
   \indexspace
 
-  \item Evento, \hyperpage{12}, \hyperpage{17}
+  \item Evento, \hyperpage{13}, \hyperpage{18}
 
   \indexspace
 
-  \item Gestione amministrazione, \hyperpage{5}
-  \item Gestione autenticazione, \hyperpage{6}
-  \item Gestione database, \hyperpage{7}
-  \item Gestione di sistema, \hyperpage{6}
-  \item Gestione notifiche, \hyperpage{7}
-  \item Gestione percorsi, \hyperpage{7}
-  \item Gestione utente, \hyperpage{4}
+  \item Gestione amministrazione, \hyperpage{6}
+  \item Gestione autenticazione, \hyperpage{7}
+  \item Gestione database, \hyperpage{8}
+  \item Gestione di sistema, \hyperpage{7}
+  \item Gestione notifiche, \hyperpage{8}
+  \item Gestione percorsi, \hyperpage{8}
+  \item Gestione utente, \hyperpage{5}
 
   \indexspace
 
-  \item Percorso, \hyperpage{13}
-  \item Policy, \hyperpage{15}
+  \item Management server, \hyperpage{3}
 
   \indexspace
 
-  \item Utente, \hyperpage{8}, \hyperpage{17}
-  \item Utente amministratore, \hyperpage{10}
-  \item Utente autenticabile, \hyperpage{17}
-  \item Utente autenticato, \hyperpage{9}
-  \item Utente Autorizzato, \hyperpage{18}
-  \item Utente autorizzato, \hyperpage{11}
-  \item Utenti, \hyperpage{8}
+  \item Percorso, \hyperpage{14}
+  \item Policy, \hyperpage{16}
 
   \indexspace
 
-  \item Zone di interesse, \hyperpage{14}
+  \item Utente, \hyperpage{9}, \hyperpage{18}
+  \item Utente amministratore, \hyperpage{11}
+  \item Utente autenticabile, \hyperpage{18}
+  \item Utente autenticato, \hyperpage{10}
+  \item Utente Autorizzato, \hyperpage{19}
+  \item Utente autorizzato, \hyperpage{12}
+  \item Utenti, \hyperpage{9}
+
+  \indexspace
+
+  \item Zone di interesse, \hyperpage{15}
 
 \end{theindex}

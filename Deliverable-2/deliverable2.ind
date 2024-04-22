@@ -1,36 +1,26 @@
 \begin{theindex}
 
-  \item Altre classi, \hyperpage{15}
+  \item Altre classi, \hyperpage{11}
 
   \indexspace
 
-  \item Categoria, \hyperpage{17}, \hyperpage{20}
-  \item Competenza, \hyperpage{18}
+  \item Categoria, \hyperpage{13}, \hyperpage{16}
+  \item Competenza, \hyperpage{14}
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{20}
+  \item Constraints con OCL, \hyperpage{16}
   \item Custom event parser, \hyperpage{6}
 
   \indexspace
 
   \item DAO, \hyperpage{6}
   \item Diagramma dei componenti di management, \hyperpage{4}
-  \item Diagramma delle classi, \hyperpage{11}
+  \item Diagramma delle classi, \hyperpage{7}
 
   \indexspace
 
-  \item Event Manager, \hyperpage{5}
+  \item Event Manager, \hyperpage{4}
   \item Event processor, \hyperpage{5}
-  \item Evento, \hyperpage{15}, \hyperpage{20}
-
-  \indexspace
-
-  \item Gestione amministrazione, \hyperpage{8}
-  \item Gestione autenticazione, \hyperpage{9}
-  \item Gestione database, \hyperpage{10}
-  \item Gestione di sistema, \hyperpage{9}
-  \item Gestione notifiche, \hyperpage{10}
-  \item Gestione percorsi, \hyperpage{10}
-  \item Gestione utente, \hyperpage{7}
+  \item Evento, \hyperpage{11}, \hyperpage{16}
 
   \indexspace
 
@@ -39,25 +29,25 @@
 
   \indexspace
 
-  \item Management server, \hyperpage{4}
+  \item Management server, \hyperpage{5}
 
   \indexspace
 
-  \item Percorso, \hyperpage{16}
-  \item Policy, \hyperpage{18}
+  \item Percorso, \hyperpage{12}
+  \item Policy, \hyperpage{14}
 
   \indexspace
 
-  \item Utente, \hyperpage{11}, \hyperpage{20}
-  \item Utente amministratore, \hyperpage{13}
-  \item Utente autenticabile, \hyperpage{20}
-  \item Utente autenticato, \hyperpage{12}
-  \item Utente Autorizzato, \hyperpage{21}
-  \item Utente autorizzato, \hyperpage{14}
-  \item Utenti, \hyperpage{11}
+  \item Utente, \hyperpage{7}, \hyperpage{16}
+  \item Utente amministratore, \hyperpage{9}
+  \item Utente autenticabile, \hyperpage{16}
+  \item Utente autenticato, \hyperpage{8}
+  \item Utente Autorizzato, \hyperpage{17}
+  \item Utente autorizzato, \hyperpage{10}
+  \item Utenti, \hyperpage{7}
 
   \indexspace
 
-  \item Zone di interesse, \hyperpage{17}
+  \item Zone di interesse, \hyperpage{13}
 
 \end{theindex}

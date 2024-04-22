@@ -88,10 +88,39 @@ Le interfacce sono definite come:
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.55\textwidth]{Images/ManagementServer - Component.png}
+    \includegraphics[width=0.6\textwidth]{Images/ManagementServer - Component.png}
     \caption{Diagramma dei componenti di management}
     \label{fig:management-component-diagram}
 \end{figure}
+
+
+\subsubsection{Event Manager}
+\index{Event Manager}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Process event & Il componente utilizza l'interfaccia fornita dal componente "Event processor" per il processo degli eventi. \\
+        \hline
+         & Data operations & Il componente utilizza l'interfaccia fornita dal componente "DAO" per eseguire tutte le operazioni sui dati. \\
+        \hline
+         & Log & Il componente utilizza l'interfaccia fornita dal componente "Logger" per il salvataggio dello storico di tutte le operazioni effettuate. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Manage & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
+        \hline
+         & Events & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\clearpage
 
 \subsubsection{Management server}
 \index{Management server}
@@ -119,34 +148,6 @@ Le interfacce sono definite come:
         \hline
     \end{tabularx}
     \caption{Tabella WEB API}
-\end{table}
-
-\clearpage
-
-\subsubsection{Event Manager}
-\index{Event Manager}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Process event & Il componente utilizza l'interfaccia fornita dal componente "Event processor" per il processo degli eventi. \\
-        \hline
-         & Data operations & Il componente utilizza l'interfaccia fornita dal componente "DAO" per eseguire tutte le operazioni sui dati. \\
-        \hline
-         & Log & Il componente utilizza l'interfaccia fornita dal componente "Logger" per il salvataggio dello storico di tutte le operazioni effettuate. \\
-        \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Manage & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
-        \hline
-         & Events & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
-        \hline
-    \end{tabularx}
-    \caption{Tabella Event Manager}
 \end{table}
 
 \subsubsection{Event processor}
@@ -242,201 +243,6 @@ Le interfacce sono definite come:
         \hline
     \end{tabularx}
     \caption{Tabella Logger}
-\end{table}
-
-\clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Gestione utente}
-\index{Gestione utente}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Notifiche & Il componente utilizza l'interfaccia fornita dal componente "Gestione Notifiche" per ricevere notifiche relative alle criticita' \\
-        \hline
-         & Auth & Il componente utilizza l'interfaccia fornita dal componente "Gestione Autenticazione" per richiedere il token necessario per effettuare il login \\
-        \hline
-         & Data & Il componente utilizza l'interfaccia fornita dal componente di gestione del database per scambiare tutti i dati necessari a garantire un corretto funzionamento dell'applicativo per gli utenti \\
-        \hline
-         & Percorsi & Il componente utilizza l'interfaccia fornita dal componente gestione percorsi per ottenere i percorsi calcolati evitando le criticità presenti in mappa \\
-        \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Login & Il componente fornisce un'interfaccia per effettuare il login attraverso i servizi del componente esterno CasDoor, che prevede l'inserimento delle specifiche credenziali per generare un token di accesso \\
-        \hline
-         & Logout & Il componente fornisce all'utente un'interfaccia per effettuare il logout \\
-        \hline
-         & Registrazione & Il componente fornisce all'utente un'interfaccia per registrarsi attraverso il servizio CasDoor \\
-        \hline
-         & Selezione aree & Il componente fornisce un'interfaccia che permette all'utente di specificare sulla mappa della citta' di Trento la sua zona di maggior interesse per poi considerare quella zona come utile per la visualizzazione dei dati \\
-        \hline
-         & Visualizzazione evento & Il componente fornisce un'interfaccia che permette la visualizzazione di tutti gli eventi presenti sul database riguardanti la citta' di Trento o la zona/il percorso d'interesse se specificati \\
-        \hline
-         & Visualizzazione dettagli & Il componente offre un'interfaccia per la visualizzazione di tutti i dettagli che caratterizzano il singolo evento selezionato \\
-        \hline
-         & Filtraggio eventi & E' offerta dal componente l'interfaccia che permette il filtraggio degli eventi tramite specificita' espresse dall'utilizzatore \\
-        \hline
-         & Selezione aree & Il componente offre l'interfaccia per la specifica delle aree di maggiore interesse secondo l'utente. Questa specifica e' utile per la visualizzazione delle sole criticita' contenute in essa \\
-        \hline
-         & Selezione percorsi & Il componente offre l'interfaccia per la specifica dei percorsi piu' significativi per l'utente permettendogli di essere notificato nel caso in cui nel percorso si verifichi una criticita' \\
-        \hline
-    \end{tabularx}
-    \caption{Tabella gestione utente}
-\end{table}
-
-\clearpage
-
-\subsection{Gestione amministrazione}
-\index{Gestione amministrazione}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Auth & Il componente utilizza l'interfaccia fornita dal componente "Gestione Autenticazione" per richiedere il token necessario per effettuare il login \\
-        \hline
-         & Data & Il componente utilizza l'interfaccia fornita dal componente di gestione del database per scambiare tutti i dati necessari a garantire un corretto funzionamento dell'applicativo per l'amministrazione, come il salvataggio delle operazioni eseguite sugli eventi \\
-        \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Creazione eventi & Il componente offre internamente l'interfaccia per la creazione di un nuovo evento, seguendo e verificando che le informazioni utilizzate siano corrette \\
-        \hline
-         & Modifica eventi & Il componente offre internamente l'interfaccia utile alla modifica degli eventi gia' pubblicati e salvati in precedenza su database \\
-        \hline
-         & Eliminazione eventi & Il componente prevede internamente l'interfaccia che si occupa di eseguire le operazioni di eliminazione degli eventi pubblicati e salvati su database \\
-        \hline
-         & Creazione sottocategorie & Il componente offre internamente l'interfaccia che permette all'amministrazione di creare nuove sottocategorie degli eventi, fornendo una migliore organizzazione degli stessi \\
-        \hline
-         & Modifica sottocategorie & Il componente offre internamente l'interfaccia per eseguire modifiche sulle sottocategorie create e salvate su database \\
-        \hline
-         & Eliminazione sottocategorie & Il componente offre internamente l'interfaccia per permettere la cancellazione delle sottocategorie create e salvate su database in precedenza \\
-        \hline
-         & Data & Il componente utilizza questa interfaccia per eseguire il caricamento e il salvataggio dei nuovi dati di eventi e categorie su database \\
-        \hline
-    \end{tabularx}
-    \caption{Tabella gestione amministrazione}
-\end{table}
-
-\clearpage
-
-\subsection{Gestione di sistema}
-\index{Gestione di sistema}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente utilizza un’interfaccia fornita dal datalayer per accedere ai dati sul database \\
-        \hline
-         & Auth & Il componente utilizza l'interfaccia fornita dal componente "Gestione Autenticazione" per richiedere il token necessario per effettuare il login \\
-         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente fornisce internamente un’interfaccia per accedere al database \\
-        \hline
-         & Gestione competenze & Il componente fornisce internamente un'interfaccia per la gestione delle aree di competenza degli utenti \\
-        \hline
-         & Gestione access policies & Il componente fornisce internamente un'interfaccia utile alla gestione delle access policies degli utenti nel sistema \\
-        \hline
-        \end{tabularx}
-    \caption{Tabella gestione di sistema}
-\end{table}
-
-\subsection{Gestione autenticazione}
-\index{Gestione autenticazione}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & CasDoor & Il componente utilizza l'interfaccia fornita da CasDoor per l'autenticazione degli utenti. CasDoor e' un servizio specifico negli accessi degli utenti \\
-        \hline
-         & Data & Il componente utilizza l’interfaccia del componente "Gestione database" per autenticare gli utenti registrati \\
-        \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Auth & Il componente fornisce un'interfaccia agli altri componenti per usufruire del token generato all'accesso nei servizi previsti, in risposta all’inserimento dei dati accesso e alla loro validazione \\
-        \hline
-    \end{tabularx}
-    \caption{Tabella gestione autenticazione}
-\end{table}
-
-\clearpage
-
-\subsection{Gestione notifiche}
-\index{Gestione notifiche}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente utilizza un'interfaccia fornita dal datalayer per accedere ai dati sul database \\
-        \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Notifiche & Il componente fornisce internamente un'interfaccia per l'inoltro delle notifiche \\
-        \hline
-    \end{tabularx}
-    \caption{Tablla gestione notifiche}
-\end{table}
-
-\subsection{Gestione percorsi}
-\index{Gestione percorsi}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente utilizza un'interfaccia fornita dal datalayer per accedere ai dati sul database  \\
-        \hline
-         & OpenRouteService & Il componente utilizza un'interfaccia fornita dal servizio OpenRouteService per il calcolo dei percorsi \\
-         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Percorsi & Il componente fornisce internamente un'interfaccia per la computazione dei percorsi che evitano le zone con criticita' di viabilita' \\
-        \hline
-    \end{tabularx}
-    \caption{Tabella gestione percorsi}
-\end{table}
-
-\subsection{Gestione database}
-\index{Gestione database}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| l | l | X |}
-        \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente utilizza un’interfaccia fornita dal datalayer per accedere ai dati sul database \\
-        \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
-        \Xhline{2pt}
-         & Data & Il componente fornisce internamente un’interfaccia per accedere al database \\
-        \hline
-    \end{tabularx}
-    \caption{Tabella gestione database}
 \end{table}
 
 \clearpage

@@ -81,6 +81,154 @@ Le interfacce sono definite come:
     \item \textbf{Interfacce di INPUT}: Tutte quelle interfacce che ricevono servizi dal sistema.
 \end{itemize} 
 
+\subsection{Diagramma dei componenti overview}
+\index{Diagramma dei componenti overview}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/ComponentDiagram_overview.png}
+    \caption{Diagramma dei componenti overview}
+    \label{fig:component-diagram-overview}
+\end{figure}
+
+\clearpage
+
+\subsubsection{Public server}
+\index{Public server}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & OpenRouteService & Il componente utilizza l'interfaccia fornita da un componente esterno per il calcolo dei percorsi che evitano le criticità. \\
+        \hline
+         & Query & Il componente utilizza l'interfaccia fornita dal componente "MongoDB" per ottenere il risultato delle query. \\
+        \hline
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Eliminazione account & Il componente fornisce un'interfaccia per permettere l'eliminazione dell'account utente. \\
+        \hline
+         & Gestione categorie & Il componente fornisce un'interfaccia per permettere la gestione delle categorie d'interesse impostate dall'utente. \\
+        \hline
+        & Gestione zone & Il componente fornisce un'interfaccia per permettere la gestione delle zone d'interesse impostate dall'utente. \\
+        \hline
+        & Lista eventi & Il componente fornisce un'interfaccia per permettere la visualizzazione di tutti gli eventi. \\
+        \hline
+        & Gestione preferenze & Il componente fornisce un'interfaccia per permettere la gestione delle preferenze dell'utente. \\
+        \hline
+        & Calcolo percorso & Il componente fornisce un'interfaccia per permettere il calcolo di un percorso d'interesse che eviti le criticità presenti in mappa. \\
+        \hline
+        & Dettagli evento & Il componente fornisce un'interfaccia per permettere la visualizzazione di tutti i dettagli di un singolo evento. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\subsubsection{Authentication SDK}
+\index{Authentication SDK}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Identity provider & Il componente utilizza un'interfaccia esterna per eseguire la connessione e le varie operazioni sull'Identity provider. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Token validation & Il componente fornisce l'interfaccia che si occupa della verifica e validazione del token di autenticazione. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\clearpage
+
+\subsubsection{Management Server}
+\index{Management Server}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Event modification & Il componente utilizza l'interfaccia fornita dal componente "Notification Server" per avvisarlo di modifiche agli eventi. \\
+        \hline
+         & Query & Il componente utilizza l'interfaccia fornita dal componente "MongoDB" per ottenere il risultato delle query. \\
+        \hline
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Gestione preferenze & Il componente fornisce un'interfaccia per permettere la gestione delle preferenze impostabili dall'utente. \\
+        \hline
+         & Lista LOG & Il componente fornisce un'interfaccia per permettere la visualizzazione dello storico delle modifiche avvenute nel sistema. \\
+        \hline
+        & Lock evento & Il componente fornisce un'interfaccia per permettere la mutua esclusione ad un evento, per non permetterne l'accesso contemporaneo in caso di eventuali modifiche. \\
+        \hline
+        & Lista eventi & Il componente fornisce un'interfaccia per visualizzare l'intera lista di tutti gli eventi disponibili a sistema. \\
+        \hline
+        & Aggiunta log & Il componente fornisce un'interfaccia per permettere l'aggiunta di un log a sistema. \\
+        \hline
+        & Gestione eventi & Il componente fornisce un'interfaccia per gestire gli eventi a sistema, permettendo creazione, modifica ed eliminazione. \\
+        \hline
+        & Gestione categorie & Il componente fornisce un'interfaccia per gestire tutte le sottocategorie, permettendo la loro creazione, modifica ed eliminazione. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\subsubsection{MongoDB}
+\index{MongoDB}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Query & Il componente fornisce un'interfaccia per eseguire queries sul database. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\clearpage
+
+\subsubsection{Notification Server}
+\index{Notification Server}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Query & Il componente utilizza l'interfaccia fornita dal componente "MongoDB" per ottenere il risultato delle query. \\
+        \hline
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Register listener & Il componente fornisce un'interfaccia per aprire un canale sulla quale inviare le notifiche. \\
+        \hline
+         & Event modification & Il componente fornisce un'interfaccia per essere avvisato di modifiche agli eventi. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
 \clearpage
 
 \subsection{Diagramma dei componenti di management}
@@ -90,9 +238,8 @@ Le interfacce sono definite come:
     \centering
     \includegraphics[width=0.6\textwidth]{Images/ManagementServer - Component.png}
     \caption{Diagramma dei componenti di management}
-    \label{fig:management-component-diagram}
-\end{figure}
-
+    \label{fig:component-diagram-management}
+    clearpage\end{figure}
 
 \subsubsection{Event Manager}
 \index{Event Manager}
@@ -246,6 +393,7 @@ Le interfacce sono definite come:
 \end{table}
 
 \clearpage
+
 
 \section{Diagramma delle classi}
 \index{Diagramma delle classi}

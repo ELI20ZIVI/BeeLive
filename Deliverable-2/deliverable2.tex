@@ -81,12 +81,14 @@ Le interfacce sono definite come:
     \item \textbf{Interfacce di INPUT}: Tutte quelle interfacce che ricevono servizi dal sistema.
 \end{itemize} 
 
+\clearpage
+
 \subsection{Diagramma dei componenti di management}
 \index{Diagramma dei componenti di management}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{Images/ManagementServer - Component.png}
+    \includegraphics[width=0.55\textwidth]{Images/ManagementServer - Component.png}
     \caption{Diagramma dei componenti di management}
     \label{fig:management-component-diagram}
 \end{figure}
@@ -103,14 +105,143 @@ Le interfacce sono definite come:
         \Xhline{2pt}
          & Token validation & Il componente utilizza un'interfaccia esterna per eseguire la validazione del token di accesso. \\
         \hline
-         & Percorsi & Il componente utilizza l'interfaccia fornita dal componente gestione percorsi per ottenere i percorsi calcolati evitando le criticità presenti in mappa \\
+         & Parse & Il componente utilizza l'interfaccia fornita dal componente "Custom event parser" per eseguire il parsing dell'evento specifico. \\
+        \hline
+         & Lock & Il componente utilizza l'interfaccia fornita dal componente "Locker" per bloccare le operazioni su un evento finchè ce ne sono in corso. \\
+        \hline
+         & Events & Il componente utilizza l'interfaccia fornita dal componente "Event manager" per ottenere gli eventi disponibili. \\
+        \hline
+        & Manage & Il componente utilizza l'interfaccia fornita dal componente "Event manager" per la gestione degli eventi. \\
         \Xhline{2pt}
         \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Login & Il componente fornisce un'interfaccia per effettuare il login attraverso i servizi del componente esterno CasDoor, che prevede l'inserimento delle specifiche credenziali per generare un token di accesso \\
+         & API & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
         \hline
     \end{tabularx}
     \caption{Tabella WEB API}
+\end{table}
+
+\clearpage
+
+\subsubsection{Event Manager}
+\index{Event Manager}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Process event & Il componente utilizza l'interfaccia fornita dal componente "Event processor" per il processo degli eventi. \\
+        \hline
+         & Data operations & Il componente utilizza l'interfaccia fornita dal componente "DAO" per eseguire tutte le operazioni sui dati. \\
+        \hline
+         & Log & Il componente utilizza l'interfaccia fornita dal componente "Logger" per il salvataggio dello storico di tutte le operazioni effettuate. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Manage & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
+        \hline
+         & Events & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\subsubsection{Event processor}
+\index{Event processor}
+
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Process event & Il componente fornisce un'interfaccia per fornire gli eventi processati. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Processor}
+\end{table}
+
+\subsubsection{Locker}
+\index{Locker}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Events & Il componente utilizza l'interfaccia fornita dal componente "Event manager" per l'accesso agli eventi. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Lock & Il componente fornisce un'interfaccia per permettere delle API agli applicativi coinvolti nel sistema. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Locker}
+\end{table}
+
+\clearpage
+
+\subsubsection{Logger}
+\index{Logger}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data operations & Il componente utilizza l'interfaccia fornita dal componente "DAO" per operare sui dati. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Log & Il componente fornisce un'interfaccia per fornire il log di tutti gli eventi. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Logger}
+\end{table}
+
+\subsubsection{DAO}
+\index{DAO}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Queries & Il componente utilizza un'interfaccia esterna per ottenere le queryes da eseguire. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Data Operations & Il componente fornisce un'interfaccia per eseguire operazioni sui dati. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Logger}
+\end{table}
+
+\subsubsection{Custom event parser}
+\index{Custom event parser}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Parse & Il componente fornisce un'interfaccia per eseguire il parsing dei dati. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Logger}
 \end{table}
 
 \clearpage

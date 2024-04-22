@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.4.22)  22 APR 2024 12:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.4.22)  22 APR 2024 13:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -491,7 +491,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 60.
-<Images/BeeLive-Logo.png, id=120, 127.07475pt x 96.81169pt>
+<Images/BeeLive-Logo.png, id=144, 127.07475pt x 96.81169pt>
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
 Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 60.
@@ -560,16 +560,9 @@ File: TS1opensans-TOsF.fd 2019/06/24 Font definitions for TS1/opensans-TOsF.
 )
 LaTeX Font Info:    Font shape `TS1/opensans-TOsF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 80.
-LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 84.
-<Images/ManagementServer - Component.png, id=164, 574.145pt x 490.83376pt>
-File: Images/ManagementServer - Component.png Graphic file (type png)
-<use Images/ManagementServer - Component.png>
-Package pdftex.def Info: Images/ManagementServer - Component.png  used on input line 89.
-(pdftex.def)             Requested size: 512.14963pt x 437.84425pt.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 116.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 84.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -587,9 +580,16 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [3
 
 {/usr/share/texmf-dist/fonts/enc/dvips/opensans/a_nvvucy.enc}]
+LaTeX Font Info:    Font shape `T1/opensans-TOsF/b/n' will be
+(Font)              scaled to size 12.0pt on input line 86.
+<Images/ManagementServer - Component.png, id=200, 574.145pt x 490.83376pt>
+File: Images/ManagementServer - Component.png Graphic file (type png)
+<use Images/ManagementServer - Component.png>
+Package pdftex.def Info: Images/ManagementServer - Component.png  used on input line 91.
+(pdftex.def)             Requested size: 281.68385pt x 240.8177pt.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 116.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 124.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -604,14 +604,16 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[4 <./Images/ManagementServer - Component.png>]
-Underfull \hbox (badness 2229) in paragraph at lines 157--157
-[]|\T1/opensans-TOsF/m/n/10 Il com-po-nente for-nisce all'utente un'interfaccia per reg-is-trarsi at-
+[4
+
+ <./Images/ManagementServer - Component.png>]
+Underfull \hbox (badness 2443) in paragraph at lines 185--185
+[]|\T1/opensans-TOsF/m/n/10 Il com-po-nente uti-lizza l'interfaccia for-nita dal com-po-nente "Event man-ager" per
  []
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 161.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 189.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -626,29 +628,6 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
 [5
-
-]
-Underfull \hbox (badness 3568) in paragraph at lines 193--193
-[]|\T1/opensans-TOsF/m/n/10 Il com-po-nente of-fre in-ter-na-mente l'interfaccia che per-me-tte
- []
-
-File: Images/BeeLive-Logo.png Graphic file (type png)
-<use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 197.
-(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 60.95216pt, for example:
-(fancyhdr)                \setlength{\headheight}{60.95216pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
-
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 3.60004pt, for example:
-(fancyhdr)                \setlength{\footskip}{3.60004pt}.
-
-[6
 
 ]
 File: Images/BeeLive-Logo.png Graphic file (type png)
@@ -668,14 +647,40 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
+[6
+
+]
+Underfull \hbox (badness 2229) in paragraph at lines 288--288
+[]|\T1/opensans-TOsF/m/n/10 Il com-po-nente for-nisce all'utente un'interfaccia per reg-is-trarsi at-
+ []
+
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 292.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
 [7
 
 ]
+Underfull \hbox (badness 3568) in paragraph at lines 324--324
+[]|\T1/opensans-TOsF/m/n/10 Il com-po-nente of-fre in-ter-na-mente l'interfaccia che per-me-tte
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 311.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 328.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 60.95216pt, for example:
@@ -691,34 +696,11 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 [8
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 316--318
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 319--320
-
- []
-
-<Images/utente_class.png, id=202, 252.945pt x 273.02pt>
-File: Images/utente_class.png Graphic file (type png)
-<use Images/utente_class.png>
-Package pdftex.def Info: Images/utente_class.png  used on input line 329.
-(pdftex.def)             Requested size: 128.0374pt x 138.20103pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 334--336
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 337--338
-
- []
-
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 347.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 378.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 60.95216pt, for example:
@@ -733,30 +715,12 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [9
 
- <./Images/utente_class.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 349--350
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 355--356
-
- []
-
-<Images/utenteAut_class.png, id=209, 251.94125pt x 152.57pt>
-File: Images/utenteAut_class.png Graphic file (type png)
-<use Images/utenteAut_class.png>
-Package pdftex.def Info: Images/utenteAut_class.png  used on input line 365.
-(pdftex.def)             Requested size: 128.0374pt x 77.53728pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
-
- []
-
+]
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 385.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 442.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 60.95216pt, for example:
@@ -771,20 +735,34 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [10
 
- <./Images/utenteAut_class.png>]
-<Images/utenteAmministratore_class.png, id=216, 282.05376pt x 194.7275pt>
-File: Images/utenteAmministratore_class.png Graphic file (type png)
-<use Images/utenteAmministratore_class.png>
-Package pdftex.def Info: Images/utenteAmministratore_class.png  used on input line 392.
-(pdftex.def)             Requested size: 153.64644pt x 106.07831pt.
+]
+Underfull \hbox (badness 10000) in paragraph at lines 447--449
 
-Overfull \hbox (1.39256pt too wide) in paragraph at lines 415--416
-[]\T1/opensans-TOsF/b/n/10 rimuoviCompetenza(competenza)\T1/opensans-TOsF/m/n/10 : Metodo che per-me-tte all'utente am-min-is-tra-tore di rimuo-vere le com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 450--451
+
+ []
+
+<Images/utente_class.png, id=246, 252.945pt x 273.02pt>
+File: Images/utente_class.png Graphic file (type png)
+<use Images/utente_class.png>
+Package pdftex.def Info: Images/utente_class.png  used on input line 460.
+(pdftex.def)             Requested size: 128.0374pt x 138.20103pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 465--467
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--469
+
  []
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 418.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 478.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -800,77 +778,23 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [11
 
- <./Images/utenteAmministratore_class.png>]
-<Images/utenteAutorizzato_class.png, id=223, 293.095pt x 313.17pt>
-File: Images/utenteAutorizzato_class.png Graphic file (type png)
-<use Images/utenteAutorizzato_class.png>
-Package pdftex.def Info: Images/utenteAutorizzato_class.png  used on input line 425.
-(pdftex.def)             Requested size: 140.83801pt x 150.48235pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 430--432
-
- []
-
-File: Images/BeeLive-Logo.png Graphic file (type png)
-<use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 455.
-(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 60.95216pt, for example:
-(fancyhdr)                \setlength{\headheight}{60.95216pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
-
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 3.60004pt, for example:
-(fancyhdr)                \setlength{\footskip}{3.60004pt}.
-
-[12
-
- <./Images/utenteAutorizzato_class.png>]
-<Images/evento_class.png, id=230, 162.6075pt x 262.9825pt>
-File: Images/evento_class.png Graphic file (type png)
-<use Images/evento_class.png>
-Package pdftex.def Info: Images/evento_class.png  used on input line 465.
-(pdftex.def)             Requested size: 76.8193pt x 124.2398pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 472--474
+ <./Images/utente_class.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 480--481
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
+Underfull \hbox (badness 10000) in paragraph at lines 486--487
 
  []
 
-File: Images/BeeLive-Logo.png Graphic file (type png)
-<use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 485.
-(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+<Images/utenteAut_class.png, id=253, 251.94125pt x 152.57pt>
+File: Images/utenteAut_class.png Graphic file (type png)
+<use Images/utenteAut_class.png>
+Package pdftex.def Info: Images/utenteAut_class.png  used on input line 496.
+(pdftex.def)             Requested size: 128.0374pt x 77.53728pt.
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 60.95216pt, for example:
-(fancyhdr)                \setlength{\headheight}{60.95216pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
-
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 3.60004pt, for example:
-(fancyhdr)                \setlength{\footskip}{3.60004pt}.
-
-[13
-
- <./Images/evento_class.png>]
-<Images/percorso_class.png, id=238, 283.0575pt x 194.7275pt>
-File: Images/percorso_class.png Graphic file (type png)
-<use Images/percorso_class.png>
-Package pdftex.def Info: Images/percorso_class.png  used on input line 492.
-(pdftex.def)             Requested size: 128.0374pt x 88.08414pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 497--499
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
 
  []
 
@@ -890,47 +814,85 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[14
+[12
 
- <./Images/percorso_class.png>]
-<Images/zona_class.png, id=245, 161.60374pt x 141.52875pt>
-File: Images/zona_class.png Graphic file (type png)
-<use Images/zona_class.png>
-Package pdftex.def Info: Images/zona_class.png  used on input line 523.
-(pdftex.def)             Requested size: 89.62775pt x 78.49323pt.
+ <./Images/utenteAut_class.png>]
+<Images/utenteAmministratore_class.png, id=260, 282.05376pt x 194.7275pt>
+File: Images/utenteAmministratore_class.png Graphic file (type png)
+<use Images/utenteAmministratore_class.png>
+Package pdftex.def Info: Images/utenteAmministratore_class.png  used on input line 523.
+(pdftex.def)             Requested size: 153.64644pt x 106.07831pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 528--529
-
+Overfull \hbox (1.39256pt too wide) in paragraph at lines 546--547
+[]\T1/opensans-TOsF/b/n/10 rimuoviCompetenza(competenza)\T1/opensans-TOsF/m/n/10 : Metodo che per-me-tte all'utente am-min-is-tra-tore di rimuo-vere le com-
  []
 
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 549.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 535--536
-
- []
-
-<Images/categoria_class.png, id=246, 427.5975pt x 222.8325pt>
-File: Images/categoria_class.png Graphic file (type png)
-<use Images/categoria_class.png>
-Package pdftex.def Info: Images/categoria_class.png  used on input line 544.
-(pdftex.def)             Requested size: 230.46576pt x 120.09995pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 549--550
-
- []
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 558--559
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
- []
+[13
 
+ <./Images/utenteAmministratore_class.png>]
+<Images/utenteAutorizzato_class.png, id=268, 293.095pt x 313.17pt>
+File: Images/utenteAutorizzato_class.png Graphic file (type png)
+<use Images/utenteAutorizzato_class.png>
+Package pdftex.def Info: Images/utenteAutorizzato_class.png  used on input line 556.
+(pdftex.def)             Requested size: 140.83801pt x 150.48235pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 565--566
+Underfull \hbox (badness 10000) in paragraph at lines 561--563
 
  []
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 567.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 586.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[14
+
+ <./Images/utenteAutorizzato_class.png>]
+<Images/evento_class.png, id=275, 162.6075pt x 262.9825pt>
+File: Images/evento_class.png Graphic file (type png)
+<use Images/evento_class.png>
+Package pdftex.def Info: Images/evento_class.png  used on input line 596.
+(pdftex.def)             Requested size: 76.8193pt x 124.2398pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 603--605
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--613
+
+ []
+
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 616.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -946,14 +908,20 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [15
 
- <./Images/zona_class.png> <./Images/categoria_class.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 579--580
+ <./Images/evento_class.png>]
+<Images/percorso_class.png, id=282, 283.0575pt x 194.7275pt>
+File: Images/percorso_class.png Graphic file (type png)
+<use Images/percorso_class.png>
+Package pdftex.def Info: Images/percorso_class.png  used on input line 623.
+(pdftex.def)             Requested size: 128.0374pt x 88.08414pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--630
 
  []
 
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 589.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 647.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -967,17 +935,48 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[16]
-<Images/class_diagram.png, id=259, 1703.36375pt x 1366.10374pt>
-File: Images/class_diagram.png Graphic file (type png)
-<use Images/class_diagram.png>
-Package pdftex.def Info: Images/class_diagram.png  used on input line 593.
-(pdftex.def)             Requested size: 512.14963pt x 410.75146pt.
+[16
+
+ <./Images/percorso_class.png>]
+<Images/zona_class.png, id=290, 161.60374pt x 141.52875pt>
+File: Images/zona_class.png Graphic file (type png)
+<use Images/zona_class.png>
+Package pdftex.def Info: Images/zona_class.png  used on input line 654.
+(pdftex.def)             Requested size: 89.62775pt x 78.49323pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 659--660
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 666--667
+
+ []
+
+<Images/categoria_class.png, id=291, 427.5975pt x 222.8325pt>
+File: Images/categoria_class.png Graphic file (type png)
+<use Images/categoria_class.png>
+Package pdftex.def Info: Images/categoria_class.png  used on input line 675.
+(pdftex.def)             Requested size: 230.46576pt x 120.09995pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--681
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 689--690
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 696--697
+
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 598.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 698.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 60.95216pt, for example:
@@ -992,16 +991,15 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [17
 
- <./Images/class_diagram.png>]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 606.
- (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
+ <./Images/zona_class.png> <./Images/categoria_class.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 710--711
+
+ []
+
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 654.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 720.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 60.95216pt, for example:
@@ -1014,12 +1012,15 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.60004pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.60004pt}.
 
-[18
-
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+[18]
+<Images/class_diagram.png, id=304, 1703.36375pt x 1366.10374pt>
+File: Images/class_diagram.png Graphic file (type png)
+<use Images/class_diagram.png>
+Package pdftex.def Info: Images/class_diagram.png  used on input line 724.
+(pdftex.def)             Requested size: 512.14963pt x 410.75146pt.
 File: Images/BeeLive-Logo.png Graphic file (type png)
 <use Images/BeeLive-Logo.png>
-Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 699.
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 729.
 (pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
 
 
@@ -1036,27 +1037,71 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [19
 
+ <./Images/class_diagram.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 737.
+ (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 785.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[20
+
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+File: Images/BeeLive-Logo.png Graphic file (type png)
+<use Images/BeeLive-Logo.png>
+Package pdftex.def Info: Images/BeeLive-Logo.png  used on input line 830.
+(pdftex.def)             Requested size: 56.9055pt x 43.35213pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 60.95216pt, for example:
+(fancyhdr)                \setlength{\headheight}{60.95216pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-48.95216pt}.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.60004pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.60004pt}.
+
+[21
+
 ] (./deliverable2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `deliverable2.out' has not changed.
-(rerunfilecheck)             Checksum: A7BF7F14C9C072EE943966EC69FE8546;4034.
+(rerunfilecheck)             Checksum: 158F0BCA283202FC087023E1B434BB9F;4764.
  ) 
 Here is how much of TeX's memory you used:
- 14445 strings out of 476076
- 254281 string characters out of 5793775
- 1939187 words of memory out of 5000000
- 36301 multiletter control sequences out of 15000+600000
+ 14465 strings out of 476076
+ 254631 string characters out of 5793775
+ 1941187 words of memory out of 5000000
+ 36307 multiletter control sequences out of 15000+600000
  568236 words of font info for 63 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 83i,16n,131p,427b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 83i,16n,131p,427b,467s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on deliverable2.pdf (19 pages, 264022 bytes).
+Output written on deliverable2.pdf (21 pages, 268203 bytes).
 PDF statistics:
- 314 PDF objects out of 1000 (max. 8388607)
- 261 compressed objects within 3 object streams
- 68 named destinations out of 1000 (max. 500000)
- 288 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 362 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 82 named destinations out of 1000 (max. 500000)
+ 336 words of extra memory for PDF output out of 10000 (max. 10000000)
 

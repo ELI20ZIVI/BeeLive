@@ -77,8 +77,8 @@ I componenti sono individuati seguendo quando espresso nel documento Deliverable
 Questi componenti sono provvisti di interfacce che permettono la comunicazione tra di essi.\\
 Le interfacce sono definite come:
 \begin{itemize}
-    \item \textbf{Interfacce di OUTPUT}: Tutte quelle interfacce che offrono servizi al sistema.
-    \item \textbf{Interfacce di INPUT}: Tutte quelle interfacce che ricevono servizi dal sistema.
+    \item \textbf{Interfaccia RICHIESTA}: Tutte quelle interfacce che offrono servizi alla componente.
+    \item \textbf{Interfaccia FORNITA}: Tutti quelle interfacce che consentono di usufruire dei servizi offerti dalla componente.
 \end{itemize} 
 
 \subsection{Diagramma dei componenti overview}
@@ -101,27 +101,27 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & OpenRouteService & Il componente utilizza l'interfaccia fornita da un componente esterno per il calcolo dei percorsi che evitano le criticità. \\
+         & OpenRouteService & Il componente utilizza l'interfaccia fornita da un componente esterno per il calcolo dei percorsi di interesse a partire da una lista di waypoints. \\
         \hline
-         & Query & Il componente utilizza l'interfaccia fornita dal componente "MongoDB" per ottenere il risultato delle query. \\
+         & Query & Il componente utilizza l'interfaccia fornita dal componente \textit{MongoDB} per eseguire le queries. \\
         \hline
-         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente \textit{Authentication SDK} per la verifica e validazione del token di autenticazione. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Eliminazione account & Il componente fornisce un'interfaccia per permettere l'eliminazione dell'account utente. \\
+         & Eliminazione account & Il componente fornisce un'interfaccia per permettere l'eliminazione dell'account utente. Comporta la cancellazione dei dati associati all'utente, nelle tempistiche imposte dalla legge. \\
         \hline
          & Gestione categorie & Il componente fornisce un'interfaccia per permettere la gestione delle categorie d'interesse impostate dall'utente. \\
         \hline
         & Gestione zone & Il componente fornisce un'interfaccia per permettere la gestione delle zone d'interesse impostate dall'utente. \\
         \hline
-        & Lista eventi & Il componente fornisce un'interfaccia per permettere la visualizzazione di tutti gli eventi. \\
+        & Lista eventi & Il componente fornisce un'interfaccia per permettere di ottenere la lista di tutti gli eventi di interesse. \\
         \hline
         & Gestione preferenze & Il componente fornisce un'interfaccia per permettere la gestione delle preferenze dell'utente. \\
         \hline
-        & Calcolo percorso & Il componente fornisce un'interfaccia per permettere il calcolo di un percorso d'interesse che eviti le criticità presenti in mappa. \\
+        & Calcolo percorso & Il componente fornisce un'interfaccia per permettere il calcolo di un percorso d'interesse a partire da una lista di waypoints, consente di astrarre il servizio utilizzato. \\
         \hline
         & Dettagli evento & Il componente fornisce un'interfaccia per permettere la visualizzazione di tutti i dettagli di un singolo evento. \\
         \hline
@@ -137,11 +137,11 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Identity provider & Il componente utilizza un'interfaccia esterna per eseguire la connessione e le varie operazioni sull'Identity provider. \\
+         & Identity provider & Il componente utilizza un'interfaccia esterna per eseguire la connessione e accedere ai servizi offerti dall'Identity provider. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Token validation & Il componente fornisce l'interfaccia che si occupa della verifica e validazione del token di autenticazione. \\
         \hline
@@ -159,15 +159,15 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Event modification & Il componente utilizza l'interfaccia fornita dal componente "Notification Server" per avvisarlo di modifiche agli eventi. \\
+         & Event modification & Il componente utilizza l'interfaccia fornita dal componente \textit{Notification Server} per avvisarlo di modifiche agli eventi. \\
         \hline
-         & Query & Il componente utilizza l'interfaccia fornita dal componente "MongoDB" per ottenere il risultato delle query. \\
+         & Query & Il componente utilizza l'interfaccia fornita dal componente \textit{MongoDB} per effettuare delle query per svolgere i suoi ruoli. \\
         \hline
-         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente \textit{Authentication SDK} per la verifica e validazione del token di autenticazione. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Gestione preferenze & Il componente fornisce un'interfaccia per permettere la gestione delle preferenze impostabili dall'utente. \\
         \hline
@@ -175,11 +175,9 @@ Le interfacce sono definite come:
         \hline
         & Lock evento & Il componente fornisce un'interfaccia per permettere la mutua esclusione ad un evento, per non permetterne l'accesso contemporaneo in caso di eventuali modifiche. \\
         \hline
-        & Lista eventi & Il componente fornisce un'interfaccia per visualizzare l'intera lista di tutti gli eventi disponibili a sistema. \\
+        & Lista eventi & Il componente fornisce un'interfaccia per visualizzare la lista degli eventi di competenza dell'utente. \\
         \hline
-        & Aggiunta log & Il componente fornisce un'interfaccia per permettere l'aggiunta di un log a sistema. \\
-        \hline
-        & Gestione eventi & Il componente fornisce un'interfaccia per gestire gli eventi a sistema, permettendo creazione, modifica ed eliminazione. \\
+        & Gestione eventi & Il componente fornisce un'interfaccia per gestire gli eventi a sistema, permettendo creazione, modifica ed eliminazione degli eventi di competenza. \\
         \hline
         & Gestione categorie & Il componente fornisce un'interfaccia per gestire tutte le sottocategorie, permettendo la loro creazione, modifica ed eliminazione. \\
         \hline
@@ -195,7 +193,7 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Query & Il componente fornisce un'interfaccia per eseguire queries sul database. \\
         \hline
@@ -213,17 +211,17 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Query & Il componente utilizza l'interfaccia fornita dal componente "MongoDB" per ottenere il risultato delle query. \\
+         & Query & Il componente utilizza l'interfaccia fornita dal componente \textit{MongoDB} l'esecuzione delle query. \\
         \hline
-         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente \textit{Authentication SDK} per la verifica e validazione del token di autenticazione. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Register listener & Il componente fornisce un'interfaccia per aprire un canale sulla quale inviare le notifiche. \\
         \hline
-         & Event modification & Il componente fornisce un'interfaccia per essere avvisato di modifiche agli eventi. \\
+         & Event modification & Il componente fornisce un'interfaccia per essere avvisato di modifiche agli eventi. Modifiche che verranno successivamente inoltrate sui listener interessati alla categoria di evento. \\
         \hline
     \end{tabularx}
     \caption{Tabella Notification Server}
@@ -231,13 +229,13 @@ Le interfacce sono definite come:
 
 \clearpage
 
-\subsection{Diagramma dei componenti di notifica}
+\subsection{Diagramma dei componenti di \textit{Notification Server}}
 \index{Diagramma dei componenti di notifica}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{Images/ComponentDiagram_Notification.drawio.png}
-    \caption{Diagramma dei componenti di notifica}
+    \caption{Diagramma dei componenti di \textit{Notification Server}}
     \label{fig:component-diagram-notification}
 \end{figure}
 
@@ -249,11 +247,11 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Query & Il componente utilizza un'interfaccia esterna per ottenere tutte le query da eseguire sul database. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & User categories & Il componente fornisce un'interfaccia per permettere di ottenere tutte le categorie impostate dagli utenti. \\
         \hline
@@ -271,13 +269,13 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente \textit{Authentication SDK} per la verifica e validazione del token di autenticazione. \\
         \hline
-         & Register listener & Il componente utilizza l'interfaccia fornita dal componente "Core" per ricevere le notifiche relative agli eventi. \\
+         & Register listener & Il componente utilizza l'interfaccia fornita dal componente \textit{Core} per ricevere le notifiche relative agli eventi. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Web API & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
         \hline
@@ -293,13 +291,13 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & User categories & Il componente utilizza l'interfaccia fornita dal componente DAO per ottenere tutte le categorie impostate dagli utenti. \\
+         & User categories & Il componente utilizza l'interfaccia fornita dal componente \textit{DAO} per ottenere tutte le categorie impostate dagli utenti. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Event modification & Il componente fornisce un'interfaccia per notificare le modifiche agli eventi. \\
+         & Event modification & Il componente fornisce un'interfaccia per essere notificato di modifiche agli eventi. \\
         \hline
          & Register listener & Il componente fornisce un'interfaccia per aprire un canale sulla quale inviare le notifiche. \\
         \hline
@@ -309,13 +307,13 @@ Le interfacce sono definite come:
 
 \clearpage
 
-\subsection{Diagramma dei componenti pubblici}
+\subsection{Diagramma dei componenti di \textit{Public Server}}
 \index{Diagramma dei componenti pubblici}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.75\textwidth]{Images/ComponentDiagram_Public.png}
-    \caption{Diagramma dei componenti pubblici}
+    \caption{Diagramma dei componenti di \textit{Public Server}}
     \label{fig:component-diagram-public}
 \end{figure}
 
@@ -327,11 +325,11 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & OpenRouteService & Il componente utilizza un'interfaccia esterna per eseguire il calcolo del percorso richiesto dall'utente che evita le criticità su mappa. \\
+         & OpenRouteService & Il componente utilizza un'interfaccia esterna per eseguire il calcolo del percorso di interesse dell'utente, a partire da una lista di waypoints. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Route & Il componente fornisce un'interfaccia per fornire i percorsi calcolati richiesti dagli utenti. \\
         \hline
@@ -349,13 +347,13 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Event & Il componente utilizza l'interfaccia fornita dal componente "Event Proessor" per ottenere gli eventi processati dal sistema. \\
+         & Event & Il componente utilizza l'interfaccia fornita dal componente \textit{Event Proessor} per ottenere gli eventi processati dal sistema. \\
         \hline
-         & Preferences & Il componente utilizza l'interfaccia fornita dal componente "Preferences manager" per ottenere le preferenze impostate dagli utenti. \\
+         & Preferences & Il componente utilizza l'interfaccia fornita dal componente \textit{Preferences manager} per ottenere e modificare le preferenze impostate dagli utenti. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Web API & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
         \hline
@@ -373,11 +371,11 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Event & Il componente utilizza l'interfaccia fornita dal componente "DAO" per ottenere gli eventi presenti nel sistema. \\
+         & Event & Il componente utilizza l'interfaccia fornita dal componente \textit{DAO} per ottenere gli eventi presenti nel sistema. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Event & Il componente fornisce un'interfaccia per fornire gli eventi processati. \\
         \hline
@@ -395,14 +393,14 @@ Le interfacce sono definite come:
         \Xhline{2pt}
         \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Preferences & Il componente utilizza l'interfaccia fornita dal componente "DAO" per ottenere le preferenze impostate dagli utenti. \\
+         & Preferences & Il componente utilizza l'interfaccia fornita dal componente \textit{DAO} per ottenere e modificare le preferenze impostate dagli utenti. \\
         \Xhline{2pt}
         \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Preferences & Il componente fornisce un'interfaccia per ottenere le preferenze impostate dagli utenti. \\
+         & Preferences & Il componente fornisce un'interfaccia per ottenere e modificare le preferenze impostate dagli utenti. \\
         \hline
     \end{tabularx}
-    \caption{Tabella Preference Manager}
+    \caption{Tabella Preferences Manager}
 \end{table}
 
 \clearpage
@@ -415,27 +413,27 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Query & Il componente utilizza l'interfaccia esterna per ottenere le query da eseguire sul database. \\
+         & Query & Il componente utilizza l'interfaccia esterna per eseguire le query da eseguire sul database. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Event & Il componente fornisce un'interfaccia per fornire gli eventi processati. \\
+         & Event & Il componente fornisce un'interfaccia per fornire gli eventi. \\
         \hline
-         & Preferences & Il componente fornisce un'interfaccia per ottenere le preferenze impostate dagli utenti. \\
+         & Preferences & Il componente fornisce un'interfaccia per ottenere e modificare le preferenze impostate dagli utenti. \\
         \hline
     \end{tabularx}
     \caption{Tabella DAO}
 \end{table}
 
-\subsection{Diagramma dei componenti di management}
+\subsection{Diagramma dei componenti di \textit{Management Server}}
 \index{Diagramma dei componenti di management}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{Images/ComponentDiagram_Management.png}
-    \caption{Diagramma dei componenti di management}
+    \caption{Diagramma dei componenti di \textit{Management Server}}
     \label{fig:component-diagram-management}
 \end{figure}    
 
@@ -447,7 +445,7 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Process event & Il componente fornisce un'interfaccia per permettere il processo degli eventi. \\
         \hline
@@ -466,19 +464,19 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Process event & Il componente utilizza l'interfaccia fornita dal componente "Event processor" per il processo degli eventi. \\
+         & Process event & Il componente utilizza l'interfaccia fornita dal componente \textit{Event processor} per il processo degli eventi. \\
         \hline
-         & Event modification & Il componente utilizza l'interfaccia fornita dal componente "Event processor" per processare un evento. \\
+         & Event modification & Il componente utilizza l'interfaccia fornita dal componente \textit{Event processor} per modificare un evento. \\
         \hline
-         & Log & Il componente utilizza l'interfaccia fornita dal componente "Logger" per il salvataggio dello storico di tutte le operazioni effettuate. \\
+         & Log & Il componente utilizza l'interfaccia fornita dal componente \textit{Logger} per il salvataggio dello storico di tutte le operazioni effettuate. \\
         \hline
-         & Events & Il componente utilizza l'interfaccia fornita dal componente "DAO" per reperire tutti gli eventi a sistema. \\
+         & Events & Il componente utilizza l'interfaccia fornita dal componente \textit{DAO} per reperire tutti gli eventi a sistema. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Manage & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
+         & Manage & Il componente fornisce un'interfaccia per consentire la modifica degli eventi. \\
         \hline
          & List & Il componente fornisce un'interfaccia per permettere la visualizzazione di tutti gli eventi presenti nel sistema. \\
         \hline
@@ -494,15 +492,15 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Query & Il componente utilizza un'interfaccia esterna per ottenere le queryes da eseguire. \\
+         & Query & Il componente utilizza un'interfaccia esterna per ottenere le queries da eseguire. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Save log & Il componente fornisce un'interfaccia per permettere il salvataggio del log di tutti gli eventi. \\
+         & Save log & Il componente fornisce un'interfaccia per permettere il salvataggio e la lettura dei log. \\
         \hline
-         & Events & Il componente fornisce un'interfaccia per permettere l'accesso a tutti gli eventi presenti nel sistema. \\
+         & Events & Il componente fornisce un'interfaccia per permettere l'accesso e la modifica di tutti gli eventi presenti nel sistema. \\
         \hline
     \end{tabularx}
     \caption{Tabella DAO}
@@ -516,9 +514,9 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Parse & Il componente fornisce un'interfaccia per eseguire il parsing dei dati. \\
+         & Parse & Il componente fornisce un'interfaccia per eseguire il parsing dei dati in formati proprietari dei vari dipartimenti. \\
         \hline
     \end{tabularx}
     \caption{Tabella Custom event parser}
@@ -534,20 +532,20 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Lock & Il componente utilizza l'interfaccia fornita dal componente "Locker" per permettere la mutua esclusione ad un evento. \\
+         & Lock & Il componente utilizza l'interfaccia fornita dal componente \textit{Locker} per permettere la mutua esclusione ad un evento. \\
         \hline
-         & Log & Il componente utilizza l'interfaccia fornita dal componente "Logger" per il salvataggio dello storico di tutte le operazioni effettuate. \\
+         & Log & Il componente utilizza l'interfaccia fornita dal componente \textit{Logger} per la consultazione dei log. \\
         \hline
-         & List & Il componente utilizza l'interfaccia fornita dal componente "Event manager" per reperire tutti gli eventi a sistema. \\
+         & List & Il componente utilizza l'interfaccia fornita dal componente \textit{Event manager} per reperire tutti gli eventi a sistema. \\
         \hline
-         & Manage & Il componente utilizza l'interfaccia fornita dal componente "Event manager" per permettere la gestione degli eventi. \\
+         & Manage & Il componente utilizza l'interfaccia fornita dal componente \textit{Event manager} per permettere la gestione degli eventi. \\
         \hline
-         & Parse & Il componente utilizza l'interfaccia fornita dal componente "Custom event parser" per eseguire il parsing dei dati. \\
+         & Parse & Il componente utilizza l'interfaccia fornita dal componente \textit{Custom event parser} per eseguire il parsing dei dati. \\
         \hline
          & Token validation & Il componente utilizza un'interfaccia esterna per la verifica e validazione del token di autenticazione. \\
-         \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+         \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Web API & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
         \hline
@@ -563,9 +561,9 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Lock & Il componente fornisce un'interfaccia per permettere delle API agli applicativi coinvolti nel sistema. \\
+         & Lock & Il componente fornisce un'interfaccia per consentire l'esclusività di modifica di un evento. \\
         \hline
     \end{tabularx}
     \caption{Tabella Locker}
@@ -579,11 +577,11 @@ Le interfacce sono definite come:
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| l | l | X |}
         \Xhline{2pt}
-        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{RICHIESTA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
-         & Save log & Il componente utilizza l'interfaccia fornita dal componente "DAO" per salvare il log di tutti gli eventi. \\
+         & Save log & Il componente utilizza l'interfaccia fornita dal componente \textit{DAO} per salvare il log di tutti gli eventi. \\
         \Xhline{2pt}
-        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \textbf{FORNITA} & \textbf{Nome} & \textbf{Descrizione} \\
         \Xhline{2pt}
          & Log & Il componente fornisce un'interfaccia per fornire il log di tutti gli eventi. \\
         \hline

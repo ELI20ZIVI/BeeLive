@@ -108,8 +108,6 @@ post: Evento.allInstances() -> !includes (evento)
 
 
 
-
-
 context UtenteAutorizzato::modificaEvento(evento: Evento)
 
 pre: self.haCompetenza(evento)
@@ -127,6 +125,8 @@ pre: categoria.supercategoria != None
 pre: self.categorie_di_competenza -> includes(categoria.supercategoria)
 
 post: self.categorie_di_competenza -> includes(categoria)
+
+post: categoria.nome != ""
 
 // solo l'admin può creare categorie immutabili
 
@@ -179,3 +179,29 @@ post: Evento.allInstances() -> forAll (e | if self.haCompetenza(e) then result -
 
 
 --- Evento ---
+
+inv: self.start_validity <= self.end_validity
+
+inv: self.start_visibility <= self.end_visibility
+
+inv: self.creator.haCompetenza(self)
+
+/// il creatore dell'evento deve avere competenza su tutti i sottoeventi. Il viceversa invece non è vero. 
+
+inv: self.sottoeventi -> forAll (s | self.creator.haCompetenza (s) )
+
+
+
+
+
+--- Categoria ---
+
+/// Le categorie formano delle foreste di alberi, per cui non possono esistere cicli. Questa è una funzione ausiliaria che parte da un nodo (categoria) e ritorna vero se l'albero a cui esso è "attaccato" ha cicli; falso se non ne ha.
+
+def: static haCicli(categoria: Categoria) = FloydCycleAlgorithm /// ...o qualsiasi altro algoritmo
+
+
+
+inv: haCicli(self) = False
+
+

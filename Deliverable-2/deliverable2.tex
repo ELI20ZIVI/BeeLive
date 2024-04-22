@@ -231,15 +231,215 @@ Le interfacce sono definite come:
 
 \clearpage
 
+\subsection{Diagramma dei componenti di notifica}
+\index{Diagramma dei componenti di notifica}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Images/ComponentDiagram_Notification.drawio.png}
+    \caption{Diagramma dei componenti di notifica}
+    \label{fig:component-diagram-notification}
+\end{figure}
+
+\subsubsection{DAO}
+\index{DAO}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Query & Il componente utilizza un'interfaccia esterna per ottenere tutte le query da eseguire sul database. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & User categories & Il componente fornisce un'interfaccia per permettere di ottenere tutte le categorie impostate dagli utenti. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\clearpage
+
+\subsubsection{Web Server}
+\index{Web Server}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Token validation & Il componente utilizza l'interfaccia fornita dal componente "Authentication SDK" per la verifica e validazione del token di autenticazione. \\
+        \hline
+         & Register listener & Il componente utilizza l'interfaccia fornita dal componente "Core" per ricevere le notifiche relative agli eventi. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Web API & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\subsubsection{Core}
+\index{Core}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & User categories & Il componente utilizza l'interfaccia fornita dal componente DAO per ottenere tutte le categorie impostate dagli utenti. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Event modification & Il componente fornisce un'interfaccia per notificare le modifiche agli eventi. \\
+        \hline
+         & Register listener & Il componente fornisce un'interfaccia per aprire un canale sulla quale inviare le notifiche. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\clearpage
+
+\subsection{Diagramma dei componenti pubblici}
+\index{Diagramma dei componenti pubblici}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/ComponentDiagram_Public.png}
+    \caption{Diagramma dei componenti pubblici}
+    \label{fig:component-diagram-public}
+\end{figure}
+
+\subsubsection{Route calculator}
+\index{Route calculator}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & OpenRouteService & Il componente utilizza un'interfaccia esterna per eseguire il calcolo del percorso richiesto dall'utente che evita le criticità su mappa. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Route & Il componente fornisce un'interfaccia per fornire i percorsi calcolati richiesti dagli utenti. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\clearpage
+
+\subsubsection{Web Server}
+\index{Web Server}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Event & Il componente utilizza l'interfaccia fornita dal componente "Event Proessor" per ottenere gli eventi processati dal sistema. \\
+        \hline
+         & Preferences & Il componente utilizza l'interfaccia fornita dal componente "Preferences manager" per ottenere le preferenze impostate dagli utenti. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Web API & Il componente fornisce un'interfaccia per permettere l'utilizzo delle API agli applicativi coinvolti nel sistema. \\
+        \hline
+         & Token validation & Il componente utilizza un'interfaccia esterna per eseguire la validazione del token di accesso. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\subsubsection{Event processor}
+\index{Event processor}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Event & Il componente utilizza l'interfaccia fornita dal componente "DAO" per ottenere gli eventi presenti nel sistema. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Event & Il componente fornisce un'interfaccia per fornire gli eventi processati. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Processor}
+\end{table}
+
+\subsubsection{Preferences manager}
+\index{Preferences manager}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Preferences & Il componente utilizza l'interfaccia fornita dal componente "DAO" per ottenere le preferenze impostate dagli utenti. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Preferences & Il componente fornisce un'interfaccia per ottenere le preferenze impostate dagli utenti. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
+\clearpage
+
+\subsubsection{DAO}
+\index{DAO}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| l | l | X |}
+        \Xhline{2pt}
+        \textbf{INPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Query & Il componente utilizza l'interfaccia esterna per ottenere le query da eseguire sul database. \\
+        \Xhline{2pt}
+        \textbf{OUTPUT} & \textbf{Nome} & \textbf{Descrizione} \\
+        \Xhline{2pt}
+         & Event & Il componente fornisce un'interfaccia per fornire gli eventi processati. \\
+        \hline
+         & Preferences & Il componente fornisce un'interfaccia per ottenere le preferenze impostate dagli utenti. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella Event Manager}
+\end{table}
+
 \subsection{Diagramma dei componenti di management}
 \index{Diagramma dei componenti di management}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\textwidth]{Images/ManagementServer - Component.png}
+    \includegraphics[width=0.75\textwidth]{Images/ManagementServer - Component.png}
     \caption{Diagramma dei componenti di management}
     \label{fig:component-diagram-management}
-    clearpage\end{figure}
+\end{figure}    
+
+\clearpage
 
 \subsubsection{Event Manager}
 \index{Event Manager}
@@ -266,8 +466,6 @@ Le interfacce sono definite come:
     \end{tabularx}
     \caption{Tabella Event Manager}
 \end{table}
-
-\clearpage
 
 \subsubsection{Management server}
 \index{Management server}
@@ -296,6 +494,8 @@ Le interfacce sono definite come:
     \end{tabularx}
     \caption{Tabella WEB API}
 \end{table}
+
+\clearpage
 
 \subsubsection{Event processor}
 \index{Event processor}
@@ -334,8 +534,6 @@ Le interfacce sono definite come:
     \caption{Tabella Locker}
 \end{table}
 
-\clearpage
-
 \subsubsection{Logger}
 \index{Logger}
 
@@ -355,6 +553,8 @@ Le interfacce sono definite come:
     \end{tabularx}
     \caption{Tabella Logger}
 \end{table}
+
+\clearpage
 
 \subsubsection{DAO}
 \index{DAO}

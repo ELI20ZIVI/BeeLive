@@ -1,38 +1,41 @@
 \begin{theindex}
 
-  \item Altre classi, \hyperpage{15}
+  \item Altre classi, \hyperpage{19}
   \item Authentication SDK, \hyperpage{4}
 
   \indexspace
 
-  \item Categoria, \hyperpage{17}, \hyperpage{20}
-  \item Competenza, \hyperpage{18}
+  \item Categoria, \hyperpage{21}, \hyperpage{24}
+  \item Competenza, \hyperpage{22}
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{20}
-  \item Custom event parser, \hyperpage{10}
+  \item Constraints con OCL, \hyperpage{24}
+  \item Core, \hyperpage{8}
+  \item Custom event parser, \hyperpage{14}
 
   \indexspace
 
-  \item DAO, \hyperpage{10}
-  \item Diagramma dei componenti di management, \hyperpage{7}
+  \item DAO, \hyperpage{7}, \hyperpage{11}, \hyperpage{14}
+  \item Diagramma dei componenti di management, \hyperpage{11}
+  \item Diagramma dei componenti di notifica, \hyperpage{7}
   \item Diagramma dei componenti overview, \hyperpage{3}
-  \item Diagramma delle classi, \hyperpage{11}
+  \item Diagramma dei componenti pubblici, \hyperpage{9}
+  \item Diagramma delle classi, \hyperpage{15}
 
   \indexspace
 
-  \item Event Manager, \hyperpage{7}
-  \item Event processor, \hyperpage{9}
-  \item Evento, \hyperpage{15}, \hyperpage{20}
+  \item Event Manager, \hyperpage{12}
+  \item Event processor, \hyperpage{10}, \hyperpage{13}
+  \item Evento, \hyperpage{19}, \hyperpage{24}
 
   \indexspace
 
-  \item Locker, \hyperpage{9}
-  \item Logger, \hyperpage{10}
+  \item Locker, \hyperpage{13}
+  \item Logger, \hyperpage{13}
 
   \indexspace
 
   \item Management Server, \hyperpage{5}
-  \item Management server, \hyperpage{9}
+  \item Management server, \hyperpage{12}
   \item MongoDB, \hyperpage{5}
 
   \indexspace
@@ -41,22 +44,31 @@
 
   \indexspace
 
-  \item Percorso, \hyperpage{16}
-  \item Policy, \hyperpage{18}
+  \item Percorso, \hyperpage{20}
+  \item Policy, \hyperpage{22}
+  \item Preferences manager, \hyperpage{10}
   \item Public server, \hyperpage{4}
 
   \indexspace
 
-  \item Utente, \hyperpage{11}, \hyperpage{20}
-  \item Utente amministratore, \hyperpage{13}
-  \item Utente autenticabile, \hyperpage{20}
-  \item Utente autenticato, \hyperpage{12}
-  \item Utente Autorizzato, \hyperpage{21}
-  \item Utente autorizzato, \hyperpage{14}
-  \item Utenti, \hyperpage{11}
+  \item Route calculator, \hyperpage{9}
 
   \indexspace
 
-  \item Zone di interesse, \hyperpage{17}
+  \item Utente, \hyperpage{15}, \hyperpage{24}
+  \item Utente amministratore, \hyperpage{17}
+  \item Utente autenticabile, \hyperpage{24}
+  \item Utente autenticato, \hyperpage{16}
+  \item Utente Autorizzato, \hyperpage{25}
+  \item Utente autorizzato, \hyperpage{18}
+  \item Utenti, \hyperpage{15}
+
+  \indexspace
+
+  \item Web Server, \hyperpage{8}, \hyperpage{10}
+
+  \indexspace
+
+  \item Zone di interesse, \hyperpage{21}
 
 \end{theindex}

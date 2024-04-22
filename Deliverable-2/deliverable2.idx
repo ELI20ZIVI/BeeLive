@@ -5,30 +5,40 @@
 \indexentry{Management Server|hyperpage}{5}
 \indexentry{MongoDB|hyperpage}{5}
 \indexentry{Notification Server|hyperpage}{6}
-\indexentry{Diagramma dei componenti di management|hyperpage}{7}
-\indexentry{Event Manager|hyperpage}{7}
-\indexentry{Management server|hyperpage}{9}
-\indexentry{Event processor|hyperpage}{9}
-\indexentry{Locker|hyperpage}{9}
-\indexentry{Logger|hyperpage}{10}
-\indexentry{DAO|hyperpage}{10}
-\indexentry{Custom event parser|hyperpage}{10}
-\indexentry{Diagramma delle classi|hyperpage}{11}
-\indexentry{Utenti|hyperpage}{11}
-\indexentry{Utente|hyperpage}{11}
-\indexentry{Utente autenticato|hyperpage}{12}
-\indexentry{Utente amministratore|hyperpage}{13}
-\indexentry{Utente autorizzato|hyperpage}{14}
-\indexentry{Altre classi|hyperpage}{15}
-\indexentry{Evento|hyperpage}{15}
-\indexentry{Percorso|hyperpage}{16}
-\indexentry{Zone di interesse|hyperpage}{17}
-\indexentry{Categoria|hyperpage}{17}
-\indexentry{Competenza|hyperpage}{18}
-\indexentry{Policy|hyperpage}{18}
-\indexentry{Constraints con OCL|hyperpage}{20}
-\indexentry{Utente|hyperpage}{20}
-\indexentry{Utente autenticabile|hyperpage}{20}
-\indexentry{Evento|hyperpage}{20}
-\indexentry{Categoria|hyperpage}{20}
-\indexentry{Utente Autorizzato|hyperpage}{21}
+\indexentry{Diagramma dei componenti di notifica|hyperpage}{7}
+\indexentry{DAO|hyperpage}{7}
+\indexentry{Web Server|hyperpage}{8}
+\indexentry{Core|hyperpage}{8}
+\indexentry{Diagramma dei componenti pubblici|hyperpage}{9}
+\indexentry{Route calculator|hyperpage}{9}
+\indexentry{Web Server|hyperpage}{10}
+\indexentry{Event processor|hyperpage}{10}
+\indexentry{Preferences manager|hyperpage}{10}
+\indexentry{DAO|hyperpage}{11}
+\indexentry{Diagramma dei componenti di management|hyperpage}{11}
+\indexentry{Event Manager|hyperpage}{12}
+\indexentry{Management server|hyperpage}{12}
+\indexentry{Event processor|hyperpage}{13}
+\indexentry{Locker|hyperpage}{13}
+\indexentry{Logger|hyperpage}{13}
+\indexentry{DAO|hyperpage}{14}
+\indexentry{Custom event parser|hyperpage}{14}
+\indexentry{Diagramma delle classi|hyperpage}{15}
+\indexentry{Utenti|hyperpage}{15}
+\indexentry{Utente|hyperpage}{15}
+\indexentry{Utente autenticato|hyperpage}{16}
+\indexentry{Utente amministratore|hyperpage}{17}
+\indexentry{Utente autorizzato|hyperpage}{18}
+\indexentry{Altre classi|hyperpage}{19}
+\indexentry{Evento|hyperpage}{19}
+\indexentry{Percorso|hyperpage}{20}
+\indexentry{Zone di interesse|hyperpage}{21}
+\indexentry{Categoria|hyperpage}{21}
+\indexentry{Competenza|hyperpage}{22}
+\indexentry{Policy|hyperpage}{22}
+\indexentry{Constraints con OCL|hyperpage}{24}
+\indexentry{Utente|hyperpage}{24}
+\indexentry{Utente autenticabile|hyperpage}{24}
+\indexentry{Evento|hyperpage}{24}
+\indexentry{Categoria|hyperpage}{24}
+\indexentry{Utente Autorizzato|hyperpage}{25}

@@ -1,14 +1,12 @@
 \begin{theindex}
 
-  \item Altre classi, \hyperpage{18}
   \item Authentication SDK, \hyperpage{4}
 
   \indexspace
 
   \item Categoria, \hyperpage{20}, \hyperpage{23}
-  \item Competenza, \hyperpage{21}
   \item Component Diagram, \hyperpage{3}
-  \item Constraints con OCL, \hyperpage{23}
+  \item Constraints con OCL, \hyperpage{21}
   \item Core, \hyperpage{8}
   \item Custom event parser, \hyperpage{12}
 
@@ -25,7 +23,7 @@
 
   \item Event Manager, \hyperpage{12}
   \item Event processor, \hyperpage{10, 11}
-  \item Evento, \hyperpage{18}, \hyperpage{23}
+  \item Evento, \hyperpage{18}, \hyperpage{22}
 
   \indexspace
 
@@ -43,8 +41,6 @@
 
   \indexspace
 
-  \item Percorso, \hyperpage{19}
-  \item Policy, \hyperpage{21}
   \item Preferences manager, \hyperpage{10}
   \item Public server, \hyperpage{4}
 
@@ -54,13 +50,12 @@
 
   \indexspace
 
-  \item Utente, \hyperpage{14}, \hyperpage{23}
+  \item Utente, \hyperpage{15}, \hyperpage{22}
   \item Utente amministratore, \hyperpage{16}
-  \item Utente autenticabile, \hyperpage{23}
-  \item Utente autenticato, \hyperpage{15}
+  \item Utente Autenticabile, \hyperpage{14}
+  \item Utente autenticabile, \hyperpage{21}
   \item Utente Autorizzato, \hyperpage{24}
-  \item Utente autorizzato, \hyperpage{17}
-  \item Utenti, \hyperpage{14}
+  \item Utente autorizzato, \hyperpage{16}
 
   \indexspace
 
@@ -69,6 +64,6 @@
 
   \indexspace
 
-  \item Zone di interesse, \hyperpage{20}
+  \item Zona, \hyperpage{19}
 
 \end{theindex}

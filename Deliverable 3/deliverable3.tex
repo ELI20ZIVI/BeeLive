@@ -1,0 +1,136 @@
+
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{fancyhdr} % Required for header and footer configuration
+\usepackage[a4paper, margin=2.5cm, left=1.5cm, right=1.5cm, bottom=4cm]{geometry} % Required for setting page margins
+\usepackage[T1]{fontenc}
+\usepackage[default,oldstyle,scale=1]{opensans} % Utilizzo del font Open Sans
+\usepackage{lipsum}
+\usepackage{makeidx}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{hyperref}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{enumitem} % Pacchetto per la personalizzazione degli elenchi
+\usepackage{booktabs}
+\usepackage{subcaption}
+
+% Configure header and footer for the first page
+\fancypagestyle{firstpage}{
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule line
+    \lhead{} % Header on the left
+    \chead{} % Header in the center
+    \rhead{} % Header on the right
+    \lfoot{} % Footer on the left
+    \cfoot{\vspace{5pt}\\\hrulefill\\\vspace{10pt}\textbf{BeeLive}\\Gruppo 21} % Footer in the center
+    \rfoot{\vspace{32.5pt}\\\thepage} % Footer on the right
+}
+
+% Configure header and footer for non-plain pages (second page onwards)
+\fancypagestyle{nonplain}{
+    \fancyhf{} % Clear header and footer
+    \lhead{} % Header on the left
+    \chead{} % Header in the center
+    \rhead{\includegraphics[width=2cm]{Images/BeeLive-Logo.png}\\\vspace{2pt}} % Header on the right
+    \lfoot{} % Footer on the left
+    \cfoot{\vspace{5pt}\\\hrulefill\\\vspace{10pt}\textbf{BeeLive}\\Gruppo 21} % Footer in the center
+    \rfoot{\vspace{32.5pt}\\\thepage} % Footer on the right
+}
+
+% Adjust vertical space between header and text                                    
+\setlength{\headsep}{65pt} 
+% Adjust vertical space between text and footer
+\setlength{\footskip}{0pt} 
+
+\title{\includegraphics[width=0.75\textwidth]{Images/BeeLive-Logo.png}\\\vspace{100pt}
+\LARGE{\textbf{BeeLive\\Deliverable 2}}}
+\author{Gruppo 21:\\
+Cipriani Pietro, 226959\\
+Orlando Dennis, 227688\\
+Ziviani Elia, 228172}
+\date{22 Aprile 2024}
+
+\makeindex % Indica che vogliamo creare un indice
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firstpage} % Apply firstpage style to the first page
+\clearpage
+
+\pagestyle{nonplain} % Apply non-plain style to subsequent pages
+
+\renewcommand{\contentsname}{Indice}
+\tableofcontents
+
+\clearpage
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | X | X | l | X |}
+        \Xhline{2pt}
+        \textbf{ID} & \textbf{Name} & \textbf{User Story} & \textbf{Importance} & \textbf{HowToDemo}\\
+        \Xhline{2pt}
+        1 & Visualizzazione eventi & Da utente voglio visualizzare gli eventi testuali & 100 & Aprendo l'aplicativo mobile (Da utente autenticato e non) deve essere presentata la lista di tutti gli eventi presenti nel database\\
+        \hline
+        2 & Creazione account comunale & Da utente admin devo essere in grado di creare account di enti comunali o enti delegati, impostandone la password & 95 & Dall'applicativo desktop va eseguito il login con le credenziali dell'utente amministratore e nell'apposito menù ci sarà la voce "Crea account comunale" da completare con le apposite informazioni\\
+        \hline
+        3 & Gestione categorie & Da utente admin devo essere in grado di creare ed eliminare categorie di eventi & 94 & Dall'applicativo desktop va eseguito il login con le credenziali dell'utente amministratore e nell'apposito menù ci sarà la voce "Gestione categorie" da completare con le apposite informazioni\\
+        \hline
+        4 & Assegnazione categorie & Da utente admin devo essere in grado di assegnare categorie di eventi a enti comunali o associati & 93 & Dall'applicativo desktop va eseguito il login con le credenziali dell'utente amministratore e nell'apposito menù sotto la voce "Gestione categorie" ci sarà la possibilità di assegnare le categorie presenti agli enti comunali o associati\\
+        \hline
+        5 & Creazione evento & Da utente autorizzato devo essere in grado di creare un evento & 85 & Dall'applicativo desktop va eseguito il login con le credenziali di un utente autorizzato o associato e nell'apposito menù ci sarà la voce "Gestione eventi" che comprende la possibilità di crearne uno  da completare con le informazioni che lo caratterizzano\\
+        \hline
+        6 & Eliminazione evento & Da utente autorizzato devo essere in grado di eliminare un evento & 84 & Dall'applicativo desktop va eseguito il login con le credenziali di un utente autorizzato o associato e nell'apposito menù ci sarà la voce "Gestione eventi" che comprende la possibilità di eliminare un evento\\
+        \hline
+    \end{tabularx}
+    \caption{Tabella degli User Story}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | X | X | l | X |}
+        \Xhline{2pt}
+        \textbf{ID} & \textbf{Name} & \textbf{User Story} & \textbf{Importance} & \textbf{HowToDemo}\\
+        \Xhline{2pt}
+        7 & Modifica evento & Da utente autorizzato devo essere in grado di modificare un evento & 83 & Dall'applicativo desktop va eseguito il login con le credenziali di un utente autorizzato o associato e nell'apposito menù ci sarà la voce "Gestione eventi" che comprende la possibilità di modificare un evento\\
+        \hline
+        8 & Visualizzazione dettagli evento & Da utente voglio visualizzare i dettagli di un evento & 80 & Aprendo l'applicativo mobile (Da utente autenticato e non) deve essere possibile, selezionando un evento, visualizzarne i dettagli\\
+        \hline
+        9 & Visualizzazione eventi su mappa & Da utente voglio visualizzare il luogo di un evento sulla mappa & 75 & Aprendo l'applicativo mobile (Da utente autenticato e non) deve essere possibile visualizzare, selezionando un evento, il luogo in cui lui è locato\\
+        \hline
+        10 & Eventi da notificare & Da utente autorizzato voglio selezionare gli eventi che devono essere notificati agli utenti & 60 & Dall'applicativo desktop va eseguito il login con le credenziali di un utente autorizzato o associato e nell'apposito menù ci sarà la voce "Gestione eventi" che comprende la possibilità di scegliere se l'evento è da notificare o meno\\
+        \hline
+        11 & Ricezione notifica & Da utente voglio ricevere una notifica per un evento selezionato da notificare & 59 & Accedendo all'applicativo mobile da utente autenticato e non deve essere possibile ricevere una notifica per un evento precedentemente selezionato\\
+        \hline
+        12 & Categorie di interesse & Da utente voglio selezionare le categorie di eventi di mio interesse & 50 & Accedendo all'applicativo mobile da utente autenticato e non deve essere possibile selezionare le categorie di eventi di interesse\\
+        \hline
+        13 & Ricezione notifica da impostazione di interesse & Da utente voglio ricevere una notifica per un evento di una categoria di mio interesse o di un evento che si trova in una zona da me definita di interesse & 49 & Accedendo all'applicativo mobile da utente autenticato e non deve essere possibile ricevere una notifica per un evento di una categoria d'interesse o in una zona da me impsotata di interesse\\
+        \hline
+    \end{tabularx}
+    \caption{Tabella degli User Story}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | X | X | l | X |}
+        \Xhline{2pt}
+        \textbf{ID} & \textbf{Name} & \textbf{User Story} & \textbf{Importance} & \textbf{HowToDemo}\\
+        \Xhline{2pt}
+        14 & Definizione aree di interesse & Da utente voglio definire delle aree di interesse per ricevere notifiche di eventi in quella zona & 45 & Accedendo all'applicativo mobile da utente autenticato e non deve essere possibile definire delle aree di interesse per ricevere notifiche di eventi in quella zona\\
+        \hline
+        15 & Registrazione a sistema & Da utente non autenticato voglio registrarmi all'interno del sistema & 40 & Accedendo all'applicativo mobile come utente non autenticato vi è la possibilità nel menù principale di eseguire la registrazione a sistema inserendo i dati richiesti\\
+        \hline
+        16 & Login a sistema & Da utente non autenticato voglio eseguire il login all'interno del sistema & 39 & Accenendo all'applicativo mobile come utente non autenticato vi è la possibilità nel menù principale di eseguire il login a sistema inserendo le credenziali\\
+        \hline
+        17 & Logout da sistema & Da utente autenticato voglio eseguire il logout dal sistema & 38 & Accedendo all'applicativo mobile come utente autenticato vi è la possibilità nel menù principale di eseguire il logout dal sistema\\
+        \hline
+        18 & Gestione sottocategorie & Da utente autorizzato devo essere in grado di creare, modificare ed eliminare sottocategorie di eventi & 20 & Dall'applicativo desktop va eseguito il login con le credenziali di un utente autorizzato o associato e nell'apposito menù ci sarà la voce "Gestione sottocategorie" da completare con le apposite informazioni\\
+        \hline
+    \end{tabularx}
+    \caption{Tabella degli User Story}
+\end{table}
+
+\end{document}

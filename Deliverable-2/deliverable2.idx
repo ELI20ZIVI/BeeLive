@@ -24,21 +24,16 @@
 \indexentry{Locker|hyperpage}{13}
 \indexentry{Logger|hyperpage}{13}
 \indexentry{Diagramma delle classi|hyperpage}{14}
-\indexentry{Utenti|hyperpage}{14}
-\indexentry{Utente|hyperpage}{14}
-\indexentry{Utente autenticato|hyperpage}{15}
+\indexentry{Utente Autenticabile|hyperpage}{14}
+\indexentry{Utente|hyperpage}{15}
 \indexentry{Utente amministratore|hyperpage}{16}
-\indexentry{Utente autorizzato|hyperpage}{17}
-\indexentry{Altre classi|hyperpage}{18}
+\indexentry{Utente autorizzato|hyperpage}{16}
 \indexentry{Evento|hyperpage}{18}
-\indexentry{Percorso|hyperpage}{19}
-\indexentry{Zone di interesse|hyperpage}{20}
+\indexentry{Zona|hyperpage}{19}
 \indexentry{Categoria|hyperpage}{20}
-\indexentry{Competenza|hyperpage}{21}
-\indexentry{Policy|hyperpage}{21}
-\indexentry{Constraints con OCL|hyperpage}{23}
-\indexentry{Utente|hyperpage}{23}
-\indexentry{Utente autenticabile|hyperpage}{23}
-\indexentry{Evento|hyperpage}{23}
+\indexentry{Constraints con OCL|hyperpage}{21}
+\indexentry{Utente autenticabile|hyperpage}{21}
+\indexentry{Evento|hyperpage}{22}
+\indexentry{Utente|hyperpage}{22}
 \indexentry{Categoria|hyperpage}{23}
 \indexentry{Utente Autorizzato|hyperpage}{24}

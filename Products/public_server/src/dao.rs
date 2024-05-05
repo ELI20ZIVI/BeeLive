@@ -1,3 +1,5 @@
+use actix_web::web::Data;
+use futures::stream::StreamExt;
 use mongodb::{results::InsertOneResult, Collection};
 use crate::dao::objects::*;
 
@@ -13,5 +15,21 @@ pub mod objects;
 /// * `event` -  event you want to insert into given collection 
 pub async fn insert_new_event(mongodb_collection: Collection<Event>, event: Event) -> mongodb::error::Result<InsertOneResult> {
     mongodb_collection.insert_one(event, None).await
+}
+
+/// Query all events stored in the collection defined by the "mongodb_collection" handle and
+/// return them as a vector of Events. 
+///
+/// The crate `docs.rs/mongodb` allows automatic deserialization of BSON data (obtained from querying the
+/// mongodb database), thus manual deserialization into `Vec<Event>` using the `serde` crate is not
+/// needed.
+pub async fn query_events(mongodb_collection: Data<Collection<Event>>) -> Vec<Event> {
+
+    let cursor = mongodb_collection.find(None, None).await.unwrap();
+
+    let events: Vec<mongodb::error::Result<Event>> = cursor.collect().await;
+    let events: Vec<Event> = events.into_iter().flatten().collect();
+
+    events
 }
 

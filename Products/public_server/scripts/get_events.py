@@ -1,5 +1,8 @@
 import requests
 
+# Note: this script will be better used in Linux by piping the output to the 'jq' tool,
+# i.e. python3 get_events.py | jq
+
 url = "http://localhost:8080/events"
 params = { 'mode': '', 'addi': [], 'subi': [], 'addb': [], 'subb': []}
 

@@ -7,8 +7,14 @@ use mongodb::Collection;
 
 use crate::dao::{self, objects::{Event, PrunedEvent}};
 
-/// Pass-through a dao::query_events.
-/// Per la documentazione riferirsi a dao::query_events.
+/// Pass-through a dao::query_pruned_events.
+/// Per la documentazione riferirsi a dao::query_pruned_events.
 pub async fn get_events(monbodb_collection: Data<Collection<Event>>) -> Vec<PrunedEvent>{
     dao::query_pruned_events(monbodb_collection).await
+}
+
+/// Pass-through a dao::query_full_event_single
+/// Per la documentazione riferirsi a dao::query_full_event_single
+pub async fn get_event(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> Option<Event> {
+    dao::query_full_event_single(mongodb_collection, event_id).await
 }

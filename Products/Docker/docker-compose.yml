@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # ----------------- ORS application configuration ------------------- #
+  ors-app:
+    build:
+      context: ./
+    container_name: ors-app
+    ports:
+      - "8080:8082"  # Expose the ORS API on port 8080
+      - "9001:9001"  # Expose additional port for monitoring (optional)
+    image: openrouteservice/openrouteservice:v8.0.0
+    volumes: 
+      - ./OSR:/home/ors
+    environment:
+      REBUILD_GRAPHS: False
+      CONTAINER_LOG_LEVEL: DEBUG
+      ORS_CONFIG_LOCATION: /home/ors/config/BeeLive-Config.yml
+      XMS: 1g
+      XMX: 2g
+      ADDITIONAL_JAVA_OPTS: ""
+      ors.engine.source_file: /home/ors/files/nord-est-latest.osm.pbf
+  # ----------------- MongoDB application configuration ------------------- #
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "BeeLive"
+      MONGO_INITDB_ROOT_PASSWORD: "BeeLive"
+    volumes:
+      - ./Mongo/db:/data/db
+  # ----------------- Casdoor application configuration ------------------- #
+  casdoor:
+    image: casbin/casdoor
+    container_name: casdoor
+    ports:
+      - '8000:8000'
+    environment:
+      driverName: sqlite
+      dataSourceName: "file:/db/casdoor.db?cache=shared"
+      dbName: casdoor
+    volumes:
+      - ./Casdoor/sqlite:/db

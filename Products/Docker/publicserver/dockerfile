@@ -1,0 +1,9 @@
+FROM rust:latest
+
+WORKDIR /publicserver
+
+COPY . .
+
+RUN cargo install --path hello_cargo
+
+CMD ["cargo", "run"]

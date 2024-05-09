@@ -46,8 +46,8 @@ services:
       - ./Casdoor/sqlite:/db
   # ----------------- PublicServer application configuration ------------------- #
   publicserver:
-    build: ./publicserver
+    build: ./public_server
     ports:
       - "8080:8080"
     volumes:
-      - ./publicserver/hello_cargo:/publicserver
+      - ./public_server:/public_server

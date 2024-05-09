@@ -1,0 +1,352 @@
+openapi: 3.0.3
+info:
+  title: BeeLive
+  description: |-
+    Specifiche delle API del progetto _BeeLive_.
+    
+    Some useful links:
+    - [BeeLive repository](https://github.com/ELI20ZIVI/BeeLive)
+  version: 0.0.1
+servers:
+  - url: https://public.beelive.it/api/v3/
+  - url: https://manage.beelive.it/api/v3/
+  - url: https://notify.beelive.it/api/v3/
+tags:
+  - name: eventi
+    description: Gestione degli eventi
+  - name: preferenze
+    description: Gestione degli account utenti
+  - name: utilità
+    description: API di servizio
+paths:
+  /event:
+    get:
+      tags:
+        - eventi
+      summary: Richiede la lista di eventi
+      description: Richiede la lista di eventi filtrati in base a determinati parametri.
+      operationId: listEvents
+      parameters:
+        - name: mode
+          in: query
+          description: Modalità di combinazione fra le preferenze della richiesta e le preferenze salvate in remoto.
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: overwrite
+            enum:
+              - overwrite
+              - combine
+              - ifempty
+        - name: addb
+          in: query
+          description: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+        - name: subb
+          in: query
+          description: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+        - name: addi
+          in: query
+          description: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+        - name: subi
+          in: query
+          description: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+      responses:
+        '200':
+          description: Operazione eseguita con successo
+          content:
+            application/bson:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventHeader'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventHeader'
+        '400':
+          description: Parametri non corretti
+        '406':
+          description: Not Acceptable
+      security:
+        - api_key: []
+        - bearerAuth: []
+  /event/{event}:
+    get:
+      tags:
+        - eventi
+      summary: Richiede un evento specifico
+      description: Richiede tutte le informazioni pubbliche associate ad un evento specifico.
+      operationId: eventDetails
+      parameters:
+        - name: event
+          in: path
+          description: ID dell'evento di cui ottenere le informazioni
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Operazione eseguita con successo
+          content:
+            application/bson:
+              schema:
+                $ref: '#/components/schemas/FullEvent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullEvent'
+        '404':
+          description: Id dell'evento non valido
+        '406':
+          description: Not Acceptable
+      security:
+        - api_key: []
+        - bearerAuth: []
+  # Registrazione nuovo utente
+  /user:
+    post:
+      summary: Registra un nuovo utente
+      description: Crea un nuovo utente nel sistema
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - email
+              properties:
+                username:
+                  type: string
+                  description: Nome utente univoco per l'accesso al sistema
+                  example: johndoe
+                password:
+                  type: string
+                  description: Password dell'utente
+                  minLength: 8
+                email:
+                  type: string
+                  description: Email dell'utente
+                  format: email
+                  example: johndoe@example.com
+      responses:
+        '201':
+          description: Utente creato con successo
+        '400':
+          description: Richiesta non valida (Dati mancanti o errati)
+        '409':
+          description: Conflitto (Username già esistente)
+      security:
+        - api_key: []
+        - bearerAuth: []
+  # Login utente
+  /user/login:
+    post:
+      summary: Esegue il login di un utente
+      description: Autentica un utente esistente e genera un token JWT
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: Nome utente per l'accesso al sistema
+                  example: johndoe
+                password:
+                  type: string
+                  description: Password dell'utente
+                  minLength: 8
+      responses:
+        '200':
+          description: Autenticazione riuscita
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Token JWT per l'autenticazione
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaXNzdCI6MTU5MTYyMzQ1LCJleHAiOjE2MjU3NjU0MTUsImlhdCI6MTU5MTYyMzQ1fQ.SflKXo2z5j-rSNnLDnD-I7zEq23-12_3m5cF-IeWTk
+        '401':
+          description: Autenticazione fallita (credenziali errate)
+      security:
+        - api_key: []
+components:
+  schemas:
+    EventHeader:
+      type: object
+      required:
+        - id
+        - title
+        - summary
+        - categories
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 198772
+        title:
+          type: string
+          description: Titolo dell'evento.
+          example: Incontro G7
+        summary:
+          type: string
+          description: Breve sommario dell'evento.
+          example: Divieti di fermata e transito.
+        remote_document:
+          type: string
+          format: url
+          example: https://www.ufficiostampa.provincia.tn.it/Comunicati/G7-tutte-le-limitazioni-al-traffico-e-alla-sosta
+        start_visibility:
+          type: string
+          format: date-time
+        end_visibility:
+          type: string
+          format: date-time
+        start_validity:
+          type: string
+          format: date-time
+        end_validity:
+          type: string
+          format: date-time
+        categories:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int16
+          example:
+            - [0, 1]
+        polygon:
+          type: object
+    FullEvent:
+      type: object
+      required:
+        - id
+        - title
+        - summary
+        - categories
+        - subevents
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 198772
+        title:
+          type: string
+          description: Titolo dell'evento.
+          example: Incontro G7
+        summary:
+          type: string
+          description: Breve sommario dell'evento.
+          example: Divieti di fermata e transito.
+        remote_document:
+          type: string
+          format: url
+          example: https://www.ufficiostampa.provincia.tn.it/Comunicati/G7-tutte-le-limitazioni-al-traffico-e-alla-sosta
+        start_visibility:
+          type: string
+          format: date-time
+        end_visibility:
+          type: string
+          format: date-time
+        start_validity:
+          type: string
+          format: date-time
+        end_validity:
+          type: string
+          format: date-time
+        categories:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int16
+          example:
+            - [0, 1]
+        polygon:
+          type: object
+        subevents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subevent'
+    Subevent:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: Titolo del sottoevento.
+          example: Arrivo delle delegazioni
+        description:
+          type: string
+          description: Descrizione del sottoevento.
+        start_validity:
+          type: string
+          format: date-time
+        end_validity:
+          type: string
+          format: date-time
+        polygon:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    api_key:
+      type: apiKey
+      name: api_key
+      in: query

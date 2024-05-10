@@ -1,12 +1,12 @@
 use std::default;
 
 use chrono::{DateTime, Local};
-use geojson::Geometry;
+use geo::{GeometryCollection, point};
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
 
-type ODate = Option<DateTime<chrono::Local>>;
-type Date = DateTime<chrono::Local>;
+type ODate = Option<DateTime<Local>>;
+type Date = DateTime<Local>;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
@@ -17,15 +17,27 @@ pub struct Category {
     subcategories_ids: Vec<i32>,
 }
 
+type NullableDateTime = Option<DateTime<Local>>;
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct NullableDateTimeRange {
+    pub start : NullableDateTime,
+    pub end : NullableDateTime,
+}
+
+impl NullableDateTimeRange {
+
+    fn new(start : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
+        NullableDateTimeRange{start, end}
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SubEvent {
-    id: i32,
-    title: String,
-    description: String,
-    geometry: Geometry,
-    start_validity: DateTime<chrono::Local>,
-    end_validity: DateTime<chrono::Local>,
-
+    pub title: String,
+    pub description: String,
+    pub geometry: GeometryCollection,
+    pub validity : NullableDateTimeRange,
 }
 
 /// This struct represents the deserializable JSON data that the server sends to the client when
@@ -38,12 +50,10 @@ pub struct PrunedEvent {
     id: i32,
     title: String,
     summary: String,
-    start_validity: ODate,
-    end_validity: ODate,
-    start_visibility: ODate,
-    end_visibility: ODate,
+    validity : NullableDateTimeRange,
+    visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
-    geojson_geometry: Geometry,
+    geojson_geometry: GeometryCollection,
 }
 
 impl PrunedEvent {
@@ -51,15 +61,13 @@ impl PrunedEvent {
     /// Returns a MongoDB projection document with fields corresponding to the PrunedEvent fields.
     /// It is used in crate::dao::query_pruned_events in order to only read given fields out of the
     /// Events database.
-    pub fn mongobd_projection() -> Document {
-        doc! { 
+    pub fn mongodb_projection() -> Document {
+        doc! {
             "id": 1,
             "title": 1,
             "summary": 1,
-            "start_validity": 1,
-            "end_validity": 1,
-            "start_visibility": 1,
-            "end_visibility": 1,
+            "validity": 1,
+            "visibility": 1,
             "category_ids": 1,
             "geojson_geometry": 1,
         }
@@ -72,22 +80,20 @@ impl PrunedEvent {
 /// `locked_by` that are not de/serializable, thus are not sent nor received to / from the client. 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Event {
-    id: i32,
-    title: String,
-    summary: String,
-    description: String,
-    remote_document: Option<String>,
-    start_validity: Date,
-    end_validity: Date,
-    start_visibility: ODate,
-    end_visibility: ODate,
-    category_ids: Vec<i32>,
-    geojson_geometry: Geometry,
-    subevents: Vec<SubEvent>,
+    pub id: i32,
+    pub title: String,
+    pub summary: String,
+    pub description: String,
+    pub remote_document: Option<String>,
+    pub validity: NullableDateTimeRange,
+    pub visibility: NullableDateTimeRange,
+    pub category_ids: Vec<i32>,
+    pub geojson_geometry: GeometryCollection,
+    pub subevents: Vec<SubEvent>,
     #[serde(skip)]
-    locked_by: Option<i32>,
+    pub locked_by: Option<i32>,
     #[serde(skip)]
-    creator_id: i32,
+    pub creator_id: i32,
 }
 
 impl Event {
@@ -101,12 +107,10 @@ impl Event {
             description: "an amazing description".to_string(),
             remote_document: Some("test remote document . org".to_string()),
             summary: "a long summary".to_string(),
-            start_validity: now,
-            end_validity: now,
-            start_visibility: Some(now),
-            end_visibility: Some(now),
+            validity: NullableDateTimeRange::new(Some(now), Some(now)),
+            visibility: NullableDateTimeRange::new(Some(now), Some(now)),
             locked_by: None,
-            geojson_geometry: Geometry::new(geojson::Value::Point(vec![10.0, 6.0])),
+            geojson_geometry: GeometryCollection::from(vec![point!{x: 10.0, y: 6.0}]),
             creator_id: 0,
             subevents: vec![],
             category_ids: vec![],

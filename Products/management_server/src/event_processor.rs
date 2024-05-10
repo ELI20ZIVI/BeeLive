@@ -1,24 +1,77 @@
-// Modulo che si frappone alle endpoint e il DAO, con lo scopo di fare eventuale caching e
-// processamento deglie venti che passano tra i due.
-// Per ora è solo un pass-through al DAO
+use std::iter;
+use geo::{BooleanOps, Geometry, GeometryCollection, MultiPolygon, Polygon};
+use crate::dao::objects::Event;
 
-use actix_web::web::{self, Data};
-use mongodb::{results::InsertOneResult, Collection};
+pub trait EventProcessor {
 
-use crate::dao::{self, objects::{Event, PrunedEvent}};
+    fn process(&self, event: &mut Event) -> ();
 
-/// Pass-through a dao::query_pruned_events.
-/// Per la documentazione riferirsi a dao::query_pruned_events.
-pub async fn get_events(monbodb_collection: Data<Collection<Event>>) -> Vec<PrunedEvent>{
-    dao::query_pruned_events(monbodb_collection).await
 }
 
-/// Pass-through a dao::query_full_event_single
-/// Per la documentazione riferirsi a dao::query_full_event_single
-pub async fn get_event(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> Option<Event> {
-    dao::query_full_event_single(mongodb_collection, event_id).await
+pub struct EventProcessorImpl {}
+
+impl EventProcessorImpl {
+    
+    pub const fn new() -> Self {
+        EventProcessorImpl{}
+    }
+
+    fn polygons_union(geometries: Vec<&Geometry>) -> GeometryCollection {
+        let polygons = geometries
+            .iter()
+            .filter_map(|g| match g {
+                Geometry::Polygon(p) => Some(p),
+                _ => None
+            });
+
+        let multi_polygons = geometries
+            .iter()
+            .filter_map(|g| match g {
+                Geometry::MultiPolygon(p) => Some(p),
+                _ => None
+            });
+
+        let others = geometries
+            .iter()
+            .filter_map(|g| match g {
+                Geometry::Polygon(_) | Geometry::MultiPolygon(_) => None,
+                g => Some(g)
+            });
+
+        let polygons = polygons
+            .fold(MultiPolygon::new(vec![]), |p1, p2| {
+                // TODO: try to avoid clone (Requires BooleanOps to allow Multipolygon.union(&Polygon))
+                p1.union(&MultiPolygon::new(vec![p2.clone()]))
+            });
+
+        let multi_polygons = multi_polygons
+            .fold(MultiPolygon::new(vec![]), |r, p| {
+                // TODO: check if internal multipolygon union is performed
+                r.union(p)
+            });
+
+        let polygons = polygons.union(&multi_polygons);
+
+        let mut result = GeometryCollection::from_iter(others.map(|g| (*g).clone()));
+
+        if !polygons.0.is_empty() {
+            result.0.push(Geometry::MultiPolygon(polygons));
+        }
+
+        result
+    }
+
 }
 
-pub async fn insert_new_event(mongodb_collection: Data<Collection<Event>>, event: web::Json<Event>) -> mongodb::error::Result<InsertOneResult> {
-    dao::insert_new_event(mongodb_collection, event.into_inner()).await
+impl EventProcessor for EventProcessorImpl {
+    fn process(&self, event: &mut Event) -> () {
+        let geometries = event.subevents
+            .iter()
+            .flat_map(|se| {
+                se.geometry.iter()
+            })
+            .collect();
+
+        event.geojson_geometry = Self::polygons_union(geometries);
+    }
 }

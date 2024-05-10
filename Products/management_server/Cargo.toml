@@ -10,3 +10,7 @@ actix-web = "4.5.1"
 env_logger = "0.11.3"
 mongodb = "2.8.2"
 serde = "1.0.201"
+futures = "0.3.30"
+chrono = { version = "0.4.38", features = ["serde"] }
+geojson = "0.24.1"
+geo = "0.28.0"

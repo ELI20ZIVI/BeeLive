@@ -1,6 +1,4 @@
-use actix_web::{web::Data, Result};
-use futures::stream::StreamExt;
-use mongodb::{bson::doc, options::FindOptions, results::InsertOneResult, Collection};
+use mongodb::{results::InsertOneResult, Collection};
 use crate::dao::objects::*;
 
 pub mod objects;

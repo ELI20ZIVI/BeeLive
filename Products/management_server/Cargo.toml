@@ -12,5 +12,5 @@ mongodb = "2.8.2"
 serde = "1.0.201"
 futures = "0.3.30"
 chrono = { version = "0.4.38", features = ["serde"] }
-geojson = "0.24.1"
+geojson = { version = "0.24.1", features = ["geo-types"] }
 geo = "0.28.0"

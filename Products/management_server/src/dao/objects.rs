@@ -1,12 +1,9 @@
-use std::default;
-
+use std::iter;
 use chrono::{DateTime, Local};
-use geo::{GeometryCollection, point};
+use geojson::{FeatureCollection, Feature};
+use geojson::Value::Point;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
-
-type ODate = Option<DateTime<Local>>;
-type Date = DateTime<Local>;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
@@ -27,7 +24,7 @@ pub struct NullableDateTimeRange {
 
 impl NullableDateTimeRange {
 
-    fn new(start : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
+    pub fn new(start : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
         NullableDateTimeRange{start, end}
     }
 }
@@ -36,7 +33,7 @@ impl NullableDateTimeRange {
 pub struct SubEvent {
     pub title: String,
     pub description: String,
-    pub geometry: GeometryCollection,
+    pub geometry: FeatureCollection,
     pub validity : NullableDateTimeRange,
 }
 
@@ -53,7 +50,7 @@ pub struct PrunedEvent {
     validity : NullableDateTimeRange,
     visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
-    geojson_geometry: GeometryCollection,
+    geojson_geometry: FeatureCollection,
 }
 
 impl PrunedEvent {
@@ -88,7 +85,7 @@ pub struct Event {
     pub validity: NullableDateTimeRange,
     pub visibility: NullableDateTimeRange,
     pub category_ids: Vec<i32>,
-    pub geojson_geometry: GeometryCollection,
+    pub geojson_geometry: FeatureCollection,
     pub subevents: Vec<SubEvent>,
     #[serde(skip)]
     pub locked_by: Option<i32>,
@@ -110,7 +107,7 @@ impl Event {
             validity: NullableDateTimeRange::new(Some(now), Some(now)),
             visibility: NullableDateTimeRange::new(Some(now), Some(now)),
             locked_by: None,
-            geojson_geometry: GeometryCollection::from(vec![point!{x: 10.0, y: 6.0}]),
+            geojson_geometry: FeatureCollection::from_iter(iter::once(Feature::from(Point(vec![10.0, 6.0])))),
             creator_id: 0,
             subevents: vec![],
             category_ids: vec![],

@@ -1,7 +1,6 @@
 
-use actix_web::{get, middleware::Logger, web::{self, Data}, App, HttpRequest, HttpServer, Responder, post};
+use actix_web::{middleware::Logger, web::{self, Data}, App, HttpServer, Responder, post};
 use dao::objects::Event;
-use env_logger::Env;
 use mongodb::{Collection, Client};
 use serde::Deserialize;
 
@@ -23,9 +22,9 @@ struct EventQueryData {
 async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: web::Path<u32>) -> impl Responder {
    
     let event_id = path.into_inner();
-    let event = event_manager::get_event(mongodb_events_collection, event_id).await;
+    //let event = event_manager::get_event(mongodb_events_collection, event_id).await;
 
-    web::Json(event)
+    web::Json(Event::test_event())
 }
 
 #[actix_web::main]
@@ -47,7 +46,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(Data::new(mongodb_events_collection.clone()))
             .service(
                 web::scope("/api/v3")
-                .service(get_events)
+                //.service(get_events)
                 .service(get_event)
             )
     })

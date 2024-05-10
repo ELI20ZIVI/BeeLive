@@ -1,77 +1,51 @@
-use std::iter;
-use geo::{BooleanOps, Geometry, GeometryCollection, MultiPolygon, Polygon};
-use crate::dao::objects::Event;
+mod errors;
+mod test;
 
-pub trait EventProcessor {
+use std::convert::TryInto;
+use geo::{BooleanOps, Geometry, MultiPolygon};
+use geojson::{FeatureCollection, Feature};
+use crate::dao::objects::{Event};
+use crate::event_processor::errors::Error;
 
-    fn process(&self, event: &mut Event) -> ();
-
-}
-
-pub struct EventProcessorImpl {}
-
-impl EventProcessorImpl {
-    
-    pub const fn new() -> Self {
-        EventProcessorImpl{}
-    }
-
-    fn polygons_union(geometries: Vec<&Geometry>) -> GeometryCollection {
-        let polygons = geometries
-            .iter()
-            .filter_map(|g| match g {
-                Geometry::Polygon(p) => Some(p),
-                _ => None
-            });
-
-        let multi_polygons = geometries
-            .iter()
-            .filter_map(|g| match g {
-                Geometry::MultiPolygon(p) => Some(p),
-                _ => None
-            });
-
-        let others = geometries
-            .iter()
-            .filter_map(|g| match g {
-                Geometry::Polygon(_) | Geometry::MultiPolygon(_) => None,
-                g => Some(g)
-            });
-
-        let polygons = polygons
-            .fold(MultiPolygon::new(vec![]), |p1, p2| {
-                // TODO: try to avoid clone (Requires BooleanOps to allow Multipolygon.union(&Polygon))
-                p1.union(&MultiPolygon::new(vec![p2.clone()]))
-            });
-
-        let multi_polygons = multi_polygons
-            .fold(MultiPolygon::new(vec![]), |r, p| {
-                // TODO: check if internal multipolygon union is performed
-                r.union(p)
-            });
-
-        let polygons = polygons.union(&multi_polygons);
-
-        let mut result = GeometryCollection::from_iter(others.map(|g| (*g).clone()));
-
-        if !polygons.0.is_empty() {
-            result.0.push(Geometry::MultiPolygon(polygons));
-        }
-
-        result
-    }
-
-}
-
-impl EventProcessor for EventProcessorImpl {
-    fn process(&self, event: &mut Event) -> () {
-        let geometries = event.subevents
-            .iter()
-            .flat_map(|se| {
-                se.geometry.iter()
+pub fn process(event: &mut Event) -> Result<(), Error> {
+    // Aggregates the features.
+    // Features converted to geo::Geometry.
+    let geometries : Vec<Geometry> = event.subevents
+        .iter()
+        .flat_map(|se| {
+            se.geometry.features.iter().filter_map(|f| {
+                f.geometry.as_ref().map(|g| {
+                    g.try_into().ok()
+                }).flatten()
             })
-            .collect();
+        }).collect();
 
-        event.geojson_geometry = Self::polygons_union(geometries);
+    let mut polygons : Vec<geo::Polygon> = Vec::new();
+    let mut lines : Vec<geo::Line> = Vec::new();
+    let mut points : Vec<geo::Point> = Vec::new();
+
+    for geometry in geometries {
+        match geometry {
+            Geometry::Polygon(p) => polygons.push(p),
+            Geometry::MultiPolygon(mp) => polygons.extend(mp.0),
+            Geometry::Line(l) => lines.push(l),
+            Geometry::Point(p) => points.push(p),
+            Geometry::MultiPoint(mp) => points.extend(mp.0),
+            _ => return Err(Error::JSONTypeException("Only polygons lines and points are allowed".to_string())),
+        }
     }
+
+    let polygon = polygons
+        .into_iter()
+        .fold(MultiPolygon::new(vec![]), |r, p| {
+            r.union(&MultiPolygon::new(vec![p]))
+        });
+
+    let features = vec![Feature::from(geojson::Geometry::from(&polygon))];
+
+    event.geojson_geometry = FeatureCollection::from_iter(features.into_iter());
+
+    Ok(())
 }
+
+

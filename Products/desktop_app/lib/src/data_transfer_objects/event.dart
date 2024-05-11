@@ -1,12 +1,16 @@
 import 'dart:convert';
 
 import 'package:bson/bson.dart';
+import 'package:desktop_app/src/data_transfer_objects/category.dart';
+import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
 import 'package:geojson_vi/geojson_vi.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:desktop_app/src/dtos/category.dart';
-import 'package:desktop_app/src/dtos/nullable_datetime_range.dart';
-import 'package:desktop_app/src/dtos/risk_level.dart';
+import 'package:desktop_app/src/data_transfer_objects/category.dart';
+import 'package:desktop_app/src/data_transfer_objects/nullable_datetime_range.dart';
+import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
+
+import 'nullable_datetime_range.dart';
 
 part 'event.g.dart';
 

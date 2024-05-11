@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:desktop_app/src/client/client.dart';
-import 'package:desktop_app/src/dtos/event.dart';
+import 'package:desktop_app/src/data_transfer_objects/event.dart';
 
 class ManagementWebServerClient implements Client {
   static final publicWebServerURL = Uri(

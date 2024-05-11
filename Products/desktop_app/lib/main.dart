@@ -1,4 +1,5 @@
 import 'package:desktop_app/src/client/management_webserver_client.dart';
+import 'package:desktop_app/src/features/event_management/view/home_page.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:desktop_app/src/client/client.dart';
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
         PaneItem(
           icon: const Icon(FluentIcons.edit),
           title: Text(localization.eventManagement),
-          body: const SizedBox.shrink(), //EventManagementScreen(),
+          body: const EventManagerScreen(dao: dao),
         ),
         PaneItem(
           enabled: false,

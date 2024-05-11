@@ -1,3 +1,4 @@
+use actix_web::web::Data;
 use mongodb::{results::InsertOneResult, Collection};
 use crate::dao::objects::*;
 
@@ -11,7 +12,7 @@ pub mod objects;
 ///
 /// * `mongodb_collection` -  handle to the mongobd collection you want to insert this new event into.
 /// * `event` -  event you want to insert into given collection 
-pub async fn insert_new_event(mongodb_collection: &Collection<Event>, event: Event) -> mongodb::error::Result<InsertOneResult> {
+pub async fn insert_new_event(mongodb_collection: Data<Collection<Event>>, event: Event) -> mongodb::error::Result<InsertOneResult> {
     mongodb_collection.insert_one(event, None).await
 }
 

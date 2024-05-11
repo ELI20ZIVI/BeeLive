@@ -1,30 +1,26 @@
 
-use actix_web::{middleware::Logger, web::{self, Data}, App, HttpServer, Responder, post};
+use actix_web::{middleware::Logger, post, web::{self, Data}, App, HttpResponse, HttpServer, Responder};
 use dao::objects::Event;
 use mongodb::{Collection, Client};
-use serde::Deserialize;
 
 mod event_manager;
 mod dao;
 mod event_processor;
 
-#[derive(Deserialize)]
-struct EventQueryData {
-    mode: String,
-    addb: Vec<u32>,
-    subb: Vec<u32>,
-    addi: Vec<u32>,
-    subi: Vec<u32>,
-}
-
 // TODO: formalize and document this endpoint
 #[post("/insert_new_event")]
-async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: web::Path<u32>) -> impl Responder {
-   
-    let event_id = path.into_inner();
-    //let event = event_manager::get_event(mongodb_events_collection, event_id).await;
+async fn insert_event(mongodb_events_collection: Data<Collection<Event>>, event: web::Json<Event>) -> impl Responder {
 
-    web::Json(Event::test_event())
+    let result = event_manager::insert_new_event(mongodb_events_collection, event.into_inner()).await;
+    match result {
+        Ok(_) => {
+            HttpResponse::Ok().finish()
+        }
+        Err(_) => {
+            HttpResponse::InternalServerError().finish()
+        }
+    }
+
 }
 
 #[actix_web::main]
@@ -38,7 +34,6 @@ async fn main() -> std::io::Result<()> {
     let client = Client::with_uri_str("mongodb://localhost:27017").await.unwrap();
     let mongodb_events_collection = client.database("events").collection::<Event>("events");
 
-    dao::insert_new_event(&mongodb_events_collection, Event::test_event()).await.unwrap();
  
     HttpServer::new(move || {
         App::new()
@@ -47,7 +42,7 @@ async fn main() -> std::io::Result<()> {
             .service(
                 web::scope("/api/v3")
                 //.service(get_events)
-                .service(get_event)
+                .service(insert_event)
             )
     })
     .bind(("127.0.0.1", 8080))?

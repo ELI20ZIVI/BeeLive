@@ -1,5 +1,5 @@
 
-use actix_web::{get, middleware::Logger, web::{self, Data}, App, HttpRequest, HttpServer, Responder};
+use actix_web::{get, middleware::Logger, web::{self, Data, Path}, App, HttpRequest, HttpServer, Responder};
 use dao::objects::Event;
 use env_logger::Env;
 use mongodb::{Collection, Client};
@@ -10,16 +10,16 @@ mod dao;
 
 #[derive(Deserialize)]
 struct EventQueryData {
-    mode: String,
-    addb: Vec<u32>,
-    subb: Vec<u32>,
-    addi: Vec<u32>,
-    subi: Vec<u32>,
+    mode: Option<String>,
+    addb: Option<Vec<u32>>,
+    subb: Option<Vec<u32>>,
+    addi: Option<Vec<u32>>,
+    subi: Option<Vec<u32>>,
 }
 
 // TODO: formalize and document this endpoint
 #[get("/events/{event_id}")]
-async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: web::Path<u32>) -> impl Responder {
+async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Path<u32>) -> impl Responder {
    
     let event_id = path.into_inner();
     let event = event_processor::get_event(mongodb_events_collection, event_id).await;
@@ -29,7 +29,7 @@ async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: web
 
 // TODO: formalize and document this endpoint
 #[get("/events")]
-async fn get_events(mongodb_events_collection: Data<Collection<Event>>, data: web::Json<EventQueryData>) -> impl Responder {
+async fn get_events(mongodb_events_collection: Data<Collection<Event>>, data: web::Query<EventQueryData>) -> impl Responder {
 
     // Get API data fields as documented. We will use them in the near future. 
     let _mode = &data.mode;
@@ -68,7 +68,7 @@ async fn main() -> std::io::Result<()> {
                 .service(get_event)
             )
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }

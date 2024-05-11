@@ -17,7 +17,8 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
           json['validity'] as Map<String, dynamic>),
       visibility: NullableDateTimeRange.fromJson(
           json['visibility'] as Map<String, dynamic>),
-      riskLevel: $enumDecode(_$RiskLevelEnumMap, json['riskLevel']),
+      riskLevel: $enumDecodeNullable(_$RiskLevelEnumMap, json['riskLevel']) ??
+          RiskLevel.info,
       categories: (json['categories'] as List<dynamic>?)
               ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -25,7 +26,7 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
       events: (json['events'] as List<dynamic>?)
               ?.map((e) => SubEvent.fromJson(e as Map<String, dynamic>))
               .toList() ??
-          const [],
+          [],
       polygons: _$JsonConverterFromJson<Map<String, dynamic>,
               GeoJSONGeometryCollection>(
           json['polygons'], const _GeoJSONGeometriesToMap().fromJson),

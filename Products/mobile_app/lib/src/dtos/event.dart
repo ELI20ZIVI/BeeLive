@@ -23,8 +23,13 @@ final class Event with BsonSerializable {
   final Uri? document;
   final NullableDateTimeRange validity;
   final NullableDateTimeRange visibility;
+
+  @JsonKey(defaultValue: RiskLevel.info)
   final RiskLevel riskLevel;
+
   final List<Category> categories;
+
+  @JsonKey(defaultValue: [])
   final List<SubEvent> events;
 
   @_GeoJSONGeometriesToMap()

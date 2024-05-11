@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_placeholder_textlines/flutter_placeholder_textlines.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -96,6 +98,9 @@ class _Error extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(error.toString());
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Text('${error.toString()}\n$stacktrace'),
+    );
   }
 }

@@ -33,8 +33,8 @@ class HomePage extends StatelessWidget {
     );
 
     return Scaffold(
-      floatingActionButton: fab,
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      /*floatingActionButton: fab,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,*/
       // bottomSheet: list,
       body: SafeArea(child: list),
       bottomNavigationBar: navigationBar,

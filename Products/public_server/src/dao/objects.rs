@@ -1,13 +1,11 @@
-use std::default;
-
+use std::iter;
 use chrono::{DateTime, Local};
-use geojson::Geometry;
+use geojson::{FeatureCollection, Feature};
+use geojson::Value::Point;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
 
-
-
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
     id: i32,
     name: String,
@@ -16,15 +14,27 @@ pub struct Category {
     subcategories_ids: Vec<i32>,
 }
 
-#[derive(Serialize, Deserialize)]
-pub struct SubEvent {
-    id: i32,
-    title: String,
-    description: String,
-    geometry: Geometry,
-    start_validity: DateTime<chrono::Local>,
-    end_validity: DateTime<chrono::Local>,
+type NullableDateTime = Option<DateTime<Local>>;
 
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct NullableDateTimeRange {
+    pub start : NullableDateTime,
+    pub end : NullableDateTime,
+}
+
+impl NullableDateTimeRange {
+
+    pub fn new(start : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
+        NullableDateTimeRange{start, end}
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct SubEvent {
+    pub title: String,
+    pub description: String,
+    pub geometry: FeatureCollection,
+    pub validity : NullableDateTimeRange,
 }
 
 /// This struct represents the deserializable JSON data that the server sends to the client when
@@ -32,17 +42,17 @@ pub struct SubEvent {
 /// It is a compact representation of an Event, thus 'pruning' some fields like subcategories and
 /// locks. 
 /// The purpose of the pruning is to save bandwidt when sending data to the client. 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct PrunedEvent {
     id: i32,
     title: String,
     summary: String,
-    start_validity: DateTime<chrono::Local>,
-    end_validity: DateTime<chrono::Local>,
-    start_visibility: DateTime<chrono::Local>,
-    end_visibility: DateTime<chrono::Local>,
+    remote_document: Option<String>,
+    validity : NullableDateTimeRange,
+    visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
-    geojson_geometry: Geometry,
+    geojson_geometry: FeatureCollection,
+    // TODO: add risk level
 }
 
 impl PrunedEvent {
@@ -50,15 +60,14 @@ impl PrunedEvent {
     /// Returns a MongoDB projection document with fields corresponding to the PrunedEvent fields.
     /// It is used in crate::dao::query_pruned_events in order to only read given fields out of the
     /// Events database.
-    pub fn mongobd_projection() -> Document {
-        doc! { 
+    pub fn mongodb_projection() -> Document {
+        doc! {
             "id": 1,
             "title": 1,
             "summary": 1,
-            "start_validity": 1,
-            "end_validity": 1,
-            "start_visibility": 1,
-            "end_visibility": 1,
+            "remote_document": 1,
+            "validity": 1,
+            "visibility": 1,
             "category_ids": 1,
             "geojson_geometry": 1,
         }
@@ -69,24 +78,22 @@ impl PrunedEvent {
 /// the client requests information about a single event, aka `/events/{event}`
 /// It is the full representation of an Event, with internal fields like 'creator_id' and
 /// `locked_by` that are not de/serializable, thus are not sent nor received to / from the client. 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Event {
-    id: i32,
-    title: String,
-    summary: String,
-    description: String,
-    remote_document: Option<String>,
-    start_validity: DateTime<chrono::Local>,
-    end_validity: DateTime<chrono::Local>,
-    start_visibility: DateTime<chrono::Local>,
-    end_visibility: DateTime<chrono::Local>,
-    category_ids: Vec<i32>,
-    geojson_geometry: Geometry,
-    subevents: Vec<SubEvent>,
+    pub id: i32,
+    pub title: String,
+    pub summary: String,
+    pub description: String,
+    pub remote_document: Option<String>,
+    pub validity: NullableDateTimeRange,
+    pub visibility: NullableDateTimeRange,
+    pub category_ids: Vec<i32>,
+    pub geojson_geometry: FeatureCollection,
+    pub subevents: Vec<SubEvent>,
     #[serde(skip)]
-    locked_by: Option<i32>,
+    pub locked_by: Option<i32>,
     #[serde(skip)]
-    creator_id: i32,
+    pub creator_id: i32,
 }
 
 impl Event {
@@ -100,12 +107,10 @@ impl Event {
             description: "an amazing description".to_string(),
             remote_document: Some("test remote document . org".to_string()),
             summary: "a long summary".to_string(),
-            start_validity: now,
-            end_validity: now,
-            start_visibility: now,
-            end_visibility: now,
+            validity: NullableDateTimeRange::new(Some(now), Some(now)),
+            visibility: NullableDateTimeRange::new(Some(now), Some(now)),
             locked_by: None,
-            geojson_geometry: Geometry::new(geojson::Value::Point(vec![10.0, 6.0])),
+            geojson_geometry: FeatureCollection::from_iter(iter::once(Feature::from(Point(vec![10.0, 6.0])))),
             creator_id: 0,
             subevents: vec![],
             category_ids: vec![],

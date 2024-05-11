@@ -52,7 +52,7 @@ async fn main() -> std::io::Result<()> {
     env_logger::init();
 
     //TODO: solve unwrap
-    let client = Client::with_uri_str("mongodb://localhost:27017").await.unwrap();
+    let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017").await.unwrap();
     let mongodb_events_collection = client.database("events").collection::<Event>("events");
 
     dao::insert_new_event(&mongodb_events_collection, Event::test_event()).await.unwrap();

@@ -56,19 +56,21 @@ final class Event with BsonSerializable {
 
 @JsonSerializable()
 final class SubEvent {
-  final String title;
-  final String? description;
-  final NullableDateTimeRange validity;
+  String title;
+  String? description;
+  NullableDateTimeRange validity;
 
   @_GeoJSONFeaturesToMap()
   final GeoJSONFeatureCollection? polygons;
 
-  const SubEvent({
+  SubEvent({
     required this.title,
     this.description,
     required this.validity,
     this.polygons,
   });
+
+  SubEvent.default_new_subevent() : this(title: "Titolo", validity: NullableDateTimeRange());
 
   factory SubEvent.fromJson(Map<String, dynamic> json) {
     return _$SubEventFromJson(json);

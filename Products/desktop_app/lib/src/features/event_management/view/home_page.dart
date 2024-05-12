@@ -72,19 +72,23 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
   List<Tab> tabs = [];
   int currentIndex = 0;
 
+  @override
   Widget build(BuildContext context) {
+
     tabs = widget.event.events.asMap().entries.map((entry) {
-      return Tab(
+      late Tab tab;
+      tab = Tab(
         text: Text(entry.value.title),
-        body: _SubEventWidget(subevent: entry.value),
         icon: Text('${entry.key+1}'),
+        body: _SubEventWidget(subevent: entry.value),
         onClosed: () {
           setState(() {
-            widget.event.events.removeAt(entry.key);
-            tabs.removeAt(entry.key);
+            widget.event.events.remove(entry.value);
+            tabs.remove(tab);
           });
         }
       );
+      return tab;
     }).toList();
 
     return TabView(
@@ -94,14 +98,33 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
         currentIndex = index;
       }),
       tabs: tabs,
-      onNewPressed: () {},
+      onNewPressed: () => setState(() {
+
+        var subevent = SubEvent.default_new_subevent();
+        int index = tabs.length+1;
+
+        widget.event.events.add(subevent);
+        late Tab tab;
+        tab = Tab (
+            text: Text(subevent.title),
+            body: _SubEventWidget(subevent: subevent),
+            icon: Text('${index+1}'),
+            onClosed: () {
+              setState(() {
+                widget.event.events.remove(subevent);
+                tabs.remove(tab);
+              });
+            }
+        );
+        tabs.add(tab);
+      }),
     );
   }
 
 }
 
 class _SubEventsWidget extends StatefulWidget {
-  _SubEventsWidget({
+  const _SubEventsWidget({
     required this.event,
   });
 
@@ -111,21 +134,26 @@ class _SubEventsWidget extends StatefulWidget {
   State<StatefulWidget> createState() => _SubEventsWidgetState();
 }
 
-class _SubEventWidget extends StatelessWidget {
-  const _SubEventWidget({
-    required this.subevent,
-  });
+class _SubEventWidgetState extends State<_SubEventWidget> {
 
-  final SubEvent subevent;
+  TextEditingController? titleTEController;
+  TextEditingController? descriptionTEController;
 
   @override
   Widget build(BuildContext context) {
+
+    titleTEController ??= TextEditingController(text: widget.subevent.title);
+    titleTEController!.addListener(() { widget.subevent.title = titleTEController!.text; });
+    widget.subevent.description ??= "";
+    descriptionTEController ??= TextEditingController(text: widget.subevent.description!);
+    descriptionTEController!.addListener(() { widget.subevent.description = descriptionTEController!.text; });
+
     const separator = SizedBox(height: 20);
 
     final title = InfoLabel(
       label: "Titolo",
       child: TextBox(
-        controller: TextEditingController(text: subevent.title),
+        controller: titleTEController,
       ),
     );
 
@@ -133,9 +161,7 @@ class _SubEventWidget extends StatelessWidget {
       label: "Descrizione",
       child: TextBox(
         maxLines: null,
-        controller: TextEditingController(
-          text: subevent.description,
-        ),
+        controller: descriptionTEController,
       ),
     );
 
@@ -143,14 +169,14 @@ class _SubEventWidget extends StatelessWidget {
       label: "Validità",
       child: NullableDateTimeRangePicker(
         onChanged: (_) {},
-        begin: subevent.validity.begin,
-        end: subevent.validity.end,
+        begin: widget.subevent.validity.begin,
+        end: widget.subevent.validity.end,
       ),
     );
 
     final map = InfoLabel(
       label: "Mappa",
-      child: _MapManager(subEvent: subevent),
+      child: _MapManager(subEvent: widget.subevent),
     );
 
     return ListView(
@@ -166,6 +192,19 @@ class _SubEventWidget extends StatelessWidget {
       ],
     );
   }
+}
+
+class _SubEventWidget extends StatefulWidget {
+
+  final SubEvent subevent;
+
+  const _SubEventWidget({
+    required this.subevent,
+  });
+
+  @override
+  State<StatefulWidget> createState() => _SubEventWidgetState();
+
 }
 
 class _MapManager extends StatelessWidget {

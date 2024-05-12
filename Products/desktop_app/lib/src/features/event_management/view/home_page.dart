@@ -59,12 +59,6 @@ class _EventWidget extends StatelessWidget {
       ],
     );
   }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
 }
 
 class _SubEventsWidgetState extends State<_SubEventsWidget> {
@@ -134,7 +128,13 @@ class _SubEventsWidget extends StatefulWidget {
   State<StatefulWidget> createState() => _SubEventsWidgetState();
 }
 
-class _SubEventWidgetState extends State<_SubEventWidget> {
+class _SubEventWidget extends StatelessWidget {
+
+  SubEvent subevent;
+
+  _SubEventWidget({
+    required this.subevent,
+  });
 
   TextEditingController? titleTEController;
   TextEditingController? descriptionTEController;
@@ -142,11 +142,11 @@ class _SubEventWidgetState extends State<_SubEventWidget> {
   @override
   Widget build(BuildContext context) {
 
-    titleTEController ??= TextEditingController(text: widget.subevent.title);
-    titleTEController!.addListener(() { widget.subevent.title = titleTEController!.text; });
-    widget.subevent.description ??= "";
-    descriptionTEController ??= TextEditingController(text: widget.subevent.description!);
-    descriptionTEController!.addListener(() { widget.subevent.description = descriptionTEController!.text; });
+    titleTEController ??= TextEditingController(text: subevent.title);
+    titleTEController!.addListener(() { subevent.title = titleTEController!.text; });
+    subevent.description ??= "";
+    descriptionTEController ??= TextEditingController(text: subevent.description!);
+    descriptionTEController!.addListener(() { subevent.description = descriptionTEController!.text; });
 
     const separator = SizedBox(height: 20);
 
@@ -169,14 +169,14 @@ class _SubEventWidgetState extends State<_SubEventWidget> {
       label: "Validità",
       child: NullableDateTimeRangePicker(
         onChanged: (_) {},
-        begin: widget.subevent.validity.begin,
-        end: widget.subevent.validity.end,
+        begin: subevent.validity.begin,
+        end: subevent.validity.end,
       ),
     );
 
     final map = InfoLabel(
       label: "Mappa",
-      child: _MapManager(subEvent: widget.subevent),
+      child: _MapManager(subEvent: subevent),
     );
 
     return ListView(
@@ -192,19 +192,6 @@ class _SubEventWidgetState extends State<_SubEventWidget> {
       ],
     );
   }
-}
-
-class _SubEventWidget extends StatefulWidget {
-
-  final SubEvent subevent;
-
-  const _SubEventWidget({
-    required this.subevent,
-  });
-
-  @override
-  State<StatefulWidget> createState() => _SubEventWidgetState();
-
 }
 
 class _MapManager extends StatelessWidget {

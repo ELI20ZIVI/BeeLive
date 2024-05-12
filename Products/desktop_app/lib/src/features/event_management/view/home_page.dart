@@ -1,5 +1,7 @@
 
 
+import 'dart:ffi';
+
 import 'package:desktop_app/src/dao/dao.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -57,33 +59,56 @@ class _EventWidget extends StatelessWidget {
       ],
     );
   }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
 }
 
-class _SubEventsWidget extends StatelessWidget {
-  const _SubEventsWidget({
+class _SubEventsWidgetState extends State<_SubEventsWidget> {
+
+  List<Tab> tabs = [];
+  int currentIndex = 0;
+
+  Widget build(BuildContext context) {
+    tabs = widget.event.events.asMap().entries.map((entry) {
+      return Tab(
+        text: Text(entry.value.title),
+        body: _SubEventWidget(subevent: entry.value),
+        icon: Text('${entry.key+1}'),
+        onClosed: () {
+          setState(() {
+            widget.event.events.removeAt(entry.key);
+            tabs.removeAt(entry.key);
+          });
+        }
+      );
+    }).toList();
+
+    return TabView(
+      currentIndex: currentIndex,
+      tabWidthBehavior: TabWidthBehavior.compact,
+      onChanged: (index) => setState(() {
+        currentIndex = index;
+      }),
+      tabs: tabs,
+      onNewPressed: () {},
+    );
+  }
+
+}
+
+class _SubEventsWidget extends StatefulWidget {
+  _SubEventsWidget({
     required this.event,
   });
 
   final Event event;
 
   @override
-  Widget build(BuildContext context) {
-    final tabs = event.events.asMap().entries.map((entry) {
-      return Tab(
-        text: Text(entry.value.title),
-        body: _SubEventWidget(subevent: entry.value),
-        icon: Text('${entry.key + 1}'),
-      );
-    }).toList(growable: false);
-
-    return TabView(
-      currentIndex: 2,
-      tabWidthBehavior: TabWidthBehavior.compact,
-      onChanged: (i) {},
-      tabs: tabs,
-      onNewPressed: () {},
-    );
-  }
+  State<StatefulWidget> createState() => _SubEventsWidgetState();
 }
 
 class _SubEventWidget extends StatelessWidget {
@@ -178,8 +203,6 @@ class _MapManager extends StatelessWidget {
     }
 
     const mapActions = Expanded(child: SizedBox.shrink());
-
-    print(polygons[0].points);
 
     final mapWidget = BeeLiveMap(
       children: [

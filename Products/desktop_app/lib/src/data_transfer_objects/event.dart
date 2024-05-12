@@ -28,8 +28,8 @@ final class Event with BsonSerializable {
   final NullableDateTimeRange validity;
   final NullableDateTimeRange visibility;
   final RiskLevel riskLevel;
-  final List<Category> categories;
-  final List<SubEvent> events;
+  List<Category> categories;
+  List<SubEvent> events;
 
   @_GeoJSONGeometriesToMap()
   final GeoJSONGeometryCollection? polygons;
@@ -46,6 +46,15 @@ final class Event with BsonSerializable {
     this.events = const [],
     this.polygons,
   });
+
+  Event.defaultNewEvent(int id) : this(
+    id: EventId(id),
+    title: "Nuovo Evento",
+    summary: "",
+    validity: NullableDateTimeRange(),
+    visibility: NullableDateTimeRange(),
+    riskLevel: RiskLevel.info,
+  );
 
   @override
   Map<String, dynamic> get toBson => toJson();
@@ -70,7 +79,7 @@ final class SubEvent {
     this.polygons,
   });
 
-  SubEvent.default_new_subevent() : this(title: "Titolo", validity: NullableDateTimeRange());
+  SubEvent.defaultNewSubevent() : this(title: "Titolo", validity: NullableDateTimeRange());
 
   factory SubEvent.fromJson(Map<String, dynamic> json) {
     return _$SubEventFromJson(json);

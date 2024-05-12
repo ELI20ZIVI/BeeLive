@@ -3,6 +3,7 @@ import 'package:desktop_app/src/data_transfer_objects/category.dart';
 import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
 import 'package:desktop_app/src/dao/dao.dart';
 import 'package:geojson_vi/geojson_vi.dart';
+import 'package:mongo_dart/src/database/commands/query_and_write_operation_commands/return_classes/write_result.dart';
 
 import '../data_transfer_objects/event.dart';
 import '../data_transfer_objects/nullable_datetime_range.dart';
@@ -146,5 +147,11 @@ class TestDao implements Dao {
         ],
       )
     ];
+  }
+
+  @override
+  Future<WriteResult> insert_new_event(Event event) {
+    // TODO: implement insert_new_event
+    throw UnimplementedError();
   }
 }

@@ -24,11 +24,12 @@ class EventManagerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("build!!!!!");
     return Column(
       children: [
         const ActionBar(),
         Expanded(
-          child: _EventWidget(event: dao.events()[1]),
+          child: _EventWidget(event: Event.defaultNewEvent(0)),
         ),
       ],
     );
@@ -94,7 +95,7 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
       tabs: tabs,
       onNewPressed: () => setState(() {
 
-        var subevent = SubEvent.default_new_subevent();
+        var subevent = SubEvent.defaultNewSubevent();
         int index = tabs.length+1;
 
         widget.event.events.add(subevent);

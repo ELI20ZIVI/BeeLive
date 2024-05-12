@@ -3,8 +3,14 @@
 import 'package:desktop_app/src/dao/dao.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geojson_vi/geojson_vi.dart';
+import 'package:latlong2/latlong.dart';
 
 import '../../../data_transfer_objects/event.dart';
+import '../map/map.dart';
+import '../map/tiles.dart';
+import 'category_picker.dart';
+import 'datetime_range_picker.dart';
 
 class EventManagerScreen extends StatelessWidget {
   const EventManagerScreen({
@@ -41,7 +47,7 @@ class _EventWidget extends StatelessWidget {
       children: [
         Expanded(
           flex: 1,
-          child: _EventGenericForm(problem: event),
+          child: _EventGenericForm(event: event),
         ),
         const Divider(direction: Axis.vertical),
         Expanded(
@@ -62,11 +68,11 @@ class _SubEventsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabs = event.events.mapIndexed((i, e) {
+    final tabs = event.events.asMap().entries.map((entry) {
       return Tab(
-        text: Text(e.title),
-        body: _SubEventWidget(subevent: e),
-        icon: Text('${i + 1}'),
+        text: Text(entry.value.title),
+        body: _SubEventWidget(subevent: entry.value),
+        icon: Text('${entry.key + 1}'),
       );
     }).toList(growable: false);
 
@@ -119,7 +125,7 @@ class _SubEventWidget extends StatelessWidget {
 
     final map = InfoLabel(
       label: "Mappa",
-      child: _MapManager(event: subevent),
+      child: _MapManager(subEvent: subevent),
     );
 
     return ListView(
@@ -139,33 +145,47 @@ class _SubEventWidget extends StatelessWidget {
 
 class _MapManager extends StatelessWidget {
   const _MapManager({
-    required this.event,
+    required this.subEvent,
   });
 
-  final Event event;
+  final SubEvent subEvent;
 
   @override
   Widget build(BuildContext context) {
-    final polygons = event.polygons.map((p) {
-      return Polygon(
-        points: p.points,
-        isFilled: true,
-        color: Colors.blue.withOpacity(0.2),
-        borderColor: Colors.blue,
-        borderStrokeWidth: 2,
-        isDotted: true,
-        rotateLabel: true,
-        holePointsList: p.holes,
-      );
-    }).toList(growable: false);
+
+    List<Polygon> polygons = [];
+    if (subEvent.polygons != null) {
+      polygons = subEvent.polygons!.features.map((p) {
+        var coordinates;
+
+        var geometry = p?.geometry;
+        if (geometry is GeoJSONPolygon) {
+          var pol = geometry as GeoJSONPolygon;
+          coordinates = pol.coordinates[0].map((c) { return LatLng(c[1], c[0]); } ).toList(growable: false);
+        }
+
+        return Polygon(
+          points: coordinates,
+          isFilled: true,
+          color: Colors.blue.withOpacity(0.2),
+          borderColor: Colors.blue,
+          borderStrokeWidth: 2,
+          isDotted: true,
+          rotateLabel: true,
+          //holePointsList: p.holes,
+        );
+      }).toList(growable: false);
+    }
 
     const mapActions = Expanded(child: SizedBox.shrink());
+
+    print(polygons[0].points);
 
     final mapWidget = BeeLiveMap(
       children: [
         openStreetMapTileLayer,
         PolygonLayer(
-          polygonCulling: true,
+          polygonCulling: false,
           polygons: polygons,
         ),
       ],
@@ -189,10 +209,10 @@ class _MapManager extends StatelessWidget {
 
 class _EventGenericForm extends StatelessWidget {
   const _EventGenericForm({
-    required this.problem,
+    required this.event,
   });
 
-  final Problem problem;
+  final Event event;
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +221,7 @@ class _EventGenericForm extends StatelessWidget {
     final title = InfoLabel(
       label: "Titolo",
       child: TextFormBox(
-        initialValue: problem.title,
+        initialValue: event.title,
         textAlignVertical: TextAlignVertical.center,
       ),
     );
@@ -210,7 +230,7 @@ class _EventGenericForm extends StatelessWidget {
       label: "Riassunto",
       child: TextBox(
         controller: TextEditingController(
-          text: problem.summary,
+          text: event.summary,
         ),
       ),
     );
@@ -219,8 +239,8 @@ class _EventGenericForm extends StatelessWidget {
       label: "Validità",
       child: NullableDateTimeRangePicker(
         onChanged: (_) {},
-        begin: problem.validity.begin,
-        end: problem.validity.end,
+        begin: event.validity.begin,
+        end: event.validity.end,
       ),
     );
 
@@ -228,8 +248,8 @@ class _EventGenericForm extends StatelessWidget {
       label: "Visibilità",
       child: NullableDateTimeRangePicker(
         onChanged: (_) {},
-        begin: problem.visibility.begin,
-        end: problem.visibility.end,
+        begin: event.visibility.begin,
+        end: event.visibility.end,
       ),
     );
 
@@ -245,7 +265,7 @@ class _EventGenericForm extends StatelessWidget {
           separator,
           visibility,
           separator,
-          CategoryPicker(subevent: problem),
+          CategoryPicker(event: event),
         ],
       ),
     );

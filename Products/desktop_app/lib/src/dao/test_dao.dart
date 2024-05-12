@@ -2,6 +2,7 @@
 import 'package:desktop_app/src/data_transfer_objects/category.dart';
 import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
 import 'package:desktop_app/src/dao/dao.dart';
+import 'package:geojson_vi/geojson_vi.dart';
 
 import '../data_transfer_objects/event.dart';
 import '../data_transfer_objects/nullable_datetime_range.dart';
@@ -58,7 +59,58 @@ class TestDao implements Dao {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
-            polygons: null,
+            polygons: GeoJSONFeatureCollection.fromJSON("""{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              11.1195557782695,
+              46.06463649137629
+            ],
+            [
+              11.126481108652513,
+              46.064842424523874
+            ],
+            [
+              11.128031063547525,
+              46.0718436944706
+            ],
+            [
+              11.11978662261538,
+              46.0724842892038
+            ],
+            [
+              11.11817071219292,
+              46.06978458961078
+            ],
+            [
+              11.108706094002656,
+              46.0678169287487
+            ],
+            [
+              11.109068849403343,
+              46.06582631673794
+            ],
+            [
+              11.119061111814034,
+              46.066764430192165
+            ],
+            [
+              11.1195557782695,
+              46.06463649137629
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    }
+  ]
+}""")
           ),
           SubEvent(
             title: "Evento in corso",

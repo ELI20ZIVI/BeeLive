@@ -13,6 +13,9 @@ class ManagementWebServerClient implements Client {
 
   @override
   Future<bool> submitNewEvent(Event event) async {
+
+    print(json.encode(event.toJson()));
+
     var response = await http.post(uri, headers: {"Content-Type": "application/json"}, body: json.encode(event.toJson()));
     if (response.statusCode == 200) {
       return true;

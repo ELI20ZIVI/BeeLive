@@ -28,7 +28,7 @@ class CategoryPicker extends StatelessWidget {
           children: [
             suggestBox,
             const SizedBox(width: 8),
-            RiskLevelPicker(onChanged: (_) {}),
+            RiskLevelPicker(event: event,),
           ],
         ),
       ),
@@ -48,27 +48,29 @@ class CategoryPicker extends StatelessWidget {
   }
 }
 
-class RiskLevelPicker extends StatelessWidget {
-  const RiskLevelPicker({
-    super.key,
-    required this.onChanged,
-  });
-
-  final Function(RiskLevel?)? onChanged;
-
+class RiskLevelPickerState extends State<RiskLevelPicker> {
   @override
   Widget build(BuildContext context) {
-    return ComboBox<RiskLevel>(
+
+    late ComboBox<RiskLevel> comboBox;
+
+    comboBox = ComboBox<RiskLevel>(
       items: RiskLevel.values.map((rl) {
         return ComboBoxItem<RiskLevel>(
           value: rl,
           child: Text(_toString(rl)),
         );
       }).toList(growable: false),
-      value: RiskLevel.values.first,
+      value: widget.event.riskLevel,
       placeholder: const Text('Livello di rischio'),
-      onChanged: onChanged,
+      onChanged: (RiskLevel? rl) {
+        rl ??= RiskLevel.info;
+        setState(() {
+          widget.event.riskLevel = rl!;
+        });
+      },
     );
+    return comboBox;
   }
 
   static String _toString(final RiskLevel level) {
@@ -78,6 +80,20 @@ class RiskLevelPicker extends StatelessWidget {
       RiskLevel.alert => "Alert",
     };
   }
+
+}
+
+class RiskLevelPicker extends StatefulWidget {
+
+  final Event event;
+
+  const RiskLevelPicker({
+    super.key,
+    required this.event,
+  });
+  @override
+  State<StatefulWidget> createState() => RiskLevelPickerState();
+
 }
 
 class Chip extends StatelessWidget {

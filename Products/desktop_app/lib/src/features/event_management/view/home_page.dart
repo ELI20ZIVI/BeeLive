@@ -3,6 +3,7 @@
 import 'dart:ffi';
 
 import 'package:desktop_app/src/client/client.dart';
+import 'package:desktop_app/src/data_transfer_objects/nullable_datetime_range.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
@@ -169,9 +170,7 @@ class _SubEventWidget extends StatelessWidget {
     final validity = InfoLabel(
       label: "Validità",
       child: NullableDateTimeRangePicker(
-        onChanged: (_) {},
-        begin: subevent.validity.begin,
-        end: subevent.validity.end,
+        nullableDateTimeRange: subevent.validity,
       ),
     );
 
@@ -288,18 +287,14 @@ class _EventGenericForm extends StatelessWidget {
     final validity = InfoLabel(
       label: "Validità",
       child: NullableDateTimeRangePicker(
-        onChanged: (_) {},
-        begin: event.validity.begin,
-        end: event.validity.end,
+        nullableDateTimeRange: event.validity,
       ),
     );
 
     final visibility = InfoLabel(
       label: "Visibilità",
       child: NullableDateTimeRangePicker(
-        onChanged: (_) {},
-        begin: event.visibility.begin,
-        end: event.visibility.end,
+        nullableDateTimeRange: event.visibility,
       ),
     );
 

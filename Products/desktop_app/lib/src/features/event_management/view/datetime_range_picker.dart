@@ -6,14 +6,15 @@ import '../../../data_transfer_objects/nullable_datetime_range.dart';
 class NullableDateTimeRangePicker extends StatefulWidget {
   const NullableDateTimeRangePicker({
     super.key,
-    this.begin,
-    this.end,
-    required this.onChanged,
+    required this.nullableDateTimeRange,
   });
 
-  final DateTime? begin, end;
+  final NullableDateTimeRange nullableDateTimeRange;
 
-  final Function(NullableDateTimeRange)? onChanged;
+  void onChanged(NullableDateTimeRange newRange) {
+    this.nullableDateTimeRange.begin = newRange.begin;
+    this.nullableDateTimeRange.end = newRange.end;
+  }
 
   @override
   State<StatefulWidget> createState() => NullableDateTimeRangePickerState();
@@ -25,12 +26,12 @@ class NullableDateTimeRangePickerState
 
   @override
   void initState() {
-    _range = NullableDateTimeRange(begin: widget.begin, end: widget.end);
+    _range = widget.nullableDateTimeRange;
     super.initState();
   }
 
   void _notifyChange() {
-    widget.onChanged?.call(_range);
+    widget.onChanged.call(_range);
     setState(() {});
   }
 

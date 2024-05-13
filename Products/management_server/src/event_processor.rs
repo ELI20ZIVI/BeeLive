@@ -13,7 +13,7 @@ pub fn process(event: &mut Event) -> Result<(), Error> {
     let geometries : Vec<Geometry> = event.subevents
         .iter()
         .flat_map(|se| {
-            se.geometry.features.iter().filter_map(|f| {
+            se.polygons.features.iter().filter_map(|f| {
                 f.geometry.as_ref().map(|g| {
                     g.try_into().ok()
                 }).flatten()
@@ -43,7 +43,7 @@ pub fn process(event: &mut Event) -> Result<(), Error> {
 
     let features = vec![Feature::from(geojson::Geometry::from(&polygon))];
 
-    event.geojson_geometry = FeatureCollection::from_iter(features.into_iter());
+    event.polygons = FeatureCollection::from_iter(features.into_iter());
 
     Ok(())
 }

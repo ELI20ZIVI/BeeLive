@@ -33,7 +33,7 @@ impl NullableDateTimeRange {
 pub struct SubEvent {
     pub title: String,
     pub description: String,
-    pub geometry: FeatureCollection,
+    pub polygons: FeatureCollection,
     pub validity : NullableDateTimeRange,
 }
 
@@ -50,7 +50,7 @@ pub struct PrunedEvent {
     validity : NullableDateTimeRange,
     visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
-    geojson_geometry: FeatureCollection,
+    polygons: FeatureCollection,
 }
 
 impl PrunedEvent {
@@ -65,8 +65,8 @@ impl PrunedEvent {
             "summary": 1,
             "validity": 1,
             "visibility": 1,
-            "category_ids": 1,
-            "geojson_geometry": 1,
+            "categories": 1,
+            "polygons": 1,
         }
     }
 }
@@ -84,8 +84,8 @@ pub struct Event {
     pub remote_document: Option<String>,
     pub validity: NullableDateTimeRange,
     pub visibility: NullableDateTimeRange,
-    pub category_ids: Vec<i32>,
-    pub geojson_geometry: FeatureCollection,
+    pub categories: Vec<i32>,
+    pub polygons: FeatureCollection,
     pub subevents: Vec<SubEvent>,
     #[serde(skip)]
     pub locked_by: Option<i32>,
@@ -107,10 +107,10 @@ impl Event {
             validity: NullableDateTimeRange::new(Some(now), Some(now)),
             visibility: NullableDateTimeRange::new(Some(now), Some(now)),
             locked_by: None,
-            geojson_geometry: FeatureCollection::from_iter(iter::once(Feature::from(Point(vec![10.0, 6.0])))),
+            polygons: FeatureCollection::from_iter(iter::once(Feature::from(Point(vec![10.0, 6.0])))),
             creator_id: 0,
             subevents: vec![],
-            category_ids: vec![],
+            categories: vec![],
         }
     }
 }

@@ -5,16 +5,19 @@ import 'package:desktop_app/src/data_transfer_objects/event.dart';
 ///
 /// This is a class delegate to abstract the system APIs.
 abstract interface class Client {
-  static late final Client _implementation;
+
+  static late final Client implementation;
 
   /// Overrides the default client for this session.
-  static void override(Client implementation) {
-    _implementation = implementation;
+  static void override(Client implementation_) {
+    implementation = implementation_;
   }
+
+  Future<bool> submitNewEvent(Event event);
 
   /// Creates the default client.
   factory Client() {
-    return _implementation;
+    return implementation;
   }
-
 }
+

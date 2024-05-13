@@ -1,5 +1,4 @@
-import 'package:desktop_app/src/client/management_webserver_client.dart';
-import 'package:desktop_app/src/dao/test_dao.dart';
+import 'package:desktop_app/src/client/management_client.dart';
 import 'package:desktop_app/src/features/event_management/view/home_page.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +7,8 @@ import 'package:desktop_app/src/themes/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
-  Client.override(ManagementWebServerClient());
+
+  Client.override(ManagementWebServerClient(Uri.parse("http://localhost:8080/api/v3/insert_event")));
 
   runApp(const ProviderScope(child: BeeLiveDesktop()));
 }
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         PaneItem(
           icon: const Icon(FluentIcons.edit),
           title: Text(localization.eventManagement),
-          body: const EventManagerScreen(dao: TestDao()),
+          body: const EventManagerScreen(),
         ),
         PaneItem(
           enabled: false,

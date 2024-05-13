@@ -27,9 +27,9 @@ final class Event with BsonSerializable {
   final Uri? document;
   final NullableDateTimeRange validity;
   final NullableDateTimeRange visibility;
-  final RiskLevel riskLevel;
-  List<Category> categories;
-  List<SubEvent> events;
+  RiskLevel riskLevel;
+  final List<Category> categories;
+  final List<SubEvent> subevents;
 
   @_GeoJSONGeometriesToMap()
   final GeoJSONGeometryCollection? polygons;
@@ -43,7 +43,7 @@ final class Event with BsonSerializable {
     required this.visibility,
     required this.riskLevel,
     this.categories = const [],
-    this.events = const [],
+    this.subevents = const [],
     this.polygons,
   });
 
@@ -54,6 +54,7 @@ final class Event with BsonSerializable {
     validity: NullableDateTimeRange(),
     visibility: NullableDateTimeRange(),
     riskLevel: RiskLevel.info,
+    subevents: [],
   );
 
   @override

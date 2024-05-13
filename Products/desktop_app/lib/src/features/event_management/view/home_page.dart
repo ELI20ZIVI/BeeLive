@@ -2,7 +2,7 @@
 
 import 'dart:ffi';
 
-import 'package:desktop_app/src/dao/dao.dart';
+import 'package:desktop_app/src/client/client.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
@@ -15,28 +15,29 @@ import 'category_picker.dart';
 import 'datetime_range_picker.dart';
 
 class EventManagerScreen extends StatelessWidget {
+
   const EventManagerScreen({
     super.key,
-    required this.dao,
   });
-
-  final Dao dao;
 
   @override
   Widget build(BuildContext context) {
-    print("build!!!!!");
+
+    var event = Event.defaultNewEvent(0);
+
     return Column(
       children: [
-        const ActionBar(),
+        ActionBar(event: event),
         Expanded(
-          child: _EventWidget(event: Event.defaultNewEvent(0)),
+          child: _EventWidget(event: event),
         ),
       ],
     );
   }
 }
 
-class _EventWidget extends StatelessWidget {
+class _EventWidget extends StatelessWidget{
+
   const _EventWidget({
     required this.event,
   });
@@ -70,7 +71,7 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
   @override
   Widget build(BuildContext context) {
 
-    tabs = widget.event.events.asMap().entries.map((entry) {
+    tabs = widget.event.subevents.asMap().entries.map((entry) {
       late Tab tab;
       tab = Tab(
         text: Text(entry.value.title),
@@ -78,7 +79,7 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
         body: _SubEventWidget(subevent: entry.value),
         onClosed: () {
           setState(() {
-            widget.event.events.remove(entry.value);
+            widget.event.subevents.remove(entry.value);
             tabs.remove(tab);
           });
         }
@@ -98,7 +99,7 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
         var subevent = SubEvent.defaultNewSubevent();
         int index = tabs.length+1;
 
-        widget.event.events.add(subevent);
+        widget.event.subevents.add(subevent);
         late Tab tab;
         tab = Tab (
             text: Text(subevent.title),
@@ -106,7 +107,7 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
             icon: Text('${index+1}'),
             onClosed: () {
               setState(() {
-                widget.event.events.remove(subevent);
+                widget.event.subevents.remove(subevent);
                 tabs.remove(tab);
               });
             }
@@ -131,23 +132,22 @@ class _SubEventsWidget extends StatefulWidget {
 
 class _SubEventWidget extends StatelessWidget {
 
-  SubEvent subevent;
+  final SubEvent subevent;
 
   _SubEventWidget({
     required this.subevent,
   });
 
-  TextEditingController? titleTEController;
-  TextEditingController? descriptionTEController;
+  final TextEditingController titleTEController = TextEditingController();
+  final TextEditingController descriptionTEController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
-    titleTEController ??= TextEditingController(text: subevent.title);
-    titleTEController!.addListener(() { subevent.title = titleTEController!.text; });
+    titleTEController.text = subevent.title;
+    titleTEController.addListener(() { subevent.title = titleTEController!.text; });
     subevent.description ??= "";
-    descriptionTEController ??= TextEditingController(text: subevent.description!);
-    descriptionTEController!.addListener(() { subevent.description = descriptionTEController!.text; });
+    descriptionTEController.text = subevent.description!;
+    descriptionTEController.addListener(() { subevent.description = descriptionTEController.text; });
 
     const separator = SizedBox(height: 20);
 
@@ -323,8 +323,12 @@ class _EventGenericForm extends StatelessWidget {
 }
 
 class ActionBar extends StatelessWidget {
+
+  final Event event;
+
   const ActionBar({
     super.key,
+    required this.event,
   });
 
   static final List<(String, IconData, Function())> _universalCommands = [
@@ -349,7 +353,12 @@ class ActionBar extends StatelessWidget {
     }
 
     final universal = _universalCommands.map(converter);
-    final specific = _specificCommands.map(converter);
+    //var specific = _specificCommands.map(converter);
+    var specific = [CommandBarButton(
+        onPressed: () { Client.implementation.submitNewEvent(event); },
+        label: Text("Pubblica"),
+        icon: Icon(FluentIcons.publish_content),
+    )];
 
     return Padding(
       padding: const EdgeInsets.all(10),

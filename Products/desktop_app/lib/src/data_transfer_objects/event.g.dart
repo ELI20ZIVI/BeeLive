@@ -22,7 +22,7 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
               ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      events: (json['events'] as List<dynamic>?)
+      subevents: (json['events'] as List<dynamic>?)
               ?.map((e) => SubEvent.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -40,7 +40,7 @@ Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
       'visibility': instance.visibility,
       'riskLevel': _$RiskLevelEnumMap[instance.riskLevel]!,
       'categories': instance.categories,
-      'events': instance.events,
+      'events': instance.subevents,
       'polygons': _$JsonConverterToJson<Map<String, dynamic>,
               GeoJSONGeometryCollection>(
           instance.polygons, const _GeoJSONGeometriesToMap().toJson),

@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
 
-  Client.override(ManagementWebServerClient(Uri.parse("http://localhost:8080/api/v3/insert_event")));
+  Client.override(ManagementWebServerClient(Uri.parse("http://localhost:8080/api/v3/insert_new_event")));
 
   runApp(const ProviderScope(child: BeeLiveDesktop()));
 }

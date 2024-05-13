@@ -10,9 +10,10 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
       id: EventId.fromJson((json['id'] as num).toInt()),
       title: json['title'] as String,
       summary: json['summary'] as String,
-      document: json['document'] == null
+      description: json['description'] as String,
+      remoteDocument: json['remote_document'] == null
           ? null
-          : Uri.parse(json['document'] as String),
+          : Uri.parse(json['remote_document'] as String),
       validity: NullableDateTimeRange.fromJson(
           json['validity'] as Map<String, dynamic>),
       visibility: NullableDateTimeRange.fromJson(
@@ -22,28 +23,26 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
               ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      subevents: (json['events'] as List<dynamic>?)
+      subevents: (json['subevents'] as List<dynamic>?)
               ?.map((e) => SubEvent.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      polygons: _$JsonConverterFromJson<Map<String, dynamic>,
-              GeoJSONGeometryCollection>(
-          json['polygons'], const _GeoJSONGeometriesToMap().fromJson),
+      polygons: const _GeoJSONFeaturesToMap()
+          .fromJson(json['polygons'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'summary': instance.summary,
-      'document': instance.document?.toString(),
+      'description': instance.description,
+      'remote_document': instance.remoteDocument?.toString(),
       'validity': instance.validity,
       'visibility': instance.visibility,
       'riskLevel': _$RiskLevelEnumMap[instance.riskLevel]!,
       'categories': instance.categories,
-      'events': instance.subevents,
-      'polygons': _$JsonConverterToJson<Map<String, dynamic>,
-              GeoJSONGeometryCollection>(
-          instance.polygons, const _GeoJSONGeometriesToMap().toJson),
+      'subevents': instance.subevents,
+      'polygons': const _GeoJSONFeaturesToMap().toJson(instance.polygons),
     };
 
 const _$RiskLevelEnumMap = {
@@ -52,33 +51,18 @@ const _$RiskLevelEnumMap = {
   RiskLevel.alert: 100,
 };
 
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
-
 SubEvent _$SubEventFromJson(Map<String, dynamic> json) => SubEvent(
       title: json['title'] as String,
       description: json['description'] as String?,
       validity: NullableDateTimeRange.fromJson(
           json['validity'] as Map<String, dynamic>),
-      polygons: _$JsonConverterFromJson<Map<String, dynamic>,
-              GeoJSONFeatureCollection>(
-          json['polygons'], const _GeoJSONFeaturesToMap().fromJson),
+      polygons: const _GeoJSONFeaturesToMap()
+          .fromJson(json['polygons'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SubEventToJson(SubEvent instance) => <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'validity': instance.validity,
-      'polygons':
-          _$JsonConverterToJson<Map<String, dynamic>, GeoJSONFeatureCollection>(
-              instance.polygons, const _GeoJSONFeaturesToMap().toJson),
+      'polygons': const _GeoJSONFeaturesToMap().toJson(instance.polygons),
     };

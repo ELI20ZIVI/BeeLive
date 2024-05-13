@@ -24,37 +24,42 @@ final class Event with BsonSerializable {
   final EventId id;
   final String title;
   final String summary;
-  final Uri? document;
+  final String description;
+  @JsonKey(name: 'remote_document')
+  final Uri? remoteDocument;
   final NullableDateTimeRange validity;
   final NullableDateTimeRange visibility;
   RiskLevel riskLevel;
   final List<Category> categories;
   final List<SubEvent> subevents;
 
-  @_GeoJSONGeometriesToMap()
-  final GeoJSONGeometryCollection? polygons;
+  @_GeoJSONFeaturesToMap()
+  final GeoJSONFeatureCollection polygons;
 
   Event({
     required this.id,
     required this.title,
     required this.summary,
-    this.document,
+    required this.description,
+    this.remoteDocument,
     required this.validity,
     required this.visibility,
     required this.riskLevel,
     this.categories = const [],
     this.subevents = const [],
-    this.polygons,
+    required this.polygons,
   });
 
   Event.defaultNewEvent(int id) : this(
     id: EventId(id),
     title: "Nuovo Evento",
     summary: "",
+    description: "",
     validity: NullableDateTimeRange(),
     visibility: NullableDateTimeRange(),
     riskLevel: RiskLevel.info,
     subevents: [],
+    polygons: GeoJSONFeatureCollection([]),
   );
 
   @override
@@ -71,16 +76,16 @@ final class SubEvent {
   NullableDateTimeRange validity;
 
   @_GeoJSONFeaturesToMap()
-  final GeoJSONFeatureCollection? polygons;
+  final GeoJSONFeatureCollection polygons;
 
   SubEvent({
     required this.title,
     this.description,
     required this.validity,
-    this.polygons,
+    required this.polygons,
   });
 
-  SubEvent.defaultNewSubevent() : this(title: "Titolo", validity: NullableDateTimeRange());
+  SubEvent.defaultNewSubevent() : this(title: "Titolo", validity: NullableDateTimeRange(), polygons: GeoJSONFeatureCollection([]));
 
   factory SubEvent.fromJson(Map<String, dynamic> json) {
     return _$SubEventFromJson(json);

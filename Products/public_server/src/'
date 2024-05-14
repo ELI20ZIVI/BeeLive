@@ -1,6 +1,7 @@
 use std::default;
 
-use chrono::{DateTime, Local};
+use chrono::serde::ts_seconds_option;
+use chrono::{DateTime, Utc};
 use geojson::Geometry;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
@@ -16,14 +17,30 @@ pub struct Category {
     subcategories_ids: Vec<i32>,
 }
 
+type NullableDateTime = Option<DateTime<Utc>>;
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct NullableDateTimeRange {
+    #[serde(with = "ts_seconds_option")]
+    pub begin : NullableDateTime,
+    #[serde(with = "ts_seconds_option")]
+    pub end : NullableDateTime,
+}
+
+impl NullableDateTimeRange {
+
+    pub fn new(begin : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
+        NullableDateTimeRange{begin, end}
+    }
+}
+
 #[derive(Serialize, Deserialize)]
 pub struct SubEvent {
     id: i32,
     title: String,
     description: String,
     geometry: Geometry,
-    start_validity: DateTime<chrono::Local>,
-    end_validity: DateTime<chrono::Local>,
+    validity: NullableDateTimeRange,
 
 }
 
@@ -37,10 +54,8 @@ pub struct PrunedEvent {
     id: i32,
     title: String,
     summary: String,
-    start_validity: DateTime<chrono::Local>,
-    end_validity: DateTime<chrono::Local>,
-    start_visibility: DateTime<chrono::Local>,
-    end_visibility: DateTime<chrono::Local>,
+    validity: NullableDateTimeRange,
+    visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
     geojson_geometry: Geometry,
 }
@@ -76,10 +91,8 @@ pub struct Event {
     summary: String,
     description: String,
     remote_document: Option<String>,
-    start_validity: DateTime<chrono::Local>,
-    end_validity: DateTime<chrono::Local>,
-    start_visibility: DateTime<chrono::Local>,
-    end_visibility: DateTime<chrono::Local>,
+    validity: NullableDateTimeRange,
+    visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
     geojson_geometry: Geometry,
     subevents: Vec<SubEvent>,
@@ -92,7 +105,8 @@ pub struct Event {
 impl Event {
     pub fn test_event() -> Event {
 
-        let now = Local::now();
+        let now = Some(Utc::now());
+        let now = NullableDateTimeRange{begin: now, end: now};
 
         Event {
             id: 0,
@@ -100,10 +114,8 @@ impl Event {
             description: "an amazing description".to_string(),
             remote_document: Some("test remote document . org".to_string()),
             summary: "a long summary".to_string(),
-            start_validity: now,
-            end_validity: now,
-            start_visibility: now,
-            end_visibility: now,
+            validity: now.clone(),
+            visibility: now,
             locked_by: None,
             geojson_geometry: Geometry::new(geojson::Value::Point(vec![10.0, 6.0])),
             creator_id: 0,

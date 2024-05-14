@@ -36,7 +36,7 @@ services:
     image: casbin/casdoor
     container_name: casdoor
     ports:
-      - '8000:8000'
+      - '9987:8000'
     environment:
       driverName: sqlite
       dataSourceName: "file:/db/casdoor.db?cache=shared"
@@ -48,9 +48,18 @@ services:
     container_name: public_server
     build:
       context: ../public_server/
-      dockerfile: ../Docker/public_server.Dockerfile
+      dockerfile: ../public_server/Dockerfile
     ports:
-      - "8080:8080"
+      - "7839:8080"
+  # ----------------- ManagementServer application configuration ------------------- #
+  managementserver:
+    container_name: management_server
+    build:
+      context: ../management_server/
+      dockerfile: ../management_server/Dockerfile
+    ports:
+      - "14124:8080"
+
 
 volumes:
   public_server:

@@ -47,7 +47,8 @@ dependencies:
   flutter_map: ^6.1.0
   flutter_map_cancellable_tile_provider: ^2.0.0
   latlong2: ^0.9.1
-  mongo_dart: ^0.10.2
+  http: ^1.2.1
+  unixtime: ^1.0.0
 
 dev_dependencies:
   flutter_test:

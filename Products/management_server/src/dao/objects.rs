@@ -1,5 +1,6 @@
 use std::iter;
-use chrono::{DateTime, Local};
+use chrono::{DateTime, Local, Utc};
+use chrono::serde::ts_seconds_option;
 use geojson::{FeatureCollection, Feature};
 use geojson::Value::Point;
 use mongodb::bson::{doc, Document};
@@ -14,18 +15,20 @@ pub struct Category {
     subcategories_ids: Vec<i32>,
 }
 
-type NullableDateTime = Option<DateTime<Local>>;
+type NullableDateTime = Option<DateTime<Utc>>;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct NullableDateTimeRange {
-    pub start : NullableDateTime,
+    #[serde(with = "ts_seconds_option")]
+    pub begin : NullableDateTime,
+    #[serde(with = "ts_seconds_option")]
     pub end : NullableDateTime,
 }
 
 impl NullableDateTimeRange {
 
-    pub fn new(start : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
-        NullableDateTimeRange{start, end}
+    pub fn new(begin : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
+        NullableDateTimeRange{begin, end}
     }
 }
 
@@ -96,7 +99,7 @@ pub struct Event {
 impl Event {
     pub fn test_event() -> Event {
 
-        let now = Local::now();
+        let now = Utc::now();
 
         Event {
             id: 0,

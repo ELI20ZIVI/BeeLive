@@ -2,7 +2,7 @@ use std::default;
 
 use chrono::serde::ts_seconds_option;
 use chrono::{DateTime, Utc};
-use geojson::{FeatureCollection, Geometry, Feature};
+use geojson::Geometry;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
 
@@ -36,9 +36,10 @@ impl NullableDateTimeRange {
 
 #[derive(Serialize, Deserialize)]
 pub struct SubEvent {
+    id: i32,
     title: String,
     description: String,
-    polygons: FeatureCollection,
+    geometry: Geometry,
     validity: NullableDateTimeRange,
 
 }
@@ -55,8 +56,8 @@ pub struct PrunedEvent {
     summary: String,
     validity: NullableDateTimeRange,
     visibility: NullableDateTimeRange,
-    categories: Vec<i32>,
-    polygons: FeatureCollection,
+    category_ids: Vec<i32>,
+    geojson_geometry: Geometry,
 }
 
 impl PrunedEvent {
@@ -69,10 +70,12 @@ impl PrunedEvent {
             "id": 1,
             "title": 1,
             "summary": 1,
-            "validity": 1,
-            "visibility": 1,
-            "categories": 1,
-            "polygons": 1,
+            "start_validity": 1,
+            "end_validity": 1,
+            "start_visibility": 1,
+            "end_visibility": 1,
+            "category_ids": 1,
+            "geojson_geometry": 1,
         }
     }
 }
@@ -90,8 +93,8 @@ pub struct Event {
     remote_document: Option<String>,
     validity: NullableDateTimeRange,
     visibility: NullableDateTimeRange,
-    categories: Vec<i32>,
-    polygons: FeatureCollection,
+    category_ids: Vec<i32>,
+    geojson_geometry: Geometry,
     subevents: Vec<SubEvent>,
     #[serde(skip)]
     locked_by: Option<i32>,
@@ -114,20 +117,10 @@ impl Event {
             validity: now.clone(),
             visibility: now,
             locked_by: None,
-            polygons: FeatureCollection {
-                bbox: None,
-                foreign_members: None,
-                features: vec![Feature{
-                    bbox: None,
-                    foreign_members: None,
-                    id: None,
-                    properties: None,
-                    geometry: Some(Geometry::new(geojson::Value::Point(vec![10.0, 6.0])))
-                }],
-            },
+            geojson_geometry: Geometry::new(geojson::Value::Point(vec![10.0, 6.0])),
             creator_id: 0,
             subevents: vec![],
-            categories: vec![],
+            category_ids: vec![],
         }
     }
 }

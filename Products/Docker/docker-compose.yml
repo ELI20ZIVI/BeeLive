@@ -39,10 +39,10 @@ services:
       - '8000:8000'
     environment:
       driverName: sqlite
-      dataSourceName: "file:/db/casdoor.db?cache=shared"
+      dataSourceName: "file:/var/lib/casdoor/db/casdoor.db?cache=shared"
       dbName: casdoor
     volumes:
-      - ./Casdoor/sqlite:/db
+      - ./casdoor:/var/lib/casdoor/
   # ----------------- PublicServer application configuration ------------------- #
   publicserver:
     container_name: public_server
@@ -54,3 +54,4 @@ services:
 
 volumes:
   public_server:
+  casdoor:

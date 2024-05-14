@@ -10,11 +10,11 @@ mod dao;
 
 #[derive(Deserialize)]
 struct EventQueryData {
-    mode: String,
-    addb: Vec<u32>,
-    subb: Vec<u32>,
-    addi: Vec<u32>,
-    subi: Vec<u32>,
+    mode: Option<String>,
+    addb: Option<Vec<u32>>,
+    subb: Option<Vec<u32>>,
+    addi: Option<Vec<u32>>,
+    subi: Option<Vec<u32>>,
 }
 
 // TODO: formalize and document this endpoint

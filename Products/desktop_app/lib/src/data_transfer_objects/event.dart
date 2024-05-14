@@ -19,13 +19,12 @@ extension type EventId(int _id) {
   int toJson() => _id;
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 final class Event with BsonSerializable {
   final EventId id;
   final String title;
   final String summary;
   final String description;
-  @JsonKey(name: 'remote_document')
   final Uri? remoteDocument;
   final NullableDateTimeRange validity;
   final NullableDateTimeRange visibility;

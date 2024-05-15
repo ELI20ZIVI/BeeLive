@@ -108,6 +108,7 @@ paths:
       security:
         - api_key: []
         - bearerAuth: []
+  # Richiesta di un evento specifico
   /event/{event}:
     get:
       tags:
@@ -161,8 +162,6 @@ paths:
           description: Richiesta non valida
         '409':
           description: Conflitto
-        '422':
-          description: Dati inseriti non validi
       security:
         - api_key: []
         - bearerAuth: []

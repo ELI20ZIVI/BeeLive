@@ -8,20 +8,20 @@ part of 'casdoor_token.dart';
 
 CasdoorTokens _$CasdoorTokensFromJson(Map<String, dynamic> json) =>
     CasdoorTokens(
-      json['accessToken'] as String,
-      json['idToken'] as String,
-      json['refreshToken'] as String,
-      json['tokenType'] as String,
-      (json['expiresIn'] as num).toInt(),
+      json['access_token'] as String,
+      json['id_token'] as String,
+      json['refresh_token'] as String,
+      json['token_type'] as String,
+      (json['expires_in'] as num).toInt(),
       (json['scopes'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$CasdoorTokensToJson(CasdoorTokens instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'idToken': instance.idToken,
-      'refreshToken': instance.refreshToken,
-      'tokenType': instance.tokenType,
-      'expiresIn': instance.expiresIn,
+      'access_token': instance.accessToken,
+      'id_token': instance.idToken,
+      'refresh_token': instance.refreshToken,
+      'token_type': instance.tokenType,
+      'expires_in': instance.expiresIn,
       'scopes': instance.scopes,
     };

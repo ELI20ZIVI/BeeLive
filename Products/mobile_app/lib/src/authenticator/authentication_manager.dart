@@ -1,10 +1,9 @@
-
 import 'dart:async';
 
 import 'package:casdoor_flutter_sdk/casdoor_flutter_sdk.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mobile_app/src/authenticator/authentication_provider/authentication_provider.dart';
+import 'package:mobile_app/src/storage/key_value_storage.dart';
 import 'package:synchronized/extension.dart';
 
 /// Class that manages the authentication phase.
@@ -16,56 +15,49 @@ class AuthenticationManager {
       "authenticator.didAuthenticate";
 
   /// The OAuth scopes.
-  static const String _scope = "openid profile";
+  final List<Scope> _scopes;
 
-  final Casdoor _casdoor;
+  final AuthenticationProvider _provider;
+  final KeyValueStorage prefs = KeyValueStorage();
 
   Completer<String?> _codeCompleter = Completer();
 
-  AuthenticationManager(this._casdoor);
+  AuthenticationManager(
+    this._provider, [
+    this._scopes = const ["openid"],
+  ]);
 
-  Future<bool> wasAuthenticationRefused() async {
-    final prefs = await SharedPreferences.getInstance();
-    final didAuthenticate = prefs.getBool(_sharedPreferencesAuthenticatedKey);
+  bool wasAuthenticationRefused() {
+    final didAuthenticate = prefs.get<bool>(_sharedPreferencesAuthenticatedKey);
 
     debugPrint("didAuthenticate: $didAuthenticate");
 
     return didAuthenticate == false;
   }
 
-  Future<bool> shouldAuthenticate() async {
-    final prefs = await SharedPreferences.getInstance();
-    final didAuthenticate = prefs.getBool(_sharedPreferencesAuthenticatedKey);
+  bool shouldAuthenticate() {
+    final didAuthenticate = prefs.get<bool>(_sharedPreferencesAuthenticatedKey);
 
     return didAuthenticate == null;
   }
 
   Future<String?> _authenticate(final BuildContext context) async {
-    final callback = await _casdoor.showFullscreen(context, scope: _scope);
+    debugPrint("authenticating");
+    final code = await _provider.showLogin(context, scopes: _scopes);
+    debugPrint("authenticated");
 
-    final prefs = await SharedPreferences.getInstance();
+    await prefs.set(_sharedPreferencesAuthenticatedKey, code != null);
 
-    String? result;
-    try {
-      final String code = Uri
-          .parse(callback)
-          .queryParameters['code'] as String;
-
-      result = code;
-    } on CasdoorAuthCancelledException catch (_) {
-      result = null;
-    }
-
-    await prefs.setBool(_sharedPreferencesAuthenticatedKey, result != null);
-
-    return result;
+    return code;
   }
 
   /// Asks the user for authentication.
   ///
   /// Note: this method is synchronized to avoid concurrent authentication.
   Future<String?> authenticate(final BuildContext context) {
+    debugPrint("Waiting for authentication lock");
     return synchronized(() async {
+      debugPrint("Obtained authentication lock");
       if (_codeCompleter.isCompleted) {
         _codeCompleter = Completer();
       }
@@ -74,6 +66,7 @@ class AuthenticationManager {
       try {
         result = await _authenticate(context);
       } catch (e) {
+        debugPrint("Error during authentication: $e");
         _codeCompleter.completeError(e);
         rethrow;
       }
@@ -82,8 +75,16 @@ class AuthenticationManager {
     });
   }
 
-  Future<String?> authenticateIfAppropriate(final BuildContext context) async {
-    if (!await shouldAuthenticate()) {
+  Future<String?> authenticateIfAppropriate(
+    final BuildContext context, [
+    bool hasValidToken = true,
+  ]) async {
+    final isAppropriate =
+        shouldAuthenticate() || (!hasValidToken && !wasAuthenticationRefused());
+
+    debugPrint("Appropriate authentication: $isAppropriate");
+
+    if (!isAppropriate) {
       if (!_codeCompleter.isCompleted) {
         _codeCompleter.complete(null);
       }
@@ -93,15 +94,15 @@ class AuthenticationManager {
     if (context.mounted) {
       return authenticate(context);
     } else {
+      debugPrint("Unmounted context");
       return null;
     }
   }
 
   Future<String?> get code async {
-    if (await wasAuthenticationRefused()) {
+    if (wasAuthenticationRefused()) {
       return null;
     }
     return await _codeCompleter.future;
   }
-
 }

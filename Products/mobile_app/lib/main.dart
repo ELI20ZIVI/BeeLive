@@ -1,20 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile_app/src/authenticator/authentication_provider/authentication_provider.dart';
+import 'package:mobile_app/src/authenticator/authentication_provider/casdoor_authentication_provider.dart';
+import 'package:mobile_app/src/authenticator/authenticator.dart';
+import 'package:mobile_app/src/authenticator/jwt_authenticator.dart';
 import 'package:mobile_app/src/client/client.dart';
 import 'package:mobile_app/src/client/public_webserver_client.dart';
-import 'package:mobile_app/src/features/events/view/home_page.dart';
+import 'package:mobile_app/src/logger/riverpod_logger.dart';
+import 'package:mobile_app/src/routes/routes.dart';
+import 'package:mobile_app/src/storage/key_value_storage.dart';
+import 'package:mobile_app/src/storage/key_value_storage/shared_preferences.dart';
 import 'package:mobile_app/src/themes/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart' as sp;
 
-void main() {
-  final uri = Uri(
-    scheme: "http",
-    host: "192.168.1.15",
-    port: 8080,
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final pwsUri = Uri(scheme: "http", host: "192.168.144.43", port: 8080);
+  final casdoorUri = pwsUri.replace(scheme: "http", port: 8000);
+
+  Client.override(PublicWebServerClient(
+    "dG9ydGluaSBhbCBjaW9jY29sYXRvCg==",
+    pwsUri,
+  ));
+  KeyValueStorage.override(
+    SharedPreferences(await sp.SharedPreferences.getInstance()),
   );
 
-  Client.override(PublicWebServerClient(uri));
+  final AuthenticationProvider provider =
+      CasdoorAuthenticationProvider.defaultConfig(
+    clientSecret: "8cd8dde871a54de9f5846b1b061e1040c160833f",
+    serverUrl: casdoorUri,
+  );
 
-  runApp(const ProviderScope(child: BeeLiveMobile()));
+  Authenticator.override(JwtAuthenticator(provider));
+
+  runApp(const ProviderScope(
+    observers: [RiverpodLogger()],
+    child: BeeLiveMobile(),
+  ));
 }
 
 class BeeLiveMobile extends StatelessWidget {
@@ -22,15 +46,10 @@ class BeeLiveMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'BeeLive',
       theme: theme,
-      routes: {
-        Navigator.defaultRouteName: (_) => HomePage(),
-        /*"/login": (_) => LoginPage(),
-        "/details": (_) => EventDetailsPage(),
-        "/settings": (_) => SettingsPage(),*/
-      },
+      routerConfig: BeeLiveRouter().config(),
     );
   }
 }

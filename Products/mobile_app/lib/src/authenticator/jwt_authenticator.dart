@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:casdoor_flutter_sdk/casdoor_flutter_sdk.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mobile_app/src/authenticator/authentication_provider/authentication_provider.dart';
 import 'package:mobile_app/src/authenticator/authenticator.dart';
 import 'package:mobile_app/src/authenticator/authentication_manager.dart';
 import 'package:mobile_app/src/authenticator/tokens_manager.dart';
@@ -9,34 +9,13 @@ import 'package:mobile_app/src/authenticator/tokens_manager.dart';
 /// Authenticator class to perform authentication of the user via Casdoor.
 ///
 /// This is a wrapper class to allow usage of common interface for easy substitution.
-final class CasdoorAuthenticator implements Authenticator {
-
+final class JwtAuthenticator implements Authenticator {
   final TokensManager _tokensManager;
   final AuthenticationManager _authenticationManager;
 
-  CasdoorAuthenticator(final AuthConfig config)
-      : this._(Casdoor(config: config));
-
-  CasdoorAuthenticator._(final Casdoor casdoor)
-      : _casdoor = casdoor,
-        _tokensManager = TokensManager(casdoor),
-        _authenticationManager = AuthenticationManager(casdoor);
-
-  CasdoorAuthenticator.defaultConfig({
-    String? clientId,
-    Uri? serverUrl,
-    String? organizationName,
-    String? appName,
-    String? redirectUri,
-    String? callbackUrlScheme,
-  }) : this(AuthConfig(
-          clientId: clientId ?? "712b8aaffd9c4c71ab7a",
-          serverUrl: serverUrl?.toString() ?? "casdoor.beelive.it",
-          organizationName: organizationName ?? "beelive",
-          appName: appName ?? "public_beelive",
-          redirectUri: redirectUri ?? "casdoor://callback",
-          callbackUrlScheme: callbackUrlScheme ?? "casdoor",
-        ));
+  JwtAuthenticator(final AuthenticationProvider provider)
+      : _tokensManager = TokensManager(provider),
+        _authenticationManager = AuthenticationManager(provider);
 
   @override
   Future<bool> authenticate(final BuildContext context) {
@@ -46,13 +25,22 @@ final class CasdoorAuthenticator implements Authenticator {
   }
 
   @override
-  FutureOr<bool> authenticateIfAppropriate(
-    final BuildContext context, {
-    bool hasToken = true,
-  }) {
-    return _authenticationManager
-        .authenticateIfAppropriate(context, hasToken)
-        .then((code) => code != null);
+  FutureOr<bool> authenticateIfAppropriate(final BuildContext context) async {
+    final token = await _tokensManager.tokens;
+
+    if (!context.mounted) {
+      debugPrint("Unmounted context");
+      return false;
+    }
+
+    debugPrint("hasToken: ${token != null}");
+
+    final code = await _authenticationManager.authenticateIfAppropriate(
+      context,
+      token != null,
+    );
+
+    return code != null;
   }
 
   @override

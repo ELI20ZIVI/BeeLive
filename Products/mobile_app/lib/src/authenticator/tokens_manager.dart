@@ -1,14 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:casdoor_flutter_sdk/casdoor_flutter_sdk.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-part 'tokens_manager.g.dart';
+import 'package:mobile_app/src/authenticator/authentication_provider/authentication_provider.dart';
+import 'package:mobile_app/src/storage/key_value_storage.dart';
 
 /// Class that manages the OIDC tokens.
 ///
@@ -19,31 +14,38 @@ class TokensManager {
   /// The token is stored as a JSON.
   static const String _sharedPreferencesTokensKey = "authenticator.tokens";
 
-  final Casdoor _casdoor;
+  final AuthenticationProvider _provider;
+  final KeyValueStorage prefs = KeyValueStorage();
 
-  const TokensManager(this._casdoor);
+  TokensManager(this._provider);
 
   /// Retrieve a previously saved token.
   ///
   /// `null` is returned in case no tokens have been stored.
   /// Errors are thrown in case of corruption.
   Future<Tokens?> get _load async {
-    final prefs = await SharedPreferences.getInstance();
-    final rawTokens = prefs.getString(_sharedPreferencesTokensKey);
+    final rawTokens = prefs.get<String>(_sharedPreferencesTokensKey);
+
+    debugPrint("shared preference token: $rawTokens");
 
     if (rawTokens == null) return null;
 
     try {
-      return Tokens.fromJson(jsonDecode(rawTokens));
+      return _provider.tokenFromJson(jsonDecode(rawTokens));
     } catch (_) {
-      await prefs.remove(_sharedPreferencesTokensKey);
+      await _store(null);
       rethrow;
     }
   }
 
-  Future<bool> _store(final Tokens tokens) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.setString(_sharedPreferencesTokensKey, jsonEncode(tokens));
+  FutureOr<bool> _store(final Tokens? tokens) async {
+    final bool result;
+    if (tokens == null) {
+      result = await prefs.remove(_sharedPreferencesTokensKey);
+    } else {
+      result = await prefs.set(_sharedPreferencesTokensKey, jsonEncode(tokens));
+    }
+    return result;
   }
 
   /// Returns a valid token.\
@@ -58,12 +60,6 @@ class TokensManager {
     // Refreshes the token if expired
     tokens = await _refreshIfExpired(tokens);
 
-    // NOTE: data races could actually trigger this assertion.
-    assert(
-      _casdoor.isTokenExpired(tokens.accessToken),
-      "The just generated access token is already expired",
-    );
-
     return tokens;
   }
 
@@ -71,58 +67,46 @@ class TokensManager {
   ///
   /// Returns the tokens.
   Future<Tokens> fromAuthorizationCode(final String code) async {
-    final response = await _casdoor.requestOauthAccessToken(code);
-    debugPrint(response.body);
-    var tokens = _fromResponse(response);
+    final token = await _provider.requestAccessToken(code);
 
     assert(
-      _casdoor.isTokenExpired(tokens.accessToken),
-      "The just generated access token is already expired",
+      !_provider.isTokenExpired(token.accessToken),
+      "The just generated access token is already expired.",
     );
 
-    final result = await _store(tokens);
+    final result = await _store(token);
 
     assert(result, "Unable to store the token");
 
-    return tokens;
+    return token;
   }
 
-  Future<Tokens> _refreshIfExpired(Tokens tokens) async {
-    if (_casdoor.isTokenExpired(tokens.accessToken)) {
-      final response = await _casdoor.refreshToken(
+  Future<Tokens?> _refreshIfExpired(final Tokens tokens) async {
+    Tokens? result = tokens;
+    if (_provider.isTokenExpired(tokens.accessToken)) {
+      result = await _provider.refreshToken(
         tokens.refreshToken,
-        // TODO: Why is it required? Should be secret.
-        "8cd8dde871a54de9f5846b1b061e1040c160833f",
-        scope: tokens.scope,
+        scopes: tokens.scopes,
       );
 
-      tokens = _fromResponse(response);
+      if (_provider.isTokenExpired(result.accessToken)) {
+        result = null;
+      }
 
-      _store(tokens);
+      final response = await _store(result);
+      assert(response, "Could not store token after refresh");
     }
-    return tokens;
-  }
-
-  Tokens _fromResponse(final Response response) {
-    if (response.statusCode != HttpStatus.ok) {
-      throw HttpException(response.reasonPhrase ?? "Unknown error");
-    }
-
-    final json = jsonDecode(response.body);
-    return Tokens.fromJson(json);
+    return result;
   }
 }
 
-typedef Token = String;
-
-@JsonSerializable(fieldRename: FieldRename.snake)
-class Tokens {
+abstract base class Tokens {
   final Token accessToken;
   final Token idToken;
   final Token refreshToken;
   final String tokenType;
   final int expiresIn;
-  final String scope;
+  final List<Scope> scopes;
 
   Tokens(
     this.accessToken,
@@ -130,11 +114,8 @@ class Tokens {
     this.refreshToken,
     this.tokenType,
     this.expiresIn,
-    this.scope,
+    this.scopes,
   );
 
-  factory Tokens.fromJson(final Map<String, dynamic> json) =>
-      _$TokensFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TokensToJson(this);
+  Map<String, dynamic> toJson();
 }

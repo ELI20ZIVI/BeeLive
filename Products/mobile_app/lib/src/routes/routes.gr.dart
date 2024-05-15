@@ -17,8 +17,9 @@ abstract class $BeeLiveRouter extends _i2.RootStackRouter {
 
   @override
   final Map<String, _i2.PageFactory> pagesMap = {
-    Home.name: (routeData) {
-      final args = routeData.argsAs<HomeArgs>(orElse: () => const HomeArgs());
+    HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i2.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.HomePage(key: args.key),
@@ -29,28 +30,29 @@ abstract class $BeeLiveRouter extends _i2.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomePage]
-class Home extends _i2.PageRouteInfo<HomeArgs> {
-  Home({
+class HomeRoute extends _i2.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
     _i3.Key? key,
     List<_i2.PageRouteInfo>? children,
   }) : super(
-          Home.name,
-          args: HomeArgs(key: key),
+          HomeRoute.name,
+          args: HomeRouteArgs(key: key),
           initialChildren: children,
         );
 
-  static const String name = 'Home';
+  static const String name = 'HomeRoute';
 
-  static const _i2.PageInfo<HomeArgs> page = _i2.PageInfo<HomeArgs>(name);
+  static const _i2.PageInfo<HomeRouteArgs> page =
+      _i2.PageInfo<HomeRouteArgs>(name);
 }
 
-class HomeArgs {
-  const HomeArgs({this.key});
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
 
   final _i3.Key? key;
 
   @override
   String toString() {
-    return 'HomeArgs{key: $key}';
+    return 'HomeRouteArgs{key: $key}';
   }
 }

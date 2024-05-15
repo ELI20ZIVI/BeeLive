@@ -3,12 +3,11 @@ use std::default;
 use chrono::serde::ts_seconds_option;
 use chrono::{DateTime, Utc};
 use geojson::{FeatureCollection, Geometry, Feature};
+
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
 
-
-
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
     id: i32,
     name: String,
@@ -34,13 +33,12 @@ impl NullableDateTimeRange {
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SubEvent {
-    title: String,
-    description: String,
-    polygons: FeatureCollection,
-    validity: NullableDateTimeRange,
-
+    pub title: String,
+    pub description: String,
+    pub geometry: FeatureCollection,
+    pub validity : NullableDateTimeRange,
 }
 
 /// This struct represents the deserializable JSON data that the server sends to the client when
@@ -48,11 +46,12 @@ pub struct SubEvent {
 /// It is a compact representation of an Event, thus 'pruning' some fields like subcategories and
 /// locks. 
 /// The purpose of the pruning is to save bandwidt when sending data to the client. 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct PrunedEvent {
     id: i32,
     title: String,
     summary: String,
+    remote_document: Option<String>,
     validity: NullableDateTimeRange,
     visibility: NullableDateTimeRange,
     categories: Vec<i32>,
@@ -64,15 +63,17 @@ impl PrunedEvent {
     /// Returns a MongoDB projection document with fields corresponding to the PrunedEvent fields.
     /// It is used in crate::dao::query_pruned_events in order to only read given fields out of the
     /// Events database.
-    pub fn mongobd_projection() -> Document {
-        doc! { 
+    pub fn mongodb_projection() -> Document {
+        doc! {
             "id": 1,
             "title": 1,
             "summary": 1,
+            "remote_document": 1,
             "validity": 1,
             "visibility": 1,
             "categories": 1,
             "polygons": 1,
+
         }
     }
 }
@@ -81,7 +82,7 @@ impl PrunedEvent {
 /// the client requests information about a single event, aka `/events/{event}`
 /// It is the full representation of an Event, with internal fields like 'creator_id' and
 /// `locked_by` that are not de/serializable, thus are not sent nor received to / from the client. 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Event {
     id: i32,
     title: String,
@@ -94,9 +95,9 @@ pub struct Event {
     polygons: FeatureCollection,
     subevents: Vec<SubEvent>,
     #[serde(skip)]
-    locked_by: Option<i32>,
+    pub locked_by: Option<i32>,
     #[serde(skip)]
-    creator_id: i32,
+    pub creator_id: i32,
 }
 
 impl Event {

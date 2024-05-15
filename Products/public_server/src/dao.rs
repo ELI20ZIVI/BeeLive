@@ -26,7 +26,7 @@ pub async fn insert_new_event(mongodb_collection: &Collection<Event>, event: Eve
 /// needed.
 pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>) -> Vec<PrunedEvent> {
 
-    let find_options = FindOptions::builder().projection(PrunedEvent::mongobd_projection()).build();
+    let find_options = FindOptions::builder().projection(PrunedEvent::mongodb_projection()).build();
 
     let cursor = mongodb_collection.clone_with_type::<PrunedEvent>().find(None, find_options).await.unwrap();
 

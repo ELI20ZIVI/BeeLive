@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_placeholder_textlines/flutter_placeholder_textlines.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,12 +17,25 @@ class EventList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final events = ref.watch(client.eventList);
+    final events = ref.watch(client.eventList.future);
+    debugPrint(events.toString());
 
-    return events.when(
+    // TODO: use riverpod
+    /*return events.when(
       data: _EventList.new,
       error: _Error.new,
       loading: () => const _EventList(null),
+    );*/
+
+    return FutureBuilder(
+      future: events,
+      builder: (ctx, snap) {
+        if (snap.hasError) {
+          return _Error(snap.error!, snap.stackTrace!);
+        } else {
+          return _EventList(snap.data);
+        }
+      },
     );
   }
 }
@@ -83,7 +98,9 @@ class _Error extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Text('${error.toString()}\n$stacktrace'),
+    );
   }
 }

@@ -19,7 +19,7 @@ tags:
   - name: utilità
     description: API di servizio
 paths:
-  /event:
+  /events:
     get:
       tags:
         - eventi
@@ -137,6 +137,32 @@ paths:
           description: Id dell'evento non valido
         '406':
           description: Not Acceptable
+      security:
+        - api_key: []
+        - bearerAuth: []
+  # Inserimento di un nuovo evento
+  /insert_new_event:
+    post:
+      tags:
+        - eventi
+      summary: Inserisce un nuovo evento
+      description: Inserisce un nuovo evento nel sistema.
+      operationId: insertEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FullEvent'
+      responses:
+        '201':
+          description: Operazione eseguita con successo
+        '400':
+          description: Richiesta non valida
+        '409':
+          description: Conflitto
+        '422':
+          description: Dati inseriti non validi
       security:
         - api_key: []
         - bearerAuth: []

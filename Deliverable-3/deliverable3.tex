@@ -362,7 +362,25 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 
 \clearpage
 
-\subsubsection{Test cases per il modulo \texttt{management_server}}
+\subsubsection{Test cases per il modulo \texttt{management\_server}}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
+        \Xhline{2pt}
+        1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato bson i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{200} & - \\
+        \hline
+        2 & Test di fallimento per l'inserzione di un nuovo evento con dati non validi & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato bson i dati dell'evento da inserire con dati non validi & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{400} & Devono essere rispettati tutti i tipi per ogni caratteristica dell'evento \\
+        \hline
+        3 & Test di fallimento per l'inserzione di un nuovo evento con parametro \texttt{id} uguale ad un evento già esistente & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato bson i dati dell'evento da inserire con il parametro \texttt{id} uguale ad un evento già esistente & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{406} & - \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\clearpage
 
 \subsection{Sprint review}
 Commenti su aspetti del meeting: demo e discussione successiva

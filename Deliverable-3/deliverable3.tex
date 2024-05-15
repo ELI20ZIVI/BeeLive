@@ -203,8 +203,9 @@ Sono riportati tutti i test che sono risultati necessari per testare il modulo \
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
         \Xhline{2pt}
-        \makecell{\textbf{No.}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
+        1 & Test di successo per la richiesta di tutti gli eventi & Andare a \texttt{} & Il database contiene degli eventi & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi con codice 200 & \makecell{-} \\
         \hline
     \end{tabularx}
     \caption{Tabella dei test per il modulo \texttt{public\_server}}

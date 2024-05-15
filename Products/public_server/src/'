@@ -2,12 +2,13 @@ use std::default;
 
 use chrono::serde::ts_seconds_option;
 use chrono::{DateTime, Utc};
-use geojson::{FeatureCollection, Geometry, Feature};
-
+use geojson::Geometry;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+
+
+#[derive(Serialize, Deserialize)]
 pub struct Category {
     id: i32,
     name: String,
@@ -33,12 +34,14 @@ impl NullableDateTimeRange {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize)]
 pub struct SubEvent {
-    pub title: String,
-    pub description: String,
-    pub geometry: FeatureCollection,
-    pub validity : NullableDateTimeRange,
+    id: i32,
+    title: String,
+    description: String,
+    geometry: Geometry,
+    validity: NullableDateTimeRange,
+
 }
 
 /// This struct represents the deserializable JSON data that the server sends to the client when
@@ -46,16 +49,15 @@ pub struct SubEvent {
 /// It is a compact representation of an Event, thus 'pruning' some fields like subcategories and
 /// locks. 
 /// The purpose of the pruning is to save bandwidt when sending data to the client. 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct PrunedEvent {
     id: i32,
     title: String,
     summary: String,
-    remote_document: Option<String>,
     validity: NullableDateTimeRange,
     visibility: NullableDateTimeRange,
-    categories: Vec<i32>,
-    polygons: FeatureCollection,
+    category_ids: Vec<i32>,
+    geojson_geometry: Geometry,
 }
 
 impl PrunedEvent {
@@ -63,17 +65,17 @@ impl PrunedEvent {
     /// Returns a MongoDB projection document with fields corresponding to the PrunedEvent fields.
     /// It is used in crate::dao::query_pruned_events in order to only read given fields out of the
     /// Events database.
-    pub fn mongodb_projection() -> Document {
-        doc! {
+    pub fn mongobd_projection() -> Document {
+        doc! { 
             "id": 1,
             "title": 1,
             "summary": 1,
-            "remote_document": 1,
-            "validity": 1,
-            "visibility": 1,
-            "categories": 1,
-            "polygons": 1,
-
+            "start_validity": 1,
+            "end_validity": 1,
+            "start_visibility": 1,
+            "end_visibility": 1,
+            "category_ids": 1,
+            "geojson_geometry": 1,
         }
     }
 }
@@ -82,22 +84,22 @@ impl PrunedEvent {
 /// the client requests information about a single event, aka `/events/{event}`
 /// It is the full representation of an Event, with internal fields like 'creator_id' and
 /// `locked_by` that are not de/serializable, thus are not sent nor received to / from the client. 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize)]
 pub struct Event {
-    pub id: i32,
-    pub title: String,
-    pub summary: String,
-    pub description: String,
-    pub remote_document: Option<String>,
-    pub validity: NullableDateTimeRange,
-    pub visibility: NullableDateTimeRange,
-    pub category_ids: Vec<i32>,
-    pub geojson_geometry: FeatureCollection,
-    pub subevents: Vec<SubEvent>,
+    id: i32,
+    title: String,
+    summary: String,
+    description: String,
+    remote_document: Option<String>,
+    validity: NullableDateTimeRange,
+    visibility: NullableDateTimeRange,
+    category_ids: Vec<i32>,
+    geojson_geometry: Geometry,
+    subevents: Vec<SubEvent>,
     #[serde(skip)]
-    pub locked_by: Option<i32>,
+    locked_by: Option<i32>,
     #[serde(skip)]
-    pub creator_id: i32,
+    creator_id: i32,
 }
 
 impl Event {
@@ -115,20 +117,10 @@ impl Event {
             validity: now.clone(),
             visibility: now,
             locked_by: None,
-            polygons: FeatureCollection {
-                bbox: None,
-                foreign_members: None,
-                features: vec![Feature{
-                    bbox: None,
-                    foreign_members: None,
-                    id: None,
-                    properties: None,
-                    geometry: Some(Geometry::new(geojson::Value::Point(vec![10.0, 6.0])))
-                }],
-            },
+            geojson_geometry: Geometry::new(geojson::Value::Point(vec![10.0, 6.0])),
             creator_id: 0,
             subevents: vec![],
-            categories: vec![],
+            category_ids: vec![],
         }
     }
 }

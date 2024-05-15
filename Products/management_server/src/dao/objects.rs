@@ -1,9 +1,8 @@
-use std::default;
-
+use std::iter;
+use chrono::{DateTime, Local, Utc};
 use chrono::serde::ts_seconds_option;
-use chrono::{DateTime, Utc};
-use geojson::{FeatureCollection, Geometry, Feature};
-
+use geojson::{FeatureCollection, Feature};
+use geojson::Value::Point;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
 
@@ -37,7 +36,7 @@ impl NullableDateTimeRange {
 pub struct SubEvent {
     pub title: String,
     pub description: String,
-    pub geometry: FeatureCollection,
+    pub polygons: FeatureCollection,
     pub validity : NullableDateTimeRange,
 }
 
@@ -51,10 +50,9 @@ pub struct PrunedEvent {
     id: i32,
     title: String,
     summary: String,
-    remote_document: Option<String>,
-    validity: NullableDateTimeRange,
+    validity : NullableDateTimeRange,
     visibility: NullableDateTimeRange,
-    categories: Vec<i32>,
+    category_ids: Vec<i32>,
     polygons: FeatureCollection,
 }
 
@@ -68,12 +66,10 @@ impl PrunedEvent {
             "id": 1,
             "title": 1,
             "summary": 1,
-            "remote_document": 1,
             "validity": 1,
             "visibility": 1,
             "categories": 1,
             "polygons": 1,
-
         }
     }
 }
@@ -91,8 +87,8 @@ pub struct Event {
     pub remote_document: Option<String>,
     pub validity: NullableDateTimeRange,
     pub visibility: NullableDateTimeRange,
-    pub category_ids: Vec<i32>,
-    pub geojson_geometry: FeatureCollection,
+    pub categories: Vec<i32>,
+    pub polygons: FeatureCollection,
     pub subevents: Vec<SubEvent>,
     #[serde(skip)]
     pub locked_by: Option<i32>,
@@ -103,8 +99,7 @@ pub struct Event {
 impl Event {
     pub fn test_event() -> Event {
 
-        let now = Some(Utc::now());
-        let now = NullableDateTimeRange{begin: now, end: now};
+        let now = Utc::now();
 
         Event {
             id: 0,
@@ -112,20 +107,10 @@ impl Event {
             description: "an amazing description".to_string(),
             remote_document: Some("test remote document . org".to_string()),
             summary: "a long summary".to_string(),
-            validity: now.clone(),
-            visibility: now,
+            validity: NullableDateTimeRange::new(Some(now), Some(now)),
+            visibility: NullableDateTimeRange::new(Some(now), Some(now)),
             locked_by: None,
-            polygons: FeatureCollection {
-                bbox: None,
-                foreign_members: None,
-                features: vec![Feature{
-                    bbox: None,
-                    foreign_members: None,
-                    id: None,
-                    properties: None,
-                    geometry: Some(Geometry::new(geojson::Value::Point(vec![10.0, 6.0])))
-                }],
-            },
+            polygons: FeatureCollection::from_iter(iter::once(Feature::from(Point(vec![10.0, 6.0])))),
             creator_id: 0,
             subevents: vec![],
             categories: vec![],

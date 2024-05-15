@@ -84,16 +84,16 @@ impl PrunedEvent {
 /// `locked_by` that are not de/serializable, thus are not sent nor received to / from the client. 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Event {
-    pub id: i32,
-    pub title: String,
-    pub summary: String,
-    pub description: String,
-    pub remote_document: Option<String>,
-    pub validity: NullableDateTimeRange,
-    pub visibility: NullableDateTimeRange,
-    pub category_ids: Vec<i32>,
-    pub geojson_geometry: FeatureCollection,
-    pub subevents: Vec<SubEvent>,
+    id: i32,
+    title: String,
+    summary: String,
+    description: String,
+    remote_document: Option<String>,
+    validity: NullableDateTimeRange,
+    visibility: NullableDateTimeRange,
+    categories: Vec<i32>,
+    polygons: FeatureCollection,
+    subevents: Vec<SubEvent>,
     #[serde(skip)]
     pub locked_by: Option<i32>,
     #[serde(skip)]

@@ -168,6 +168,8 @@ paths:
   # Registrazione nuovo utente
   /user:
     post:
+      tags:
+        - preferenze
       summary: Registra un nuovo utente
       description: Crea un nuovo utente nel sistema
       operationId: createUser
@@ -208,6 +210,8 @@ paths:
   # Login utente
   /user/login:
     post:
+      tags:
+        - preferenze
       summary: Esegue il login di un utente
       description: Autentica un utente esistente e genera un token JWT
       operationId: login

@@ -80,10 +80,12 @@ Ziviani Elia, 228172}
 A Trento è difficile trovare informazioni sulla viabilità, soprattutto per tutti quegli eventi che la influenzano. BeeLive risolve questo problema perchè prevede un sistema informativo che mostra visivamente le variazioni della viabilità in città, informando gli utenti di eventuali modifiche che potrebbero colpirli direttamente.
 
 \subsection{Link utili}
-\begin{itemize}
-    \item \href{https://github.com/ELI20ZIVI/BeeLive/}{Repository GitHub}
-    \item \href{}{Link Apiray}
-\end{itemize}
+Il primo link fornito è quello della repository github. La repository è stata creata appena il corso è cominciato, infatti inizialmente è risultata utile al fine di scrivere in modo collaborativo i primi deliverable.\\
+E' stato deciso di integrare in questa repository anche le fasi di sprint in quanto come team riteniamo utile la possibilità di accedere alla documentazione redatta nei primi due deliverable.\\
+La repository è accessibile al seguente link: \href{https://github.com/ELI20ZIVI/BeeLive/}{Repository GitHub}\\ \\
+Il secondo link fornito è quello di Apiary. Apiary è uno strumento che permette di creare e documentare in modo molto accurato e approfontido le API utilizzate nel progetto.\\
+Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link Apiray}\\
+
 \clearpage
 
 
@@ -94,21 +96,119 @@ A Trento è difficile trovare informazioni sulla viabilità, soprattutto per tut
 \subsection{Product Backlog}
 
 \subsection{Definition of "Done"}
-
-
+La Definition of Done è un insieme di criteri utilizzati per determinare quando un'attività o una user story può essere considerata completata. Questi criteri servono a garantire che ogni elemento del lavoro raggiunga un livello di qualità accettabile per considerarlo terminato.\\
+I criteri inclusi nella Definition of Done redatta per il progetto sono i seguenti:
+\begin{itemize}
+    \item \textbf{Codice}: Il codice deve essere rivisto e approvato attraverso un processo di code review, e deve aderire agli standard di codifica stabiliti.
+    \item \textbf{Test}: Tutti i test unitari, di integrazione e funzionali devono essere scritti ed eseguiti con successo.
+    \item \textbf{Documentazione}: La documentazione necessaria, come i deliverable, deve essere completa e aggiornata.
+    \item \textbf{Build e Deployment}: Il codice deve essere integrato con successo nella build principale e deve essere distribuito in un ambiente di test per ulteriori verifiche.
+    \item \textbf{Performance}: Il prodotto deve soddisfare i criteri di performance definiti, garantendo che le funzionalità siano efficienti e scalabili.
+    \item \textbf{Conformità}: Il prodotto deve essere conforme alle normative legali e agli standard di sicurezza e qualità specifici del settore. 
+\end{itemize}
 
 \clearpage
 
 \section{Sezione Sprint \#1}
 
 \subsection{Goal dello sprint}
-Breve descrizione del goal dello sprint.
+In questo primo sprint lo scopo è di creare un prototipo funzionante dell'applicazione, che presenti le funzionalità di base e che sia in grado di comunicare con i server tramite le API.\\
+Si è lavorato quindi sia sull'applicativo mobile, dedicato agli utenti normali utilizzatori, che sull'applicativo desktop, dedicato agli amministratori del sistema.\\
+Le funzionalità che sono stante implementate sono quindi, per quanto riguarda la parte mobile, la visualizzazione degli eventi disponibili e dei loro relativi dettagli, anche includendo la visualizzazione su mappa, e la possibilità di effettuare l'autenticazione per poter salvare le impostazioni sul database e permettere il cambio dispositivo senza la perdita.\\
+Per quanto riguarda la parte desktop, invece, sono state implementate le funzionalità di login da parte degli utenti autenticati e la possibilità di inserire le varie nuove criticità che si verificano in città.
 
 \subsection{Sprint Planning}
-Sprint Backlog con tabella e burndown chart da integrare come sezione nel report
+E' riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
+\subsubsection{Da utente autorizzato, devo essere in grado di aggiungere degli eventi in modo da comunicare la loro presenza agli utenti}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
+        \Xhline{2pt}
+        \makecell{Aggiunta\\eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi in\\modo da comunicare la\\loro presenza agli utenti} & \makecell{Creazione screen (DA)\\Creazione metodo del client (DA)\\Creazione API endpoint (WS)\\Creazione metodo del DAO (WS)\\Creazione modulo gestione mappa\\Creazione event manager (WS)\\Creazione test (WS)\\Creazione test (DA)} & \makecell{Dennis Orlando\\Dennis Orlando\\Dennis Orlando\\Pietro Cipriani\\Pietro Cipriani\\Pietro Cipriani\\Elia Ziviani\\-} & \makecell{5\\3\\4\\4\\3\\2\\4\\4} \\
+        \hline
+    \end{tabularx}
+    \caption{Product backlog user story 1}
+\end{table}
+
+\subsubsection{Da utente, voglio avere la possibilità di accedere ad una visualizzazione e descrizione più dettagliata di un evento in modo da conoscere meglio le specifiche di tale evento}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
+        \Xhline{2pt}
+        \makecell{Visualizzazione\\eventi\\e dettagli\\da utente\\mobile} & \makecell{Da utente, voglio avere\\la possibilità di accedere\\ad una visualizzazione e\\descrizione più dettagliata\\di un evento in modo da\\conoscere meglio le\\specifiche di tale evento} & \makecell{Creazione screen (DA)\\Creazione API endpoint (WS)\\Creazione metodo del client (DA)\\Creazione metodo del DAO (WS)\\Estensione Event Processor\\Creazione test (WS)\\Creazione test (DA)} & \makecell{-\\Dennis Orlando\\-\\Dennis Orlando\\Dennis Orlando\\Elia Ziviani\\-} & \makecell{4\\2\\2\\2\\2\\4\\4} \\
+        \hline
+    \end{tabularx}
+    \caption{Product backlog user story 2}
+\end{table}
+
+\clearpage
+
+\subsubsection{Da utente, voglio essere in grado di poter registrare un account in modo da poter salvare le mie impostazioni e le aree di interesse ch io ho impostato}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
+        \Xhline{2pt}
+        \makecell{Registrazione\\account\\utente\\mobile} & \makecell{Da utente voglio essere\\in grado di poter registrare\\un account in modo da\\poter salvare le mie\\impostazioni e le aree di\\interesse che io ho impostato} & \makecell{Creazione screen login (MA)\\Istanziazione casdoor\\Sincro preferenze locali (MA)\\Client: Gestione token (MA)\\Modifica API endpoints\\Creazione auth. SDK (WS)\\Creazione default AC policies\\Creazione tests(WS)\\Creazione tests(MA)} & \makecell{Pietro Cipriani\\Elia e Pietro\\-\\Pietro Cipriani\\Elia Ziviani\\-\\-\\Elia Ziviani\\-} & \makecell{4\\6\\4\\2\\4\\3\\3\\4\\4} \\
+        \hline
+    \end{tabularx}
+    \caption{Product backlog user story 3}
+\end{table}
+
+\subsubsection{Da utente, voglio visualizzare la lista delle criticità presenti in città}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
+        \Xhline{2pt}
+        \makecell{Accesso alle\\criticità in\\città} & \makecell{Da utente voglio essere\\in grado di visualizzare la\\lista delle criticità presenti\\in città} & \makecell{Istanziazione DB\\Creazione screen (MA)\\Creazione API endpoint (WS)\\Creazione metodo del DAO(WS)\\Creazione metodo del client(MA)\\Creazione event processor(WS)\\Creazione test(WS)\\Creazione test(MA)\\Istanziazione public server} & \makecell{Elia Ziviani\\Pietro Cipriani\\Dennis Orlando\\Dennis Orlando\\Pietro Cipriani\\Dennis Orlando\\Elia Ziviani\\-\\Elia Ziviani} & \makecell{2\\5\\4\\2\\2\\1\\5\\5\\-} \\
+        \hline
+    \end{tabularx}
+    \caption{Product backlog user story 4}
+\end{table}
+
+\subsubsection{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi eventi, in modo da capire visivamente si in una zona di mio interesse vi è un evento attivo}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
+        \Xhline{2pt}
+        \makecell{Visualizzazione\\criticità\\su mappa} & \makecell{Da utente voglio\\visualizzare su una cartina\\le zone colpite dai diversi\\eventi, in modo da capire\\visivamente se in una zona\\di mio interesse vi è un\\evento attivo} & \makecell{Estensione screen (MA)\\Creazione tests (MA)} & \makecell{-\\-} & \makecell{3\\2} \\
+        \hline
+    \end{tabularx}
+    \caption{Product backlog user story 5}
+\end{table}
 
 \subsection{Test cases}
-Tabella test cases -> Solo design è ok per Sprint \#1
+\subsubsection{Test cases per il modulo \texttt{public\_server}}
+Il modulo \texttt{public\_server} è il modulo che si occupa di gestire le richieste provenienti dall'applicativo mobile.\\
+Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativi mobile installati sui dispositivi, andando quindi a reperire dal database tutti gli eventi che sono richiesti nella richiesta stessa.\\
+
+Sono riportati tutti i test che sono risultati necessari per testare il modulo \texttt{public\_server}.
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| r | X | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Numero}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Dipendenze}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Risultati ottenuti}} & \makecell{\textbf{Note}} \\
+        \Xhline{2pt}
+        \hline
+    \end{tabularx}
+    \caption{Product backlog user story 5}
+\end{table}
 
 \subsection{Sprint review}
 Commenti su aspetti del meeting: demo e discussione successiva

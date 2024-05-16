@@ -108,10 +108,10 @@ Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only": non
 Per aumentare la modulabilità e la scalabilità del progetto, abbiamo infatti adottato la strategia di branching prevedente la creazione di un 'branch' separato per ogni specifica feature del progetto, con un branch \textit{develop} intermedio.\\
 
 \noindent
-L'integrazione di una feature specifica avviene attraverso il merging del branch di quest'ultima nel branch \textit{develop}; tale operazione è ammessa solamente da un diverso membro del team, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
+L'integrazione di una feature specifica avviene attraverso il merging del branch di quest'ultima nel precedentemente citato \textit{develop}; tale operazione è ammessa solamente da un diverso componente del gruppo, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
 
 \noindent
-Dato il branch \textit{develop}, definito come ambiente di lavoro in cui i membri del team lavorano e accumulano modifiche, una volta accumulate abbastanza modifiche (e giudicato lo stato del progetto per intero come 'stabile' e 'shippable') verrà effettuato il merge di questa branch in \texttt{main}, come operazione di 'release'. \\
+Dato il branch \textit{develop}, definito come ambiente di lavoro in cui i membri del team lavorano e accumulano modifiche, una volta che ne sono accumulate abbastanza (e giudicato lo stato del progetto per intero come 'stabile' e 'shippable') verrà effettuato il merge di questa branch nel principale \texttt{main}, come operazione di 'release'. \\
 
 \noindent
 Tramite questo approccio puntiamo ad incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitare la gestione delle diverse attività in corso e mantenere inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
@@ -124,11 +124,12 @@ Tutte le funzionalita' all'interno di questo branch sono considerate terminate e
 In questa branch abbiamo direttamente modificato e aggiornato i 'deliverable', prima di creare una branch \textit{deliverable} appositamente dedicata alla stesura di questi documenti.
 
 \subsection{\texttt{deliverable}}
-Branch dedicato alla stesura del deliverable.
+Branch dedicato alla stesura dei vari deliverable.
 
 \subsubsection{\texttt{develop}}
 Il branch di sviluppo del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
-Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate. Una volta che sono considerate funzionanti vengono integrate nel branch principale.
+Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate.\\
+Una volta che sono considerate funzionanti sono quindi integrate nel branch principale.
 
 \subsubsection{\texttt{ma\_screen}}
 Branch dedicato alla creazione delle schermate dell'applicativo mobile, i.e. tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
@@ -158,7 +159,7 @@ Una volta concluso lo sviluppo del modulo frontend, il branch è stato integrato
 \subsubsection{\texttt{preview}}
 Branch dedicato alla preview dell'interfaccia grafica dei due applicativi.\\
 E' stato utilizzato al momento della prima presentazione del progetto per mostrare il lavoro svolto ai committenti e per ricevere feedback su eventuali modifiche da apportare.\\
-Integra dei mockup delle varie interfacce, diaa desktop che mobile, che andranno sviluppate.\\
+Integra dei mockup delle varie interfacce, desktop e mobile, che andranno sviluppate.\\
 Parte della preview è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia,
 
 \clearpage
@@ -225,17 +226,17 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
 \subsection{Goal dello sprint}
 Lo scopo di questo primo sprint è stato quello di creare un prototipo funzionante dell'applicazione, che presenti le funzionalità core del nostro progetto e che quindi includa queste funzionalità:
 \begin{enumerate}
-\item possibilità da parte di un utente autorizzato di aggiungere eventi al sistema
-\item possibilità da parte degli utenti di visualizzare gli eventi aggiunti
+\item Possibilità da parte di un utente autorizzato di aggiungere eventi al sistema
+\item Possibilità da parte degli utenti di visualizzare gli eventi aggiunti
 \end{enumerate}
-È stato dunque necessario lavorare, oltre al 'backend', anche anche sull'applicativo mobile dedicato ad utenti comuni e sull'applicativo desktop, dedicato agli utenti autorizzati.
+È stato dunque necessario lavorare, oltre al 'backend', anche allo sviluppo sia dell'applicativo mobile dedicato ad utenti comuni che all'applicativo desktop, dedicato agli utenti autorizzati.
 
 Scendendo più in dettaglio, le funzionalità che abbiamo deciso di includere nello sprint sono, per quanto riguarda la parte mobile, la visualizzazione degli eventi disponibili e dei loro relativi dettagli, anche includendo la visualizzazione su mappa.\\
-Abbiamo anche inserito, anche se con bassa priorità, la funzionalità riguardante la possibilità di effettuare l'autenticazione (da parte degli utenti comuni) per poter salvare le proprie impostazioni e preferenze sul database.\\
+E' stato inoltre inserita, anche se con bassa priorità, la funzionalità riguardante la possibilità di effettuare l'autenticazione (da parte degli utenti comuni) per poter salvare le proprie impostazioni e preferenze sul database.\\
 Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'aggiunta degli eventi al sistema, rimandando l'autenticazione degli utenti autorizzati a sprint successivi.
 
 \subsection{Sprint Planning}
-è riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
+E' riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
 \subsubsection{Aggiunta eventi da utente autorizzato}
 \textbf{User story}: Da utente autorizzato, devo essere in grado di aggiungere degli eventi in modo da comunicare la loro presenza agli utenti.\\
 
@@ -471,7 +472,7 @@ Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta
             thick
         ] table [col sep=comma, x=date, y=planned] {
             date, planned
-            2024-05-01, 100
+            2024-05-01, 122
             2024-05-16, 0
         };
         \addlegendentry{Planned}
@@ -482,10 +483,22 @@ Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta
             thick
         ] table [col sep=comma, x=date, y=actual] {
             date, actual
-            2024-05-01, 100
-            2024-05-04, 100
-            % ...
-            2024-05-16, 0
+            2024-05-01, 122
+            2024-05-02, 117
+            2024-05-03, 115
+            2024-05-04, 113
+            2024-05-05, 109
+            2024-05-06, 96
+            2024-05-07, 83
+            2024-05-08, 79
+            2024-05-09, 76
+            2024-05-10, 74
+            2024-05-11, 65
+            2024-05-12, 60
+            2024-05-13, 48
+            2024-05-14, 42
+            2024-05-15, 42
+            2024-05-16, 42
         };
         \addlegendentry{Actual}
         \end{axis}
@@ -523,7 +536,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \item Test cases per la richiesta degli eventi utilizzando il parametro \texttt{mode}:
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[!h]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
@@ -680,12 +693,28 @@ La fase di inserzione di un nuovo evento prevede l'utilizzo di dati corretti e v
 \clearpage
 
 \subsection{Sprint review}
-Commenti su aspetti del meeting: demo e discussione successiva
+In questo sprint siamo riusciti ad implementare le funzionalità 'barebone' della nostra applicazione, e nonostante ci siano molte criticità da risolvere abbiamo ottenuto un prodotto tecnicamente "shippable", composto da:
+\begin{itemize}
+	\item Due webservers capaci di effettuare inserimenti di eventi all'interno del sistema e successivo 'retrieving' degli eventi inseriti.
+	\item Un applicativo desktop capace di configurare un evento e inserirlo all'interno del webserver remoto
+	\item Un applicativo mobile capace di ottenere la lista di tutti gli eventi inseriti nel sistema (tramine comunicazione con uno dei webserver)
+
+\end{itemize}
 
 \subsection{Product backlog refinement}
-Commenti su aspetti del meeting e variazioni al product backlog
+Il product backlog che abbiamo generato è una rielaborazione della lista di user stories da cui siamo partiti, e che abbiamo documentato nei precedenti deliverable.\\
+I motivi di questa rielaborazione includono, ad esempio, la tenuta in considerazione di eventuali dettagli implementativi che ci hanno portato, ad esempio, ad unire alcune user stories sotto un unica entry nel product backlog.\\
+Il prossimo sprint partirà da ciò che abbiamo creato durante questo sprint, per cui eventuali modifiche o revisioni al backlog verranno documentate nel prossimo documento (aka "Milestone 4")
+
 
 \subsection{Sprint retrospective}
-Commenti sulle conclusioni del meeting, cosa ha funzionato, cosa no, adozione di pratiche "agile", "design thinking", dinamiche di gruppo, spunti per il prossimo sprint, etc.
+Durante lo sprint siamo andati incontro ad alcune mutazioni e conflitti, seppur leggeri, nel momento in cui i nostri prodotti hanno raggiunto uno stato di maturità abbastanza elevato da poter cominciare ad interagire con le altre componenti. 
+Queste problematiche sono nate da leggere differenze, all'interno del gruppo, di ciò che pensavamo che il sistema dovesse fare, il che ha portato a sviluppare componenti con, ad esempio, metadati o strutture dati leggermente diverse, il che ha ovviamente ci ha portato problemi nel momento in cui cercavamo di far comunicare le diverse componenti. Questi problemi di comunicazione sono stati facilmente risolti, ciò non toglie però che questi problemi sono stati un sintomo di discrepanze logiche all'interno del gruppo che se non gestite potrebbero portare a problemi più grandi.\\
+Ci siamo dunque ripromessi di operare, in futuro, in modo più rigoroso, sotto forma di un investimento più sostanzioso verso la definizione di strutture dati ed endpoint in modo che tutti i membri del gruppo siano sulla stessa lunghezza d'onda riguardo alle funzionalità ed 'user stories' da implementare / risolvere. \\
+\\
+Alcuni membri del gruppo hanno fatto notare dei potenziali miglioramenti riguardo al nostro workflow git, ad esempio con l'utilizzo di una branch 'nightly' (che verrebbe automaticamente "deployata" sul nostro server di testing) o anche solo stare attenti ad effettuare commits atomici e, allo stesso modo, effettuare un isolamento migliore delle branches per quanto riguarda le feature che le stesse vanno a implementare. \\
+\\
+Un ultimo problema che abbiamo riscontrato è un potenziale errore concettuale riguardante le 'user stories' e il product backlog da noi creato. In particolare, stiamo valutando se rendere tali user stories più "atomiche", invece che effettuare ciò che abbiamo fatto noi ovvero di atomizzare solamente le sub-user stories. \\
+Questo punto è un tema ancora acceso di discussione, per cui eventuali conclusioni a riguardo verranno riportate all'inizio del prossimo sprint.
 
 \end{document}

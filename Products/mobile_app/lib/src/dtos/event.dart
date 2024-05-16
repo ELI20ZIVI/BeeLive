@@ -30,8 +30,8 @@ final class Event with BsonSerializable {
   @JsonKey(defaultValue: [])
   final List<SubEvent> events;
 
-  @_GeoJSONGeometriesToMap()
-  final GeoJSONGeometryCollection? polygons;
+  @_GeoJSONFeaturesToMap()
+  final GeoJSONFeatureCollection? polygons;
 
   Event({
     required this.id,

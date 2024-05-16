@@ -28,8 +28,8 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
               .toList() ??
           [],
       polygons: _$JsonConverterFromJson<Map<String, dynamic>,
-              GeoJSONGeometryCollection>(
-          json['polygons'], const _GeoJSONGeometriesToMap().fromJson),
+              GeoJSONFeatureCollection>(
+          json['polygons'], const _GeoJSONFeaturesToMap().fromJson),
     );
 
 Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
@@ -42,9 +42,9 @@ Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
       'riskLevel': _$RiskLevelEnumMap[instance.riskLevel]!,
       'categories': instance.categories,
       'events': instance.events,
-      'polygons': _$JsonConverterToJson<Map<String, dynamic>,
-              GeoJSONGeometryCollection>(
-          instance.polygons, const _GeoJSONGeometriesToMap().toJson),
+      'polygons':
+          _$JsonConverterToJson<Map<String, dynamic>, GeoJSONFeatureCollection>(
+              instance.polygons, const _GeoJSONFeaturesToMap().toJson),
     };
 
 const _$RiskLevelEnumMap = {

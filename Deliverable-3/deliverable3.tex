@@ -111,14 +111,18 @@ Questo branch e' dedicato allo sviluppo del client mobile, quindi l'applicazione
 Il branch, una volta concluso lo sviluppo dell'applicativo, e' stato integrato nel branch \texttt{develop} per i test in associata con tutti gli altri moduli.
 
 \subsubsection{\texttt{ws-fetch-eventi}}
-...
+Branch nel quale e' stato sviluppato il modulo che si occupa di recuperare gli eventi dal database.\\
+Questo modulo e' utile per l'applicativo mobile, che deve visualizzare le criticita' presenti in citta'.\\
+Una volta che il modulo e' stato completato, e' stato integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.
 
 \subsubsection{\texttt{ma\_screen}}
 Questo branch e' dedicato alla creazione delle schermate dell'applicativo mobile, quindi tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
 Anche questo branch, una volta concluso lo sviluppo, e' stato integrato nel branch \texttt{develop}.
 
 \subsubsection{\texttt{ws-insert-event}}
-...
+Branch dedicato allo sviluppo del modulo che si occupa di inserire le criticita' in citta' nel suistema.\\
+Utile allo sviluppo del modulo utilizzato dall'applicativo desktop per l'inserimento delle criticita' in citta'..
+Una volta che il modulo e' stato completato, e' stato integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.
 
 \subsubsection{\texttt{da\_frontend}}
 Il branch e' dedicato allo sviluppo della componente grafica dell'applicativo desktop, quindi l'applicativo utilizzato dagli utenti autorizzati (del comune e non) per inserire a sistema le criticita' presenti in citta'.\\
@@ -130,6 +134,7 @@ E' stato utilizzato al momento della prima presentazione del progetto per mostra
 Integra dei mockup delle varie interfacce, diaa desktop che mobile, che andranno sviluppate.
 
 \subsection{Product Backlog}
+
 
 \subsection{Definition of "Done"}
 La Definition of Done è un insieme di criteri utilizzati per determinare quando un'attività o una user story può essere considerata completata. Questi criteri servono a garantire che ogni elemento del lavoro raggiunga un livello di qualità accettabile per considerarlo terminato.\\
@@ -161,7 +166,8 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
 
 \subsection{Sprint Planning}
 E' riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
-\subsubsection{Da utente autorizzato, devo essere in grado di aggiungere degli eventi in modo da comunicare la loro presenza agli utenti}
+\subsubsection{Aggiunta eventi da utente autorizzato}
+\textbf{User story}: Da utente autorizzato, devo essere in grado di aggiungere degli eventi in modo da comunicare la loro presenza agli utenti.\\
 \begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
@@ -175,7 +181,10 @@ E' riportato il product backlog per ogni user story trattata in questo primo spr
     \caption{Product backlog user story 1}
 \end{table}
 
-\subsubsection{Da utente, voglio avere la possibilità di accedere ad una visualizzazione e descrizione più dettagliata di un evento in modo da conoscere meglio le specifiche di tale evento}
+\clearpage
+
+\subsubsection{Visualizzazione eventi e dettagli da utente mobile}
+\textbf{User story}: Da utente, voglio avere la possibilità di accedere ad una visualizzazione e descrizione più dettagliata di un evento in modo da conoscere meglio le specifiche di tale evento.\\
 \begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
@@ -189,9 +198,8 @@ E' riportato il product backlog per ogni user story trattata in questo primo spr
     \caption{Product backlog user story 2}
 \end{table}
 
-\clearpage
-
-\subsubsection{Da utente, voglio essere in grado di poter registrare un account in modo da poter salvare le mie impostazioni e le aree di interesse ch io ho impostato}
+\subsubsection{Registrazione account utente mobile}
+\textbf{User story}: Da utente voglio essere in grado di poter registrare un account in modo da poter salvare le mie impostazioni e le aree di interesse che io ho impostato.\\
 \begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
@@ -205,7 +213,10 @@ E' riportato il product backlog per ogni user story trattata in questo primo spr
     \caption{Product backlog user story 3}
 \end{table}
 
-\subsubsection{Da utente, voglio visualizzare la lista delle criticità presenti in città}
+\clearpage
+
+\subsubsection{Accesso alle criticità in città}
+\textbf{User story}: Da utente voglio essere in grado di visualizzare la lista delle criticità presenti in città.\\
 \begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
@@ -219,7 +230,8 @@ E' riportato il product backlog per ogni user story trattata in questo primo spr
     \caption{Product backlog user story 4}
 \end{table}
 
-\subsubsection{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi eventi, in modo da capire visivamente si in una zona di mio interesse vi è un evento attivo}
+\subsubsection{Visualizzazione criticità su mappa}
+\textbf{User story}: Da utente voglio visualizzare su una cartina le zone colpite dai diversi eventi, in modo da capire visivamente se in una zona di mio interesse vi è un evento attivo.\\
 \begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
@@ -232,6 +244,8 @@ E' riportato il product backlog per ogni user story trattata in questo primo spr
     \end{tabularx}
     \caption{Product backlog user story 5}
 \end{table}
+
+\clearpage
 
 \subsection{Test cases}
 \subsubsection{Test cases per il modulo \texttt{public\_server}}

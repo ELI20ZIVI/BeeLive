@@ -100,8 +100,14 @@ Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link A
 
 \subsection{Strategia di Branching}
 
-La gestione della repository del progetto è stata gestita tramite 'branches', adeguamente create e gestite in modo da isolare le diverse funzionalità su cui abbiamo lavorato. 
-Segue la lista di branch create durante questo primo sprint, con tanto di descrizione:
+Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only" in quanto può causare problemi di collaborazione e conflitti quando più membri del team lavorano contemporaneamente sullo stesso branch.\\
+Infatti questo approccio prevede la creazione e l'utilizzo di un unico branch principale, chiamato "main", su cui tutti i membri del team lavorano.\\
+Per aumentare la modulabilità e la scalabilità del progetto, abbiamo adottato una strategia di branching che prevede la creazione di un branch separato per ogni specifico modulo del progetto.\\
+Il merge dal branch specifico del modulo al branch principale avviene solamete quando il modulo rispetta tutti i punti della "Definition of Done" definita dal team.\\
+Tramite questo approccio è possibile incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitando la gestione delle diverse attività in corso.\\
+E' possibile inoltre mappare tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
+
+Segue una lista dei branch utilizzati per lo sviluppo del progetto:
 
 \subsubsection{\texttt{main}}
 Il branch principale del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
@@ -113,7 +119,7 @@ Branch dedicato alla stesura del deliverable.
 
 \subsubsection{\texttt{develop}}
 Il branch di sviluppo del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
-Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate. Una volta che sono considerate funzionanti vengono integrate nel branch principale.\\
+Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate. Una volta che sono considerate funzionanti vengono integrate nel branch principale.
 
 \subsubsection{\texttt{ma\_screen}}
 Branch dedicato alla creazione delle schermate dell'applicativo mobile, i.e. tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\

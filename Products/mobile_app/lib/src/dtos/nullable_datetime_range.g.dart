@@ -9,15 +9,29 @@ part of 'nullable_datetime_range.dart';
 NullableDateTimeRange _$NullableDateTimeRangeFromJson(
         Map<String, dynamic> json) =>
     NullableDateTimeRange(
-      begin: json['begin'] == null
-          ? null
-          : DateTime.parse(json['begin'] as String),
-      end: json['end'] == null ? null : DateTime.parse(json['end'] as String),
+      begin: _$JsonConverterFromJson<int, DateTime>(
+          json['begin'], const _DateTimeToUnix().fromJson),
+      end: _$JsonConverterFromJson<int, DateTime>(
+          json['end'], const _DateTimeToUnix().fromJson),
     );
 
 Map<String, dynamic> _$NullableDateTimeRangeToJson(
         NullableDateTimeRange instance) =>
     <String, dynamic>{
-      'begin': instance.begin?.toIso8601String(),
-      'end': instance.end?.toIso8601String(),
+      'begin': _$JsonConverterToJson<int, DateTime>(
+          instance.begin, const _DateTimeToUnix().toJson),
+      'end': _$JsonConverterToJson<int, DateTime>(
+          instance.end, const _DateTimeToUnix().toJson),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

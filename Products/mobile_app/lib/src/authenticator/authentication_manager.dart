@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:casdoor_flutter_sdk/casdoor_flutter_sdk.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mobile_app/src/authenticator/authentication_provider/authentication_provider.dart';
 import 'package:mobile_app/src/storage/key_value_storage.dart';

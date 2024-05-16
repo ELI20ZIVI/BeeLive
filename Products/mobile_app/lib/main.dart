@@ -16,7 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart' as sp;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final pwsUri = Uri(scheme: "http", host: "192.168.144.43", port: 8080);
+  final pwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 7839);
   final casdoorUri = pwsUri.replace(scheme: "http", port: 8000);
 
   Client.override(PublicWebServerClient(

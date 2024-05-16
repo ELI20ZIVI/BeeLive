@@ -92,25 +92,20 @@ paths:
         '200':
           description: Operazione eseguita con successo
           content:
-            application/bson:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EventHeader'
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventHeader'
+        '422':
+          description: Unprocessable Content
         '400':
-          description: Parametri non corretti
-        '406':
-          description: Not Acceptable
+          description: Bad Request
       security:
         - api_key: []
         - bearerAuth: []
   # Richiesta di un evento specifico
-  /event/{event_id}:
+  /events/{event_id}:
     get:
       tags:
         - eventi
@@ -129,16 +124,13 @@ paths:
         '200':
           description: Operazione eseguita con successo
           content:
-            application/bson:
-              schema:
-                $ref: '#/components/schemas/FullEvent'
             application/json:
               schema:
                 $ref: '#/components/schemas/FullEvent'
         '404':
           description: Id dell'evento non valido
-        '406':
-          description: Not Acceptable
+        '400':
+          description: Bad Request
       security:
         - api_key: []
         - bearerAuth: []
@@ -159,10 +151,10 @@ paths:
       responses:
         '201':
           description: Operazione eseguita con successo
+        '422':
+          description: Unprocessable Content. Validation failed.
         '400':
-          description: Richiesta non valida
-        '409':
-          description: Conflitto, un evento con lo stesso ID è già presente nel sistema
+          description: Bad Request. Cannot process entity.
       security:
         - api_key: []
         - bearerAuth: []

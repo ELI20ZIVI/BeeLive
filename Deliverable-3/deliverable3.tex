@@ -108,10 +108,10 @@ Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only": non
 Per aumentare la modulabilità e la scalabilità del progetto, abbiamo infatti adottato la strategia di branching prevedente la creazione di un 'branch' separato per ogni specifica feature del progetto, con un branch \textit{develop} intermedio.\\
 
 \noindent
-L'integrazione di una feature specifica avviene attraverso il merging del branch di quest'ultima nel branch \textit{develop}; tale operazione è ammessa solamente da un diverso membro del team, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
+L'integrazione di una feature specifica avviene attraverso il merging del branch di quest'ultima nel precedentemente citato \textit{develop}; tale operazione è ammessa solamente da un diverso componente del gruppo, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
 
 \noindent
-Dato il branch \textit{develop}, definito come ambiente di lavoro in cui i membri del team lavorano e accumulano modifiche, una volta accumulate abbastanza modifiche (e giudicato lo stato del progetto per intero come 'stabile' e 'shippable') verrà effettuato il merge di questa branch in \texttt{main}, come operazione di 'release'. \\
+Dato il branch \textit{develop}, definito come ambiente di lavoro in cui i membri del team lavorano e accumulano modifiche, una volta che ne sono accumulate abbastanza (e giudicato lo stato del progetto per intero come 'stabile' e 'shippable') verrà effettuato il merge di questa branch nel principale \texttt{main}, come operazione di 'release'. \\
 
 \noindent
 Tramite questo approccio puntiamo ad incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitare la gestione delle diverse attività in corso e mantenere inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
@@ -124,11 +124,12 @@ Tutte le funzionalita' all'interno di questo branch sono considerate terminate e
 In questa branch abbiamo direttamente modificato e aggiornato i 'deliverable', prima di creare una branch \textit{deliverable} appositamente dedicata alla stesura di questi documenti.
 
 \subsection{\texttt{deliverable}}
-Branch dedicato alla stesura del deliverable.
+Branch dedicato alla stesura dei vari deliverable.
 
 \subsubsection{\texttt{develop}}
 Il branch di sviluppo del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
-Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate. Una volta che sono considerate funzionanti vengono integrate nel branch principale.
+Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate.\\
+Una volta che sono considerate funzionanti sono quindi integrate nel branch principale.
 
 \subsubsection{\texttt{ma\_screen}}
 Branch dedicato alla creazione delle schermate dell'applicativo mobile, i.e. tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
@@ -158,7 +159,7 @@ Una volta concluso lo sviluppo del modulo frontend, il branch è stato integrato
 \subsubsection{\texttt{preview}}
 Branch dedicato alla preview dell'interfaccia grafica dei due applicativi.\\
 E' stato utilizzato al momento della prima presentazione del progetto per mostrare il lavoro svolto ai committenti e per ricevere feedback su eventuali modifiche da apportare.\\
-Integra dei mockup delle varie interfacce, diaa desktop che mobile, che andranno sviluppate.\\
+Integra dei mockup delle varie interfacce, desktop e mobile, che andranno sviluppate.\\
 Parte della preview è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia,
 
 \clearpage
@@ -225,17 +226,17 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
 \subsection{Goal dello sprint}
 Lo scopo di questo primo sprint è stato quello di creare un prototipo funzionante dell'applicazione, che presenti le funzionalità core del nostro progetto e che quindi includa queste funzionalità:
 \begin{enumerate}
-\item possibilità da parte di un utente autorizzato di aggiungere eventi al sistema
-\item possibilità da parte degli utenti di visualizzare gli eventi aggiunti
+\item Possibilità da parte di un utente autorizzato di aggiungere eventi al sistema
+\item Possibilità da parte degli utenti di visualizzare gli eventi aggiunti
 \end{enumerate}
-È stato dunque necessario lavorare, oltre al 'backend', anche anche sull'applicativo mobile dedicato ad utenti comuni e sull'applicativo desktop, dedicato agli utenti autorizzati.
+È stato dunque necessario lavorare, oltre al 'backend', anche allo sviluppo sia dell'applicativo mobile dedicato ad utenti comuni che all'applicativo desktop, dedicato agli utenti autorizzati.
 
 Scendendo più in dettaglio, le funzionalità che abbiamo deciso di includere nello sprint sono, per quanto riguarda la parte mobile, la visualizzazione degli eventi disponibili e dei loro relativi dettagli, anche includendo la visualizzazione su mappa.\\
-Abbiamo anche inserito, anche se con bassa priorità, la funzionalità riguardante la possibilità di effettuare l'autenticazione (da parte degli utenti comuni) per poter salvare le proprie impostazioni e preferenze sul database.\\
+E' stato inoltre inserita, anche se con bassa priorità, la funzionalità riguardante la possibilità di effettuare l'autenticazione (da parte degli utenti comuni) per poter salvare le proprie impostazioni e preferenze sul database.\\
 Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'aggiunta degli eventi al sistema, rimandando l'autenticazione degli utenti autorizzati a sprint successivi.
 
 \subsection{Sprint Planning}
-è riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
+E' riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
 \subsubsection{Aggiunta eventi da utente autorizzato}
 \textbf{User story}: Da utente autorizzato, devo essere in grado di aggiungere degli eventi in modo da comunicare la loro presenza agli utenti.\\
 

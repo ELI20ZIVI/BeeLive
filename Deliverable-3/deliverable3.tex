@@ -93,45 +93,47 @@ Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link A
 
 \subsection{Strategia di Branching}
 
-Per lo sviluppo del progetto durante il primo sprint sono stati creati diversi branch, lo scopo era quello di isolare le funzionalita' in branch a se stanti cosi' una volta completate potevano essere integrate nel branch principale.\\
-Segue una lista dei branch creati durante lo sprint con una descrizione di ciascuno:
+La gestione della repository del progetto è stata gestita tramite 'branches', adeguamente create e gestite in modo da isolare le diverse funzionalità su cui abbiamo lavorato. 
+Segue la lista di branch create durante questo primo sprint, con tanto di descrizione:
 
 \subsubsection{\texttt{main}}
 Il branch principale del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
 Tutte le funzionalita' all'interno di questo branch sono considerate terminate e funzionanti, pronte per essere rilasciate.\\
-Include anche le cartelle contenenti i file dei vari deliverable.
 
 \subsubsection{\texttt{develop}}
 Il branch di sviluppo del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
-Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate. Una volta che sono considerate funzionanti vengono integrate nel branch principale.
+Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate. Una volta che sono considerate funzionanti vengono integrate nel branch principale.\\
+
+\subsubsection{\texttt{ma\_screen}}
+Branch dedicato alla creazione delle schermate dell'applicativo mobile, i.e. tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
+Questo branch è stato integrato in \texttt{ma\_client} in quanto sua dipendenza.
 
 \subsubsection{\texttt{ma\_client}}
-
-Questo branch e' dedicato allo sviluppo del client mobile, quindi l'applicazione mobile utilizzata dagli utenti comuni (autenticati e non) che intendono visualizzazione le criticita' presenti in citta'.\\
+Branch dedicato allo sviluppo del client mobile, i.e. l'applicazione mobile utilizzata dagli utenti comuni (autenticati e non) che intendono visualizzazione le criticita' presenti in citta'.\\
 Il branch, una volta concluso lo sviluppo dell'applicativo, e' stato integrato nel branch \texttt{develop} per i test in associata con tutti gli altri moduli.
 
 \subsubsection{\texttt{ws-fetch-eventi}}
-Branch nel quale e' stato sviluppato il modulo che si occupa di recuperare gli eventi dal database.\\
-Questo modulo e' utile per l'applicativo mobile, che deve visualizzare le criticita' presenti in citta'.\\
+Branch dedicato allo sviluppo del webserver pubblico, i.e. il webserver in cui sono stati implementati gli endpoint API dedicati al fetching di eventi ad opera dell'applicativo mobile.\\
+\\
 Una volta che il modulo e' stato completato, e' stato integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.
 
-\subsubsection{\texttt{ma\_screen}}
-Questo branch e' dedicato alla creazione delle schermate dell'applicativo mobile, quindi tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
-Anche questo branch, una volta concluso lo sviluppo, e' stato integrato nel branch \texttt{develop}.
 
 \subsubsection{\texttt{ws-insert-event}}
-Branch dedicato allo sviluppo del modulo che si occupa di inserire le criticita' in citta' nel suistema.\\
-Utile allo sviluppo del modulo utilizzato dall'applicativo desktop per l'inserimento delle criticita' in citta'..
-Una volta che il modulo e' stato completato, e' stato integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.
+Branch dedicato allo sviluppo del webserver gestionale, i.e. il webserver in cui sono stati implementati gli endpoint API dedicati all'inserimento degli eventi all'interno del sistema ad opera dell'applicativo desktop. \\
+Utile allo sviluppo del modulo utilizzato dall'applicativo desktop per l'inserimento delle criticita' in citta'.
+Una volta che il modulo e' stato completato, e' stato integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.\\
+Delle versioni intermedie di questa branch sono state usate da altre branches, in particolare da \texttt{da\_desktop}, in quanto necessaria per effettuare il testing di quest'ultima.
+
 
 \subsubsection{\texttt{da\_frontend}}
-Il branch e' dedicato allo sviluppo della componente grafica dell'applicativo desktop, quindi l'applicativo utilizzato dagli utenti autorizzati (del comune e non) per inserire a sistema le criticita' presenti in citta'.\\
-Una volta concluso lo sviluppo del modulo frontend, il branch e' integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.
+Branch dedicato allo sviluppo dell'applicativo desktop, quindi l'applicativo utilizzato dagli utenti autorizzati (del comune e non) per inserire a sistema le criticità (eventi) presenti in città.\\
+Una volta concluso lo sviluppo del modulo frontend, il branch è stato integrato nel branch \texttt{develop} e integrato con gli altri moduli.
 
 \subsubsection{\texttt{preview}}
 Branch dedicato alla preview dell'interfaccia grafica dei due applicativi.\\
 E' stato utilizzato al momento della prima presentazione del progetto per mostrare il lavoro svolto ai committenti e per ricevere feedback su eventuali modifiche da apportare.\\
-Integra dei mockup delle varie interfacce, diaa desktop che mobile, che andranno sviluppate.
+Integra dei mockup delle varie interfacce, diaa desktop che mobile, che andranno sviluppate.\\
+Parte della preview è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia,
 
 \subsection{Product Backlog}
 

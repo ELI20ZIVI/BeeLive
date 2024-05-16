@@ -100,14 +100,21 @@ Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link A
 
 \subsection{Strategia di Branching}
 
-Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only" in quanto può causare problemi di collaborazione e conflitti quando più membri del team lavorano contemporaneamente sullo stesso branch.\\
-Infatti questo approccio prevede la creazione e l'utilizzo di un unico branch principale, chiamato "main", su cui tutti i membri del team lavorano.\\
-Per aumentare la modulabilità e la scalabilità del progetto, abbiamo adottato una strategia di branching che prevede la creazione di un branch separato per ogni specifico modulo del progetto.\\
-Il merge dal branch specifico del modulo al branch principale avviene solamete quando il modulo rispetta tutti i punti della "Definition of Done" definita dal team.\\
-Tramite questo approccio è possibile incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitando la gestione delle diverse attività in corso.\\
-E' possibile inoltre mappare tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
+Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only": nonostante la piccola dimensione del team, la creazione ed utilizzo di un unico branch principale, 'main', avrebbe comunque causato problemi di collaborazione e conflitti nel momento in cui avremmo lavorato contemporaneamente a stesse sezioni del progetto.\\
 
-Segue una lista dei branch utilizzati per lo sviluppo del progetto:
+\noindent
+Per aumentare la modulabilità e la scalabilità del progetto, abbiamo infatti adottato la strategia di branching prevedente la creazione di un 'branch' separato per ogni specifico modulo del progetto, con un branch 'develop' intermedio.\\
+
+\noindent
+L'integrazione di un branch specifico di un modulo avviene attraverso il merging di quest'ultimo nel branch \textit{develop}; tale operazione è ammessa solamente da un diverso membro del team, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
+
+\noindent
+Dato il branch \textit{develop}, definito come ambiente di lavoro in cui i membri del team lavorano e accumulano modifiche, una volta accumulate abbastanza modifiche (e giudicato lo stato del progetto per intero come 'stabile' e 'shippable') verrà effettuato il merge di questa branch in \texttt{main}, come operazione di 'release'. \\
+
+\noindent
+Tramite questo approccio puntiamo ad incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitare la gestione delle diverse attività in corso e mantenere inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
+
+Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sono state eliminate una volta integrate in \texttt{develop}, per cui su github potrebbero non apparire.
 
 \subsubsection{\texttt{main}}
 Il branch principale del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
@@ -157,13 +164,14 @@ Parte della preview è stata poi utilizzata in \texttt{da\_frontend} come punto 
 \subsection{Product Backlog}
 Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato per questo progetto. E' possibile notare una linea di demarcazione che limita inferiormente le entries selezionate per il primo sprint.
 
-\begin{table}[!h]
+\begin{table}[htbp]
     \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Priorita'}} & \makecell{\textbf{Stima}} & \makecell{\textbf{Grandezza}} \\
         \Xhline{2pt}
-        \makecell{Visualizzazione\\eventi in citta'} & \makecell{Da utente, voglio visualizzare la lista degli eventi in città} & \makecell{200} & \makecell{8} & \makecell{L}\\
+        \makecell{Visualizzazione\\eventi in\\citta'} & \makecell{Da utente, voglio visualizzare la lista degli eventi in città} & \makecell{200} & \makecell{8} & \makecell{L}\\
         \hline
         \makecell{Aggiunta eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato, devo essere in grado di\\aggiungere degli eventi in modo da\\comunicare la loro presenza agli utenti} & \makecell{190} & \makecell{8} & \makecell{L}\\
         \hline
@@ -197,7 +205,6 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
 
 \subsection{Definition of "Done"}
 La seguente 'Definition of Done' è basata su una valutazione collettiva che ha preso in considerazione  diversi fattori riguardanti la qualità del lavoro, non ignorando però la fattibilità e la realizzabilità di questi.\\
-
 I criteri inclusi nella nostra 'Definition of Done' definita per il progetto sono i seguenti:
 \begin{itemize}
 	\item \textbf{Funzionalità}: le funzionalità che il codice implementa devono soddisfare appieno l'usecase / gli usecase associati al codice.
@@ -206,7 +213,7 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
     \item \textbf{Documentazione}: Il codice e le funzionalità implementate devono essere adeguatamente documentati. Questo giudizio di adeguatezza deve essere dato da almeno un altro membro del team.
     \item \textbf{Build e Deployment}: Il codice deve integrarsi con successo nella build principale e la sua inclusione nella build principale non deve assolutamente far fallire dei test, nel caso in cui quest'ultimi venivano correttamente superati priva dell'inclusione.
     \item \textbf{Performance}: le funzionalità e il codice introdotti non devono causare visibili degradi alle performance di nessun elemento del progetto.
-    \item \textbf{Conformità}: Il prodotto deve essere conforme alle normative legali e agli standard di sicurezza e qualità specifici del settore. 
+    \item \textbf{Conformità}: Il prodotto deve essere conforme alle normative legali e agli standard di sicurezza e qualità specifici del settore.
 \end{itemize}
 
 \clearpage

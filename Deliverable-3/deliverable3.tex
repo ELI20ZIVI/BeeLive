@@ -15,6 +15,8 @@
 \usepackage{enumitem} % Pacchetto per la personalizzazione degli elenchi
 \usepackage{booktabs}
 \usepackage{subcaption}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot} % Per gestire gli assi con date
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -446,6 +448,52 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
     \end{tabularx}
     \caption{Progresso user story 5}
 \end{table}
+
+\subsection{Burndown chart}
+Il burndown chart è uno strumento utilizzato per monitorare il progresso di un progetto.\\
+Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta procedendo secondo i piani o se ci sono ritardi.\\
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm, height=8cm, % Dimensioni del grafico
+            date coordinates in=x,
+            xlabel={Date},
+            ylabel={Tasks Remaining},
+            xticklabel={\day-\month},
+            grid=major,
+            legend pos=north east,
+        ]
+        \addplot[
+            color=blue,
+            mark=square*,
+            thick
+        ] table [col sep=comma, x=date, y=planned] {
+            date, planned
+            2024-05-01, 100
+            2024-05-16, 0
+        };
+        \addlegendentry{Planned}
+
+        \addplot[
+            color=red,
+            mark=triangle*,
+            thick
+        ] table [col sep=comma, x=date, y=actual] {
+            date, actual
+            2024-05-01, 100
+            % ...
+            2024-05-16, 0
+        };
+        \addlegendentry{Actual}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Burndown Chart}
+    \label{fig:burndown}
+\end{figure}
+
+\clearpage
 
 \subsection{Test cases}
 \subsubsection{Test cases per il modulo \texttt{public\_server}}

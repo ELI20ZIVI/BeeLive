@@ -85,7 +85,6 @@ A seguito vi è il diagramma UML della classe \texttt{Evento} modificata; abbiam
 
 \subsection{Scopo del progetto}
 
-
 Lo scopo del progetto 'BeeLive' è quello di risolvere il problema riguardante la difficoltà nel reperire informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Prevediamo un sistema informativo, dedicato agli utenti cittadini, che mostri visualmente le variazioni della viabilità in città, informando gli stessi di eventuali modifiche che potrebbero colpirli direttamente.
 
 \subsection{Link utili}
@@ -191,14 +190,16 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
 \clearpage
 
 \subsection{Definition of "Done"}
-La Definition of Done è un insieme di criteri utilizzati per determinare quando un'attività o una user story può essere considerata completata. Questi criteri servono a garantire che ogni elemento del lavoro raggiunga un livello di qualità accettabile per considerarlo terminato.\\
-I criteri inclusi nella Definition of Done redatta per il progetto sono i seguenti:
+La seguente 'Definition of Done' è basata su una valutazione collettiva che ha preso in considerazione  diversi fattori riguardanti la qualità del lavoro, non ignorando però la fattibilità e la realizzabilità di questi.\\
+
+I criteri inclusi nella nostra 'Definition of Done' definita per il progetto sono i seguenti:
 \begin{itemize}
-    \item \textbf{Codice}: Il codice deve essere rivisto e approvato attraverso un processo di code review, e deve aderire agli standard di codifica stabiliti.
-    \item \textbf{Test}: Tutti i test unitari, di integrazione e funzionali devono essere scritti ed eseguiti con successo.
-    \item \textbf{Documentazione}: La documentazione necessaria, come i deliverable, deve essere completa e aggiornata.
-    \item \textbf{Build e Deployment}: Il codice deve essere integrato con successo nella build principale e deve essere distribuito in un ambiente di test per ulteriori verifiche.
-    \item \textbf{Performance}: Il prodotto deve soddisfare i criteri di performance definiti, garantendo che le funzionalità siano efficienti e scalabili.
+	\item \textbf{Funzionalità}: le funzionalità che il codice implementa devono soddisfare appieno l'usecase / gli usecase associati al codice.
+    \item \textbf{Codice}: Il codice deve essere revisionato e la sua correttezza / adeguatezza approvata da almeno un altro membro del team.
+    \item \textbf{Test}: Il codice deve essere adeguatamente coperto da test unitari, di integrazione e funzionali, che devono essere scritti e superati con successo. Un adeguato numero di questi test deve essere scritto da membri diversi.
+    \item \textbf{Documentazione}: Il codice e le funzionalità implementate devono essere adeguatamente documentati. Questo giudizio di adeguatezza deve essere dato da almeno un altro membro del team.
+    \item \textbf{Build e Deployment}: Il codice deve integrarsi con successo nella build principale e la sua inclusione nella build principale non deve assolutamente far fallire dei test, nel caso in cui quest'ultimi venivano correttamente superati priva dell'inclusione.
+    \item \textbf{Performance}: le funzionalità e il codice introdotti non devono causare visibili degradi alle performance di nessun elemento del progetto.
     \item \textbf{Conformità}: Il prodotto deve essere conforme alle normative legali e agli standard di sicurezza e qualità specifici del settore. 
 \end{itemize}
 

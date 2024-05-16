@@ -1,9 +1,7 @@
 
 
-import 'dart:ffi';
 
 import 'package:desktop_app/src/client/client.dart';
-import 'package:desktop_app/src/data_transfer_objects/nullable_datetime_range.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
@@ -15,6 +13,9 @@ import '../map/tiles.dart';
 import 'category_picker.dart';
 import 'datetime_range_picker.dart';
 
+/// The screen for visualizing the management of a single event.
+///
+/// Can be used both for creation and modification.
 class EventManagerScreen extends StatelessWidget {
 
   const EventManagerScreen({
@@ -37,6 +38,7 @@ class EventManagerScreen extends StatelessWidget {
   }
 }
 
+/// This widget shows the modification form for the event attributes.
 class _EventWidget extends StatelessWidget{
 
   const _EventWidget({
@@ -64,6 +66,7 @@ class _EventWidget extends StatelessWidget{
   }
 }
 
+/// This widget shows the modification form for the various subevents.
 class _SubEventsWidgetState extends State<_SubEventsWidget> {
 
   List<Tab> tabs = [];
@@ -120,6 +123,7 @@ class _SubEventsWidgetState extends State<_SubEventsWidget> {
 
 }
 
+/// This widget shows the modification form for a single subevent.
 class _SubEventsWidget extends StatefulWidget {
   const _SubEventsWidget({
     required this.event,
@@ -145,7 +149,7 @@ class _SubEventWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     titleTEController.text = subevent.title;
-    titleTEController.addListener(() { subevent.title = titleTEController!.text; });
+    titleTEController.addListener(() { subevent.title = titleTEController.text; });
     subevent.description ??= "";
     descriptionTEController.text = subevent.description!;
     descriptionTEController.addListener(() { subevent.description = descriptionTEController.text; });
@@ -205,29 +209,27 @@ class _MapManager extends StatelessWidget {
   Widget build(BuildContext context) {
 
     List<Polygon> polygons = [];
-    if (subEvent.polygons != null) {
-      polygons = subEvent.polygons!.features.map((p) {
-        var coordinates;
+    polygons = subEvent.polygons.features.map((p) {
+      List<LatLng> coordinates;
 
-        var geometry = p?.geometry;
-        if (geometry is GeoJSONPolygon) {
-          var pol = geometry as GeoJSONPolygon;
-          coordinates = pol.coordinates[0].map((c) { return LatLng(c[1], c[0]); } ).toList(growable: false);
-        }
+      var geometry = p?.geometry;
+      if (geometry is GeoJSONPolygon) {
+        var pol = geometry;
+        coordinates = pol.coordinates[0].map((c) { return LatLng(c[1], c[0]); } ).toList(growable: false);
+      }
 
-        return Polygon(
-          points: coordinates,
-          isFilled: true,
-          color: Colors.blue.withOpacity(0.2),
-          borderColor: Colors.blue,
-          borderStrokeWidth: 2,
-          isDotted: true,
-          rotateLabel: true,
-          //holePointsList: p.holes,
-        );
-      }).toList(growable: false);
-    }
-
+      return Polygon(
+        points: coordinates,
+        isFilled: true,
+        color: Colors.blue.withOpacity(0.2),
+        borderColor: Colors.blue,
+        borderStrokeWidth: 2,
+        isDotted: true,
+        rotateLabel: true,
+        //holePointsList: p.holes,
+      );
+    }).toList(growable: false);
+  
     const mapActions = Expanded(child: SizedBox.shrink());
 
     final mapWidget = BeeLiveMap(
@@ -317,6 +319,7 @@ class _EventGenericForm extends StatelessWidget {
   }
 }
 
+/// The action bar for event management
 class ActionBar extends StatelessWidget {
 
   final Event event;
@@ -351,8 +354,8 @@ class ActionBar extends StatelessWidget {
     //var specific = _specificCommands.map(converter);
     var specific = [CommandBarButton(
         onPressed: () { Client.implementation.submitNewEvent(event); },
-        label: Text("Pubblica"),
-        icon: Icon(FluentIcons.publish_content),
+        label: const Text("Pubblica"),
+        icon: const Icon(FluentIcons.publish_content),
     )];
 
     return Padding(

@@ -9,6 +9,7 @@ import 'package:mobile_app/src/authenticator/authentication_provider/authenticat
 import 'package:mobile_app/src/authenticator/authentication_provider/casdoor_token.dart';
 import 'package:mobile_app/src/authenticator/tokens_manager.dart';
 
+/// AuthenticationProvider wrapping Casdoor.
 final class CasdoorAuthenticationProvider implements AuthenticationProvider {
   final Casdoor _casdoor;
   final String _clientSecret;

@@ -40,6 +40,7 @@ final class PublicWebServerClient implements Client {
       pathSegments: [..._pathSegments, 'events'],
     );
 
+    // Optional authorization token.
     String? token;
     try {
       token = await Authenticator().authorization;

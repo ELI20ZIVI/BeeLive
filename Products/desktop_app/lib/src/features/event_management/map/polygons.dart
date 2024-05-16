@@ -1,5 +1,7 @@
 import 'package:latlong2/latlong.dart';
 
+// NOTE: only for testing purposes.
+
 typedef PolygonCoords = List<LatLng>;
 
 final class PolygonDto {

@@ -50,6 +50,7 @@ dependencies:
   http: ^1.2.1
   unixtime: ^1.0.0
 
+  flutter_gen: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

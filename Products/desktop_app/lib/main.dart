@@ -7,28 +7,32 @@ import 'package:desktop_app/src/themes/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
-
+  // Overrides the client with the actual web server client.
   Client.override(ManagementWebServerClient(Uri.parse("http://93.49.96.13:14124/api/v3/insert_new_event")));
 
   runApp(const ProviderScope(child: BeeLiveDesktop()));
 }
 
+/// The BeeLive desktop GUI.
 class BeeLiveDesktop extends StatelessWidget {
   const BeeLiveDesktop({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // TODO: use advanced routing.
     return FluentApp(
       onGenerateTitle: (context) => AppLocalizations.of(context)!.appName,
       theme: theme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      // TODO: get locale from environment.
       locale: const Locale('it'),
       home: HomePage(),
     );
   }
 }
 
+/// The BeeLive home page.
 class HomePage extends StatefulWidget {
   final Client client;
 
@@ -40,12 +44,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  /// The home page is has multiple sub pages.\
+  /// This is the variable that stores the state.
   var selectedPage = 0;
 
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
 
+    // The app bar.
     final appBar = NavigationAppBar(
       title: Text(localization.appName),
       actions: const Align(
@@ -54,6 +61,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
+    // The navigation drawer.
     final pane = NavigationPane(
       selected: selectedPage,
       onChanged: (selected) {
@@ -99,6 +107,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 // TODO: mi sa che c'è già qualche package che li supporta adattivi.
+/// The window bar decoration buttons. Style: windows.
 class WindowButtons extends StatelessWidget {
   const WindowButtons({
     super.key,

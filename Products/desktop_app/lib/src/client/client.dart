@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:desktop_app/src/data_transfer_objects/event.dart';
 
 /// Client class for the system backend.
@@ -13,6 +12,9 @@ abstract interface class Client {
     implementation = implementation_;
   }
 
+  /// Submits a new event to the backend to perform insertion.
+  ///
+  /// Returns a boolean representing if the event has been accepted or not.
   Future<bool> submitNewEvent(Event event);
 
   /// Creates the default client.

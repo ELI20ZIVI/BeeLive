@@ -8,6 +8,7 @@ use serde::Deserialize;
 mod event_processor;
 mod dao;
 
+/// Event query data for /events.
 #[derive(Deserialize)]
 struct EventQueryData {
     mode: Option<String>,
@@ -18,6 +19,12 @@ struct EventQueryData {
 }
 
 // TODO: formalize and document this endpoint
+/// Access the detail of a specific event by [event_id].
+///
+/// Returns status code 200 in case of success.
+/// Can return status 400 in case of invalid type for [event_id].
+/// Can return status 404 in case of inexistent resource.
+/// Other error codes can be thrown according to the HTTP standard.
 #[get("/events/{event_id}")]
 async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Path<u32>) -> impl Responder {
    
@@ -28,6 +35,11 @@ async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Pat
 }
 
 // TODO: formalize and document this endpoint
+/// Requests the list of events filtered according to the [data] filters.
+///
+/// Returns status code 200 in case of success.
+/// Can return status 400 in case of invalid query paramentes.
+/// Can return status 422 in case of inexistent filters.
 #[get("/events")]
 async fn get_events(mongodb_events_collection: Data<Collection<Event>>, data: web::Query<EventQueryData>) -> impl Responder {
 
@@ -51,9 +63,13 @@ async fn main() -> std::io::Result<()> {
 
     env_logger::init();
 
-    //TODO: solve unwrap
+    // TODO: solve unwrap
+    // TODO: hide credentials.
     let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017").await.unwrap();
     //let client = Client::with_uri_str("mongodb://localhost:27017").await.unwrap();
+    
+    // Gets the events collection from the database.
+    // TODO: migrate to the beelive develop database.
     let mongodb_events_collection = client.database("events").collection::<Event>("events");
 
  

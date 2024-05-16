@@ -7,6 +7,7 @@ use geojson::{FeatureCollection, Feature};
 use crate::dao::objects::{Event};
 use crate::event_processor::errors::Error;
 
+/// Processes an [event] in order to add self-calculated parameters.
 pub fn process(event: &mut Event) -> Result<(), Error> {
     // Aggregates the features.
     // Features converted to geo::Geometry.
@@ -20,6 +21,7 @@ pub fn process(event: &mut Event) -> Result<(), Error> {
             })
         }).collect();
 
+    // Splits the various allowed geometries by type.
     let mut polygons : Vec<geo::Polygon> = Vec::new();
     let mut lines : Vec<geo::Line> = Vec::new();
     let mut points : Vec<geo::Point> = Vec::new();
@@ -35,12 +37,14 @@ pub fn process(event: &mut Event) -> Result<(), Error> {
         }
     }
 
+    // Performs the union of the polygons.
     let polygon = polygons
         .into_iter()
         .fold(MultiPolygon::new(vec![]), |r, p| {
             r.union(&MultiPolygon::new(vec![p]))
         });
 
+    // TODO: add also the other geometry types.
     let features = vec![Feature::from(geojson::Geometry::from(&polygon))];
 
     event.polygons = FeatureCollection::from_iter(features.into_iter());

@@ -8,6 +8,12 @@ mod dao;
 mod event_processor;
 
 // TODO: formalize and document this endpoint
+/// Inserts a new event passed as payload.
+///
+/// Returns 201 in case of successful creation of the resource on the database.
+/// Returns 400 in case on wrong resource representation.
+/// Returns 422 in case of unvalid resource.
+/// Other status codes can be sent according to the HTTP standard.
 #[post("/insert_new_event")]
 async fn insert_event(mongodb_events_collection: Data<Collection<Event>>, event: web::Json<Event>) -> impl Responder {
 

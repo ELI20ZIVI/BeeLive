@@ -3,6 +3,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 
 import '../../../data_transfer_objects/risk_level.dart';
 
+/// The view for the category picker.
 class CategoryPicker extends StatelessWidget {
   const CategoryPicker({
     super.key,

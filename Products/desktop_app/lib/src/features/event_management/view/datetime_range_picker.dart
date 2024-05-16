@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../../../data_transfer_objects/nullable_datetime_range.dart';
 
+/// The custom view for picking datetime ranges.
 class NullableDateTimeRangePicker extends StatefulWidget {
   const NullableDateTimeRangePicker({
     super.key,
@@ -12,8 +13,8 @@ class NullableDateTimeRangePicker extends StatefulWidget {
   final NullableDateTimeRange nullableDateTimeRange;
 
   void onChanged(NullableDateTimeRange newRange) {
-    this.nullableDateTimeRange.begin = newRange.begin;
-    this.nullableDateTimeRange.end = newRange.end;
+    nullableDateTimeRange.begin = newRange.begin;
+    nullableDateTimeRange.end = newRange.end;
   }
 
   @override

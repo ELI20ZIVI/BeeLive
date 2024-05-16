@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:bson/bson.dart';
 import 'package:desktop_app/src/data_transfer_objects/category.dart';
@@ -6,11 +5,8 @@ import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
 import 'package:geojson_vi/geojson_vi.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:desktop_app/src/data_transfer_objects/category.dart';
 import 'package:desktop_app/src/data_transfer_objects/nullable_datetime_range.dart';
-import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
 
-import 'nullable_datetime_range.dart';
 
 part 'event.g.dart';
 
@@ -19,12 +15,15 @@ extension type EventId(int _id) {
   int toJson() => _id;
 }
 
+/// The DTO representing an Event.
 @JsonSerializable(fieldRename: FieldRename.snake)
 final class Event with BsonSerializable {
   final EventId id;
   final String title;
   final String summary;
   final String description;
+
+  /// A remote URL that contains additional information to this event.
   final Uri? remoteDocument;
   final NullableDateTimeRange validity;
   final NullableDateTimeRange visibility;
@@ -68,6 +67,7 @@ final class Event with BsonSerializable {
   Map<String, dynamic> toJson() => _$EventToJson(this);
 }
 
+/// The DTO representing a SubEvent.
 @JsonSerializable()
 final class SubEvent {
   String title;

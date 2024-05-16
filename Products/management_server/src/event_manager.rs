@@ -8,6 +8,7 @@ use mongodb::{results::InsertOneResult, Collection};
 use crate::dao::{self, objects::Event};
 use crate::event_processor;
 
+/// Manages the addition of a new event.
 pub async fn insert_new_event(mongodb_collection: Data<Collection<Event>>, mut event: Event) -> mongodb::error::Result<InsertOneResult> {
     let _ = event_processor::process(&mut event);
 

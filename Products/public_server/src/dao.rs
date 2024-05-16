@@ -36,9 +36,13 @@ pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>) ->
     events
 }
 
+/// Queries the full detailed representation of a single event.
 pub async fn query_full_event_single(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> Option<Event> {
 
+    // Creates the filter.
     let filter = doc! { "id": event_id};
+
+    // Requests the event to the database.
     let result = mongodb_collection.find_one(filter, None).await;
 
     match result {

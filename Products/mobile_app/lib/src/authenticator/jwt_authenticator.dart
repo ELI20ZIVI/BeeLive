@@ -6,9 +6,9 @@ import 'package:mobile_app/src/authenticator/authenticator.dart';
 import 'package:mobile_app/src/authenticator/authentication_manager.dart';
 import 'package:mobile_app/src/authenticator/tokens_manager.dart';
 
-/// Authenticator class to perform authentication of the user via Casdoor.
+/// Authenticator class to perform authentication of the user via a JWT provider.
 ///
-/// This is a wrapper class to allow usage of common interface for easy substitution.
+/// This is a class that allows the management of JWT token with automatic refresh.
 final class JwtAuthenticator implements Authenticator {
   final TokensManager _tokensManager;
   final AuthenticationManager _authenticationManager;

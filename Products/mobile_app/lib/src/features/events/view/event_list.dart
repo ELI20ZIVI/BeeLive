@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_placeholder_textlines/flutter_placeholder_textlines.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,7 +44,7 @@ class EventList extends ConsumerWidget {
 class _EventList extends StatelessWidget {
   final List<Event>? list;
 
-  const _EventList(this.list, {super.key});
+  const _EventList(this.list);
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +92,7 @@ class _Error extends StatelessWidget {
   final Object error;
   final StackTrace stacktrace;
 
-  const _Error(this.error, this.stacktrace, {super.key});
+  const _Error(this.error, this.stacktrace);
 
   @override
   Widget build(BuildContext context) {

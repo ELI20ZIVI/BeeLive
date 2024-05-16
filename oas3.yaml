@@ -8,9 +8,9 @@ info:
     - [BeeLive repository](https://github.com/ELI20ZIVI/BeeLive)
   version: 0.0.1
 servers:
-  - url: https://public.beelive.it/api/v3/
-  - url: https://manage.beelive.it/api/v3/
-  - url: https://notify.beelive.it/api/v3/
+  - url: https://public.beelive.spavi.dev/api/v3/
+  - url: https://manage.beelive.spavi.dev/api/v3/
+  - url: https://notify.beelive.spavi.dev/api/v3/
 tags:
   - name: eventi
     description: Gestione degli eventi
@@ -25,7 +25,7 @@ paths:
       tags:
         - eventi
       summary: Richiede la lista di eventi
-      description: Richiede la lista di eventi filtrati in base a determinati parametri.
+      description: Richiede la lista di tutti gli eventi attualmente presenti e attivi nel sistema, filtranto tale lista in base a dei parametri configurabili.
       operationId: listEvents
       parameters:
         - name: mode
@@ -110,15 +110,15 @@ paths:
         - api_key: []
         - bearerAuth: []
   # Richiesta di un evento specifico
-  /event/{event}:
+  /event/{event_id}:
     get:
       tags:
         - eventi
       summary: Richiede un evento specifico
-      description: Richiede tutte le informazioni pubbliche associate ad un evento specifico.
+      description: Richiede tutte le informazioni pubbliche associate ad un evento specifico identificato da {event_id}
       operationId: eventDetails
       parameters:
-        - name: event
+        - name: event_id
           in: path
           description: ID dell'evento di cui ottenere le informazioni
           required: true
@@ -162,7 +162,7 @@ paths:
         '400':
           description: Richiesta non valida
         '409':
-          description: Conflitto
+          description: Conflitto, un evento con lo stesso ID è già presente nel sistema
       security:
         - api_key: []
         - bearerAuth: []
@@ -252,6 +252,17 @@ paths:
         - api_key: []
 components:
   schemas:
+    NullableDateTimeRange:
+      type: object
+      properties:
+        begin:
+          type: integer
+          description: data d'inizio in formato \"unixtime\" (secondi)
+          example: 1715878019
+        end:
+          type: integer
+          description: data di fine in formato \"unixtime\" (secondi))
+          example: 1716223619
     EventHeader:
       type: object
       required:
@@ -276,18 +287,15 @@ components:
           type: string
           format: url
           example: https://www.ufficiostampa.provincia.tn.it/Comunicati/G7-tutte-le-limitazioni-al-traffico-e-alla-sosta
-        start_visibility:
-          type: string
-          format: date-time
-        end_visibility:
-          type: string
-          format: date-time
-        start_validity:
-          type: string
-          format: date-time
-        end_validity:
-          type: string
-          format: date-time
+        visibility:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        validity:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        risk_level:
+          type: integer
+          description: Livello di rischio dell'evento. Info = 0, Alert = 50, Warning = 100
+          enum: [0, 50, 100]
+          example: 0
         categories:
           type: array
           items:
@@ -297,7 +305,7 @@ components:
               format: int16
           example:
             - [0, 1]
-        polygon:
+        polygons:
           type: object
     FullEvent:
       type: object
@@ -320,22 +328,23 @@ components:
           type: string
           description: Breve sommario dell'evento.
           example: Divieti di fermata e transito.
+        description:
+          type: string
+          description: Descrizione dell'evento
+          example: Divieti di fermata in Via XXX, divieto di transito in Via XXX fino alle 23:00 causa sicurezza pubblica
         remote_document:
           type: string
           format: url
           example: https://www.ufficiostampa.provincia.tn.it/Comunicati/G7-tutte-le-limitazioni-al-traffico-e-alla-sosta
-        start_visibility:
-          type: string
-          format: date-time
-        end_visibility:
-          type: string
-          format: date-time
-        start_validity:
-          type: string
-          format: date-time
-        end_validity:
-          type: string
-          format: date-time
+        visibility:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        validity:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        risk_level:
+          type: integer
+          description: Livello di rischio dell'evento. Info = 0, Alert = 50, Warning = 100
+          enum: [0, 50, 100]
+          example: 50
         categories:
           type: array
           items:
@@ -345,7 +354,7 @@ components:
               format: int16
           example:
             - [0, 1]
-        polygon:
+        polygons:
           type: object
         subevents:
           type: array
@@ -363,13 +372,9 @@ components:
         description:
           type: string
           description: Descrizione del sottoevento.
-        start_validity:
-          type: string
-          format: date-time
-        end_validity:
-          type: string
-          format: date-time
-        polygon:
+        validity:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        polygons:
           type: object
   securitySchemes:
     bearerAuth:

@@ -92,7 +92,7 @@ Il primo link fornito è quello della repository github. La repository è stata 
 E' stato deciso di integrare in questa repository anche le fasi di sprint in quanto come team riteniamo utile la possibilità di accedere alla documentazione redatta nei primi due deliverable.\\
 La repository è accessibile al seguente link: \href{https://github.com/ELI20ZIVI/BeeLive/}{Repository GitHub}\\ \\
 Il secondo link fornito è quello di Apiary. Apiary è uno strumento che permette di creare e documentare in modo molto accurato e approfontido le API utilizzate nel progetto.\\
-Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link Apiray}\\
+Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link Apiary}\\
 
 \clearpage
 
@@ -100,13 +100,13 @@ Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link A
 
 \subsection{Strategia di Branching}
 
-Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only": nonostante la piccola dimensione del team, la creazione ed utilizzo di un unico branch principale, 'main', avrebbe comunque causato problemi di collaborazione e conflitti nel momento in cui avremmo lavorato contemporaneamente a stesse sezioni del progetto.\\
+Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only": nonostante la piccola dimensione del team, la creazione ed utilizzo di un unico branch principale, \textit{main}, avrebbe comunque causato problemi di collaborazione e conflitti nel momento in cui avremmo lavorato contemporaneamente a stesse sezioni del progetto.\\
 
 \noindent
-Per aumentare la modulabilità e la scalabilità del progetto, abbiamo infatti adottato la strategia di branching prevedente la creazione di un 'branch' separato per ogni specifico modulo del progetto, con un branch 'develop' intermedio.\\
+Per aumentare la modulabilità e la scalabilità del progetto, abbiamo infatti adottato la strategia di branching prevedente la creazione di un 'branch' separato per ogni specifica feature del progetto, con un branch \textit{develop} intermedio.\\
 
 \noindent
-L'integrazione di un branch specifico di un modulo avviene attraverso il merging di quest'ultimo nel branch \textit{develop}; tale operazione è ammessa solamente da un diverso membro del team, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
+L'integrazione di una feature specifica avviene attraverso il merging del branch di quest'ultima nel branch \textit{develop}; tale operazione è ammessa solamente da un diverso membro del team, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
 
 \noindent
 Dato il branch \textit{develop}, definito come ambiente di lavoro in cui i membri del team lavorano e accumulano modifiche, una volta accumulate abbastanza modifiche (e giudicato lo stato del progetto per intero come 'stabile' e 'shippable') verrà effettuato il merge di questa branch in \texttt{main}, come operazione di 'release'. \\
@@ -276,6 +276,7 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
         \makecell{Creazione test (WS)} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} \\
         \hline
         \makecell{Creazione test (DA)} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} & \makecell{} \\
+        \hline
     \end{tabularx}
     \caption{Progresso user story 1}
 \end{table}
@@ -480,11 +481,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        2 & Test di successo per la richiesta di tutti gli eventi individuali con la sovrascrittura delle preferenze in locale con quelle in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=overwrite} & Il database dovrebbe contenere degli eventi che rispettino le preferenze locali del dispositivo che effettua la richiesta per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate in locale del dispositivo che effettua la richiesta - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        2 & Test di successo per la richiesta di tutti gli eventi individuali con la sovrascrittura delle preferenze in locale con quelle in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=overwrite} & Il database dovrebbe contenere degli eventi che rispettino le preferenze locali del dispositivo che effettua la richiesta per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate nella query - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        3 & Test di successo per la richiesta di tutti gli eventi individuali combinando le preferenze in locale e in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=combine} & Il database dovrebbe contenere degli eventi che rispettino le preferenze sia locali che su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate in locale e su server - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali e su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        3 & Test di successo per la richiesta di tutti gli eventi individuali combinando le preferenze in locale e in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=combine} & Il database dovrebbe contenere degli eventi che rispettino le preferenze sia locali che su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate nella query e su server - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali e su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        4 & Test di successo per la richiesta di tutti gli eventi individuali utilizzando i parametri in remoto in mancanza di quelli locali & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=ifempty} & Il database dovrebbe contenere degli eventi che rispettino le preferenze su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate su server - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        4 & Test di successo per la richiesta di tutti gli eventi individuali utilizzando i parametri in remoto in mancanza di quelli locali & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=ifempty} & Il database dovrebbe contenere degli eventi che rispettino le preferenze su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi che rispecchiano le preferenze impostate su server.  In caso di assenza di quest'ultime viene utilizzata la query - Codice: \texttt{200}. & Se il database non contiene eventi o tutti non rispecchiano le preferenze su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
         5 & Test di fallimento per la richiesta di tutti gli eventi individuali con un parametro non valido & Andare a \texttt{/api/v3/events} ed impostare un parametro non valido & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
@@ -496,7 +497,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \begin{itemize}
     \item Test cases per la richiesta degli eventi utilizzando il parametro \textbf{addb}:
 \end{itemize}
-(addb: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast)
+(addb: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi \textbf{B}roadcast)
 
 \begin{table}[htbp]
     \centering
@@ -505,13 +506,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        6 & Test di successo per la richiesta di tutti gli eventi appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        6 & Test di successo per la richiesta di tutti gli eventi broadcast appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie valide (ID found). & Il database dovrebbe contenere degli eventi che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        7 & Test di fallimento per la richiesta di eventi appartenenti a categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
+        7 & Test di fallimento per la richiesta di eventi appartenenti a categorie non valide (ID not found) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & - \\
         \hline
-        8 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
-        \hline
-        9 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
+        8 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}
@@ -530,13 +529,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        10 & Test di successo per la richiesta di tutti gli eventi broadcast escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        9 & Test di successo per la richiesta di tutti gli eventi broadcast escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        11 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
+        10 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non valide (ID non valido) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
-        12 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto numeri negativi, sono ritornati tutti gli eventi broadcast nel DB \\
-        \hline
-        13 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
+        11 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
     \end{tabularx}
 \end{table}
@@ -546,7 +543,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \begin{itemize}
     \item Test cases per la richiesta degli eventi utilizzando il parametro \textbf{addi}:
 \end{itemize}
-(addi: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi individuali)
+(addi: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di \textbf{I}nteresse)
 
 \begin{table}[htbp]
     \centering
@@ -555,13 +552,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        14 & Test di successo per la richiesta di tutti gli eventi individuali appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi individuali che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        12 & Test di successo per la richiesta di tutti gli eventi appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie valide. & Il database dovrebbe contenere degli eventi individuali che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        15 & Test di fallimento per la richiesta di eventi individuali appartenenti a categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
+        13 & Test di fallimento per la richiesta di eventi appartenenti a categorie non valide (ID not found) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & - \\
         \hline
-        16 & Test di fallimento per la richiesta di eventi individuali appartenenti a categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
-        \hline
-        17 & Test di fallimento per la richiesta di eventi individuali appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
+        14 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}
@@ -571,7 +566,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \begin{itemize}
     \item Test cases per la richiesta degli eventi utilizzando il parametro \textbf{subi}:
 \end{itemize}
-(subi: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi individuali)
+(subi: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di \textbf{I}nteresse)
 
 \begin{table}[htbp]
     \centering
@@ -580,13 +575,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        18 & Test di successo per la richiesta di tutti gli eventi individuali escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi individuali che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        15 & Test di successo per la richiesta di tutti gli eventi escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi individuali che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        19 & Test di fallimento per la richiesta di eventi individuali escludendo categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
+        16 & Test di fallimento per la richiesta di eventi escludendo categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
-        20 & Test di fallimento per la richiesta di eventi individuali escludendo categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto numeri negativi, sono ritornati tutti gli eventi broadcast nel DB \\
-        \hline
-        21 & Test di fallimento per la richiesta di eventi individuali escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
+        17 & Test di fallimento per la richiesta di eventi escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
     \end{tabularx}
 \end{table}
@@ -604,13 +597,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        22 & Test di successo per la richiesta di un evento specifico & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID valido & Il database dovrebbe contenere un evento con l'ID specificato per ottenere un evento specifico & La richiesta viene eseguita con successo e viene restituito l'evento specifico richiesto - Codice: \texttt{200} & Se il database non contiene un evento con l'ID specificato, viene restituito il codice \texttt{404} \\
+        18 & Test di successo per la richiesta di un evento specifico & Andare a \texttt{/api/v3/events/id} ed impostare il parametro \texttt{id} con un ID valido & Il database deve contenere un evento con l'ID specificato per ottenere un evento specifico & La richiesta viene eseguita con successo e viene restituito l'evento specifico richiesto - Codice: \texttt{200} & - \\
         \hline
-        23 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (Numero negativo) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID non valido (Numero negativo) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
+        19 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (not found) & Andare a \texttt{/api/v3/events/id} ed impostare il parametro \texttt{id} con un ID non valido (not found) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{404} & - \\
         \hline
-        24 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (Non numerico) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID non valido (Non numerico) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
-        \hline
-        25 & Test di fallimento per la richiesta di un evento specifico con un ID non esistente nel DB & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID non esistente nel DB & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{404} & - \\
+        20 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (Non numerico) & Andare a \texttt{/api/v3/events/id} ed impostare il parametro \texttt{id} con un ID non valido (Non numerico) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}
@@ -630,9 +621,9 @@ Il modulo, per questo primo sprint, si occupa dell'inserimento di un nuovo event
         \Xhline{2pt}
         1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{200} & - \\
         \hline
-        2 & Test di fallimento per l'inserzione di un nuovo evento con dati non validi & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire con dati non validi & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{400} & Devono essere rispettati tutti i tipi per ogni caratteristica dell'evento \\
+        2 & Test di fallimento per l'inserzione di un nuovo evento con dati non validi & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire con dati non validi & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{422} & Devono essere rispettati tutti i tipi per ogni attributo dell'evento \\
         \hline
-        3 & Test di fallimento per l'inserzione di un nuovo evento con parametro \texttt{id} uguale ad un evento già esistente & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato bson i dati dell'evento da inserire con il parametro \texttt{id} uguale ad un evento già esistente & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{406} & - \\
+        3 & Test di fallimento per l'inserzione di un nuovo evento con dati non accettabili & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire con dati non accettabili & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}

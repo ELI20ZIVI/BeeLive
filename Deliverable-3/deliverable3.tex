@@ -668,7 +668,7 @@ La fase di inserzione di un nuovo evento prevede l'utilizzo di dati corretti e v
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{200} & - \\
+        1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{201} & - \\
         \hline
         2 & Test di fallimento per l'inserzione di un nuovo evento con dati non validi & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire con dati non validi & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{422} & Devono essere rispettati tutti i tipi per ogni attributo dell'evento \\
         \hline

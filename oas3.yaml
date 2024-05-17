@@ -230,6 +230,7 @@ components:
           type: integer
           format: int64
           example: 198772
+          description: numero identificativo dell'evento. Nel contesto di "insert_new_event", questo paremetro verrà sovrascritto in backend. 
         title:
           type: string
           description: Titolo dell'evento.

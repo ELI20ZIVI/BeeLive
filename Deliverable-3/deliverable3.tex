@@ -681,7 +681,7 @@ La fase di inserzione di un nuovo evento prevede l'utilizzo di dati corretti e v
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{201} & - \\
+        1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{200} & - \\
         \hline
         2 & Test di fallimento per l'inserzione di un nuovo evento con dati non validi & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire con dati non validi & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{422} & Devono essere rispettati tutti i tipi per ogni attributo dell'evento \\
         \hline
@@ -691,6 +691,17 @@ La fase di inserzione di un nuovo evento prevede l'utilizzo di dati corretti e v
 \end{table}
 
 \clearpage
+
+\subsection{Deploy}
+Il deployment del progetto attuale è effettuabile attraverso 3 container "Docker", creati da noi, connessi tramite docker-compose.
+In particolare, in \texttt{BeeLive/Products/Docker} vi è un file "docker-compose.yml" che, intuitivamente, va usato con il tool "docker-compose".\\
+Questo docker-compose si occupa di costruire e avviare tutti i container, costruiti da noi, contenenti le diverse componenti del "backend". \\\\
+Tale deployment è già utilizzabile attraverso le due applicazioni (mobile e desktop) che abbiamo creato, sebbene gli indirizzi IP siano da modificare.
+\\
+Documentazione ulteriore verrà a seguire nel prossimo deliverable, in quanto le configurazioni sono ancora volatili e soggette a possibili cambiamenti.\\
+\\
+Questi container sono attualmente in esecuzione su un nostro server di testing con ip statico \textit{93.49.96.13}, per cui se i lettori vogliono possono provare già a testare gli endpoint creati. 
+
 
 \subsection{Sprint review}
 In questo sprint siamo riusciti ad implementare le funzionalità 'barebone' della nostra applicazione, e nonostante ci siano molte criticità da risolvere abbiamo ottenuto un prodotto tecnicamente "shippable", composto da:
@@ -709,12 +720,14 @@ Il prossimo sprint partirà da ciò che abbiamo creato durante questo sprint, pe
 
 \subsection{Sprint retrospective}
 Durante lo sprint siamo andati incontro ad alcune mutazioni e conflitti, seppur leggeri, nel momento in cui i nostri prodotti hanno raggiunto uno stato di maturità abbastanza elevato da poter cominciare ad interagire con le altre componenti. 
-Queste problematiche sono nate da leggere differenze, all'interno del gruppo, di ciò che pensavamo che il sistema dovesse fare, il che ha portato a sviluppare componenti con, ad esempio, metadati o strutture dati leggermente diverse, il che ha ovviamente ci ha portato problemi nel momento in cui cercavamo di far comunicare le diverse componenti. Questi problemi di comunicazione sono stati facilmente risolti, ciò non toglie però che questi problemi sono stati un sintomo di discrepanze logiche all'interno del gruppo che se non gestite potrebbero portare a problemi più grandi.\\
+Queste problematiche sono nate da leggere differenze, all'interno del gruppo, di ciò che pensavamo che il sistema dovesse fare, portando a sviluppare componenti con, ad esempio, metadati o strutture dati leggermente diverse. Il che ha ovviamente ci ha portato problemi nel momento in cui cercavamo di far comunicare le diverse componenti. Problemi comunque facilmente risolti, ma che sono stati un sintomo di discrepanze logiche all'interno del gruppo che se non gestite avrebero portato a problemi più rilevanti.\\
 Ci siamo dunque ripromessi di operare, in futuro, in modo più rigoroso, sotto forma di un investimento più sostanzioso verso la definizione di strutture dati ed endpoint in modo che tutti i membri del gruppo siano sulla stessa lunghezza d'onda riguardo alle funzionalità ed 'user stories' da implementare / risolvere. \\
 \\
 Alcuni membri del gruppo hanno fatto notare dei potenziali miglioramenti riguardo al nostro workflow git, ad esempio con l'utilizzo di una branch 'nightly' (che verrebbe automaticamente "deployata" sul nostro server di testing) o anche solo stare attenti ad effettuare commits atomici e, allo stesso modo, effettuare un isolamento migliore delle branches per quanto riguarda le feature che le stesse vanno a implementare. \\
 \\
 Un ultimo problema che abbiamo riscontrato è un potenziale errore concettuale riguardante le 'user stories' e il product backlog da noi creato. In particolare, stiamo valutando se rendere tali user stories più "atomiche", invece che effettuare ciò che abbiamo fatto noi ovvero di atomizzare solamente le sub-user stories. \\
 Questo punto è un tema ancora acceso di discussione, per cui eventuali conclusioni a riguardo verranno riportate all'inizio del prossimo sprint.
+
+
 
 \end{document}

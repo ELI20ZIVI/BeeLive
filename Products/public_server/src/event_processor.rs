@@ -78,6 +78,7 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
             match val.parse::<f64>() {
                 Ok(num) => {
                     subiFilter.insert("subb", num);
+                    subiFilter.add("subb", num);
                 }
                 Err(_) => {
                     // Se il valore non può essere convertito in f64, restituisci un errore 400

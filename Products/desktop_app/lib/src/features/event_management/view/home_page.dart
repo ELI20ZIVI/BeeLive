@@ -2,6 +2,7 @@
 
 
 import 'package:desktop_app/src/client/client.dart';
+import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
@@ -340,7 +341,12 @@ class _EventGenericFormState extends State<_EventGenericForm> {
           separator,
           visibility,
           separator,
-          CategoryPicker(event: widget.event),
+          // Disabilitato le categorie in quanto non ancora supportate
+          //CategoryPicker(event: widget.event),
+          Align (
+            alignment: Alignment.bottomRight,
+            child: RiskLevelPicker(event: widget.event),
+          )
         ],
       ),
     );

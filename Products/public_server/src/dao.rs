@@ -1,4 +1,4 @@
-use actix_web::{web::Data, Result};
+use actix_web::{web::Data, Result, HttpResponse};
 use futures::stream::StreamExt;
 use mongodb::{bson::doc, options::FindOptions, results::InsertOneResult, Collection};
 use crate::dao::objects::*;
@@ -24,7 +24,7 @@ pub async fn insert_new_event(mongodb_collection: &Collection<Event>, event: Eve
 /// The crate `docs.rs/mongodb` allows automatic deserialization of BSON data (obtained from querying the
 /// mongodb database), thus manual deserialization into `Vec<Event>` using the `serde` crate is not
 /// needed.
-pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, modeFilter: mongodb::bson::Document, addbFilter: mongodb::bson::Document, subbFilter: mongodb::bson::Document, addiFilter: mongodb::bson::Document, subiFilter: mongodb::bson::Document) -> Vec<PrunedEvent> {
+pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, modeFilter: mongodb::bson::Document, addbFilter: mongodb::bson::Document, subbFilter: mongodb::bson::Document, addiFilter: mongodb::bson::Document, subiFilter: mongodb::bson::Document) -> HttpResponse {
     // Search options
     let find_options = FindOptions::builder().projection(PrunedEvent::mongodb_projection()).build();
 
@@ -39,7 +39,7 @@ pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, mo
     let events: Vec<mongodb::error::Result<PrunedEvent>> = cursor.collect().await;
     let events: Vec<PrunedEvent> = events.into_iter().flatten().collect();
 
-    events
+    return HttpResponse::Ok().json(events);
 }
 
 pub async fn query_full_event_single(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> Option<Event> {

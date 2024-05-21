@@ -40,13 +40,13 @@ class _GeoJSONFilePickerState extends State<GeoJSONFilePicker> {
 
                   if (result != null && result.paths[0] != null) {
 
-                    String path = result.paths[0]!;
+                    String file_path = result.paths[0]!;
 
-                    String file_content = await File(path).readAsString();
+                    String file_content = await File(file_path).readAsString();
                     debugPrint(file_content);
                     GeoJSONFeatureCollection geojson = GeoJSONFeatureCollection.fromJSON(file_content);
                     setState(() {
-                      path = basename(path);
+                      path = basename(file_path);
                       widget.subevent.polygons = geojson;
                     });
 

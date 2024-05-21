@@ -10,28 +10,15 @@ use mongodb::Collection;
 use crate::dao::{self, objects::{Event, PrunedEvent}};
 use crate::EventQueryData;
 
-fn process_comma_separated_values(field_name: &str, field_value: &Option<String>, filter: &mut Document) {
-    if let Some(value) = field_value {
-        let mut vec = Vec::new();
-        for val in value.split(',') {
-            match val.parse::<f64>() {
-                Ok(num) => vec.push(num),
-                Err(_) => println!("Il valore '{}' nel campo '{}' non è un numero valido.", val, field_name),
-            }
-        }
-        filter.insert(field_name, vec);
-    }
-}
-
 /// Pass-through a dao::query_pruned_events.
 /// Per la documentazione riferirsi a dao::query_pruned_events.
 pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::Query<EventQueryData>) -> HttpResponse {
 
-    let mut modeFilter = mongodb::bson::Document::new();
-    let mut addbFilter = mongodb::bson::Document::new();
-    let mut addiFilter = mongodb::bson::Document::new();
-    let mut subbFilter = mongodb::bson::Document::new();
-    let mut subiFilter = mongodb::bson::Document::new();
+    let mut modeFilter = Document::new();
+    let mut addbFilter = Document::new();
+    let mut addiFilter = Document::new();
+    let mut subbFilter = Document::new();
+    let mut subiFilter = Document::new();
 
     if let Some(m) = &data.mode {
         match m.as_str() {
@@ -44,10 +31,61 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
         }
     }
 
-    process_comma_separated_values("addb", &data.addb, &mut addbFilter);
-    process_comma_separated_values("subb", &data.subb, &mut subbFilter);
-    process_comma_separated_values("subi", &data.subi, &mut subiFilter);
-    process_comma_separated_values("addi", &data.addi, &mut addiFilter);
+    if let Some(value) = &data.addb {
+        for val in value.split(',') {
+            match val.parse::<f64>() {
+                Ok(num) => {
+                    addbFilter.insert("addb", num);
+                }
+                Err(_) => {
+                    // Se il valore non può essere convertito in f64, restituisci un errore 400
+                    return HttpResponse::BadRequest().body("Invalid addb value.");
+                }
+            }
+        }
+    }
+
+    if let Some(value) = &data.addi {
+        for val in value.split(',') {
+            match val.parse::<f64>() {
+                Ok(num) => {
+                    addiFilter.insert("addi", num);
+                }
+                Err(_) => {
+                    // Se il valore non può essere convertito in f64, restituisci un errore 400
+                    return HttpResponse::BadRequest().body("Invalid addi value.");
+                }
+            }
+        }
+    }
+
+    if let Some(value) = &data.subi {
+        for val in value.split(',') {
+            match val.parse::<f64>() {
+                Ok(num) => {
+                    subiFilter.insert("subi", num);
+                }
+                Err(_) => {
+                    // Se il valore non può essere convertito in f64, restituisci un errore 400
+                    return HttpResponse::BadRequest().body("Invalid subi value.");
+                }
+            }
+        }
+    }
+
+    if let Some(value) = &data.subb {
+        for val in value.split(',') {
+            match val.parse::<f64>() {
+                Ok(num) => {
+                    subiFilter.insert("subb", num);
+                }
+                Err(_) => {
+                    // Se il valore non può essere convertito in f64, restituisci un errore 400
+                    return HttpResponse::BadRequest().body("Invalid subb value.");
+                }
+            }
+        }
+    }
 
     return dao::query_pruned_events(monbodb_collection, modeFilter, addbFilter, subbFilter, addiFilter, subiFilter).await
 }

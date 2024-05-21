@@ -28,10 +28,21 @@ pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, mo
     // Search options
     let find_options = FindOptions::builder().projection(PrunedEvent::mongodb_projection()).build();
 
+    // Tutti i filtri in un nuovo mongodb::bson::Document
+    let filters = doc! {
+        "$and": [
+            modeFilter,
+            addbFilter,
+            subbFilter,
+            addiFilter,
+            subiFilter
+        ]
+    };
+
     // DB query
     let cursor = mongodb_collection
         .clone_with_type::<PrunedEvent>()
-        .find(Some(modeFilter), find_options)
+        .find(Some(filters), find_options)
         .await
         .unwrap();
 

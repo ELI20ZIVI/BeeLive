@@ -25,7 +25,7 @@ fn process_comma_separated_values(field_name: &str, field_value: &Option<String>
 
 /// Pass-through a dao::query_pruned_events.
 /// Per la documentazione riferirsi a dao::query_pruned_events.
-pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::Query<EventQueryData>) -> Vec<PrunedEvent> {
+pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::Query<EventQueryData>) -> HttpResponse {
 
     let mut modeFilter = mongodb::bson::Document::new();
     let mut addbFilter = mongodb::bson::Document::new();
@@ -39,7 +39,7 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
                 modeFilter.insert("mode", m.clone());
             }
             _ => {
-                println!("'{}' non è un valore valido per il campo mode", m);
+                return HttpResponse::BadRequest().body("Invalid mode value.");
             }
         }
     }
@@ -49,7 +49,7 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
     process_comma_separated_values("subi", &data.subi, &mut subiFilter);
     process_comma_separated_values("addi", &data.addi, &mut addiFilter);
 
-    dao::query_pruned_events(monbodb_collection, modeFilter, addbFilter, subbFilter, addiFilter, subiFilter).await
+    return dao::query_pruned_events(monbodb_collection, modeFilter, addbFilter, subbFilter, addiFilter, subiFilter).await
 }
 
 

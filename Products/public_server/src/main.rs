@@ -1,5 +1,5 @@
 
-use actix_web::{get, middleware::Logger, web::{self, Data, Path}, App, HttpRequest, HttpServer, Responder};
+use actix_web::{get, middleware::Logger, web::{self, Data, Path}, App, HttpRequest, HttpServer, Responder, HttpResponse};
 use dao::objects::Event;
 use mongodb::{Collection, Client};
 use serde::Deserialize;
@@ -28,33 +28,28 @@ async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Pat
 
 // TODO: formalize and document this endpoint
 #[get("/events")]
-async fn get_events(mongodb_events_collection: web::Data<Collection<Event>>, data: web::Query<EventQueryData>) -> impl Responder {
+pub async fn get_events(
+    mongodb_events_collection: web::Data<Collection<Event>>,
+    data: web::Query<EventQueryData>
+) -> impl Responder {
 
-    // Get API data fields as documented.
-    let _mode = &data.mode;
-    let _addi = &data.addi;
-    let _subi = &data.subi;
-    let _subb = &data.subb;
-    let _addb = &data.addb;
+    // Esegui la query per ottenere gli eventi
+    let events_result = event_processor::get_events(mongodb_events_collection.clone(), data).await;
 
-    // Get events from the database following the filters.
-    let events = event_processor::get_events(mongodb_events_collection.clone(), data).await;
-
-    web::Json(events)
+    // Ritorna il risultato della query
+    events_result
 }
 
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
 
-
-
     env_logger::init();
 
     //TODO: solve unwrap
     //let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017").await.unwrap();
     let client = Client::with_uri_str("mongodb://localhost:27017").await.unwrap();
-    let mongodb_events_collection = client.database("events").collection::<Event>("events");
+    let mongodb_events_collection = client.database("test").collection::<Event>("test");
 
  
     HttpServer::new(move || {

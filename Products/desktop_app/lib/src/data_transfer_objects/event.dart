@@ -75,7 +75,7 @@ final class SubEvent {
   NullableDateTimeRange validity;
 
   @_GeoJSONFeaturesToMap()
-  final GeoJSONFeatureCollection polygons;
+  GeoJSONFeatureCollection polygons;
 
   SubEvent({
     required this.title,

@@ -182,7 +182,7 @@ class _SubEventWidget extends StatelessWidget {
       ),
     );
 
-    final geojsonpicker = GeoJSONFilePicker();
+    final geojsonpicker = GeoJSONFilePicker(subevent: subevent);
 
     final map = InfoLabel(
       label: "Mappa",
@@ -237,8 +237,6 @@ class _MapManager extends StatelessWidget {
         //holePointsList: p.holes,
       );
     }).toList(growable: false);
-  
-    const mapActions = Expanded(child: SizedBox.shrink());
 
     final mapWidget = BeeLiveMap(
       children: [
@@ -250,18 +248,9 @@ class _MapManager extends StatelessWidget {
       ],
     );
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 200),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          mapActions,
-          AspectRatio(
-            aspectRatio: 4 / 3,
-            child: mapWidget,
-          ),
-        ],
-      ),
+    return AspectRatio(
+      aspectRatio: 4 / 3,
+      child: mapWidget,
     );
   }
 }

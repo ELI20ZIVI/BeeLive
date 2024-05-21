@@ -1,12 +1,13 @@
 use actix_web::{test, App};
-use dao::objects::Event;
-use your_module::{get_event, get_events};
+use actix_web::http::StatusCode;
+use actix_web::http::header;
+use actix_web::http::header::HeaderValue;
 
-#[actix_rt::test]
+#[actix_web::test]
 async fn test_get_events() {
     let mut app = test::init_service(
         App::new()
-            .service(get_event)
+            .service(get_events)
     )
     .await;
 
@@ -130,7 +131,7 @@ async fn test_get_events() {
     assert_eq!(resp.status().as_u16(), 400);
 }
 
-#[actix_rt::test]
+#[actix_web::test]
 async fn test_get_event() {
     // Crea un'applicazione Actix per testare la funzione get_events
     let mut app = test::init_service(

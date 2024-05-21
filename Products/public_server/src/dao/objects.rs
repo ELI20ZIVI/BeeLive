@@ -7,7 +7,6 @@ use geojson::{FeatureCollection, Geometry, Feature};
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
 
-/// Represents a category.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
     id: i32,
@@ -19,7 +18,6 @@ pub struct Category {
 
 type NullableDateTime = Option<DateTime<Utc>>;
 
-/// Represents a range of nullable datetimes.
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct NullableDateTimeRange {
     #[serde(with = "ts_seconds_option")]
@@ -35,7 +33,6 @@ impl NullableDateTimeRange {
     }
 }
 
-/// The SubEvent DTO.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SubEvent {
     pub title: String,

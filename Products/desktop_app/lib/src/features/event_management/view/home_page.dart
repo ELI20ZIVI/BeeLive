@@ -7,6 +7,7 @@ import 'package:desktop_app/src/features/event_management/view/geojson_picker.da
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
+import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 
 import '../../../data_transfer_objects/event.dart';
@@ -328,7 +329,9 @@ class _EventGenericFormState extends State<_EventGenericForm> {
           title,
           separator,
           summary,
+          separator,
           description,
+          separator,
           remoteDocument,
           separator,
           validity,
@@ -393,7 +396,44 @@ class ActionBar extends StatelessWidget {
     final universal = _universalCommands.map(converter);
     //var specific = _specificCommands.map(converter);
     var specific = [CommandBarButton(
-        onPressed: () { Client.implementation.submitNewEvent(event); },
+        onPressed: () async {
+          http.Response response = await Client.implementation.submitNewEvent(event);
+          displayInfoBar(context, builder: (context, close) {
+
+            String status = "Errore imprevisto. Codice d'errore: ${response.statusCode}";
+            String content = "Questo errore non era previsto. Contattare uno sviluppatore o un amministratore di sistema per comunicargli questo incidente.\n"
+                "Ecco il contenuto della risposta HTTP: ${response.body}";
+            InfoBarSeverity severity = InfoBarSeverity.error;
+
+            switch (response.statusCode) {
+              case 201:
+                status = "Successo";
+                content = "Evento correttamente inserito nel sistema e pubblicato.";
+                severity = InfoBarSeverity.success;
+                break;
+              case 422:
+                status = "Errore, impossibile elaborare l'evento. [${response.statusCode}]";
+                content = "I dati inseriti sono corretti, però ci sono dei constraint che non vengono rispettati. Hint: questo errore è solitamente associato ad una data di fine"
+                    "che precede una data di inizio.";
+                severity = InfoBarSeverity.error;
+                break;
+              case 400:
+                status = "Errore, richiesta malformata. [${response.statusCode}]";
+                content = "Il server non ha potuto elaborare la richiesta. Questo non dovrebbe accadere: contatta un amministratore di sistema per informarlo di questo errore.\n"
+                    "Ecco il contenuto della risposta HTTP: ${response.body}";
+            }
+
+            return InfoBar(
+            title: Text(status),
+            content: Text(content),
+            action: IconButton(
+              icon: const Icon(FluentIcons.clear),
+              onPressed: close,
+            ),
+            severity: severity,
+            );
+          });
+          },
         label: const Text("Pubblica"),
         icon: const Icon(FluentIcons.publish_content),
     )];

@@ -15,18 +15,11 @@ class ManagementWebServerClient implements Client {
   ManagementWebServerClient(this.uri);
 
   @override
-  Future<bool> submitNewEvent(Event event) async {
+  Future<http.Response> submitNewEvent(Event event) async {
 
     debugPrint(json.encode(event.toJson()));
 
-    var response = await http.post(uri, headers: {"Content-Type": "application/json"}, body: json.encode(event.toJson()));
-    if (response.statusCode == 200) {
-      return true;
-    }
-    else {
-      debugPrint(response.body);
-      return false;
-    }
+    return await http.post(uri, headers: {"Content-Type": "application/json"}, body: json.encode(event.toJson()));
   }
 
 }

@@ -1,4 +1,5 @@
 import 'package:desktop_app/src/data_transfer_objects/event.dart';
+import 'package:http/http.dart';
 
 /// Client class for the system backend.
 ///
@@ -14,8 +15,8 @@ abstract interface class Client {
 
   /// Submits a new event to the backend to perform insertion.
   ///
-  /// Returns a boolean representing if the event has been accepted or not.
-  Future<bool> submitNewEvent(Event event);
+  /// Returns an integer representing the HTTP response's status code.
+  Future<Response> submitNewEvent(Event event);
 
   /// Creates the default client.
   factory Client() {

@@ -3,6 +3,7 @@
 
 import 'package:desktop_app/src/client/client.dart';
 import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
+import 'package:desktop_app/src/features/event_management/view/geojson_picker.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
@@ -181,6 +182,8 @@ class _SubEventWidget extends StatelessWidget {
       ),
     );
 
+    final geojsonpicker = GeoJSONFilePicker();
+
     final map = InfoLabel(
       label: "Mappa",
       child: _MapManager(subEvent: subevent),
@@ -194,6 +197,8 @@ class _SubEventWidget extends StatelessWidget {
         description,
         separator,
         validity,
+        separator,
+        geojsonpicker,
         separator,
         map,
       ],
@@ -362,7 +367,6 @@ class _EventGenericForm extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _EventGenericFormState();
-
 
 }
 

@@ -19,17 +19,17 @@ extension type EventId(int _id) {
 @JsonSerializable(fieldRename: FieldRename.snake)
 final class Event with BsonSerializable {
   final EventId id;
-  final String title;
-  final String summary;
-  final String description;
+  String title;
+  String summary;
+  String description;
 
   /// A remote URL that contains additional information to this event.
-  final Uri? remoteDocument;
-  final NullableDateTimeRange validity;
-  final NullableDateTimeRange visibility;
+  Uri? remoteDocument;
+  NullableDateTimeRange validity;
+  NullableDateTimeRange visibility;
   RiskLevel riskLevel;
-  final List<Category> categories;
-  final List<SubEvent> subevents;
+  List<Category> categories;
+  List<SubEvent> subevents;
 
   @_GeoJSONFeaturesToMap()
   final GeoJSONFeatureCollection polygons;

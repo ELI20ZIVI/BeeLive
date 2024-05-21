@@ -41,7 +41,7 @@ class EventManagerScreen extends StatelessWidget {
 /// This widget shows the modification form for the event attributes.
 class _EventWidget extends StatelessWidget{
 
-  const _EventWidget({
+  _EventWidget({
     required this.event,
   });
 
@@ -49,6 +49,8 @@ class _EventWidget extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -210,7 +212,7 @@ class _MapManager extends StatelessWidget {
 
     List<Polygon> polygons = [];
     polygons = subEvent.polygons.features.map((p) {
-      List<LatLng> coordinates;
+      List<LatLng> coordinates = [];
 
       var geometry = p?.geometry;
       if (geometry is GeoJSONPolygon) {
@@ -258,45 +260,69 @@ class _MapManager extends StatelessWidget {
   }
 }
 
-class _EventGenericForm extends StatelessWidget {
-  const _EventGenericForm({
-    required this.event,
-  });
+class _EventGenericFormState extends State<_EventGenericForm> {
 
-  final Event event;
+  final TextEditingController titleTEController = TextEditingController();
+  final TextEditingController descriptionTEController = TextEditingController();
+  final TextEditingController summaryTEController = TextEditingController();
+  final TextEditingController remotedocumentTEController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    titleTEController.text = widget.event.title;
+    descriptionTEController.text = widget.event.description;
+    summaryTEController.text = widget.event.summary;
+    remotedocumentTEController.text = (widget.event.remoteDocument ?? ""  ).toString();
+
+    titleTEController.addListener(() { widget.event.title = titleTEController.text; });
+    descriptionTEController.addListener(() { widget.event.description = descriptionTEController.text; });
+    summaryTEController.addListener(() { widget.event.summary = summaryTEController.text; });
+    remotedocumentTEController.addListener(() { widget.event.remoteDocument = Uri.tryParse(remotedocumentTEController.text); });
+
     const separator = SizedBox(height: 20);
 
     final title = InfoLabel(
       label: "Titolo",
       child: TextFormBox(
-        initialValue: event.title,
         textAlignVertical: TextAlignVertical.center,
+        controller: titleTEController,
       ),
     );
 
     final summary = InfoLabel(
       label: "Riassunto",
       child: TextBox(
-        controller: TextEditingController(
-          text: event.summary,
-        ),
+        controller: summaryTEController,
+      ),
+    );
+
+    final description = InfoLabel(
+      label: "Descrizione",
+      child: TextBox(
+        maxLines: null,
+        controller: descriptionTEController,
+      ),
+    );
+
+    final remoteDocument = InfoLabel(
+      label: "Link al documento remoto (URI)",
+      child: TextBox(
+        controller: remotedocumentTEController,
       ),
     );
 
     final validity = InfoLabel(
       label: "Validità",
       child: NullableDateTimeRangePicker(
-        nullableDateTimeRange: event.validity,
+        nullableDateTimeRange: widget.event.validity,
       ),
     );
 
     final visibility = InfoLabel(
       label: "Visibilità",
       child: NullableDateTimeRangePicker(
-        nullableDateTimeRange: event.visibility,
+        nullableDateTimeRange: widget.event.visibility,
       ),
     );
 
@@ -307,16 +333,31 @@ class _EventGenericForm extends StatelessWidget {
           title,
           separator,
           summary,
+          description,
+          remoteDocument,
           separator,
           validity,
           separator,
           visibility,
           separator,
-          CategoryPicker(event: event),
+          CategoryPicker(event: widget.event),
         ],
       ),
     );
   }
+}
+
+class _EventGenericForm extends StatefulWidget {
+  const _EventGenericForm({
+    required this.event,
+  });
+
+  final Event event;
+
+  @override
+  State<StatefulWidget> createState() => _EventGenericFormState();
+
+
 }
 
 /// The action bar for event management

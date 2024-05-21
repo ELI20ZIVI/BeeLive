@@ -39,6 +39,9 @@ pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, mo
         ]
     };
 
+    // Stampa tutti i filtri a disposizione
+    println!("{:?}", filters);
+
     // DB query
     let cursor = mongodb_collection
         .clone_with_type::<PrunedEvent>()

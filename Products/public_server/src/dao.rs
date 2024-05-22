@@ -24,7 +24,7 @@ pub async fn insert_new_event(mongodb_collection: &Collection<Event>, event: Eve
 /// The crate `docs.rs/mongodb` allows automatic deserialization of BSON data (obtained from querying the
 /// mongodb database), thus manual deserialization into `Vec<Event>` using the `serde` crate is not
 /// needed.
-pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, modeFilter: mongodb::bson::Document, addbFilter: mongodb::bson::Document, subbFilter: mongodb::bson::Document, addiFilter: mongodb::bson::Document, subiFilter: mongodb::bson::Document) -> HttpResponse {
+pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, modeFilter: mongodb::bson::Document, addbFilter: mongodb::bson::Document, subbFilter: mongodb::bson::Document) -> HttpResponse {
     // Search options
     let find_options = FindOptions::builder().projection(PrunedEvent::mongodb_projection()).build();
 
@@ -33,9 +33,7 @@ pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, mo
         "$and": [
             modeFilter,
             addbFilter,
-            subbFilter,
-            addiFilter,
-            subiFilter
+            subbFilter
         ]
     };
 

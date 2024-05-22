@@ -48,7 +48,7 @@ async fn main() -> std::io::Result<()> {
 
     //TODO: solve unwrap
     //let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017").await.unwrap();
-    let client = Client::with_uri_str("mongodb://localhost:27017").await.unwrap();
+    let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@172.19.0.2:27017").await.unwrap();
     let mongodb_events_collection = client.database("test").collection::<Event>("test");
 
  

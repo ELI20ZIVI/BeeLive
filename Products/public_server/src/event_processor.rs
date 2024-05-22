@@ -16,10 +16,9 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
 
     let mut modeFilter = Document::new();
     let mut addbFilter = Document::new();
-    let mut addiFilter = Document::new();
-    let mut subbFilter = Document::new();
     let mut subiFilter = Document::new();
 
+    // TODO: Prendi le preferenze degli utenti e applicale ai filtri
     if let Some(m) = &data.mode {
         match m.as_str() {
             "overwrite" | "combine" | "ifempty" => {
@@ -45,6 +44,21 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
         }
     }
 
+    if let Some(value) = &data.subb {
+        for val in value.split(',') {
+            match val.parse::<f64>() {
+                Ok(num) => {
+                    subiFilter.insert("subb", num);
+                }
+                Err(_) => {
+                    // Se il valore non può essere convertito in f64, restituisci un errore 400
+                    return HttpResponse::BadRequest().body("Invalid subb value.");
+                }
+            }
+        }
+    }
+
+    /*
     if let Some(value) = &data.addi {
         for val in value.split(',') {
             match val.parse::<f64>() {
@@ -72,23 +86,9 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
             }
         }
     }
+    */
 
-    if let Some(value) = &data.subb {
-        for val in value.split(',') {
-            match val.parse::<f64>() {
-                Ok(num) => {
-                    subiFilter.insert("subb", num);
-                    subiFilter.add("subb", num);
-                }
-                Err(_) => {
-                    // Se il valore non può essere convertito in f64, restituisci un errore 400
-                    return HttpResponse::BadRequest().body("Invalid subb value.");
-                }
-            }
-        }
-    }
-
-    return dao::query_pruned_events(monbodb_collection, modeFilter, addbFilter, subbFilter, addiFilter, subiFilter).await
+    return dao::query_pruned_events(monbodb_collection, modeFilter, addbFilter, subiFilter).await
 }
 
 

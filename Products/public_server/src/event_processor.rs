@@ -8,21 +8,24 @@ use mongodb::bson::Document;
 use mongodb::Collection;
 
 use crate::dao::{self, objects::{Event, PrunedEvent}};
+use crate::dao::objects::Category;
 use crate::EventQueryData;
 
 /// Pass-through a dao::query_pruned_events.
 /// Per la documentazione riferirsi a dao::query_pruned_events.
-pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::Query<EventQueryData>) -> HttpResponse {
+pub async fn get_events(mongodb_event_collection: Data<Collection<Event>>, mongodb_categories_collection: Data<Collection<Category>>, data: web::Query<EventQueryData>) -> HttpResponse {
 
-    let mut modeFilter = Document::new();
-    let mut addbFilter = Document::new();
-    let mut subiFilter = Document::new();
+    let mut modeFilter = "";
+    let mut addbFilter : Vec<i32> = vec![];
+    let mut subbFilter : Vec<i32> = vec![];
+    let mut addiFilter : Vec<i32> = vec![];
+    let mut subiFilter : Vec<i32> = vec![];;
 
     // TODO: Prendi le preferenze degli utenti e applicale ai filtri
     if let Some(m) = &data.mode {
         match m.as_str() {
             "overwrite" | "combine" | "ifempty" => {
-                modeFilter.insert("mode", m.clone());
+                modeFilter = m.as_str();
             }
             _ => {
                 return HttpResponse::BadRequest().body("Invalid mode value.");
@@ -32,9 +35,12 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
 
     if let Some(value) = &data.addb {
         for val in value.split(',') {
-            match val.parse::<f64>() {
+            match val.parse::<i32>() {
                 Ok(num) => {
-                    addbFilter.insert("addb", num);
+                    if num < 0 {
+                        return HttpResponse::BadRequest().body("Invalid addb value.");
+                    }
+                    addbFilter.push(num);
                 }
                 Err(_) => {
                     // Se il valore non può essere convertito in f64, restituisci un errore 400
@@ -46,9 +52,12 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
 
     if let Some(value) = &data.subb {
         for val in value.split(',') {
-            match val.parse::<f64>() {
+            match val.parse::<i32>() {
                 Ok(num) => {
-                    subiFilter.insert("subb", num);
+                    if num < 0 {
+                        return HttpResponse::BadRequest().body("Invalid subb value.");
+                    }
+                    subbFilter.push(num);
                 }
                 Err(_) => {
                     // Se il valore non può essere convertito in f64, restituisci un errore 400
@@ -58,12 +67,14 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
         }
     }
 
-    /*
     if let Some(value) = &data.addi {
         for val in value.split(',') {
-            match val.parse::<f64>() {
+            match val.parse::<i32>() {
                 Ok(num) => {
-                    addiFilter.insert("addi", num);
+                    if num < 0 {
+                        return HttpResponse::BadRequest().body("Invalid addi value.");
+                    }
+                    addiFilter.push(num);
                 }
                 Err(_) => {
                     // Se il valore non può essere convertito in f64, restituisci un errore 400
@@ -75,9 +86,12 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
 
     if let Some(value) = &data.subi {
         for val in value.split(',') {
-            match val.parse::<f64>() {
+            match val.parse::<i32>() {
                 Ok(num) => {
-                    subiFilter.insert("subi", num);
+                    if num < 0 {
+                        return HttpResponse::BadRequest().body("Invalid subi value.");
+                    }
+                    subiFilter.push(num);
                 }
                 Err(_) => {
                     // Se il valore non può essere convertito in f64, restituisci un errore 400
@@ -86,11 +100,9 @@ pub async fn get_events(monbodb_collection: Data<Collection<Event>>, data: web::
             }
         }
     }
-    */
 
-    return dao::query_pruned_events(monbodb_collection, modeFilter, addbFilter, subiFilter).await
+    return dao::query_pruned_events(mongodb_event_collection, mongodb_categories_collection, modeFilter, addbFilter, subbFilter, addiFilter, subiFilter).await;
 }
-
 
 /// Pass-through a dao::query_full_event_single
 /// Per la documentazione riferirsi a dao::query_full_event_single

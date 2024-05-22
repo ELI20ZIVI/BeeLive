@@ -3,6 +3,7 @@ use actix_web::{get, middleware::Logger, web::{self, Data, Path}, App, HttpReque
 use dao::objects::Event;
 use mongodb::{Collection, Client};
 use serde::Deserialize;
+use crate::dao::objects::Category;
 
 mod event_processor;
 mod dao;
@@ -30,11 +31,12 @@ async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Pat
 #[get("/events")]
 pub async fn get_events(
     mongodb_events_collection: web::Data<Collection<Event>>,
+    mongodb_categories_collection: web::Data<Collection<Category>>,
     data: web::Query<EventQueryData>
 ) -> impl Responder {
 
     // Esegui la query per ottenere gli eventi
-    let events_result = event_processor::get_events(mongodb_events_collection.clone(), data).await;
+    let events_result = event_processor::get_events(mongodb_events_collection.clone(), mongodb_categories_collection.clone(), data).await;
 
     // Ritorna il risultato della query
     events_result
@@ -47,20 +49,24 @@ async fn main() -> std::io::Result<()> {
     env_logger::init();
 
     //TODO: solve unwrap
-    //let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017").await.unwrap();
-    let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@172.19.0.2:27017").await.unwrap();
-    let mongodb_events_collection = client.database("test").collection::<Event>("test");
+    println!("Connecting to MongoDB...");
+    let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017").await.unwrap();
+    //let client = Client::with_uri_str("mongodb://@beelive.mongo:27017").await.unwrap();
+    println!("Connected to MongoDB!");
+    let mongodb_events_collection = client.database("beelive_test").collection::<Event>("events");
+    let mongodb_categories_collection = client.database("beelive_test").collection::<Category>("categories");
 
- 
+
     HttpServer::new(move || {
-
         App::new()
             .wrap(Logger::default())
             .app_data(Data::new(mongodb_events_collection.clone()))
+            .app_data(Data::new(mongodb_categories_collection.clone()))
             .service(
+
                 web::scope("/api/v3")
-                .service(get_events)
-                .service(get_event)
+                    .service(get_events)
+                    .service(get_event)
             )
     })
     .bind(("0.0.0.0", 8080))?

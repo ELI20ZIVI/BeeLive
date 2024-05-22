@@ -1,6 +1,7 @@
 use actix_web::{web::Data, Result, HttpResponse};
 use futures::stream::StreamExt;
 use mongodb::{bson::doc, options::FindOptions, results::InsertOneResult, Collection};
+use mongodb::bson::Bson::ObjectId;
 use crate::dao::objects::*;
 
 pub mod objects;
@@ -13,39 +14,77 @@ pub mod objects;
 ///
 /// * `mongodb_collection` -  handle to the mongobd collection you want to insert this new event into.
 /// * `event` -  event you want to insert into given collection 
-pub async fn insert_new_event(mongodb_collection: &Collection<Event>, event: Event) -> mongodb::error::Result<InsertOneResult> {
-    mongodb_collection.insert_one(event, None).await
+pub async fn insert_new_event(mongodb_event_collection: &Collection<Event>, mongodb_category_collection: &Collection<Category>, event: Event) -> mongodb::error::Result<InsertOneResult> {
+    mongodb_event_collection.insert_one(event, None).await
 }
 
-/// Queries all events stored in the collection defined by the "mongodb_collection" handle but
+pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection: &Collection<Category>) {
+    for id in target_ids {
+        let filter = doc! { "id": id};
+        let result = mongodb_category_collection.find_one(filter, None).await;
+
+        match result {
+            Ok(o_category) => {
+                match o_category {
+                    Some(category) => {
+                        // Category exists
+                    }
+                    None => {
+                        // Category does not exist
+                        println!("Category with id {} does not exist.", id);
+                    }
+                }
+            }
+            Err(error) => {
+                println!("{:?}", error);
+            }
+        }
+    }
+}
+
+/// Queries all events stored in the csollection defined by the "mongodb_collection" handle but
 /// uses `PrunedEvent` as a projection document in order to not read all data about the events.
 /// Returns a vector of PrunedEvents. 
 ///
 /// The crate `docs.rs/mongodb` allows automatic deserialization of BSON data (obtained from querying the
 /// mongodb database), thus manual deserialization into `Vec<Event>` using the `serde` crate is not
 /// needed.
-pub async fn query_pruned_events(mongodb_collection: Data<Collection<Event>>, modeFilter: mongodb::bson::Document, addbFilter: mongodb::bson::Document, subbFilter: mongodb::bson::Document) -> HttpResponse {
+pub async fn query_pruned_events(mongodb_event_collection: Data<Collection<Event>>, mongodb_category_collection: Data<Collection<Category>>, modeFilter : &str, addbFilter : Vec<i32>, subbFilter : Vec<i32>, addiFilter : Vec<i32>, subiFilter : Vec<i32>) -> HttpResponse {
     // Search options
     let find_options = FindOptions::builder().projection(PrunedEvent::mongodb_projection()).build();
 
-    // Tutti i filtri in un nuovo mongodb::bson::Document
-    let filters = doc! {
-        "$and": [
-            modeFilter,
-            addbFilter,
-            subbFilter
-        ]
-    };
+    // Controllo validità categorie di filtro
+    // Se addiFilter, subiFilter, addbFilter e subbFilter hanno categorie che non esistono allora errore 422
 
-    // Stampa tutti i filtri a disposizione
-    println!("{:?}", filters);
+    // Controllo validità categorie di filtro
+    checkCategories(addbFilter, &mongodb_category_collection);
+
 
     // DB query
-    let cursor = mongodb_collection
+    let cursor = mongodb_event_collection
         .clone_with_type::<PrunedEvent>()
-        .find(Some(filters), find_options)
+        .find(None, find_options)
         .await
         .unwrap();
+
+    /*
+    // Filtri locali, variabile vuota di esempio
+    let mut local_filters = doc! {};
+
+    // Query considerando le configurazioni degli utenti da mode
+    // Ricavo del valore di mode
+    let mode = modeFilter.get("mode").unwrap().as_str().unwrap();
+    if (mode == "overwrite") {
+        // Sovrascrittura preferenze locali con quelle remote
+    } else if (mode == "combine") {
+        // Combinazione preferenze locali e remote
+    } else if (mode == "ifempty") {
+        // Parametri remoti se non presenti locali
+    } else {
+        // Unuseful but necessary to avoid compiler warning
+        return HttpResponse::BadRequest().body("Invalid mode value.");
+    }
+    */
 
     // Results
     let events: Vec<mongodb::error::Result<PrunedEvent>> = cursor.collect().await;

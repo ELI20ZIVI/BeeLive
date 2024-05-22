@@ -37,7 +37,7 @@ impl NullableDateTimeRange {
 pub struct SubEvent {
     pub title: String,
     pub description: String,
-    pub polygons: FeatureCollection,
+    pub geometry: FeatureCollection,
     pub validity : NullableDateTimeRange,
 }
 

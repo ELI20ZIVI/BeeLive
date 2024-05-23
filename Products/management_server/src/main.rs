@@ -18,7 +18,8 @@ struct InsertNewEventEndpointData {
 // TODO: formalize and document this endpoint
 /// Inserts a new event passed as payload.
 ///
-/// Returns 201 in case of successful creation of the resource on the database.
+/// Returns 201 in case of successful creation of the resource on the database, in which case the
+/// event's ID will be written in the response's body as plain text.
 /// Returns 400 in case on wrong resource representation.
 /// Returns 422 in case of unvalid resource.
 /// Other status codes can be sent according to the HTTP standard.

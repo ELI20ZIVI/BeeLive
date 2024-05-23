@@ -9,6 +9,7 @@ mod event_manager;
 mod dao;
 mod event_processor;
 
+#[derive(Clone)]
 struct InsertNewEventEndpointData {
     counter: Cell<Option<i32>>,
     mongodb_events_collection: Collection<Event>,
@@ -47,11 +48,15 @@ async fn main() -> std::io::Result<()> {
     let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017").await.unwrap();
     let mongodb_events_collection = client.database("events").collection::<Event>("events");
 
- 
+    let insert_new_event_endpoint_data = InsertNewEventEndpointData {
+        counter: Cell::new(None),
+        mongodb_events_collection,
+    };
+
     HttpServer::new(move || {
         App::new()
             .wrap(Logger::default())
-            .app_data(Data::new(mongodb_events_collection.clone()))
+            .app_data(Data::new(insert_new_event_endpoint_data.clone()))
             .service(
                 web::scope("/api/v3")
                 //.service(get_events)

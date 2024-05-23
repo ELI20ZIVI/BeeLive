@@ -1,4 +1,5 @@
 use actix_web::{web::Data, Result, HttpResponse};
+use actix_web::http::StatusCode;
 use futures::stream::StreamExt;
 use mongodb::{bson::doc, options::FindOptions, results::InsertOneResult, Collection};
 use mongodb::bson::Bson::ObjectId;
@@ -18,8 +19,9 @@ pub async fn insert_new_event(mongodb_event_collection: &Collection<Event>, mong
     mongodb_event_collection.insert_one(event, None).await
 }
 
-pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection: &Collection<Category>) {
+pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection: &Collection<Category>) -> bool {
     for id in target_ids {
+        println!("Checking category with id {}...", id);
         let filter = doc! { "id": id};
         let result = mongodb_category_collection.find_one(filter, None).await;
 
@@ -30,8 +32,8 @@ pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection
                         // Category exists
                     }
                     None => {
-                        // Category does not exist
-                        println!("Category with id {} does not exist.", id);
+                        // Category does not exist - error 422
+                        return false;
                     }
                 }
             }
@@ -40,6 +42,7 @@ pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection
             }
         }
     }
+    return true;
 }
 
 /// Queries all events stored in the csollection defined by the "mongodb_collection" handle but
@@ -53,12 +56,25 @@ pub async fn query_pruned_events(mongodb_event_collection: Data<Collection<Event
     // Search options
     let find_options = FindOptions::builder().projection(PrunedEvent::mongodb_projection()).build();
 
-    // Controllo validità categorie di filtro
-    // Se addiFilter, subiFilter, addbFilter e subbFilter hanno categorie che non esistono allora errore 422
+
 
     // Controllo validità categorie di filtro
-    checkCategories(addbFilter, &mongodb_category_collection);
-
+    let mut valid = checkCategories(addbFilter.clone(), &mongodb_category_collection).await;
+    if !valid {
+        return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
+    }
+    valid = checkCategories(subbFilter.clone(), &mongodb_category_collection).await;
+    if !valid {
+        return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
+    }
+    valid = checkCategories(addiFilter.clone(), &mongodb_category_collection).await;
+    if !valid {
+        return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
+    }
+    valid = checkCategories(subiFilter.clone(), &mongodb_category_collection).await;
+    if !valid {
+        return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
+    }
 
     // DB query
     let cursor = mongodb_event_collection

@@ -1,4 +1,6 @@
 
+use std::cell::Cell;
+
 use actix_web::{middleware::Logger, post, web::{self, Data}, App, HttpResponse, HttpServer, Responder};
 use dao::objects::Event;
 use mongodb::{Collection, Client};
@@ -6,6 +8,11 @@ use mongodb::{Collection, Client};
 mod event_manager;
 mod dao;
 mod event_processor;
+
+struct InsertNewEventEndpointData {
+    counter: Cell<Option<i32>>,
+    mongodb_events_collection: Collection<Event>,
+}
 
 // TODO: formalize and document this endpoint
 /// Inserts a new event passed as payload.
@@ -15,9 +22,9 @@ mod event_processor;
 /// Returns 422 in case of unvalid resource.
 /// Other status codes can be sent according to the HTTP standard.
 #[post("/insert_new_event")]
-async fn insert_event(mongodb_events_collection: Data<Collection<Event>>, event: web::Json<Event>) -> impl Responder {
+async fn insert_event(data: Data<InsertNewEventEndpointData>, event: web::Json<Event>) -> impl Responder {
 
-    let result = event_manager::insert_new_event(mongodb_events_collection, event.into_inner()).await;
+    let result = event_manager::insert_new_event(data, event.into_inner()).await;
     match result {
         Ok(_) => {
             HttpResponse::Ok().finish()

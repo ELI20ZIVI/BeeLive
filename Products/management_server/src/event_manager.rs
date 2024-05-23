@@ -17,7 +17,7 @@ use crate::{event_processor, InsertNewEventEndpointData};
 /// counter value, which will panic if it fails to do so.
 /// This function will panic if, for some reason, the counter contained in 'data' remains None
 /// after trying to load it.
-pub async fn insert_new_event(mut data: Data<InsertNewEventEndpointData>, mut event: Event) -> mongodb::error::Result<InsertOneResult> {
+pub async fn insert_new_event(mut data: Data<InsertNewEventEndpointData>, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
     let _ = event_processor::process(&mut event);
 
     if data.counter.get().is_none() {
@@ -29,7 +29,7 @@ pub async fn insert_new_event(mut data: Data<InsertNewEventEndpointData>, mut ev
     let result = dao::insert_new_event(data.mongodb_events_collection.clone(), event, data.counter.get().unwrap()).await;
     data.counter.set(Some(current_counter+1));
 
-    result
+    (result, data.counter.get().unwrap())
 }
 
 // TODO: document

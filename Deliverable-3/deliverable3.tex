@@ -15,6 +15,8 @@
 \usepackage{enumitem} % Pacchetto per la personalizzazione degli elenchi
 \usepackage{booktabs}
 \usepackage{subcaption}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot} % Per gestire gli assi con date
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -67,24 +69,32 @@ Ziviani Elia, 228172}
 
 \clearpage
 
+\section{Revisione}
+Sono state apportate delle modifiche alla struttura del progetto definita nei precedenti delivareble. Queste modifiche sono così descritte: 
+
+\subsubsection{Classe Evento e ausiliarie}
+A seguito vi è il diagramma UML della classe \texttt{Evento} modificata; abbiamo modificato la gestione dei sottoeventi e usato una struttura "NullableTimeRange" ausiliaria, nonchè inserito un livello di rischio.\\
+\begin{center}\includegraphics[width=0.735\textwidth]{Images/revisione\_evento.png}\end{center}
+
 \section{Introduzione}
 
 \subsection{Componenti del gruppo}
 \begin{itemize}
-    \item Cipriani Pietro, matricola 226959
-    \item Orlando Dennis, matricola 227688
-    \item Ziviani Elia, matricola 228172
+    \item Cipriani Pietro, matricola 226959, \lbrack\href{https://github.com/pietrocipriani}{github profile}\rbrack
+    \item Orlando Dennis, matricola 227688, \lbrack\href{https://github.com/dennisorlando}{github profile}\rbrack
+    \item Ziviani Elia, matricola 228172, \lbrack\href{https://github.com/ELI20ZIVI}{github profile}\rbrack
 \end{itemize}
 
 \subsection{Scopo del progetto}
-A Trento è difficile trovare informazioni sulla viabilità, soprattutto per tutti quegli eventi che la influenzano. BeeLive risolve questo problema perchè prevede un sistema informativo che mostra visivamente le variazioni della viabilità in città, informando gli utenti di eventuali modifiche che potrebbero colpirli direttamente.
+
+Lo scopo del progetto 'BeeLive' è quello di risolvere il problema riguardante la difficoltà nel reperire informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Prevediamo un sistema informativo, dedicato agli utenti cittadini, che mostri visualmente le variazioni della viabilità in città, informando gli stessi di eventuali modifiche che potrebbero colpirli direttamente.
 
 \subsection{Link utili}
 Il primo link fornito è quello della repository github. La repository è stata creata appena il corso è cominciato, infatti inizialmente è risultata utile al fine di scrivere in modo collaborativo i primi deliverable.\\
 E' stato deciso di integrare in questa repository anche le fasi di sprint in quanto come team riteniamo utile la possibilità di accedere alla documentazione redatta nei primi due deliverable.\\
 La repository è accessibile al seguente link: \href{https://github.com/ELI20ZIVI/BeeLive/}{Repository GitHub}\\ \\
 Il secondo link fornito è quello di Apiary. Apiary è uno strumento che permette di creare e documentare in modo molto accurato e approfontido le API utilizzate nel progetto.\\
-Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link Apiray}\\
+Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link Apiary}\\
 
 \clearpage
 
@@ -92,16 +102,34 @@ Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link A
 
 \subsection{Strategia di Branching}
 
-La gestione della repository del progetto è stata gestita tramite 'branches', adeguamente create e gestite in modo da isolare le diverse funzionalità su cui abbiamo lavorato. 
-Segue la lista di branch create durante questo primo sprint, con tanto di descrizione:
+Per lo sviluppo dell'applicativo è stato evitato l'approccio "Master only": nonostante la piccola dimensione del team, la creazione ed utilizzo di un unico branch principale, \textit{main}, avrebbe comunque causato problemi di collaborazione e conflitti nel momento in cui avremmo lavorato contemporaneamente a stesse sezioni del progetto.\\
+
+\noindent
+Per aumentare la modulabilità e la scalabilità del progetto, abbiamo infatti adottato la strategia di branching prevedente la creazione di un 'branch' separato per ogni specifica feature del progetto, con un branch \textit{develop} intermedio.\\
+
+\noindent
+L'integrazione di una feature specifica avviene attraverso il merging del branch di quest'ultima nel precedentemente citato \textit{develop}; tale operazione è ammessa solamente da un diverso componente del gruppo, il cui compito sarà quello di assicurarsi che il modulo rispetti tutti i punti della "Definition of Done" definita dal team. \\
+
+\noindent
+Dato il branch \textit{develop}, definito come ambiente di lavoro in cui i membri del team lavorano e accumulano modifiche, una volta che ne sono accumulate abbastanza (e giudicato lo stato del progetto per intero come 'stabile' e 'shippable') verrà effettuato il merge di questa branch nel principale \texttt{main}, come operazione di 'release'. \\
+
+\noindent
+Tramite questo approccio puntiamo ad incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitare la gestione delle diverse attività in corso e mantenere inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
+
+Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sono state eliminate una volta integrate in \texttt{develop}, per cui su github potrebbero non apparire.
 
 \subsubsection{\texttt{main}}
 Il branch principale del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
 Tutte le funzionalita' all'interno di questo branch sono considerate terminate e funzionanti, pronte per essere rilasciate.\\
+In questa branch abbiamo direttamente modificato e aggiornato i 'deliverable', prima di creare una branch \textit{deliverable} appositamente dedicata alla stesura di questi documenti.
+
+\subsection{\texttt{deliverable}}
+Branch dedicato alla stesura dei vari deliverable.
 
 \subsubsection{\texttt{develop}}
 Il branch di sviluppo del progetto, in cui vengono integrate tutte le funzionalità completate e testate.\\
-Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate. Una volta che sono considerate funzionanti vengono integrate nel branch principale.\\
+Non e' pensato propriamente come il branch in cui vengono rilasciate le funzionalita' ma piuttosto come un branch di supporto per il branch principale, infatti in questo branch vengono prima caricate le funzionalita' dagli altri branch specifici e successivamente testate.\\
+Una volta che sono considerate funzionanti sono quindi integrate nel branch principale.
 
 \subsubsection{\texttt{ma\_screen}}
 Branch dedicato alla creazione delle schermate dell'applicativo mobile, i.e. tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
@@ -131,77 +159,64 @@ Una volta concluso lo sviluppo del modulo frontend, il branch è stato integrato
 \subsubsection{\texttt{preview}}
 Branch dedicato alla preview dell'interfaccia grafica dei due applicativi.\\
 E' stato utilizzato al momento della prima presentazione del progetto per mostrare il lavoro svolto ai committenti e per ricevere feedback su eventuali modifiche da apportare.\\
-Integra dei mockup delle varie interfacce, diaa desktop che mobile, che andranno sviluppate.\\
+Integra dei mockup delle varie interfacce, desktop e mobile, che andranno sviluppate.\\
 Parte della preview è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia,
-
-\subsection{Product Backlog}
-
-\subsubsection{Iteration 1}
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| r | X | r | r | r |}
-        \Xhline{2pt}
-        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Priorita'}} & \makecell{\textbf{Stima}} & \makecell{\textbf{Grandezza}} \\
-        \Xhline{2pt}
-        \makecell{Visualizzazione\\eventi in\\citta'} & \makecell{Da utente, voglio visualizzare la lista degli eventi in città} & \makecell{100} & \makecell{8} & \makecell{L}\\
-        \hline
-        \makecell{Aggiunta eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato, devo essere in grado di\\aggiungere degli eventi in modo da\\comunicare la loro presenza agli utenti} & \makecell{90} & \makecell{8} & \makecell{L}\\
-        \hline
-        \makecell{Registrazione e\\accesso all'\\app mobile} & \makecell{Da utente, voglio avere la possibilità di accedere ad una\\visualizzazione e descrizione più dettagliata di un\\evento in modo da conoscere meglio le\\specifiche di tale evento} & \makecell{80} & \makecell{8} & \makecell{L}\\
-        \hline
-        \makecell{Visualizzazione\\criticita'\\su mappa} & \makecell{Da utente, voglio visualizzare su una cartina le zone\\colpite dai diversi eventi, in modo da capire visivamente\\se in una zona che mi interessa vi è un evento attivo.} & \makecell{70} & \makecell{6} & \makecell{M}\\
-        \hline
-        \makecell{Accesso alle\\criticita' e ai\\loro dettagli} & \makecell{Da utente, voglio essere in grado di visualizzare la lista\\delle criticita' presenti in città} & \makecell{60} & \makecell{8} & \makecell{L}\\
-        \hline
-    \end{tabularx}
-    \caption{Product backlog iteration 1}
-\end{table}
 
 \clearpage
 
-\subsubsection{Iteration 2}
+\subsection{Product Backlog}
+Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato per questo progetto. E' possibile notare una linea di demarcazione che limita inferiormente le entries selezionate per il primo sprint.
 
-\begin{table}[htbp]
+\begin{table}[!ht]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| r | X | r | r | r |}
+    \begin{tabularx}{\textwidth}{| r | X | r | r |}
         \Xhline{2pt}
-        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Priorita'}} & \makecell{\textbf{Stima}} & \makecell{\textbf{Grandezza}} \\
+        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Priorità}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Impostazione\\categorie\\d'interesse\\per gli eventi} & \makecell{Da utente, voglio essere in grado di impostare le categorie\\di eventi alle quali io sono interessato, in modo che la lista\\di eventi visibile dall'applicazione contenga solamente gli\\eventi che mi interessano, e in modo che io non venga\\notificato di alcun evento che io non ritenga appartenere\\ad una categoria interessante.} & \makecell{100} & \makecell{5} & \makecell{M}\\
+        \makecell{Visualizzazione\\eventi in città} & \makecell{Da utente, voglio visualizzare la lista degli eventi in città} & \makecell{200} & \makecell{8}\\
         \hline
-        \makecell{Impostazione\\zone\\d'interesse} & \makecell{Da utente, voglio essere in grado di impostare delle zone\\di interesse, in modo che io venga notificato di qualsiasi\\evento che insorga in una di queste zone.} & \makecell{90} & \makecell{7} & \makecell{M}\\
+        \makecell{Aggiunta eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato, devo essere in grado di aggiungere degli eventi\\in modo da comunicare la loro presenza agli utenti} & \makecell{190} & \makecell{8}\\
         \hline
-        \makecell{Visualizzazione\\eventi\\di competenza} & \makecell{Da utente autorizzato, devo essere in grado di visualizzare\\gli eventi di mia competenza, in modo da sapere quali eventi\\sono stati creati e monitorare il loro stato} & \makecell{80} & \makecell{5} & \makecell{M}\\
+        \makecell{Registrazione e\\accesso all'\\app mobile} & \makecell{Da utente, voglio avere la possibilità di accedere ad una\\visualizzazione e descrizione più dettagliata di un evento in modo da\\conoscere meglio le specifiche di tale evento} & \makecell{180} & \makecell{8}\\
         \hline
-        \makecell{Modifica\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di modificare\\degli eventi in modo da evitare errori comunicativi} & \makecell{75} & \makecell{2} & \makecell{XS}\\
+        \makecell{Visualizzazione\\criticità\\su mappa} & \makecell{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi\\eventi, in modo da capire visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{170} & \makecell{6}\\
         \hline
-        \makecell{Accesso\\account\\utente} & \makecell{Da utente registrato, voglio essere in grado di poter\\accedere al mio account in modo da poter riottenere le aree\\di interesse e le impostazioni che ho precedentemente salvato} & \makecell{70} & \makecell{3} & \makecell{S}\\
+        \makecell{Accesso alle\\criticità e ai\\loro dettagli} & \makecell{Da utente, voglio essere in grado di visualizzare la lista\\delle criticità presenti in città} & \makecell{160} & \makecell{8}\\
+        \Xhline{2pt}
+        \makecell{Impostazione\\categorie\\d'interesse\\per gli eventi} & \makecell{Da utente, voglio essere in grado di impostare le categorie di eventi\\alle quali io sono interessato, in modo che la lista di eventi visibile\\dall'applicazione contenga solamente gli eventi che mi interessano,\\e in modo che io non venga notificato di alcun evento\\che io non ritenga appartenere ad una categoria interessante} & \makecell{100} & \makecell{5}\\
         \hline
-        \makecell{Visualizzazione\\eventi\\di categorie\\di interesse} & \makecell{Da utente, voglio essere in grado di visualizzare solo\\eventi di categorie di interesse} & \makecell{60} & \makecell{3} & \makecell{S}\\
+        \makecell{Impostazione\\zone\\d'interesse} & \makecell{Da utente, voglio essere in grado di impostare delle zone di interesse,\\in modo che io venga notificato di qualsiasi evento che insorga\\in una di queste zone} & \makecell{90} & \makecell{7}\\
         \hline
-        \makecell{Selezione\\percorso} & \makecell{Da utente, voglio essere in grado di selezionare un percorso\\a partire da dei waypoint, per impostare dei percorsi di interesse} & \makecell{40} & \makecell{2} & \makecell{XS}\\
+        \makecell{Visualizzazione\\eventi\\di competenza} & \makecell{Da utente autorizzato, devo essere in grado di visualizzare gli eventi\\di mia competenza, in modo da sapere quali eventi sono stati creati e\\monitorare il loro stato} & \makecell{80} & \makecell{5}\\
         \hline
-        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare\\degli eventi} & \makecell{40} & \makecell{2} & \makecell{XS}\\
+        \makecell{Modifica\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di modificare degli eventi\\in modo da evitare errori comunicativi} & \makecell{75} & \makecell{2}\\
+        \hline
+        \makecell{Accesso\\account\\utente} & \makecell{Da utente registrato, voglio essere in grado di poter accedere al\\mio account in modo da poter riottenere le aree di interesse e\\le impostazioni che ho precedentemente salvato} & \makecell{70} & \makecell{3}\\
+        \hline
+        \makecell{Visualizzazione\\eventi\\di categorie\\di interesse} & \makecell{Da utente, voglio essere in grado di visualizzare solo\\eventi di categorie di interesse} & \makecell{60} & \makecell{3}\\
+        \hline
+        \makecell{Selezione\\percorso} & \makecell{Da utente, voglio essere in grado di selezionare un percorso a partire\\da dei waypoint, per impostare dei percorsi di interesse} & \makecell{40} & \makecell{2}\\
+        \hline
+        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare degli eventi} & \makecell{40} & \makecell{2}\\
         \hline
     \end{tabularx}
-    \caption{Product backlog iteration 2}
+    \caption{Product backlog}
 \end{table}
 
 \clearpage
 
 \subsection{Definition of "Done"}
-La Definition of Done è un insieme di criteri utilizzati per determinare quando un'attività o una user story può essere considerata completata. Questi criteri servono a garantire che ogni elemento del lavoro raggiunga un livello di qualità accettabile per considerarlo terminato.\\
-I criteri inclusi nella Definition of Done redatta per il progetto sono i seguenti:
+La seguente 'Definition of Done' è basata su una valutazione collettiva che ha preso in considerazione  diversi fattori riguardanti la qualità del lavoro, non ignorando però la fattibilità e la realizzabilità di questi.\\
+I criteri inclusi nella nostra 'Definition of Done' definita per il progetto sono i seguenti:
 \begin{itemize}
-    \item \textbf{Codice}: Il codice deve essere rivisto e approvato attraverso un processo di code review, e deve aderire agli standard di codifica stabiliti.
-    \item \textbf{Test}: Tutti i test unitari, di integrazione e funzionali devono essere scritti ed eseguiti con successo.
-    \item \textbf{Documentazione}: La documentazione necessaria, come i deliverable, deve essere completa e aggiornata.
-    \item \textbf{Build e Deployment}: Il codice deve essere integrato con successo nella build principale e deve essere distribuito in un ambiente di test per ulteriori verifiche.
-    \item \textbf{Performance}: Il prodotto deve soddisfare i criteri di performance definiti, garantendo che le funzionalità siano efficienti e scalabili.
-    \item \textbf{Conformità}: Il prodotto deve essere conforme alle normative legali e agli standard di sicurezza e qualità specifici del settore. 
+	\item \textbf{Funzionalità}: le funzionalità che il codice implementa devono soddisfare appieno l'usecase / gli usecase associati al codice.
+    \item \textbf{Codice}: Il codice deve essere revisionato e la sua correttezza / adeguatezza approvata da almeno un altro membro del team.
+    \item \textbf{Test}: Il codice deve essere adeguatamente coperto da test unitari, di integrazione e funzionali, che devono essere scritti e superati con successo. Un adeguato numero di questi test deve essere scritto da membri diversi.
+    \item \textbf{Documentazione}: Il codice e le funzionalità implementate devono essere adeguatamente documentati. Questo giudizio di adeguatezza deve essere dato da almeno un altro membro del team.
+    \item \textbf{Build e Deployment}: Il codice deve integrarsi con successo nella build principale e la sua inclusione nella build principale non deve assolutamente far fallire dei test, nel caso in cui quest'ultimi venivano correttamente superati priva dell'inclusione.
+    \item \textbf{Performance}: le funzionalità e il codice introdotti non devono causare visibili degradi alle performance di nessun elemento del progetto.
+    \item \textbf{Conformità}: Il prodotto deve essere conforme alle normative legali e agli standard di sicurezza e qualità specifici del settore.
 \end{itemize}
 
 \clearpage
@@ -211,19 +226,21 @@ I criteri inclusi nella Definition of Done redatta per il progetto sono i seguen
 \subsection{Goal dello sprint}
 Lo scopo di questo primo sprint è stato quello di creare un prototipo funzionante dell'applicazione, che presenti le funzionalità core del nostro progetto e che quindi includa queste funzionalità:
 \begin{enumerate}
-\item possibilità da parte di un utente autorizzato di aggiungere eventi al sistema
-\item possibilità da parte degli utenti di visualizzare gli eventi aggiunti
+\item Possibilità da parte di un utente autorizzato di aggiungere eventi al sistema
+\item Possibilità da parte degli utenti di visualizzare gli eventi aggiunti
 \end{enumerate}
-È stato dunque necessario lavorare, oltre al 'backend', anche anche sull'applicativo mobile dedicato ad utenti comuni e sull'applicativo desktop, dedicato agli utenti autorizzati.
+È stato dunque necessario lavorare, oltre al 'backend', anche allo sviluppo sia dell'applicativo mobile dedicato ad utenti comuni che all'applicativo desktop, dedicato agli utenti autorizzati.
 
 Scendendo più in dettaglio, le funzionalità che abbiamo deciso di includere nello sprint sono, per quanto riguarda la parte mobile, la visualizzazione degli eventi disponibili e dei loro relativi dettagli, anche includendo la visualizzazione su mappa.\\
-Abbiamo anche inserito, anche se con bassa priorità, la funzionalità riguardante la possibilità di effettuare l'autenticazione (da parte degli utenti comuni) per poter salvare le proprie impostazioni e preferenze sul database.\\
+E' stato inoltre inserita, anche se con bassa priorità, la funzionalità riguardante la possibilità di effettuare l'autenticazione (da parte degli utenti comuni) per poter salvare le proprie impostazioni e preferenze sul database.\\
 Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'aggiunta degli eventi al sistema, rimandando l'autenticazione degli utenti autorizzati a sprint successivi.
 
 \subsection{Sprint Planning}
-è riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
+E' riportato il product backlog per ogni user story trattata in questo primo sprint, con tutte le informazioni relative ai task da completare, a chi sono assegnati e la loro priorità.\\
 \subsubsection{Aggiunta eventi da utente autorizzato}
 \textbf{User story}: Da utente autorizzato, devo essere in grado di aggiungere degli eventi in modo da comunicare la loro presenza agli utenti.\\
+
+\textbf{Product backlog}
 \begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
@@ -238,6 +255,34 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
 \end{table}
 
 \clearpage
+
+\textbf{Progresso}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{1}} & \makecell{\textbf{2}} & \makecell{\textbf{3}} & \makecell{\textbf{4}} & \makecell{\textbf{5}} & \makecell{\textbf{6}} & \makecell{\textbf{7}} & \makecell{\textbf{8}} & \makecell{\textbf{9}} & \makecell{\textbf{10}} & \makecell{\textbf{11}} & \makecell{\textbf{12}} & \makecell{\textbf{13}} & \makecell{\textbf{14}} & \makecell{\textbf{15}} & \makecell{\textbf{16}} \\
+        \Xhline{2pt}
+        \makecell{Creazione screen (DA)} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{4} & \makecell{4} & \makecell{3} & \makecell{2} & \makecell{1} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione metodo del client (DA)} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{2} & \makecell{1} & \makecell{1} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione API endpoint (WS)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{1} & \makecell{1} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione metodo del DAO (WS)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione modulo gestione mappa} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione event manager (WS)} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione test (WS)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+        \makecell{Creazione test (DA)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+    \end{tabularx}
+    \caption{Progresso user story 1}
+\end{table}
 
 \subsubsection{Visualizzazione eventi e dettagli da utente mobile}
 \textbf{User story}: Da utente, voglio avere la possibilità di accedere ad una visualizzazione e descrizione più dettagliata di un evento in modo da conoscere meglio le specifiche di tale evento.\\
@@ -254,6 +299,32 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
     \caption{Product backlog user story 2}
 \end{table}
 
+\textbf{Progresso}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{1}} & \makecell{\textbf{2}} & \makecell{\textbf{3}} & \makecell{\textbf{4}} & \makecell{\textbf{5}} & \makecell{\textbf{6}} & \makecell{\textbf{7}} & \makecell{\textbf{8}} & \makecell{\textbf{9}} & \makecell{\textbf{10}} & \makecell{\textbf{11}} & \makecell{\textbf{12}} & \makecell{\textbf{13}} & \makecell{\textbf{14}} & \makecell{\textbf{15}} & \makecell{\textbf{16}} \\
+        \Xhline{2pt}
+        \makecell{Creazione screen (DA)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+        \makecell{Creazione API endpoint (WS)} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0}  \\
+        \hline
+        \makecell{Creazione metodo del client (DA)} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} \\
+        \hline
+        \makecell{Creazione metodo del DAO (WS)} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0}  \\
+        \hline
+        \makecell{Estensione Event Processor} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0}  \\
+        \hline
+        \makecell{Creazione test (WS)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+        \makecell{Creazione test (DA)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+    \end{tabularx}
+    \caption{Progresso user story 2}
+\end{table}
+
 \subsubsection{Registrazione account utente mobile}
 \textbf{User story}: Da utente voglio essere in grado di poter registrare un account in modo da poter salvare le mie impostazioni e le aree di interesse che io ho impostato.\\
 \begin{table}[htbp]
@@ -267,6 +338,36 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
         \hline
     \end{tabularx}
     \caption{Product backlog user story 3}
+\end{table}
+
+\textbf{Progresso}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{1}} & \makecell{\textbf{2}} & \makecell{\textbf{3}} & \makecell{\textbf{4}} & \makecell{\textbf{5}} & \makecell{\textbf{6}} & \makecell{\textbf{7}} & \makecell{\textbf{8}} & \makecell{\textbf{9}} & \makecell{\textbf{10}} & \makecell{\textbf{11}} & \makecell{\textbf{12}} & \makecell{\textbf{13}} & \makecell{\textbf{14}} & \makecell{\textbf{15}} & \makecell{\textbf{16}} \\
+        \Xhline{2pt}
+        \makecell{Creazione screen login (MA)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+        \makecell{Istanziazione casdoor} & \makecell{6} & \makecell{6} & \makecell{6} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{3} & \makecell{3} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{1} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Sincro preferenze locali (MA)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+        \makecell{Client: Gestione token (MA)} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} \\
+        \hline
+        \makecell{Modifica API endpoints} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione auth. SDK (WS)} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} \\
+        \hline
+        \makecell{Creazione default AC policies} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} \\
+        \hline
+        \makecell{Creazione tests(WS)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione tests(MA)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} \\
+        \hline
+    \end{tabularx}
+    \caption{Progresso user story 3}
 \end{table}
 
 \clearpage
@@ -286,6 +387,36 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
     \caption{Product backlog user story 4}
 \end{table}
 
+\textbf{Progresso}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{1}} & \makecell{\textbf{2}} & \makecell{\textbf{3}} & \makecell{\textbf{4}} & \makecell{\textbf{5}} & \makecell{\textbf{6}} & \makecell{\textbf{7}} & \makecell{\textbf{8}} & \makecell{\textbf{9}} & \makecell{\textbf{10}} & \makecell{\textbf{11}} & \makecell{\textbf{12}} & \makecell{\textbf{13}} & \makecell{\textbf{14}} & \makecell{\textbf{15}} & \makecell{\textbf{16}} \\
+        \Xhline{2pt}
+        \makecell{Istanziazione DB} & \makecell{2} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione screen (MA)} & \makecell{5} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{1}  & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0}\\
+        \hline
+        \makecell{Creazione API endpoint (WS)} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione metodo del DAO(WS)} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione metodo del client(MA)} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione event processor(WS)} & \makecell{1} & \makecell{1} & \makecell{1} & \makecell{1} & \makecell{1} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione test(WS)} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{3} & \makecell{3} & \makecell{1} & \makecell{0}  & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+        \makecell{Creazione test(MA)} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} & \makecell{5} \\
+        \hline
+        \makecell{Istanziazione public server} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{4} & \makecell{3} & \makecell{1} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} & \makecell{0} \\
+        \hline
+    \end{tabularx}
+    \caption{Progresso user story 4}
+\end{table}
+
 \subsubsection{Visualizzazione criticità su mappa}
 \textbf{User story}: Da utente voglio visualizzare su una cartina le zone colpite dai diversi eventi, in modo da capire visivamente se in una zona di mio interesse vi è un evento attivo.\\
 \begin{table}[htbp]
@@ -300,6 +431,81 @@ Per quanto riguarda la parte desktop, ci siamo limitati a rendere possibile l'ag
     \end{tabularx}
     \caption{Product backlog user story 5}
 \end{table}
+
+\clearpage
+
+\textbf{Progresso}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{1}} & \makecell{\textbf{2}} & \makecell{\textbf{3}} & \makecell{\textbf{4}} & \makecell{\textbf{5}} & \makecell{\textbf{6}} & \makecell{\textbf{7}} & \makecell{\textbf{8}} & \makecell{\textbf{9}} & \makecell{\textbf{10}} & \makecell{\textbf{11}} & \makecell{\textbf{12}} & \makecell{\textbf{13}} & \makecell{\textbf{14}} & \makecell{\textbf{15}} & \makecell{\textbf{16}} \\
+        \Xhline{2pt}
+        \makecell{Estensione screen (MA)} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} & \makecell{3} \\
+        \hline
+        \makecell{Creazione tests (MA)} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2} & \makecell{2}\\
+        \hline
+    \end{tabularx}
+    \caption{Progresso user story 5}
+\end{table}
+
+\subsection{Burndown chart}
+Il burndown chart è uno strumento utilizzato per monitorare il progresso di un progetto.\\
+Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta procedendo secondo i piani o se ci sono ritardi.\\
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm, height=8cm, % Dimensioni del grafico
+            date coordinates in=x,
+            xlabel={Date},
+            ylabel={Tasks Remaining},
+            xticklabel={\day-\month},
+            grid=major,
+            legend pos=north east,
+        ]
+        \addplot[
+            color=blue,
+            mark=square*,
+            thick
+        ] table [col sep=comma, x=date, y=planned] {
+            date, planned
+            2024-05-01, 122
+            2024-05-16, 0
+        };
+        \addlegendentry{Planned}
+
+        \addplot[
+            color=red,
+            mark=triangle*,
+            thick
+        ] table [col sep=comma, x=date, y=actual] {
+            date, actual
+            2024-05-01, 122
+            2024-05-02, 117
+            2024-05-03, 115
+            2024-05-04, 113
+            2024-05-05, 109
+            2024-05-06, 96
+            2024-05-07, 83
+            2024-05-08, 79
+            2024-05-09, 76
+            2024-05-10, 74
+            2024-05-11, 65
+            2024-05-12, 60
+            2024-05-13, 48
+            2024-05-14, 42
+            2024-05-15, 42
+            2024-05-16, 42
+        };
+        \addlegendentry{Actual}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Burndown Chart}
+    \label{fig:burndown}
+\end{figure}
 
 \clearpage
 
@@ -327,21 +533,21 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \clearpage
 
 \begin{itemize}
-    \item Test cases per la richiesta degli eventi utilizzando il parametro mode:
+    \item Test cases per la richiesta degli eventi utilizzando il parametro \texttt{mode}:
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[!h]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        2 & Test di successo per la richiesta di tutti gli eventi individuali con la sovrascrittura delle preferenze in locale con quelle in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=overwrite} & Il database dovrebbe contenere degli eventi che rispettino le preferenze locali del dispositivo che effettua la richiesta per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate in locale del dispositivo che effettua la richiesta - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        2 & Test di successo per la richiesta di tutti gli eventi individuali con la sovrascrittura delle preferenze in locale con quelle in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=overwrite} & Il database dovrebbe contenere degli eventi che rispettino le preferenze locali del dispositivo che effettua la richiesta per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate nella query - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        3 & Test di successo per la richiesta di tutti gli eventi individuali combinando le preferenze in locale e in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=combine} & Il database dovrebbe contenere degli eventi che rispettino le preferenze sia locali che su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate in locale e su server - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali e su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        3 & Test di successo per la richiesta di tutti gli eventi individuali combinando le preferenze in locale e in remoto & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=combine} & Il database dovrebbe contenere degli eventi che rispettino le preferenze sia locali che su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate nella query e su server - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze locali e su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        4 & Test di successo per la richiesta di tutti gli eventi individuali utilizzando i parametri in remoto in mancanza di quelli locali & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=ifempty} & Il database dovrebbe contenere degli eventi che rispettino le preferenze su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che rispecchiano le preferenze impostate su server - Codice: \texttt{200} & Se il database non contiene eventi o tutti non rispecchiano le preferenze su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        4 & Test di successo per la richiesta di tutti gli eventi individuali utilizzando i parametri in remoto in mancanza di quelli locali & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{mode=ifempty} & Il database dovrebbe contenere degli eventi che rispettino le preferenze su server per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi che rispecchiano le preferenze impostate su server.  In caso di assenza di quest'ultime viene utilizzata la query - Codice: \texttt{200}. & Se il database non contiene eventi o tutti non rispecchiano le preferenze su server, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
         5 & Test di fallimento per la richiesta di tutti gli eventi individuali con un parametro non valido & Andare a \texttt{/api/v3/events} ed impostare un parametro non valido & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
@@ -353,7 +559,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \begin{itemize}
     \item Test cases per la richiesta degli eventi utilizzando il parametro \textbf{addb}:
 \end{itemize}
-(addb: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast)
+(addb: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi \textbf{B}roadcast)
 
 \begin{table}[htbp]
     \centering
@@ -362,13 +568,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        6 & Test di successo per la richiesta di tutti gli eventi appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        6 & Test di successo per la richiesta di tutti gli eventi broadcast appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie valide (ID found). & Il database dovrebbe contenere degli eventi che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        7 & Test di fallimento per la richiesta di eventi appartenenti a categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
+        7 & Test di fallimento per la richiesta di eventi appartenenti a categorie non valide (ID not found) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & - \\
         \hline
-        8 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
-        \hline
-        9 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
+        8 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}
@@ -387,13 +591,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        10 & Test di successo per la richiesta di tutti gli eventi broadcast escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        9 & Test di successo per la richiesta di tutti gli eventi broadcast escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        11 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
+        10 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non valide (ID non valido) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
-        12 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto numeri negativi, sono ritornati tutti gli eventi broadcast nel DB \\
-        \hline
-        13 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
+        11 & Test di fallimento per la richiesta di eventi broadcast escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subb} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
     \end{tabularx}
 \end{table}
@@ -403,7 +605,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \begin{itemize}
     \item Test cases per la richiesta degli eventi utilizzando il parametro \textbf{addi}:
 \end{itemize}
-(addi: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi individuali)
+(addi: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di \textbf{I}nteresse)
 
 \begin{table}[htbp]
     \centering
@@ -412,13 +614,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        14 & Test di successo per la richiesta di tutti gli eventi individuali appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi individuali che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        12 & Test di successo per la richiesta di tutti gli eventi appartenenti a categorie valide & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie valide. & Il database dovrebbe contenere degli eventi individuali che appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti non appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        15 & Test di fallimento per la richiesta di eventi individuali appartenenti a categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
+        13 & Test di fallimento per la richiesta di eventi appartenenti a categorie non valide (ID not found) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & - \\
         \hline
-        16 & Test di fallimento per la richiesta di eventi individuali appartenenti a categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
-        \hline
-        17 & Test di fallimento per la richiesta di eventi individuali appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
+        14 & Test di fallimento per la richiesta di eventi appartenenti a categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{addi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}
@@ -428,7 +628,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \begin{itemize}
     \item Test cases per la richiesta degli eventi utilizzando il parametro \textbf{subi}:
 \end{itemize}
-(subi: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi individuali)
+(subi: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di \textbf{I}nteresse)
 
 \begin{table}[htbp]
     \centering
@@ -437,13 +637,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        18 & Test di successo per la richiesta di tutti gli eventi individuali escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi individuali che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
+        15 & Test di successo per la richiesta di tutti gli eventi escludendo le categorie specificate & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie valide (Numeri \texttt{> 0}) & Il database dovrebbe contenere degli eventi individuali che non appartengono alle categorie specificate per ottenere una collezione popolata & La richiesta viene eseguita con successo e vengono restituiti tutti gli eventi presenti che non appartengono alle categorie specificate - Codice: \texttt{200} & Se il database non contiene eventi o tutti appartengono alle categorie specificate, viene in ogni caso restituito il codice \texttt{200} con pero' una collezione da \texttt{0} elementi \\
         \hline
-        19 & Test di fallimento per la richiesta di eventi individuali escludendo categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
+        16 & Test di fallimento per la richiesta di eventi escludendo categorie non valide (Non esistenti nel DB) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non esistenti nel DB) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{422} & Le categorie selezionate non esistono, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
-        20 & Test di fallimento per la richiesta di eventi individuali escludendo categorie non accettabili (Numeri negativi) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie minori di \texttt{0} & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto numeri negativi, sono ritornati tutti gli eventi broadcast nel DB \\
-        \hline
-        21 & Test di fallimento per la richiesta di eventi individuali escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
+        17 & Test di fallimento per la richiesta di eventi escludendo categorie non accettabili (Non numeriche) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{subi} con una lista di categorie non valide (Non numeriche) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & Le categorie selezionate non sono accettabili in quanto non numeriche, sono ritornati tutti gli eventi broadcast nel DB \\
         \hline
     \end{tabularx}
 \end{table}
@@ -461,22 +659,20 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        22 & Test di successo per la richiesta di un evento specifico & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID valido & Il database dovrebbe contenere un evento con l'ID specificato per ottenere un evento specifico & La richiesta viene eseguita con successo e viene restituito l'evento specifico richiesto - Codice: \texttt{200} & Se il database non contiene un evento con l'ID specificato, viene restituito il codice \texttt{404} \\
+        18 & Test di successo per la richiesta di un evento specifico & Andare a \texttt{/api/v3/events/id} ed impostare il parametro \texttt{id} con un ID valido & Il database deve contenere un evento con l'ID specificato per ottenere un evento specifico & La richiesta viene eseguita con successo e viene restituito l'evento specifico richiesto - Codice: \texttt{200} & - \\
         \hline
-        23 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (Numero negativo) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID non valido (Numero negativo) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
+        19 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (not found) & Andare a \texttt{/api/v3/events/id} ed impostare il parametro \texttt{id} con un ID non valido (not found) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{404} & - \\
         \hline
-        24 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (Non numerico) & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID non valido (Non numerico) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{406} & - \\
-        \hline
-        25 & Test di fallimento per la richiesta di un evento specifico con un ID non esistente nel DB & Andare a \texttt{/api/v3/events} ed impostare il parametro \texttt{id} con un ID non esistente nel DB & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{404} & - \\
+        20 & Test di fallimento per la richiesta di un evento specifico con un ID non valido (Non numerico) & Andare a \texttt{/api/v3/events/id} ed impostare il parametro \texttt{id} con un ID non valido (Non numerico) & - & La richiesta non viene eseguita con successo e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}
 
 \clearpage
 
-\subsubsection{Test cases per il modulo \texttt{management\_server}}
+\subsubsection{Test cases per l'inserzione di un nuovo evento}
 
-Il modulo, per questo primo sprint, si occupa dell'inserimento di un nuovo evento all'interno del sistema da parte degli utenti autorizzati, in modo che possa essere visibile dall'applicazione mobile degli utenti autenticati e non.\\
+La fase di inserzione di un nuovo evento prevede l'utilizzo di dati corretti e validi, seguono quindi i test cases per la verifica di tale funzionalità.\\
 
 \begin{table}[htbp]
     \centering
@@ -485,24 +681,53 @@ Il modulo, per questo primo sprint, si occupa dell'inserimento di un nuovo event
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato bson i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{200} & - \\
+        1 & Test di successo per l'inserzione di un nuovo evento & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire & - & L'evento viene inserito con successo nel database - Codice: \texttt{200} & - \\
         \hline
-        2 & Test di fallimento per l'inserzione di un nuovo evento con dati non validi & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato bson i dati dell'evento da inserire con dati non validi & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{400} & Devono essere rispettati tutti i tipi per ogni caratteristica dell'evento \\
+        2 & Test di fallimento per l'inserzione di un nuovo evento con dati non validi & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire con dati non validi & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{422} & Devono essere rispettati tutti i tipi per ogni attributo dell'evento \\
         \hline
-        3 & Test di fallimento per l'inserzione di un nuovo evento con parametro \texttt{id} uguale ad un evento già esistente & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato bson i dati dell'evento da inserire con il parametro \texttt{id} uguale ad un evento già esistente & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{406} & - \\
+        3 & Test di fallimento per l'inserzione di un nuovo evento con dati non accettabili & Andare a \texttt{/api/v3/} \texttt{insert\_new\_event} e fornire in formato json i dati dell'evento da inserire con dati non accettabili & - & L'evento non viene inserito con successo nel database e viene restituito un errore - Codice: \texttt{400} & - \\
         \hline
     \end{tabularx}
 \end{table}
 
 \clearpage
 
+\subsection{Deploy}
+Il deployment del progetto attuale è effettuabile attraverso 3 container "Docker", creati da noi, connessi tramite docker-compose.
+In particolare, in \texttt{BeeLive/Products/Docker} vi è un file "docker-compose.yml" che, intuitivamente, va usato con il tool "docker-compose".\\
+Questo docker-compose si occupa di costruire e avviare tutti i container, costruiti da noi, contenenti le diverse componenti del "backend". \\\\
+Tale deployment è già utilizzabile attraverso le due applicazioni (mobile e desktop) che abbiamo creato, sebbene gli indirizzi IP siano da modificare.
+\\
+Documentazione ulteriore verrà a seguire nel prossimo deliverable, in quanto le configurazioni sono ancora volatili e soggette a possibili cambiamenti.\\
+\\
+Questi container sono attualmente in esecuzione su un nostro server di testing con ip statico \textit{93.49.96.13}, per cui se i lettori vogliono possono provare già a testare gli endpoint creati. 
+
+
 \subsection{Sprint review}
-Commenti su aspetti del meeting: demo e discussione successiva
+In questo sprint siamo riusciti ad implementare le funzionalità 'barebone' della nostra applicazione, e nonostante ci siano molte criticità da risolvere abbiamo ottenuto un prodotto tecnicamente "shippable", composto da:
+\begin{itemize}
+	\item Due webservers capaci di effettuare inserimenti di eventi all'interno del sistema e successivo 'retrieving' degli eventi inseriti.
+	\item Un applicativo desktop capace di configurare un evento e inserirlo all'interno del webserver remoto
+	\item Un applicativo mobile capace di ottenere la lista di tutti gli eventi inseriti nel sistema (tramine comunicazione con uno dei webserver)
+
+\end{itemize}
 
 \subsection{Product backlog refinement}
-Commenti su aspetti del meeting e variazioni al product backlog
+Il product backlog che abbiamo generato è una rielaborazione della lista di user stories da cui siamo partiti, e che abbiamo documentato nei precedenti deliverable.\\
+I motivi di questa rielaborazione includono, ad esempio, la tenuta in considerazione di eventuali dettagli implementativi che ci hanno portato, ad esempio, ad unire alcune user stories sotto un unica entry nel product backlog.\\
+Il prossimo sprint partirà da ciò che abbiamo creato durante questo sprint, per cui eventuali modifiche o revisioni al backlog verranno documentate nel prossimo documento (aka "Milestone 4")
+
 
 \subsection{Sprint retrospective}
-Commenti sulle conclusioni del meeting, cosa ha funzionato, cosa no, adozione di pratiche "agile", "design thinking", dinamiche di gruppo, spunti per il prossimo sprint, etc.
+Durante lo sprint siamo andati incontro ad alcune mutazioni e conflitti, seppur leggeri, nel momento in cui i nostri prodotti hanno raggiunto uno stato di maturità abbastanza elevato da poter cominciare ad interagire con le altre componenti. 
+Queste problematiche sono nate da leggere differenze, all'interno del gruppo, di ciò che pensavamo che il sistema dovesse fare, portando a sviluppare componenti con, ad esempio, metadati o strutture dati leggermente diverse. Il che ha ovviamente ci ha portato problemi nel momento in cui cercavamo di far comunicare le diverse componenti. Problemi comunque facilmente risolti, ma che sono stati un sintomo di discrepanze logiche all'interno del gruppo che se non gestite avrebero portato a problemi più rilevanti.\\
+Ci siamo dunque ripromessi di operare, in futuro, in modo più rigoroso, sotto forma di un investimento più sostanzioso verso la definizione di strutture dati ed endpoint in modo che tutti i membri del gruppo siano sulla stessa lunghezza d'onda riguardo alle funzionalità ed 'user stories' da implementare / risolvere. \\
+\\
+Alcuni membri del gruppo hanno fatto notare dei potenziali miglioramenti riguardo al nostro workflow git, ad esempio con l'utilizzo di una branch 'nightly' (che verrebbe automaticamente "deployata" sul nostro server di testing) o anche solo stare attenti ad effettuare commits atomici e, allo stesso modo, effettuare un isolamento migliore delle branches per quanto riguarda le feature che le stesse vanno a implementare. \\
+\\
+Un ultimo problema che abbiamo riscontrato è un potenziale errore concettuale riguardante le 'user stories' e il product backlog da noi creato. In particolare, stiamo valutando se rendere tali user stories più "atomiche", invece che effettuare ciò che abbiamo fatto noi ovvero di atomizzare solamente le sub-user stories. \\
+Questo punto è un tema ancora acceso di discussione, per cui eventuali conclusioni a riguardo verranno riportate all'inizio del prossimo sprint.
+
+
 
 \end{document}

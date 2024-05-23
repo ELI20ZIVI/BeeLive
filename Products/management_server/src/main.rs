@@ -25,10 +25,10 @@ struct InsertNewEventEndpointData {
 #[post("/insert_new_event")]
 async fn insert_event(data: Data<InsertNewEventEndpointData>, event: web::Json<Event>) -> impl Responder {
 
-    let result = event_manager::insert_new_event(data, event.into_inner()).await;
+    let (result, event_id) = event_manager::insert_new_event(data, event.into_inner()).await;
     match result {
         Ok(_) => {
-            HttpResponse::Ok().finish()
+            HttpResponse::Created().body(event_id.to_string())
         }
         Err(_) => {
             HttpResponse::InternalServerError().finish()

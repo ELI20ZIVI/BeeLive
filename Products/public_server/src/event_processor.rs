@@ -11,6 +11,24 @@ use crate::dao::{self, objects::{Event, PrunedEvent}};
 use crate::dao::objects::Category;
 use crate::EventQueryData;
 
+pub fn check_add_sub(value: &str, filter: &mut Vec<i32>) -> bool {
+    for val in value.split(',') {
+        match val.parse::<i32>() {
+            Ok(num) => {
+                if num < 0 {
+                    return false;
+                }
+                filter.push(num);
+            }
+            Err(_) => {
+                // Se il valore non può essere convertito in f64, restituisci un errore 400
+                return false;
+            }
+        }
+    }
+    true
+}
+
 /// Pass-through a dao::query_pruned_events.
 /// Per la documentazione riferirsi a dao::query_pruned_events.
 pub async fn get_events(mongodb_event_collection: Data<Collection<Event>>, mongodb_categories_collection: Data<Collection<Category>>, data: web::Query<EventQueryData>) -> HttpResponse {
@@ -34,70 +52,23 @@ pub async fn get_events(mongodb_event_collection: Data<Collection<Event>>, mongo
     }
 
     if let Some(value) = &data.addb {
-        for val in value.split(',') {
-            match val.parse::<i32>() {
-                Ok(num) => {
-                    if num < 0 {
-                        return HttpResponse::BadRequest().body("Invalid addb value.");
-                    }
-                    addbFilter.push(num);
-                }
-                Err(_) => {
-                    // Se il valore non può essere convertito in f64, restituisci un errore 400
-                    return HttpResponse::BadRequest().body("Invalid addb value.");
-                }
-            }
+        if !check_add_sub(value, &mut addbFilter) {
+            return HttpResponse::BadRequest().body("Invalid addb value.");
         }
     }
-
     if let Some(value) = &data.subb {
-        for val in value.split(',') {
-            match val.parse::<i32>() {
-                Ok(num) => {
-                    if num < 0 {
-                        return HttpResponse::BadRequest().body("Invalid subb value.");
-                    }
-                    subbFilter.push(num);
-                }
-                Err(_) => {
-                    // Se il valore non può essere convertito in f64, restituisci un errore 400
-                    return HttpResponse::BadRequest().body("Invalid subb value.");
-                }
-            }
+        if !check_add_sub(value, &mut subbFilter) {
+            return HttpResponse::BadRequest().body("Invalid subb value.");
         }
     }
-
     if let Some(value) = &data.addi {
-        for val in value.split(',') {
-            match val.parse::<i32>() {
-                Ok(num) => {
-                    if num < 0 {
-                        return HttpResponse::BadRequest().body("Invalid addi value.");
-                    }
-                    addiFilter.push(num);
-                }
-                Err(_) => {
-                    // Se il valore non può essere convertito in f64, restituisci un errore 400
-                    return HttpResponse::BadRequest().body("Invalid addi value.");
-                }
-            }
+        if !check_add_sub(value, &mut addiFilter) {
+            return HttpResponse::BadRequest().body("Invalid addi value.");
         }
     }
-
     if let Some(value) = &data.subi {
-        for val in value.split(',') {
-            match val.parse::<i32>() {
-                Ok(num) => {
-                    if num < 0 {
-                        return HttpResponse::BadRequest().body("Invalid subi value.");
-                    }
-                    subiFilter.push(num);
-                }
-                Err(_) => {
-                    // Se il valore non può essere convertito in f64, restituisci un errore 400
-                    return HttpResponse::BadRequest().body("Invalid subi value.");
-                }
-            }
+        if !check_add_sub(value, &mut subiFilter) {
+            return HttpResponse::BadRequest().body("Invalid subi value.");
         }
     }
 

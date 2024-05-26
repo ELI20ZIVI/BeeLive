@@ -78,5 +78,10 @@ pub async fn get_events(mongodb_event_collection: Data<Collection<Event>>, mongo
 /// Pass-through a dao::query_full_event_single
 /// Per la documentazione riferirsi a dao::query_full_event_single
 pub async fn get_event(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> Option<Event> {
+
+    if event_id < 0 {
+        return HttpResponse::BadRequest().body("Invalid event-id value.");
+    }
+
     dao::query_full_event_single(mongodb_collection, event_id).await
 }

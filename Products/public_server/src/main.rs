@@ -24,7 +24,7 @@ async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Pat
     let event_id = path.into_inner();
     let event = event_processor::get_event(mongodb_events_collection, event_id).await;
 
-    web::Json(event)
+    event
 }
 
 // TODO: formalize and document this endpoint

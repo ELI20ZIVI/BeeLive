@@ -59,13 +59,13 @@ async fn test_get_events() {
     let req = test::TestRequest::with_uri("/api/v3/events?addb=1,2,999").to_request();
     let resp = test::call_service(&mut app, req).await;
 
-    assert_eq!(resp.status().as_u16(), 400); // ? 406
+    assert_eq!(resp.status().as_u16(), 422); // ? 406
 
     // Lista di categorie non accettabili
     let req = test::TestRequest::with_uri("/api/v3/events?addb=1,2,uno").to_request();
     let resp = test::call_service(&mut app, req).await;
 
-    assert_eq!(resp.status().as_u16(), 406);
+    assert_eq!(resp.status().as_u16(), 400);
 
     // -------------------------------------------------------------------
     // subb: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast
@@ -80,7 +80,7 @@ async fn test_get_events() {
     let req = test::TestRequest::with_uri("/api/v3/events?subb=1,2,999").to_request();
     let resp = test::call_service(&mut app, req).await;
 
-    assert_eq!(resp.status().as_u16(), 406);
+    assert_eq!(resp.status().as_u16(), 422);
 
     // Lista di categorie non accettabili
     let req = test::TestRequest::with_uri("/api/v3/events?subb=1,2,uno").to_request();
@@ -101,7 +101,7 @@ async fn test_get_events() {
     let req = test::TestRequest::with_uri("/api/v3/events?addi=1,999").to_request();
     let resp = test::call_service(&mut app, req).await;
 
-    assert_eq!(resp.status().as_u16(), 406);
+    assert_eq!(resp.status().as_u16(), 422);
 
     // Lista di categorie non corrette
     let req = test::TestRequest::with_uri("/api/v3/events?addi=uno,2").to_request();
@@ -122,7 +122,7 @@ async fn test_get_events() {
     let req = test::TestRequest::with_uri("/api/v3/events?subi=1,999").to_request();
     let resp = test::call_service(&mut app, req).await;
 
-    assert_eq!(resp.status().as_u16(), 406);
+    assert_eq!(resp.status().as_u16(), 422);
 
     // Lista di categorie non corrette
     let req = test::TestRequest::with_uri("/api/v3/events?subi=uno,2").to_request();
@@ -159,7 +159,7 @@ async fn test_get_event() {
     let req = test::TestRequest::with_uri("/api/v3/event/-1").to_request();
     let resp = test::call_service(&mut app, req).await;
 
-    assert_eq!(resp.status().as_u16(), 406);
+    assert_eq!(resp.status().as_u16(), 422);
 
     // -------------------------------------------------------------------
     // Esecuzione richiesta GET richiedendo un evento con un ID non valido - Stringa

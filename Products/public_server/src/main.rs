@@ -1,5 +1,5 @@
 
-use actix_web::{get, middleware::Logger, web::{self, Data, Path}, App, HttpRequest, HttpServer, Responder, HttpResponse};
+use actix_web::{get, middleware::Logger, web::{self, Data, Path}, App, HttpServer, Responder, HttpResponse};
 use dao::objects::Event;
 use mongodb::{Collection, Client};
 use serde::Deserialize;

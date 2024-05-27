@@ -1,8 +1,7 @@
-use actix_web::{web::Data, Result, HttpResponse};
+use actix_web::{web::Data, HttpResponse};
 use actix_web::http::StatusCode;
 use futures::stream::StreamExt;
 use mongodb::{bson::doc, options::FindOptions, results::InsertOneResult, Collection};
-use mongodb::bson::Bson::ObjectId;
 use crate::dao::objects::*;
 
 pub mod objects;
@@ -19,7 +18,7 @@ pub async fn insert_new_event(mongodb_event_collection: &Collection<Event>, mong
     mongodb_event_collection.insert_one(event, None).await
 }
 
-pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection: &Collection<Category>) -> bool {
+pub async fn check_categories (target_ids : Vec<i32>, mongodb_category_collection: &Collection<Category>) -> bool {
     for id in target_ids {
         println!("Checking category with id {}...", id);
         let filter = doc! { "id": id};
@@ -28,7 +27,7 @@ pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection
         match result {
             Ok(o_category) => {
                 match o_category {
-                    Some(category) => {
+                    Some(_) => {
                         // Category exists
                     }
                     None => {
@@ -42,7 +41,7 @@ pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection
             }
         }
     }
-    return true;
+    true
 }
 
 /// Queries all events stored in the csollection defined by the "mongodb_collection" handle but
@@ -52,26 +51,26 @@ pub async fn checkCategories (target_ids : Vec<i32>, mongodb_category_collection
 /// The crate `docs.rs/mongodb` allows automatic deserialization of BSON data (obtained from querying the
 /// mongodb database), thus manual deserialization into `Vec<Event>` using the `serde` crate is not
 /// needed.
-pub async fn query_pruned_events(mongodb_event_collection: Data<Collection<Event>>, mongodb_category_collection: Data<Collection<Category>>, modeFilter : &str, addbFilter : Vec<i32>, subbFilter : Vec<i32>, addiFilter : Vec<i32>, subiFilter : Vec<i32>) -> HttpResponse {
+pub async fn query_pruned_events(mongodb_event_collection: Data<Collection<Event>>, mongodb_category_collection: Data<Collection<Category>>, mode_filter : &str, addb_filter : Vec<i32>, subb_filter : Vec<i32>, addi_filter : Vec<i32>, subi_filter : Vec<i32>) -> HttpResponse {
     // Search options
     let find_options = FindOptions::builder().projection(PrunedEvent::mongodb_projection()).build();
 
 
 
     // Controllo validità categorie di filtro
-    let mut valid = checkCategories(addbFilter.clone(), &mongodb_category_collection).await;
+    let mut valid = check_categories(addb_filter.clone(), &mongodb_category_collection).await;
     if !valid {
         return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
     }
-    valid = checkCategories(subbFilter.clone(), &mongodb_category_collection).await;
+    valid = check_categories(subb_filter.clone(), &mongodb_category_collection).await;
     if !valid {
         return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
     }
-    valid = checkCategories(addiFilter.clone(), &mongodb_category_collection).await;
+    valid = check_categories(addi_filter.clone(), &mongodb_category_collection).await;
     if !valid {
         return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
     }
-    valid = checkCategories(subiFilter.clone(), &mongodb_category_collection).await;
+    valid = check_categories(subi_filter.clone(), &mongodb_category_collection).await;
     if !valid {
         return HttpResponse::new(StatusCode::UNPROCESSABLE_ENTITY);
     }
@@ -106,7 +105,7 @@ pub async fn query_pruned_events(mongodb_event_collection: Data<Collection<Event
     let events: Vec<mongodb::error::Result<PrunedEvent>> = cursor.collect().await;
     let events: Vec<PrunedEvent> = events.into_iter().flatten().collect();
 
-    return HttpResponse::Ok().json(events);
+    HttpResponse::Ok().json(events)
 }
 
 pub async fn query_full_event_single(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> Option<Event> {
@@ -114,15 +113,7 @@ pub async fn query_full_event_single(mongodb_collection: Data<Collection<Event>>
     let filter = doc! { "id": event_id};
     let result = mongodb_collection.find_one(filter, None).await;
 
-    match result {
-        Ok(o_event) => {
-            return o_event;
-        }
-        Err(error) => {
-            return None;
-        }
-
-    }
+    result.ok().flatten()
 }
 
 // HttpResponse::NotFound().json(Error::NotFound("Not Found"))

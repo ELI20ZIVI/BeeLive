@@ -19,8 +19,8 @@ struct EventQueryData {
 
 // TODO: formalize and document this endpoint
 #[get("/events/{event_id}")]
-async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Path<u32>) -> impl Responder {
-   
+pub async fn get_event(mongodb_events_collection: Data<Collection<Event>>, path: Path<u32>) -> impl Responder {
+
     let event_id = path.into_inner();
     let event = event_processor::get_event(mongodb_events_collection, event_id).await;
 
@@ -66,7 +66,6 @@ async fn main() -> std::io::Result<()> {
             .app_data(Data::new(mongodb_events_collection.clone()))
             .app_data(Data::new(mongodb_categories_collection.clone()))
             .service(
-
                 web::scope("/api/v3")
                     .service(get_events)
                     .service(get_event)

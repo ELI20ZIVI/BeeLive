@@ -3,13 +3,17 @@
 // Per ora è solo un pass-through al DAO
 
 use std::cmp::max;
+use actix_web::HttpResponse;
 
 use actix_web::web::Data;
 use futures::StreamExt;
+use mongodb::{bson, Collection};
+use mongodb::bson::doc;
 use mongodb::results::InsertOneResult;
 
 use crate::dao::{self, objects::Event};
 use crate::{event_processor, InsertNewEventEndpointData};
+use crate::dao::objects::User;
 
 /// Manages the addition of a new event. Uses the counter stored in 'data' as the event's ID and
 /// then increments given counter by 1.
@@ -49,4 +53,43 @@ pub async fn load_initial_counter(data: &mut Data<InsertNewEventEndpointData>) {
     }
     data.counter.set(Some(max_+1));
 
+}
+
+pub async fn check_id (id: u32, mongodb_id_collection: Data<Collection<User>>) -> bool {
+    let filter = doc! { "id": id};
+    let result = mongodb_id_collection.find_one(filter, None).await;
+
+    match result {
+        Ok(o_id) => {
+            match o_id {
+                Some(_) => {
+                    // Category exists
+                }
+                None => {
+                    // Category does not exist - error 422
+                    return false;
+                }
+            }
+        }
+        Err(error) => {
+            println!("{:?}", error);
+        }
+    }
+    true
+}
+
+pub async fn list_events_by_id(mongodb_events_collection: Data<Collection<Event>>, mongodb_id_collection: Data<Collection<User>>, user_id: u32) -> HttpResponse {
+
+    let result;
+
+    // Controllo esistenza utente
+    let userCheck = check_id(user_id, mongodb_id_collection).await;
+
+
+    if !userCheck {
+        result = dao::get_events_by_id(mongodb_events_collection, user_id).await;
+        return result
+    } else {
+        return HttpResponse::UnprocessableEntity().finish();
+    }
 }

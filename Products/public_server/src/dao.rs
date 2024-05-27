@@ -109,17 +109,17 @@ pub async fn query_pruned_events(mongodb_event_collection: Data<Collection<Event
     return HttpResponse::Ok().json(events);
 }
 
-pub async fn query_full_event_single(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> HttpResponse {
+pub async fn query_full_event_single(mongodb_collection: Data<Collection<Event>>, event_id: u32) -> Option<Event> {
 
     let filter = doc! { "id": event_id};
     let result = mongodb_collection.find_one(filter, None).await;
 
     match result {
         Ok(o_event) => {
-            return HttpResponse::Ok().json(o_event);
+            return o_event;
         }
         Err(error) => {
-            return HttpResponse::NotFound().json(Error::NotFound("Event not Found"))
+            return None;
         }
 
     }

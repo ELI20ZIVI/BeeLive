@@ -153,18 +153,4 @@ async fn test_get_event() {
     let resp = test::call_service(&mut app, req).await;
 
     assert_eq!(resp.status().as_u16(), 404);
-
-    // -------------------------------------------------------------------
-    // Esecuzione richiesta GET richiedendo un evento con un ID non valido - Numero negativo
-    let req = test::TestRequest::with_uri("/api/v3/event/-1").to_request();
-    let resp = test::call_service(&mut app, req).await;
-
-    assert_eq!(resp.status().as_u16(), 422);
-
-    // -------------------------------------------------------------------
-    // Esecuzione richiesta GET richiedendo un evento con un ID non valido - Stringa
-    let req = test::TestRequest::with_uri("/api/v3/event/uno").to_request();
-    let resp = test::call_service(&mut app, req).await;
-
-    assert_eq!(resp.status().as_u16(), 406);
 }

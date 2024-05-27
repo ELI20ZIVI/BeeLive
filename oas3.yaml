@@ -11,22 +11,15 @@ servers:
   - url: https://public.beelive.spavi.dev/api/v3/
   - url: https://manage.beelive.spavi.dev/api/v3/
   - url: https://notify.beelive.spavi.dev/api/v3/
-tags:
-  - name: eventi
-    description: Gestione degli eventi
-  - name: preferenze
-    description: Gestione degli account utenti
-  - name: utilità
-    description: API di servizio
 paths:
   # Richiesta di tutti gli eventi disponibili
   /events:
     get:
-      tags:
-        - eventi
+      servers:
+        - url: https://public.beelive.spavi.dev/api/v3/
       summary: Richiede la lista di eventi
       description: Richiede la lista di tutti gli eventi attualmente presenti e attivi nel sistema, filtranto tale lista in base a dei parametri configurabili.
-      operationId: listEvents
+      operationId: listEventsPublic
       parameters:
         - name: mode
           in: query
@@ -35,7 +28,6 @@ paths:
           explode: true
           schema:
             type: string
-            default: overwrite
             enum:
               - overwrite
               - combine
@@ -107,8 +99,8 @@ paths:
   # Richiesta di un evento specifico
   /events/{event_id}:
     get:
-      tags:
-        - eventi
+      servers:
+        - url: https://public.beelive.spavi.dev/api/v3/
       summary: Richiede un evento specifico
       description: Richiede tutte le informazioni pubbliche associate ad un evento specifico identificato da {event_id}
       operationId: eventDetails
@@ -128,7 +120,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/FullEvent'
         '404':
-          description: Id dell'evento non valido
+          description: Non è stato trovato alcun evento con l'ID specificato
         '400':
           description: Bad Request
       security:
@@ -137,13 +129,12 @@ paths:
   # Inserimento di un nuovo evento
   /insert_new_event:
     post:
-      tags:
-        - eventi
+      servers:
+        - url: https://manage.beelive.spavi.dev/api/v3/
       summary: Inserisce un nuovo evento
       description: Inserisce un nuovo evento nel sistema.
       operationId: insertEvent
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -151,13 +142,121 @@ paths:
       responses:
         '201':
           description: Operazione eseguita con successo
-        '422':
-          description: Unprocessable Content. Validation failed.
         '400':
           description: Bad Request. Cannot process entity.
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato
+        '422':
+          description: Unprocessable Content. Validation failed.
       security:
         - api_key: []
         - bearerAuth: []
+  /events:
+    get:
+      servers:
+        - url: https://manage.beelive.spavi.dev/api/v3/
+      summary: Richiede la lista di eventi di competenza del dipendente comunale.
+      description: Richiede la lista di tutti gli eventi presenti nel sistema e di competenza del dipendente comunale che effettua la richiesta.
+      operationId: listEventsManage
+      parameters:
+        - name: page
+          in: query
+          description: Paginazione per consentire il lazy loading
+          required: false
+          explode: true
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: Operazione eseguita con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FullEvent'
+        '400':
+          description: Parametri non processabili
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato
+        '422':
+          description: Parametro di pagina negativo e dunque invalido
+      security:
+        - api_key: []
+        - bearerAuth: []
+  /events/{event_id}:
+    servers:
+      - url: https://manage.beelive.spavi.dev/api/v3/
+    put:
+      summary: Modifica un evento specifico
+      description: Consente la modifica di un evento specifico identificato da {event_id}
+      operationId: editEvent
+      parameters:
+        - name: event_id
+          in: path
+          description: ID dell'evento da modificare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FullEvent'
+      responses:
+        '200':
+          description: Modifica eseguita con successo
+        '400':
+          description: Modifiche non processabili
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato o l'evento non è di sua competenza
+        '404':
+          description: Non è stato trovato alcun evento con l'ID specificato
+        '418':
+          description: La risorsa non è stata bloccata dall'utente che vuole apportare le modifiche. Il sistema non può apportare le modifiche richieste
+        '422':
+          description: Modifiche non valide
+        '423':
+          description: La risorsa è stata bloccata da un altro utente autorizzato
+      security:
+        - api_key: []
+        - bearerAuth: []
+    delete:
+      summary: Elimina un evento specifico
+      description: Consente l'eliminazione di un evento specifico identificato da {event_id} da parte di un utente autorizzato competente
+      operationId: deleteEvent
+      parameters:
+        - name: event_id
+          in: path
+          description: ID dell'evento da eliminare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Eliminazione eseguita con successo
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato o l'evento non è di sua competenza
+        '404':
+          description: Non è stato trovato alcun evento con l'ID specificato
+        '418':
+          description: La risorsa non è stata bloccata dall'utente che vuole apportare le modifiche. Il sistema non può apportare le modifiche richieste
+        '423':
+          description: La risorsa è stata bloccata da un altro utente autorizzato
+      security:
+        - api_key: []
+        - bearerAuth: []
+    
   # Registrazione nuovo utente
   
 components:
@@ -291,7 +390,6 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT
     api_key:
       type: apiKey
       name: api_key

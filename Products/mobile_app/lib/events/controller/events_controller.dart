@@ -16,11 +16,25 @@ abstract interface class EventsController {
   /// The future throws [TokenRefreshFailureException] in case of errors during token
   /// refreshing.\
   /// The future throws [AuthenticationNotAskedException].
-  FutureProvider<List<Event>> get eventList;
+  FutureProvider<List<Event>> get list;
+
+  /// #### Exceptions
+  /// The future throws [DioException] in case of networking errors.\
+  /// The future throws [JsonValidationError] in case of invalid json.\
+  /// The future throws [HttpStatusException] in case of status code
+  /// different from [HttpStatus.ok].\
+  /// The future throws [TokenRefreshFailureException] in case of errors during token
+  /// refreshing.\
+  /// The future throws [AuthenticationNotAskedException].
+  FutureProviderFamily<Event, EventId> get details;
 }
 
 final class _EventsController implements EventsController {
   @override
-  final FutureProvider<List<Event>> eventList =
+  final FutureProvider<List<Event>> list =
       FutureProvider((ref) => Client().getEventList());
+
+  @override
+  final FutureProviderFamily<Event, EventId> details =
+      FutureProvider.family((ref, id) => Client().getEventDetails(id));
 }

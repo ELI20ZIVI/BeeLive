@@ -10,7 +10,10 @@ class BeeLiveRouter extends $BeeLiveRouter {
           usesPathAsKey: true,
           path: '/',
         ),
-
-        /// routes go here
+        AutoRoute(
+          page: DetailsRoute.page,
+          usesPathAsKey: true,
+          path: '/details'
+        )
       ];
 }

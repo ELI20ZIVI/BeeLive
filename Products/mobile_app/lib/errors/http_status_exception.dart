@@ -6,5 +6,5 @@ final class HttpStatusException implements Exception {
   final int statusCode;
   final String reasonPhrase;
 
-  HttpStatusException(this.uri, this.statusCode, this.reasonPhrase);
+  const HttpStatusException(this.uri, this.statusCode, this.reasonPhrase);
 }

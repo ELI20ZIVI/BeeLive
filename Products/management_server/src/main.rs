@@ -13,6 +13,7 @@ mod event_manager;
 mod dao;
 mod event_processor;
 mod locker;
+mod tests;
 
 #[derive(Deserialize)]
 struct EventQueryData {
@@ -81,7 +82,7 @@ async fn list_events_by_id(data: Data<data>, query: web::Query<EventQueryData>, 
 #[put("/modify_event/{event_id}")]
 async fn modify_event(data: Data<data>, path: Path<u32>, event: web::Json<Event>, auth: BearerAuth) -> impl Responder {
 
-    // ID utente
+    // ID utente -- TODO: Da sostituire con funzione di Pietro
     let id = auth.token();
 
     // Ottenimento collezione eventi
@@ -130,7 +131,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .wrap(Logger::default())  // Add request logging
-            .app_data(Data::new(data.clone()))  // Share event collection // Share ID collection (assuming it exists)
+            .app_data(Data::new(data.clone()))
             .service(  // Define API endpoints under "/api/v3" scope
                        web::scope("/api/v3")
                            // Add your handler functions here

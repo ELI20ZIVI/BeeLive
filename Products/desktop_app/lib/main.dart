@@ -1,5 +1,6 @@
 import 'package:desktop_app/src/client/management_client.dart';
-import 'package:desktop_app/src/features/event_management/view/home_page.dart';
+import 'package:desktop_app/src/features/event_management/view/event_list_page.dart';
+import 'package:desktop_app/src/features/event_management/view/event_manager_page.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:desktop_app/src/client/client.dart';
@@ -82,10 +83,9 @@ class _HomePageState extends State<HomePage> {
           body: const EventManagerScreen(),
         ),
         PaneItem(
-          enabled: false,
           icon: const Icon(FluentIcons.eye_shadow),
           title: Text(localization.showEvents),
-          body: const SizedBox.shrink(),
+          body: const EventListScreen(),
         ),
         PaneItem(
           enabled: false,

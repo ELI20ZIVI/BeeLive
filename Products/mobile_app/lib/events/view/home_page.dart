@@ -15,7 +15,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final eventListFuture = ref.watch(EventsController.instance().eventList);
+    final eventListFuture = ref.watch(EventsController.instance().list);
 
     final fab = FloatingActionButton(
       onPressed: () {},
@@ -77,7 +77,7 @@ class HomePage extends ConsumerWidget {
   void _asyncRequestLogin(final BuildContext context, final WidgetRef ref) {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Authenticator().authenticateIfAppropriate(context);
-      ref.invalidate(EventsController.instance().eventList);
+      ref.invalidate(EventsController.instance().list);
     });
   }
 }

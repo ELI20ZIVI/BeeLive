@@ -50,7 +50,7 @@ async fn insert_event(data: Data<data>, event: web::Json<Event>, auth: BearerAut
     let (result, event_id) = event_manager::insert_new_event(data, event.into_inner()).await;
     match result {
         Ok(_) => {
-            HttpResponse::Ok().body("Modifica eseguita con successo")
+            HttpResponse::Created().body("Modifica eseguita con successo")
         }
         Err(_) => {
             HttpResponse::InternalServerError().body("Errore - Modifica non eseguita")
@@ -84,9 +84,6 @@ async fn modify_event(data: Data<data>, path: Path<u32>, event: web::Json<Event>
 
     // ID utente -- TODO: Da sostituire con funzione di Pietro
     let id = auth.token();
-
-    // Ottenimento collezione eventi
-    let mongodb_events_collection = data.mongodb_events_collection.clone();
 
     // Modifica evento
     event_manager::modify_event(data, path.into_inner(), event.into_inner(), id).await

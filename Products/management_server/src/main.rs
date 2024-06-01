@@ -21,7 +21,7 @@ struct EventQueryData {
 }
 
 #[derive(Clone)]
-struct data {
+pub struct ManagementServerData {
     counter: Cell<Option<i32>>,
     mongodb_events_collection: Collection<Event>,
     mongodb_users_collection: Collection<User>,
@@ -36,7 +36,7 @@ struct data {
 /// Returns 422 in case of unvalid resource.
 /// Other status codes can be sent according to the HTTP standard.
 #[post("/insert_new_event")]
-async fn insert_event(data: Data<data>, event: web::Json<Event>, auth: BearerAuth) -> impl Responder {
+async fn insert_event(data: Data<ManagementServerData>, event: web::Json<Event>, auth: BearerAuth) -> impl Responder {
 
     // ID utente
     let id = auth.token();
@@ -60,7 +60,8 @@ async fn insert_event(data: Data<data>, event: web::Json<Event>, auth: BearerAut
 
 // Ottenimento di tutti gli eventi di competenza dell'utente autorizzato
 #[get("/list_events")]
-async fn list_events_by_id(data: Data<data>, query: web::Query<EventQueryData>, auth: BearerAuth) -> impl Responder {
+async fn list_events_by_id(data: Data<ManagementServerData>, query: web::Query<EventQueryData>, auth: BearerAuth) -> impl Responder {
+
 
     // Pagina degli eventi
     let page = & query.page;
@@ -80,7 +81,7 @@ async fn list_events_by_id(data: Data<data>, query: web::Query<EventQueryData>, 
 
 // Modifica evento
 #[put("/modify_event/{event_id}")]
-async fn modify_event(data: Data<data>, path: Path<u32>, event: web::Json<Event>, auth: BearerAuth) -> impl Responder {
+async fn modify_event(data: Data<ManagementServerData>, path: Path<u32>, event: web::Json<Event>, auth: BearerAuth) -> impl Responder {
 
     // ID utente -- TODO: Da sostituire con funzione di Pietro
     let id = auth.token();
@@ -98,7 +99,7 @@ async fn modify_event(data: Data<data>, path: Path<u32>, event: web::Json<Event>
 /// Returns a JSON with all the events. Basically the same as the "/events" endpoint of the public server, but instead of having partial events, this returns all the details of all the events of competence
 // Include also the token to know who modify whatq
 #[delete("/delete_event/{event_id}")]
-async fn delete_event(data: Data<data>, path: Path<u32>, auth: BearerAuth) -> impl Responder {
+async fn delete_event(data: Data<ManagementServerData>, path: Path<u32>, auth: BearerAuth) -> impl Responder {
 
     let id = auth.token();
 
@@ -117,9 +118,10 @@ async fn main() -> std::io::Result<()> {
     println!("Connected to MongoDB!");
     let mongodb_events_collection = client.database("events").collection::<Event>("events");
     let mongodb_users_collection = client.database("users").collection::<User>("users");
+    println!("loaded collections, somehow...");
 
     // Inserzione nuovo evento
-    let data = data {
+    let data = ManagementServerData {
         counter: Cell::new(None),
         mongodb_events_collection,
         mongodb_users_collection,

@@ -72,7 +72,7 @@ async fn insert_event(data: Data<AppData>, event: web::Json<Event>, auth: Bearer
     let (result, event_id) = event_manager::insert_new_event(&data, event.into_inner()).await;
     match result {
         Ok(_) => {
-            HttpResponse::Ok().body("Modifica eseguita con successo")
+            HttpResponse::Created().body("Modifica eseguita con successo")
         }
         Err(_) => {
             HttpResponse::InternalServerError().body("Errore - Modifica non eseguita")
@@ -142,8 +142,6 @@ async fn main() -> std::io::Result<()> {
     println!("Connected to MongoDB!");
 
     let mongodb = client.database("beelive_develop");
-    let mongodb_events_collection = mongodb.collection::<Event>("events");
-    let mongodb_users_collection = mongodb.collection::<User>("users");
 
     // TODO: read from file
     let cert = "-----BEGIN CERTIFICATE-----

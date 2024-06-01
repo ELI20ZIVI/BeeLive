@@ -7,7 +7,6 @@ mod tests {
     use crate::dao::objects::{NullableDateTimeRange, SubEvent};
     use crate::dao::objects::{Event};
     use crate::event_processor;
-    use super::*;
 
     #[test]
     fn it_works() {

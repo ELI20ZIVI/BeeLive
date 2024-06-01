@@ -20,7 +20,6 @@ use crate::dao::objects::User;
 /// This function will panic if, for some reason, the counter contained in 'data' remains None
 /// after trying to load it.
 pub async fn insert_new_event(mut data: &AppData, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
-
     let _ = event_processor::process(&mut event);
 
     if data.counter.get().is_none() {
@@ -36,7 +35,6 @@ pub async fn insert_new_event(mut data: &AppData, mut event: Event) -> (mongodb:
 }
 
 pub async fn load_initial_counter(data: &mut &AppData) {
-
     let mut max_ = -1;
 
     match data.mongodb.events().find(None, None).await { 
@@ -59,7 +57,6 @@ pub async fn check_user_event(user: User, user_id: &str) -> bool {
 }
 
 pub async fn list_events_by_id(data: &AppData, page: &Option<u64>, user_id: &str) -> HttpResponse {
-
     // Controllo numero pagina
     if page < &Some(1) {
         return HttpResponse::UnprocessableEntity().finish();
@@ -75,7 +72,6 @@ pub async fn check_event (event: Event) -> bool {
 }
 
 pub async fn modify_event(data: &AppData, event_id: u32, mut event: Event, user_id: &str) -> HttpResponse {
-
     // Check evento bloccato
     if !locker::is_resource_locked(event_id).await {
         if !locker::is_resource_locked_by_user(event_id, user_id).await {
@@ -110,7 +106,7 @@ pub async fn modify_event(data: &AppData, event_id: u32, mut event: Event, user_
 }
 
 pub async fn delete_event(data: &AppData, event_id: u32, user_id: &str) -> HttpResponse {
-    // Ccontrollo esistenza utente nel db
+    // Controllo esistenza utente nel db
     let user = data.mongodb.authorized_users().find_one(doc! { "id": user_id.clone() }, None).await.unwrap();
     if user.is_none() {
         return HttpResponse::Forbidden().body("User not authorized");

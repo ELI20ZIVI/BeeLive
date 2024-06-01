@@ -5,6 +5,7 @@ use casdoor_rust_sdk::CasdoorUser;
 use serde::de::DeserializeOwned;
 
 /// Authenticator that checks JWTs.
+#[derive(Clone)]
 pub struct Authenticator {
     /// The certificate to validate the signature.
     key: DecodingKey,

@@ -14,3 +14,4 @@ futures = "0.3.30"
 chrono = { version = "0.4.38", features = ["serde"] }
 geojson = { version = "0.24.1", features = ["geo-types"] }
 geo = "0.28.0"
+actix-web-httpauth = "0.8.1"

@@ -3,9 +3,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+<<<<<<< Updated upstream:Products/mobile_app/lib/src/features/events/view/event_map.dart
 import 'package:mobile_app/src/client/client.dart';
 import 'package:mobile_app/src/dtos/event.dart';
 import 'package:mobile_app/src/features/events/view/beelive_map.dart';
+||||||| Stash base:Products/mobile_app/lib/events/view/home/event_map.dart
+import 'package:mobile_app/client.dart';
+import 'package:mobile_app/dtos/event.dart';
+import 'package:mobile_app/events/controller/events_controller.dart';
+import 'package:mobile_app/view/beelive_map.dart';
+=======
+import 'package:mobile_app/dtos/event.dart';
+import 'package:mobile_app/view/beelive_map.dart';
+>>>>>>> Stashed changes:Products/mobile_app/lib/events/view/home/event_map.dart
 
 class EventMap extends ConsumerWidget {
   final Client client;

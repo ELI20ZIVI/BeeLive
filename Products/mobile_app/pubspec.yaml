@@ -52,6 +52,14 @@ dependencies:
   flutter_map_cancellable_tile_provider: ^2.0.0
   draggable_bottom_sheet: ^1.0.2
   unixtime: ^1.0.0
+<<<<<<< Updated upstream
+||||||| Stash base
+  result_dart: ^1.1.1
+=======
+  result_dart: ^1.1.1
+  beelive_frontend_commons:
+    path: ../beelive_frontend_commons/
+>>>>>>> Stashed changes
 
 dependency_overrides:
   http: ^1.2.1

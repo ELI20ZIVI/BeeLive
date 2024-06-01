@@ -2,8 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart' hide ErrorWidget;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_app/authenticator.dart';
-import 'package:mobile_app/authenticator/errors.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:mobile_app/events/controller/events_controller.dart';
 import 'package:mobile_app/events/view/details/details_widget.dart';
 import 'package:mobile_app/events/view/details/error_widget.dart';
@@ -43,9 +42,8 @@ class DetailsPage extends ConsumerWidget {
   void _asyncRequestLogin(final BuildContext context, final WidgetRef ref) {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Authenticator().authenticateIfAppropriate(context);
-      ref.invalidate(EventsController.instance().eventList);
+      ref.invalidate(EventsController.instance().list);
     });
   }
 
 }
-

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_app/client.dart';
 import 'package:mobile_app/dtos/event.dart';
-import 'package:mobile_app/events/controller/events_controller.dart';
 import 'package:mobile_app/view/beelive_map.dart';
+import 'package:mobile_app/client.dart';
+import 'package:mobile_app/events/controller/events_controller.dart';
 
 class EventMap extends ConsumerWidget {
   final List<Event>? events;

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_placeholder_textlines/flutter_placeholder_textlines.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_app/client.dart';
 import 'package:mobile_app/dtos/event.dart';
-import 'package:mobile_app/events/controller/events_controller.dart';
 
 /// Widget class for visualizing an asynchronous list of events.
 ///

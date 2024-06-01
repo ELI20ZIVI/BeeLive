@@ -62,7 +62,6 @@ async fn insert_event(data: Data<ManagementServerData>, event: web::Json<Event>,
 #[get("/list_events")]
 async fn list_events_by_id(data: Data<ManagementServerData>, query: web::Query<EventQueryData>, auth: BearerAuth) -> impl Responder {
 
-
     // Pagina degli eventi
     let page = & query.page;
     if let Some(_) = page {

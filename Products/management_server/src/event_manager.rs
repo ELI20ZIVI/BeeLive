@@ -13,7 +13,7 @@ use mongodb::bson::doc;
 use mongodb::results::InsertOneResult;
 
 use crate::dao::{self, objects::Event};
-use crate::{event_processor, data, EventQueryData, locker};
+use crate::{event_processor, ManagementServerData, EventQueryData, locker};
 use crate::dao::objects::User;
 
 /// Manages the addition of a new event. Uses the counter stored in 'data' as the event's ID and
@@ -22,7 +22,7 @@ use crate::dao::objects::User;
 /// counter value, which will panic if it fails to do so.
 /// This function will panic if, for some reason, the counter contained in 'data' remains None
 /// after trying to load it.
-pub async fn insert_new_event(mut data: Data<data>, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
+pub async fn insert_new_event(mut data: Data<ManagementServerData>, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
 
     let _ = event_processor::process(&mut event);
 
@@ -38,7 +38,7 @@ pub async fn insert_new_event(mut data: Data<data>, mut event: Event) -> (mongod
     (result, data.counter.get().unwrap())
 }
 
-pub async fn load_initial_counter(data: &mut Data<data>) {
+pub async fn load_initial_counter(data: &mut Data<ManagementServerData>) {
 
     let mut max_ = -1;
 
@@ -61,7 +61,7 @@ pub async fn check_user_event(user: User, user_id: &str) -> bool {
     true
 }
 
-pub async fn list_events_by_id(data: Data<data>, page: &Option<u64>, user_id: &str) -> HttpResponse {
+pub async fn list_events_by_id(data: Data<ManagementServerData>, page: &Option<u64>, user_id: &str) -> HttpResponse {
 
     // Controllo numero pagina
     if page < &Some(1) {
@@ -85,7 +85,7 @@ pub async fn check_event (event: Event) -> bool {
     return true
 }
 
-pub async fn modify_event(data: Data<data>, event_id: u32, mut event: Event, user_id: &str) -> HttpResponse {
+pub async fn modify_event(data: Data<ManagementServerData>, event_id: u32, mut event: Event, user_id: &str) -> HttpResponse {
 
     let mongodb_events_collection = data.mongodb_events_collection.clone();
     let mongodb_users_collection = data.mongodb_users_collection.clone();
@@ -133,7 +133,7 @@ pub async fn modify_event(data: Data<data>, event_id: u32, mut event: Event, use
     result
 }
 
-pub async fn delete_event(data: Data<data>, event_id: u32, user_id: &str) -> HttpResponse {
+pub async fn delete_event(data: Data<ManagementServerData>, event_id: u32, user_id: &str) -> HttpResponse {
 
     // Ccontrollo esistenza utente nel db
     let user = data.mongodb_users_collection.find_one(doc! { "id": user_id.clone() }, None).await.unwrap();

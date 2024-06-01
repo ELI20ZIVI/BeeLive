@@ -18,6 +18,13 @@ abstract interface class Client {
   /// Returns an integer representing the HTTP response's status code.
   Future<Response> submitNewEvent(Event event);
 
+  Future<Response> modifyExistingEvent(Event event);
+
+  Future<Response> deleteExistingEvent(int eventId);
+
+  /// tries to get the event list from the server. If the request succeeds (status == 200) the function tries to decode json values into a List<Event>, which will be null if it fails to do so.
+  Future<(Response, List<Event>?)> getEventList();
+
   /// Creates the default client.
   factory Client() {
     return implementation;

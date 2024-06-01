@@ -21,18 +21,23 @@ import 'datetime_range_picker.dart';
 /// Can be used both for creation and modification.
 class EventManagerScreen extends StatelessWidget {
 
+  // variable to control whether this screen is in "Management" mode (i.e. when you are modifying an event) or "Creation" mode (i.e. when creaitng a new event)
+  // it's true when in creation mode.
+  final bool isCreationScreen;
+  final Event event;
+
   const EventManagerScreen({
-    super.key,
+    super.key, required this.isCreationScreen, required this.event,
   });
 
   @override
   Widget build(BuildContext context) {
 
-    var event = Event.defaultNewEvent(0);
+    var actionBar = (isCreationScreen) ? EventCreationActionBar(event: event) : EventManagementActionBar(event: event);
 
     return Column(
       children: [
-        ActionBar(event: event),
+        actionBar,
         Expanded(
           child: _EventWidget(event: event),
         ),
@@ -362,12 +367,12 @@ class _EventGenericForm extends StatefulWidget {
 
 }
 
-/// The action bar for event management
-class ActionBar extends StatelessWidget {
+/// The action bar for event creation
+class EventCreationActionBar extends StatelessWidget {
 
   final Event event;
 
-  const ActionBar({
+  const EventCreationActionBar({
     super.key,
     required this.event,
   });
@@ -445,6 +450,87 @@ class ActionBar extends StatelessWidget {
         primaryItems: [
           ...universal,
           const CommandBarSeparator(),
+          ...specific,
+        ],
+      ),
+    );
+  }
+}
+
+/// The action bar for event editing
+class EventManagementActionBar extends StatelessWidget {
+
+  final Event event;
+
+  const EventManagementActionBar({
+    super.key,
+    required this.event,
+  });
+
+  static final List<(String, IconData, Function())> _specificCommands = [
+    ("Pubblica modifiche", FluentIcons.publish_content, () {}),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    CommandBarButton converter(e) {
+      var (String label, IconData icon, Function() action) = e;
+      return CommandBarButton(
+        onPressed: action,
+        label: Text(label),
+        icon: Icon(icon),
+      );
+    }
+
+    //var specific = _specificCommands.map(converter);
+    var specific = [CommandBarButton(
+      onPressed: () async {
+        http.Response response = await Client.implementation.submitNewEvent(event);
+        displayInfoBar(context, builder: (context, close) {
+
+          String status = "Errore imprevisto. Codice d'errore: ${response.statusCode}";
+          String content = "Questo errore non era previsto. Contattare uno sviluppatore o un amministratore di sistema per comunicargli questo incidente.\n"
+              "Ecco il contenuto della risposta HTTP: ${response.body}";
+          InfoBarSeverity severity = InfoBarSeverity.error;
+
+          switch (response.statusCode) {
+            case 201:
+              status = "Successo";
+              content = "Evento correttamente inserito nel sistema e pubblicato.";
+              severity = InfoBarSeverity.success;
+              break;
+            case 422:
+              status = "Errore, impossibile elaborare l'evento. [${response.statusCode}]";
+              content = "I dati inseriti sono corretti, però ci sono dei constraint che non vengono rispettati. Hint: questo errore è solitamente associato ad una data di fine"
+                  "che precede una data di inizio.";
+              severity = InfoBarSeverity.error;
+              break;
+            case 400:
+              status = "Errore, richiesta malformata. [${response.statusCode}]";
+              content = "Il server non ha potuto elaborare la richiesta. Questo non dovrebbe accadere: contatta un amministratore di sistema per informarlo di questo errore.\n"
+                  "Ecco il contenuto della risposta HTTP: ${response.body}";
+          }
+
+          return InfoBar(
+            title: Text(status),
+            content: Text(content),
+            action: IconButton(
+              icon: const Icon(FluentIcons.clear),
+              onPressed: close,
+            ),
+            severity: severity,
+          );
+        });
+      },
+      label: const Text("Pubblica modifiche"),
+      icon: const Icon(FluentIcons.publish_content),
+    )];
+
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: CommandBar(
+        isCompact: false,
+        primaryItems: [
           ...specific,
         ],
       ),

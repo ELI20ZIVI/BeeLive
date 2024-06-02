@@ -8,10 +8,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:desktop_app/client/client.dart';
 import 'package:desktop_app/themes/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
+import 'package:shared_preferences/shared_preferences.dart' as sp;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // The URI of the web server.
+  //final mwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 14124);
+  final mwsUri = Uri(scheme: "http", host: "localhost", port: 14124);
+  // The casdoor instance is temporary assumed to be on the same host as the public server.
+  final casdoorUri = mwsUri.replace(scheme: "http", port: 9987);
+
   // Overrides the client with the actual web server client.
-  Client.override(ManagementWebServerClient("http://93.49.96.13:14124/api/v3/"));
+  Client.override(ManagementWebServerClient(mwsUri.toString()));
+  
+  KeyValueStorage.override(
+    SharedPreferences(await sp.SharedPreferences.getInstance()),
+  );
+
+  // TODO: must find a way to hide the secret when it becomes official.
+  final AuthenticationProvider provider =
+      CasdoorAuthenticationProvider.defaultConfig(
+    clientSecret: "8cd8dde871a54de9f5846b1b061e1040c160833f",
+    serverUrl: casdoorUri,
+  );
+
+  // Authenticator done via JWT.
+  Authenticator.override(JwtAuthenticator(provider));
 
   runApp(const ProviderScope(child: BeeLiveDesktop()));
 }
@@ -120,7 +144,19 @@ class HomePageState extends State<HomePage> {
       ],
     );
 
-    return NavigationView(appBar: appBar, pane: pane);
+    final navigationView = NavigationView(appBar: appBar, pane: pane);
+
+    return FutureBuilder(
+      future: Authenticator().authorization(),
+      builder: (context, snap) {
+        if (snap.hasData) {
+          return navigationView;
+        } else {
+          Authenticator().authenticate(context).then((_) => setState(() {}));
+          return const Center(child: ProgressRing(value: null));
+        }
+      },
+    );
   }
 }
 

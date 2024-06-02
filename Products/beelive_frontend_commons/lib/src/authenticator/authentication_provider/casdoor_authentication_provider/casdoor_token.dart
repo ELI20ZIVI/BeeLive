@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mobile_app/authenticator/jwt_authenticator/tokens_manager.dart';
+import '../../jwt_authenticator/tokens_manager.dart';
 
 part 'casdoor_token.g.dart';
 

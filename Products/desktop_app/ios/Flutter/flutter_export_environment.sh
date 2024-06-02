@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/usr/lib/flutter"
-export "FLUTTER_APPLICATION_PATH=/sources/BeeLive/Products/desktop_app"
+export "FLUTTER_APPLICATION_PATH=/mnt/sda/home/_io_/Scrivania/uni/anno3/semestre2/ingegneria del software/BeeLive/Products/desktop_app"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"

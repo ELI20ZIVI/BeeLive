@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/usr/lib/flutter
-FLUTTER_APPLICATION_PATH=/sources/BeeLive/Products/desktop_app
+FLUTTER_APPLICATION_PATH=/mnt/sda/home/_io_/Scrivania/uni/anno3/semestre2/ingegneria del software/BeeLive/Products/desktop_app
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build

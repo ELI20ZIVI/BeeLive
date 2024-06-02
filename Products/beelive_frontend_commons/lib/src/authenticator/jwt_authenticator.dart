@@ -25,7 +25,7 @@ final class JwtAuthenticator implements Authenticator {
   }
 
   @override
-  FutureOr<bool> authenticateIfAppropriate(final BuildContext context) async {
+  Future<bool> authenticateIfAppropriate(final BuildContext context) async {
     final token = await _tokensManager.tokens;
 
     if (!context.mounted) {

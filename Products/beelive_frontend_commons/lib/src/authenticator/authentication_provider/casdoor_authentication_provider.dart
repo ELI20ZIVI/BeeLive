@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:casdoor_flutter_sdk/casdoor_flutter_sdk.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
-import '../authentication_provider.dart';
 import './casdoor_authentication_provider/casdoor_token.dart';
 import '../jwt_authenticator/tokens_manager.dart';
 import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';

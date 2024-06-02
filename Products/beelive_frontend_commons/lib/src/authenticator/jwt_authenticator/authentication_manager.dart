@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/widgets.dart';
-import 'package:mobile_app/authenticator/authentication_provider.dart';
-import 'package:mobile_app/authenticator/errors.dart';
-import 'package:mobile_app/storages/key_value_storage.dart';
+import '../authentication_provider.dart';
+import '../errors.dart';
+import '../../storages/key_value_storage.dart';
 import 'package:synchronized/extension.dart';
 
 

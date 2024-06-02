@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:mobile_app/authenticator/jwt_authenticator/tokens_manager.dart';
-import 'package:result_dart/result_dart.dart';
+import './jwt_authenticator/tokens_manager.dart';
 
 export 'authentication_provider/casdoor_authentication_provider.dart';
 

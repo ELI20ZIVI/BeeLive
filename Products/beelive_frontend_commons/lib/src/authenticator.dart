@@ -26,9 +26,9 @@ abstract interface class Authenticator {
   /// Asks the user to sign in (or sign on).
   ///
   /// Returns if the operation has been successful.
-  FutureOr<bool> authenticate(final BuildContext context);
+  Future<bool> authenticate(final BuildContext context);
 
-  FutureOr<bool> authenticateIfAppropriate(final BuildContext context);
+  Future<bool> authenticateIfAppropriate(final BuildContext context);
 
   /// The Authorization header payload.
   ///

@@ -1,13 +1,12 @@
 #[cfg(test)]
 mod tests {
     use std::iter;
-    use chrono::{Local, TimeZone};
+    use chrono::{Local, TimeZone, Utc};
     use geo::polygon;
     use geojson::{Feature, FeatureCollection, Geometry, Value};
     use crate::dao::objects::{NullableDateTimeRange, SubEvent};
     use crate::dao::objects::{Event};
     use crate::event_processor;
-    use super::*;
 
     #[test]
     fn it_works() {
@@ -17,34 +16,34 @@ mod tests {
             summary: "Divieti di fermata e transito.".to_string(),
             description: String::default(),
             creator_id: 0,
-            geojson_geometry: FeatureCollection::from_iter(iter::empty()),
+            polygons: FeatureCollection::from_iter(iter::empty()),
             validity: NullableDateTimeRange::new(
-                Local.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
-                Local.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single()
+                Utc.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
+                Utc.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single()
             ),
             visibility: NullableDateTimeRange::new(
                 None,
-                Local.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single()
+                Utc.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single()
             ),
-            category_ids: vec![],
+            categories: vec![],
             subevents: vec![
                 SubEvent{
                     title: "Fase preparatoria".to_string(),
                     description: String::default(),
+                    polygons: FeatureCollection::from_iter(iter::empty()),
                     validity: NullableDateTimeRange::new(
-                        Local.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
-                        Local.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
                     ),
-                    geometry: FeatureCollection::from_iter(iter::empty()),
                 },
                 SubEvent{
                     title: "Arrivo delegazioni".to_string(),
                     description: "In occasione della Riunione ministeriale Industria, Tecnologia e Digitale del G7, in programma la prossima settimana a palazzo Geremia, palazzo Thun e nella sede della Provincia di piazza Dante, sono previste alcune limitazioni alla circolazione e alcune deviazioni che interesseranno sia la tangenziale sia le vie del centro storico.\nIn un’area ristretta del centro città saranno rimossi anche i plateatici e vietata la sosta e, nel momento clou della manifestazione, pure il transito pedonale potrà subire alcune limitazioni.\n\nA chi, venerdì 15 marzo, avesse la necessità di raggiungere Trento in auto, il consiglio della polizia locale è quello di arrivare entro le 8, in modo da non incappare nelle limitazioni al traffico. In alternativa, si suggerisce di privilegiare l’uso dei mezzi pubblici.\n\nNei momenti clou dell’evento saranno chiuse alcune uscite della tangenziale. Saranno vietati l’accesso e la sosta nella zona del centro storico intorno a via Belenzani (da piazza Duomo a via Romagnosi).\nNella fascia oraria di arrivo e partenza delle delegazioni sono previste restrizioni al transito pedonale.\n\nPer informazioni sulla viabilità da lunedì si potrà chiamare il numero dedicato della polizia locale 0461 889400 o scrivere a poliziam.serviziesterni@comune.trento.it.".to_string(),
                     validity: NullableDateTimeRange::new(
-                        Local.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
-                        Local.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
                     ),
-                    geometry: FeatureCollection::from_iter(vec![
+                    polygons: FeatureCollection::from_iter(vec![
                         polygon![
                             geo::Coord{y: 46.06685718388318, x: 11.12094551324845},
                             geo::Coord{y: 46.06686090581562, x: 11.12103939056397},
@@ -169,30 +168,30 @@ mod tests {
                     title: "Evento in corso".to_string(),
                     description: String::default(),
                     validity: NullableDateTimeRange::new(
-                        Local.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
-                        Local.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
                     ),
-                    geometry: FeatureCollection::from_iter(iter::empty()),
+                    polygons: FeatureCollection::from_iter(iter::empty()),
                 },
                 SubEvent{
                     title: "Partenza delle delegazioni".to_string(),
                     description: String::default(),
                     validity: NullableDateTimeRange::new(
-                        Local.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
-                        Local.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),
+                        Utc.with_ymd_and_hms(2024, 3, 15, 19, 0, 0).single(),
                     ),
-                    geometry: FeatureCollection::from_iter(iter::empty()),
+                    polygons: FeatureCollection::from_iter(iter::empty()),
                 },
             ],
             locked_by: None,
             remote_document: Some("https://www.ufficiostampa.provincia.tn.it/Comunicati/G7-tutte-le-limitazioni-al-traffico-e-alla-sosta".to_string()),
         };
 
-        println!("{}", event.geojson_geometry.to_string());
+        println!("{}", event.polygons.to_string());
         event_processor::process(&mut event);
-        println!("{}", event.geojson_geometry.to_string());
+        println!("{}", event.polygons.to_string());
 
-        let geometry = event.geojson_geometry.features[0].geometry.as_ref().unwrap();
+        let geometry = event.polygons.features[0].geometry.as_ref().unwrap();
 
         match geometry.value {
             Value::MultiPolygon(ref mp) => assert_eq!(mp.len(), 1),

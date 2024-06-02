@@ -51,6 +51,10 @@ services:
       dockerfile: ../public_server/Dockerfile
     ports:
       - "7839:8080"
+    environment:
+      BEELIVE_MODE: "dev"
+    volumes:
+      - public_server_intermediates:/var/cache/beelive_public/
   # ----------------- ManagementServer application configuration ------------------- #
   managementserver:
     container_name: management_server
@@ -59,8 +63,13 @@ services:
       dockerfile: ../management_server/Dockerfile
     ports:
       - "14124:8080"
+    environment:
+      BEELIVE_MODE: "dev"
+    volumes:
+      - management_server_intermediates:/var/cache/beelive_management/
 
 
 volumes:
-  public_server:
+  public_server_intermediates:
+  management_server_intermediates:
   casdoor:

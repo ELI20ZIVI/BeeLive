@@ -1,5 +1,5 @@
 use std::iter;
-use chrono::{DateTime, Local, Utc};
+use chrono::{DateTime, Utc};
 use chrono::serde::ts_seconds_option;
 use geojson::{FeatureCollection, Feature};
 use geojson::Value::Point;

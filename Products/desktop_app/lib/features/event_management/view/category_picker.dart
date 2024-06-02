@@ -1,4 +1,4 @@
-import 'package:desktop_app/src/data_transfer_objects/event.dart';
+import 'package:desktop_app/data_transfer_objects/event.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
 import '../../../data_transfer_objects/risk_level.dart';

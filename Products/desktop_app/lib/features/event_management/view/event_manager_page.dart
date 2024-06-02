@@ -1,10 +1,8 @@
 
 
 
-import 'package:desktop_app/src/client/client.dart';
-import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
-import 'package:desktop_app/src/features/event_management/view/geojson_picker.dart';
-import 'package:desktop_app/src/features/event_management/view/no_connection_infobar.dart';
+import 'package:desktop_app/client/client.dart';
+import 'package:desktop_app/features/event_management/view/geojson_picker.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';

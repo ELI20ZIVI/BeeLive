@@ -1,4 +1,4 @@
-import 'package:desktop_app/src/data_transfer_objects/event.dart';
+import 'package:desktop_app/data_transfer_objects/event.dart';
 import 'package:http/http.dart';
 
 /// Client class for the system backend.

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:desktop_app/src/client/client.dart';
+import 'package:desktop_app/client/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 

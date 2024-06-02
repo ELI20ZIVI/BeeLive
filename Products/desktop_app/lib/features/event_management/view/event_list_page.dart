@@ -1,24 +1,9 @@
 
-
-
-import 'dart:async';
-
-import 'package:desktop_app/src/client/client.dart';
-import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
-import 'package:desktop_app/src/features/event_management/view/geojson_picker.dart';
+import 'package:desktop_app/client/client.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:geojson_vi/geojson_vi.dart';
-import 'package:http/http.dart' as http;
-import 'package:latlong2/latlong.dart';
 
 import '../../../../main.dart';
 import '../../../data_transfer_objects/event.dart';
-import '../map/map.dart';
-import '../map/tiles.dart';
-import 'category_picker.dart';
-import 'datetime_range_picker.dart';
-import 'event_manager_page.dart';
 
 /// The screen for visualizing the management of a single event.
 ///

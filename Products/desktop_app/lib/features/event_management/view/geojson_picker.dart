@@ -1,7 +1,7 @@
 
 import 'dart:io';
 
-import 'package:desktop_app/src/data_transfer_objects/event.dart';
+import 'package:desktop_app/data_transfer_objects/event.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:geojson_vi/geojson_vi.dart';

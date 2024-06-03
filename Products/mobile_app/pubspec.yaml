@@ -53,6 +53,8 @@ dependencies:
   draggable_bottom_sheet: ^1.0.2
   unixtime: ^1.0.0
   result_dart: ^1.1.1
+  intl: ^0.19.0
+  flutter_map_geojson: ^1.0.8
 
 dependency_overrides:
   http: ^1.2.1

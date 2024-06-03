@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_geojson/flutter_map_geojson.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_app/dtos/event.dart';
 import 'title_widget.dart';
 
@@ -19,18 +21,20 @@ class DetailsWidget extends StatefulWidget {
 }
 
 class _DetailsWidgetState extends State<DetailsWidget> {
+  final PageController controller = PageController();
   
   @override
   Widget build(final BuildContext context) {
-    // TODO: layout
-    // TODO: map
-    final map = BeeLiveMap();
-    /*
-    AspectRatio(
-        aspectRatio: 4 / 3,
-        child: map,
-      )
-    */
+    // TODO: Deve dipendere da [controller.page].
+    final polygons = widget.event.polygons?.toMap();
+
+    final parser = GeoJsonParser();
+    if (polygons != null) parser.parseGeoJson(polygons);
+
+    // TODO: Ottenimento coordinate per la mappa
+    final map = BeeLiveMap(
+      polygons: parser.polygons,
+    );
 
     final subEventView = PageView(
       children: [
@@ -39,7 +43,17 @@ class _DetailsWidgetState extends State<DetailsWidget> {
       ],
     );
 
-    return subEventView;
+    return Column(
+      children: [
+        AspectRatio(
+          aspectRatio: 4 / 3,
+          child: map,
+        ),
+        Expanded(
+          child: subEventView,
+        ),
+      ],
+    );
   }
 
 }
@@ -61,11 +75,12 @@ class _SubEventDetailsState extends State<_SubEventDetails> {
 
   @override
   Widget build(BuildContext context) {
+    // DateFormat("HH:mm dd/MM/YY").format(date);
 
     final title = TitleWidget(
       title: widget.event.title,
-      // TODO: dynamic
-      caption: "8:15 - 10:00 15/03/2024",
+      // TODO: Controllo valore orari e date
+      caption: widget.event.validity.toString(),
     );
 
     final content = Padding(
@@ -76,10 +91,12 @@ class _SubEventDetailsState extends State<_SubEventDetails> {
       ),
     );
 
-    return ListView(children: [
-      title,
-      content,
-    ]);
+    return ListView(
+      children: [
+        title,
+        content,
+      ],
+    );
   }
 }
 

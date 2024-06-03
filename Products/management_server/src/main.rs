@@ -176,8 +176,8 @@ jvS6+YyeGKEUV4OFDJW3Tck5eR+II2rf2W182Px3qOV0FOLJ2irmgrOj8FHU3lxy
 XKmmI12Qo0HcYjKo+ie0B+L2VncEsBvLIpJa9NTtgVZqq1A8EgBE0PiA8F7OkCiA
 VT0it8czQ3KFY34YeInrAe+5/T3wlPnk4Ef1nQ0/J5M306hPnxcq3zh5q6JfvyjN
 2K68VcaCJIywVuw=
------END CERTIFICATE-----
-";
+-----END CERTIFICATE-----";
+
     let authenticator = Authenticator::new(None, cert).expect("Cannot create the authenticator");
 
     // Inserzione nuovo evento

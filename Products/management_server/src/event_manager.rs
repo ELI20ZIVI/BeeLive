@@ -57,8 +57,8 @@ pub async fn check_user_event(user: User, user_id: &str) -> bool {
 }
 
 pub async fn list_events_by_id(data: &AppData, page: &Option<u64>, user_id: &str) -> HttpResponse {
-    // Controllo numero pagina
-    if page < &Some(1) {
+    // Controllo numero pagina. Non può essere negativo.
+    if page.map(|page| page < 1).unwrap_or(false) {
         return HttpResponse::UnprocessableEntity().finish();
     }
 

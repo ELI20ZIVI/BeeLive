@@ -1407,8 +1407,8 @@ dependencies = [
  "jsonwebtoken 9.3.0",
  "mongodb",
  "serde",
- "serde_repr",
  "serde_json",
+ "serde_repr",
 ]
 
 [[package]]

@@ -25,24 +25,32 @@ class _DetailsWidgetState extends State<DetailsWidget> {
   
   @override
   Widget build(final BuildContext context) {
-    // TODO: Deve dipendere da [controller.page].
-    final polygons = widget.event.polygons?.toMap();
+    final polygons;
+    final page = controller.page?.toInt()??0;
+
+    if (page == 0) {
+      polygons = widget.event.polygons?.toMap();
+    } else {
+      polygons = widget.event.events[page-1].polygons;
+    }
 
     final parser = GeoJsonParser();
     if (polygons != null) parser.parseGeoJson(polygons);
 
-    // TODO: Ottenimento coordinate per la mappa
+    // Ottenimento coordinate della mappa
     final map = BeeLiveMap(
       polygons: parser.polygons,
     );
 
     final subEventView = PageView(
       children: [
-        // TODO: Widget overview
+        // Widget dell'evento generale seguito da tutti i sottoeventi
+        _EventDetails(event: widget.event),
         ...widget.event.events.map((e) => _SubEventDetails(event: e))
       ],
     );
 
+    // Definizione del layout
     return Column(
       children: [
         AspectRatio(
@@ -75,12 +83,16 @@ class _SubEventDetailsState extends State<_SubEventDetails> {
 
   @override
   Widget build(BuildContext context) {
-    // DateFormat("HH:mm dd/MM/YY").format(date);
+    final begin = widget.event.validity.begin;
+    DateFormat("HH:mm dd/MM/YY").format(begin!);
+    final end = widget.event.validity.end;
+    DateFormat("HH:mm dd/MM/YY").format(end!);
+
+    String date = "Inizio evento: $begin\n Fine evento: $end";
 
     final title = TitleWidget(
       title: widget.event.title,
-      // TODO: Controllo valore orari e date
-      caption: widget.event.validity.toString(),
+      caption: date,
     );
 
     final content = Padding(
@@ -100,4 +112,48 @@ class _SubEventDetailsState extends State<_SubEventDetails> {
   }
 }
 
-// TODO: Poligoni della mappa aggiornati muovendo tra i sottoeventi
+class _EventDetails extends StatefulWidget {
+  const _EventDetails({
+    required this.event,
+  });
+
+  final Event event;
+
+  @override
+  State<StatefulWidget> createState() {
+    return _EventDetailsState();
+  }
+}
+
+class _EventDetailsState extends State<_EventDetails>{
+  @override
+  Widget build(BuildContext context) {
+    final begin = widget.event.validity.begin;
+    DateFormat("HH:mm dd/MM/YY").format(begin!);
+    final end = widget.event.validity.end;
+    DateFormat("HH:mm dd/MM/YY").format(end!);
+
+    String date = "Inizio evento: $begin\n Fine evento: $end";
+
+    final title = TitleWidget(
+      title: widget.event.title,
+      caption: date,
+    );
+
+    final content = Padding(
+      padding: const EdgeInsets.all(20),
+      child: Text(
+        widget.event.summary ?? "",
+        textAlign: TextAlign.justify,
+      ),
+    );
+
+    return ListView(
+      children: [
+        title,
+        content,
+      ],
+    );
+  }
+}
+

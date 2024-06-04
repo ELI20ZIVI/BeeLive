@@ -1,9 +1,7 @@
 use actix_web::HttpResponse;
 use futures::StreamExt;
-use geojson::FeatureCollection;
-use mongodb::{results::InsertOneResult, Collection, bson};
+use mongodb::{results::InsertOneResult, Collection, Database};
 use mongodb::bson::doc;
-use serde::{Deserialize, Serialize};
 use crate::dao::objects::*;
 
 pub mod objects;
@@ -15,12 +13,12 @@ pub mod objects;
 ///
 /// * `mongodb_collection` -  handle to the mongobd collection you want to insert this new event into.
 /// * `event` -  event you want to insert into given collection 
-pub async fn insert_new_event(mongodb_collection: Collection<Event>, mut event: Event, id: i32) -> mongodb::error::Result<InsertOneResult> {
+async fn insert_new_event(mongodb_collection: &Collection<Event>, mut event: Event, id: i32) -> mongodb::error::Result<InsertOneResult> {
     event.id = id;
     mongodb_collection.insert_one(event, None).await
 }
 
-pub async fn get_events_by_id(mongodb_events_collection: Collection<Event>, user_id: String) -> HttpResponse {
+async fn get_events_by_id(mongodb_events_collection: &Collection<Event>, user_id: String) -> HttpResponse {
 
     /*let filter = bson::doc! { "id": user_id };
     let cursor = mongodb_events_collection
@@ -44,7 +42,7 @@ pub async fn get_events_by_id(mongodb_events_collection: Collection<Event>, user
     HttpResponse::Ok().json(events)
 }
 
-pub async fn modify_event (mongodb_events_collection: Collection<Event>, event_id: u32, mut event: Event) -> HttpResponse{
+async fn modify_event (mongodb_events_collection: &Collection<Event>, event_id: u32, event: &Event) -> HttpResponse{
 
     // L'evento da modificare viene passato per intero -> Viene sovrascritto nel database
     let filter = doc! { "id": event_id };
@@ -52,27 +50,88 @@ pub async fn modify_event (mongodb_events_collection: Collection<Event>, event_i
     let res = mongodb_events_collection.replace_one(filter, replacement, None).await;
 
     // Controllo operazioni
-    if let Ok(_) = res {
-        // Se a buon fine -> 200 OK
-        HttpResponse::Ok().finish()
-    } else {
-        // Se errore durante l'operazione -> 500 Internal Server Error
-        HttpResponse::InternalServerError().finish()
+    match res {
+        Ok(_) => HttpResponse::Ok().finish(),
+        Err(_) => HttpResponse::InternalServerError().finish(),
     }
 }
 
-pub async fn delete_event (mongodb_events_collection: Collection<Event>, event_id: u32) -> HttpResponse{
+async fn delete_event (mongodb_events_collection: &Collection<Event>, event_id: u32) -> HttpResponse{
 
     // L'evento da eliminare viene passato per intero -> Viene eliminato dal database
     let filter = doc! { "id": event_id };
     let res = mongodb_events_collection.delete_one(filter, None).await;
 
     // Controllo operazioni
-    if let Ok(_) = res {
+    match res {
         // Se a buon fine -> 200 OK
-        HttpResponse::Ok().finish()
-    } else {
+        Ok(_) => HttpResponse::Ok().finish(),
         // Se errore durante l'operazione -> 500 Internal Server Error
-        HttpResponse::InternalServerError().finish()
+        Err(_) => HttpResponse::InternalServerError().finish(),
     }
+}
+
+
+
+// TODO: composition
+pub trait MongodbExtension {
+
+    /// Gets the collection of events from the database.
+    fn events(&self) -> Collection<Event>;
+    
+    /// Gets the collection of generic users from the database.
+    fn users(&self) -> Collection<User>;
+    
+    /// Gets the collection of authorized users from the database.
+    fn authorized_users(&self) -> Collection<User>;
+
+    // TODO: in my opinion [id] is responsability of the database (DAO).
+    // Shouldn't be passed from outside.
+    /// Inserts the given [event] into the [events] collection.
+    async fn insert_new_event(&self, event: Event, id: i32) -> mongodb::error::Result<InsertOneResult> {
+        insert_new_event(&self.events(), event, id).await
+    }
+
+    /// Gets the list of events of competence of a given [user_id].
+    async fn get_events_of_user(&self, user_id: &str) -> HttpResponse {
+        get_events_by_id(&self.events(), user_id.to_string()).await
+    }
+
+    /// Updates the [event_id] with the data in [event].
+    async fn modify_event(&self, event_id: u32, event: &Event) -> HttpResponse {
+        modify_event(&self.events(), event_id, event).await
+    }
+
+    /// Deletes the event [event_id].
+    async fn delete_event(&self, event_id: u32) -> HttpResponse {
+        delete_event(&self.events(), event_id).await
+    }
+
+    /// Checks if the [user_id] corresponds to an authorized user.
+    ///
+    /// Further checks can be performed in order to ensure AC policies.
+    async fn is_authorized(&self, user_id: &str) -> mongodb::error::Result<bool> {
+
+        // Controllo esistenza utente nel db
+        let user = self.authorized_users().find_one(doc! { "id": user_id }, None).await?;
+
+        Ok(user.is_some())
+    }
+}
+
+
+impl MongodbExtension for Database {
+
+    fn events(&self) -> Collection<Event> {
+        self.collection("events")
+    }
+
+    fn users(&self) -> Collection<User> {
+        self.collection("users")
+    }
+
+    fn authorized_users(&self) -> Collection<User> {
+        self.collection("authorized_users")
+    }
+
 }

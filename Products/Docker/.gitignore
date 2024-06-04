@@ -4,13 +4,6 @@
 !OSR/files/
 !OSR/files/nord-est-latest.osm.pbf
 
-!casdoor/
-!casdoor/db/
-!casdoor/db/casdoor.db
-!casdoor/img/
-!casdoor/img/favicon.png
-!casdoor/app.conf
-
 !public_server.Dockerfile
 
 !docker-compose.yml

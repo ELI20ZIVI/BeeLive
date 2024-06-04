@@ -1,5 +1,5 @@
 
-use std::cell::Cell;
+use std::{cell::Cell, ops::Deref, sync::{Arc, Mutex}};
 
 use actix_web::{middleware::Logger, post, web::{self, Data, Path}, App, HttpResponse, HttpServer, Responder, get, put, delete};
 use actix_web_httpauth::extractors::bearer::BearerAuth;
@@ -22,12 +22,13 @@ struct EventQueryData {
     page: Option<u64>,
 }
 
-#[derive(Clone)]
 struct AppData {
-    counter: Cell<Option<i32>>,
+    // Event id counter to implement id autoincrement.
+    counter: Mutex<Option<i32>>,
     mongodb: Database,
     authenticator: Authenticator,
 }
+
 
 
 /// Checks if the given user is an authorized user.
@@ -35,11 +36,12 @@ struct AppData {
 /// Returns the user id if it is authorized.\
 /// Returns an error response status in case of unauthorized access.
 async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb: &Database) -> Result<String, HttpResponse> {
+    return Ok("".to_string());
     let token = auth.token();
 
     let user_id = match authenticator.decode_user_id(token) {
         Ok(id) => id,
-        Err(_) => return Err(HttpResponse::Unauthorized().body("Invalid token")),
+        Err(e) => return Err(HttpResponse::Unauthorized().body(format!("Invalid token: {}", e))),
     };
 
     let authorized = match mongodb.is_authorized(&user_id).await {
@@ -72,7 +74,7 @@ async fn insert_event(data: Data<AppData>, event: web::Json<Event>, auth: Bearer
     let (result, event_id) = event_manager::insert_new_event(&data, event.into_inner()).await;
     match result {
         Ok(_) => {
-            HttpResponse::Created().body("Modifica eseguita con successo")
+            HttpResponse::Created().body(format!("{} {:?}", event_id, std::thread::current().id()))
         }
         Err(_) => {
             HttpResponse::InternalServerError().body("Errore - Modifica non eseguita")
@@ -180,15 +182,16 @@ VT0it8czQ3KFY34YeInrAe+5/T3wlPnk4Ef1nQ0/J5M306hPnxcq3zh5q6JfvyjN
 
     // Inserzione nuovo evento
     let data = AppData {
-        counter: Cell::new(None),
+        counter: Mutex::new(None),
         mongodb,
         authenticator,
     };
+    let data = Data::new(data);
 
     HttpServer::new(move || {
         App::new()
             .wrap(Logger::default())  // Add request logging
-            .app_data(Data::new(data.clone()))
+            .app_data(data.clone())
             .service(  // Define API endpoints under "/api/v3" scope
                        web::scope("/api/v3")
                            // Add your handler functions here

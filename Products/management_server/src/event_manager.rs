@@ -72,7 +72,6 @@ pub async fn check_event (event: &Event) -> bool {
 }
 
 pub async fn modify_event(data: &AppData, event_id: u32, mut event: Event, user_id: &str) -> HttpResponse {
-
     // Check evento bloccato
     if !locker::is_resource_locked(event_id).await {
         if !locker::is_resource_locked_by_user(event_id, user_id).await {
@@ -107,7 +106,7 @@ pub async fn modify_event(data: &AppData, event_id: u32, mut event: Event, user_
 }
 
 pub async fn delete_event(data: &AppData, event_id: u32, user_id: &str) -> HttpResponse {
-    // Ccontrollo esistenza utente nel db
+    // Controllo esistenza utente nel db
     let user = data.mongodb.authorized_users().find_one(doc! { "id": user_id.clone() }, None).await.unwrap();
     if user.is_none() {
         return HttpResponse::Forbidden().body("User not authorized");

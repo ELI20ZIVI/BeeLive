@@ -36,7 +36,6 @@ struct AppData {
 /// Returns the user id if it is authorized.\
 /// Returns an error response status in case of unauthorized access.
 async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb: &Database) -> Result<String, HttpResponse> {
-    return Ok("".to_string());
     let token = auth.token();
 
     let user_id = match authenticator.decode_user_id(token) {
@@ -144,8 +143,6 @@ async fn main() -> std::io::Result<()> {
     println!("Connected to MongoDB!");
 
     let mongodb = client.database("beelive_develop");
-    let mongodb_events_collection = mongodb.collection::<Event>("events");
-    let mongodb_users_collection = mongodb.collection::<User>("users");
 
     // TODO: read from file
     let cert = "-----BEGIN CERTIFICATE-----

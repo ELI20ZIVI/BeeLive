@@ -19,24 +19,22 @@ use crate::dao::objects::User;
 /// counter value, which will panic if it fails to do so.
 /// This function will panic if, for some reason, the counter contained in 'data' remains None
 /// after trying to load it.
-pub async fn insert_new_event(mut data: &AppData, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
-
+pub async fn insert_new_event(data: &AppData, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
     let _ = event_processor::process(&mut event);
 
-    if data.counter.get().is_none() {
-        load_initial_counter(&mut data).await;
-    }
+    let mut counter = data.counter.lock().expect("Error: poisoned counter mutex");
+    let available_id = match *counter {
+        Some(c) => c,
+        None => available_event_id(data).await,
+    };
 
-    let current_counter: i32 = data.counter.get().unwrap();
+    let result = data.mongodb.insert_new_event(event, available_id).await;
+    *counter = Some(available_id + 1);
 
-    let result = data.mongodb.insert_new_event(event, data.counter.get().unwrap()).await;
-    data.counter.set(Some(current_counter+1));
-
-    (result, data.counter.get().unwrap())
+    (result, available_id)
 }
 
-pub async fn load_initial_counter(data: &mut &AppData) {
-
+pub async fn available_event_id(data: &AppData) -> i32 {
     let mut max_ = -1;
 
     match data.mongodb.events().find(None, None).await { 
@@ -49,8 +47,8 @@ pub async fn load_initial_counter(data: &mut &AppData) {
             panic!("There was an error while trying to load the initial ID counter's value. Error: {}", error);
         }
     }
-    data.counter.set(Some(max_+1));
 
+    max_ + 1
 }
 
 pub async fn check_user_event(user: User, user_id: &str) -> bool {

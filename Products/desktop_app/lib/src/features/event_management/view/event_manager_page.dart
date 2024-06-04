@@ -511,17 +511,37 @@ class EventManagementActionBar extends StatelessWidget {
           InfoBarSeverity severity = InfoBarSeverity.error;
 
           switch (response.statusCode) {
-            case 201:
+            case 200:
               status = "Successo";
-              content = "Evento correttamente inserito nel sistema e pubblicato.";
+              content = "Evento correttamente modificato.";
               severity = InfoBarSeverity.success;
               break;
+            case 401:
+              status = "Errore";
+              content = "Non è stato fornito alcun access token alla richiesta.";
+              severity = InfoBarSeverity.error;
+            case 403:
+              status = "Non autorizzato";
+              content = "Non sei autorizzato ad effettuare questa modifica, oppure questo evento non è di tua competenza.";
+              severity = InfoBarSeverity.error;
+            case 404:
+              status = "Evento non trovato";
+              content = "L'evento che si vuole modificare non è più presente a sistema. Forse è già stato eliminato?";
+              severity = InfoBarSeverity.error;
             case 422:
-              status = "Errore, impossibile elaborare l'evento. [${response.statusCode}]";
+              status = "Modifiche non valide. [${response.statusCode}]";
               content = "I dati inseriti sono corretti, però ci sono dei constraint che non vengono rispettati. Hint: questo errore è solitamente associato ad una data di fine"
                   "che precede una data di inizio.";
               severity = InfoBarSeverity.error;
               break;
+            case 418:
+              status = "Errore, evento non bloccato";
+              content = "Questo evento è modificabile ma non è stato precedentemente bloccato. Contattare un amministratore per risolvere il problema.";
+              severity = InfoBarSeverity.error;
+            case 423:
+              status = "Risorsa attualmente non disponibile";
+              content = "Questo evento è attualmente bloccato da un altro utente autorizzato. Si prega di riprovare più tardi, o contattare un amministratore se il problema persiste.";
+              severity = InfoBarSeverity.info;
             case 400:
               status = "Errore, richiesta malformata. [${response.statusCode}]";
               content = "Il server non ha potuto elaborare la richiesta. Questo non dovrebbe accadere: contatta un amministratore di sistema per informarlo di questo errore.\n"

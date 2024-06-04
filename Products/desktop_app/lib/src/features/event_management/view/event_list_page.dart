@@ -99,10 +99,7 @@ class EventListElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    bool visible = true;
-    late Visibility eventlistelementwidget;
-
-    eventlistelementwidget = Visibility(visible: visible, child: ListTile(
+    return ListTile(
         leading: Text("[ID: ${event.id}]"),
         title: Row(children: [
           Text(event.title),
@@ -113,16 +110,66 @@ class EventListElementWidget extends StatelessWidget {
             refreshHomeScreen();
           }),
           Button(child: const Icon(FluentIcons.delete), onPressed: () async {
+
             var response = await Client().deleteExistingEvent(event.id as int);
-            debugPrint("Deleting event ${event.id} [${event.title}]");
-            debugPrint("${response.statusCode}");
-            debugPrint("${response.body}");
-            eventList.remove(event);
-            refreshEventList();
+
+            late InfoBarSeverity severity;
+            late String title;
+            late String content;
+
+            switch (response.statusCode) {
+              case 200:
+                debugPrint("Deleting event ${event.id} [${event.title}]");
+                debugPrint("${response.statusCode}");
+                debugPrint("${response.body}");
+                eventList.remove(event);
+                refreshEventList();
+                return;
+              case 401:
+                title = "Token invalido";
+                content = "Non è stato fornito un access token valido a questa richiesta. Contattare un amministratore per risolvere il problema.";
+                severity = severity = InfoBarSeverity.error;
+                break;
+              case 403:
+                title = "Non autorizzato";
+                content = "Non sei autorizzato ad effettuare questa modifica, oppure questo evento non è di tua competenza.";
+                break;
+              case 404:
+                title = "Evento non trovato";
+                content = "L'evento che si vuole modificare non è più presente a sistema. Forse è già stato eliminato?";
+                severity = InfoBarSeverity.error;
+                break;
+              case 418:
+                title = "Errore, evento non bloccato";
+                content = "Questo evento è modificabile ma non è stato precedentemente bloccato. Contattare un amministratore per risolvere il problema.";
+                severity = InfoBarSeverity.error;
+                break;
+              case 423:
+                title = "Risorsa attualmente non disponibile";
+                content = "Questo evento è attualmente bloccato da un altro utente autorizzato. Si prega di riprovare più tardi, o contattare un amministratore se il problema persiste.";
+                severity = InfoBarSeverity.info;
+                break;
+              default:
+                title = "Errore imprevisto [${response.statusCode}]";
+                content = "Questo errore non era previsto, contattare un amministratore di sistema per comunicargli il problema. \n"
+                    "Content della risposta HTTP: ${response.body}";
+                severity = InfoBarSeverity.error;
+            }
+            displayInfoBar(context, builder: (context, close){
+              return InfoBar(
+              title: Text(title),
+              content: Text(content),
+              action: IconButton(
+                icon: const Icon(FluentIcons.clear),
+                onPressed: close,
+              ),
+              severity: severity,
+              );
+            });
+
           }),
     ],),
         onPressed: () {},
-      ));
-    return eventlistelementwidget;
+      );
   }
 }

@@ -10,7 +10,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   // Overrides the client with the actual web server client.
-  Client.override(ManagementWebServerClient("http://localhost:8080/api/v3/"));
+  //Client.override(ManagementWebServerClient("http://localhost:8080/api/v3/"));
+  Client.override(ManagementWebServerClient("http://93.49.96.13:14124/api/v3/"));
 
   runApp(const ProviderScope(child: BeeLiveDesktop()));
 }

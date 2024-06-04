@@ -67,7 +67,7 @@ pub async fn list_events_by_id(data: &AppData, page: &Option<u64>, user_id: &str
 
 // TODO: documentation... checks what?
 // I think this method should be put into [event_processor].
-pub async fn check_event (event: Event) -> bool {
+pub async fn check_event (event: &Event) -> bool {
     return true
 }
 
@@ -87,7 +87,7 @@ pub async fn modify_event(data: &AppData, event_id: u32, mut event: Event, user_
     let _ = event_processor::process(&mut event);
 
     // Controllo validità evento - Temporaneamente sempre valido
-    let event_check_result = check_event(event).await;
+    let event_check_result = check_event(&event).await;
     if !event_check_result {
         // Se evento non valido, restituisco errore 422
         return HttpResponse::UnprocessableEntity().finish();
@@ -95,11 +95,11 @@ pub async fn modify_event(data: &AppData, event_id: u32, mut event: Event, user_
 
     // Controllo esistenza evento nel db
     // TODO: DAO!
-    let filter = doc! { "id": event_id.clone() };
-    let event = match data.mongodb.events().find_one(filter, None).await.unwrap() {
-        None => return HttpResponse::NotFound().finish(),
-        Some(event) => event,
-    };
+    let filter = doc! { "id": event_id };
+    
+    if data.mongodb.events().find_one(filter, None).await.unwrap().is_none() {
+        return HttpResponse::NotFound().finish();
+    }
 
     // Modifica evento
     data.mongodb.modify_event(event_id, &event).await

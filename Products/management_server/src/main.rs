@@ -1,11 +1,12 @@
 
-use std::{cell::Cell, ops::Deref, sync::{Arc, Mutex}};
+use std::sync::Mutex;
 
 use actix_web::{middleware::Logger, post, web::{self, Data, Path}, App, HttpResponse, HttpServer, Responder, get, put, delete};
 use actix_web_httpauth::extractors::bearer::BearerAuth;
 use authentication_sdk::Authenticator;
-use dao::{objects::Event, MongodbExtension};
-use mongodb::{Collection, Client, Database};
+use dao::{objects::Event, Dao};
+use jsonwebtoken::Algorithm;
+use mongodb::Client;
 use mongodb::bson::doc;
 use serde::Deserialize;
 use crate::dao::objects::User;
@@ -16,6 +17,7 @@ mod event_processor;
 mod locker;
 mod tests;
 mod authentication_sdk;
+mod utils;
 
 #[derive(Deserialize)]
 struct EventQueryData {
@@ -25,7 +27,7 @@ struct EventQueryData {
 struct AppData {
     // Event id counter to implement id autoincrement.
     counter: Mutex<Option<i32>>,
-    mongodb: Database,
+    mongodb: Dao,
     authenticator: Authenticator,
 }
 
@@ -35,7 +37,7 @@ struct AppData {
 ///
 /// Returns the user id if it is authorized.\
 /// Returns an error response status in case of unauthorized access.
-async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb: &Database) -> Result<String, HttpResponse> {
+async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb: &Dao) -> Result<User, HttpResponse> {
     let token = auth.token();
 
     let user_id = match authenticator.decode_user_id(token) {
@@ -48,11 +50,7 @@ async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb
         Err(_) => return Err(HttpResponse::InternalServerError().finish()),
     };
 
-    if authorized {
-        Ok(user_id)
-    } else {
-        Err(HttpResponse::Forbidden().finish())
-    }
+    authorized.ok_or(HttpResponse::Forbidden().finish())
 }
 
 // TODO: formalize and document this endpoint
@@ -65,12 +63,13 @@ async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb
 /// Other status codes can be sent according to the HTTP standard.
 #[post("/insert_new_event")]
 async fn insert_event(data: Data<AppData>, event: web::Json<Event>, auth: BearerAuth) -> impl Responder {
-    if let Err(res) = is_authorized(&auth, &data.authenticator, &data.mongodb).await {
-        return res;
-    }
+    let user = match is_authorized(&auth, &data.authenticator, &data.mongodb).await {
+        Err(res) => return res,
+        Ok(user) => user,
+    };
 
 
-    let (result, event_id) = event_manager::insert_new_event(&data, event.into_inner()).await;
+    let (result, event_id) = event_manager::insert_new_event(&data, event.into_inner(), &user).await;
     match result {
         Ok(_) => {
             HttpResponse::Created().body(format!("{} {:?}", event_id, std::thread::current().id()))
@@ -85,9 +84,9 @@ async fn insert_event(data: Data<AppData>, event: web::Json<Event>, auth: Bearer
 /// Ottenimento di tutti gli eventi di competenza dell'utente autorizzato
 #[get("/list_events")]
 async fn list_events_by_id(data: Data<AppData>, query: web::Query<EventQueryData>, auth: BearerAuth) -> impl Responder {
-    let user_id = match is_authorized(&auth, &data.authenticator, &data.mongodb).await {
+    let user = match is_authorized(&auth, &data.authenticator, &data.mongodb).await {
         Err(res) => return res,
-        Ok(id) => id,
+        Ok(user) => user,
     };
 
     // Pagina degli eventi
@@ -98,20 +97,20 @@ async fn list_events_by_id(data: Data<AppData>, query: web::Query<EventQueryData
 
 
     // Ottenimento eventi
-    event_manager::list_events_by_id(&data, page, &user_id).await
+    event_manager::list_events_by_id(&data, page, &user).await
 }
 
 
 // Modifica evento
 #[put("/modify_event/{event_id}")]
 async fn modify_event(data: Data<AppData>, path: Path<u32>, event: web::Json<Event>, auth: BearerAuth) -> impl Responder {
-    let user_id = match is_authorized(&auth, &data.authenticator, &data.mongodb).await {
+    let user = match is_authorized(&auth, &data.authenticator, &data.mongodb).await {
         Err(res) => return res,
-        Ok(id) => id,
+        Ok(user) => user,
     };
 
     // Modifica evento
-    event_manager::modify_event(&data, path.into_inner(), event.into_inner(), &user_id).await
+    event_manager::modify_event(&data, path.into_inner(), event.into_inner(), &user).await
 }
 
 
@@ -123,13 +122,13 @@ async fn modify_event(data: Data<AppData>, path: Path<u32>, event: web::Json<Eve
 /// Returns a JSON with all the events. Basically the same as the "/events" endpoint of the public server, but instead of having partial events, this returns all the details of all the events of competence
 #[delete("/delete_event/{event_id}")]
 async fn delete_event(data: Data<AppData>, path: Path<u32>, auth: BearerAuth) -> impl Responder {
-    let user_id = match is_authorized(&auth, &data.authenticator, &data.mongodb).await {
+    let user = match is_authorized(&auth, &data.authenticator, &data.mongodb).await {
         Err(res) => return res,
-        Ok(id) => id,
+        Ok(user) => user,
     };
 
     // Eliminazione evento
-    event_manager::delete_event(&data, path.into_inner(), &user_id).await
+    event_manager::delete_event(&data, path.into_inner(), &user).await
 }
 
 #[actix_web::main]
@@ -146,43 +145,42 @@ async fn main() -> std::io::Result<()> {
 
     // TODO: read from file
     let cert = "-----BEGIN CERTIFICATE-----
-MIIFRzCCAvugAwIBAgIDAeJAMEEGCSqGSIb3DQEBCjA0oA8wDQYJYIZIAWUDBAID
-BQChHDAaBgkqhkiG9w0BAQgwDQYJYIZIAWUDBAIDBQCiAwIBQDApMRAwDgYDVQQK
-EwdiZWVsaXZlMRUwEwYDVQQDDAxjZXJ0X2JlZWxpdmUwHhcNMjQwNTI4MTY1MDUy
-WhcNNDQwNTI4MTY1MDUyWjApMRAwDgYDVQQKEwdiZWVsaXZlMRUwEwYDVQQDDAxj
-ZXJ0X2JlZWxpdmUwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDQ7t10
-2ld+ZdH2ytL0TFLCh2cQZeJGD2UJH2C5CXcd6uJLINC+oSIbEZXUiT6DbbGVUOZ5
-GEqSEXuQ0o0v1dzqCyrEhmXzKL94gIcR+j7NJ0JfObIiC+ggVjbeTE12NxtebFRR
-m7WfHGX/ArvcVWL3BvGBHGFiZnhiyfCl38yeed6wSMvDni6vzCphzuykRSmsKYKO
-ARzWrF9dnk2r4QDDJW/3xrA++iTmz85W4cPAp0UqxgUlx03R4MSJVXba0xMpBn8v
-ed0ysvKFmr8jhBgTOjnLaMb1A2rpvorZO6aZe9xc9tQ/F3tozhz9Iqoa0Os8hCuu
-iqFUmiQpeDW//fN58ACjlSUTL0vc2yglzxwJ01q9g+RcnhTzY/0Df/KYazYVUDB1
-6+WzaRWCW0v6RlthsYLTgij0Nnb3UNjp5z2RojUTd8JQ4Af7icti70wWN+mxMuXT
-YY24fyYVTdsU1AJSUIT0I4CKEvtb1Bvaa120Qe6f9/52hJAgzJ+znvvs+8zETdbM
-vEAXwbH/9magS/4rzUexzvFbVrtW7BljuAzAJM1urqPOvwZzjHGACIj3bHDDYlp7
-v1ExN+z73nhoUh1g083WCM7Dhp4BV+g/TmHpDRng+PbMZETEyVJSENshjvphVFUb
-zQmyfniER+KqLH0qfIOg5pMquJqZiT3Oh8fAdwIDAQABoxAwDjAMBgNVHRMBAf8E
-AjAAMEEGCSqGSIb3DQEBCjA0oA8wDQYJYIZIAWUDBAIDBQChHDAaBgkqhkiG9w0B
-AQgwDQYJYIZIAWUDBAIDBQCiAwIBQAOCAgEAMfXT7sNCHLM1uhQ/NwZFTU56Zlq0
-SH2QxYKMZoRKMcsWvJrUbDYIRO2zGyTllf0LZ/B5f+BfJBOM3dOwaZyPNF0NWzzH
-D9dO3+qJaM7HrUJ+WDAcGKMEGYjunfx/YtXbyPqeRb8NnQOyYXePK8DaZbTxepEm
-rmSNAcqkyf4ED46bNaJs1CiBsdulTpEalvrYGc9oBLlKWAQ+TXvVFBadG7B3SJ1z
-I/hIylrziBUL2Rn5cqVa7RwVylREY6owI1HOl2DR4pXcRL2ZAaZo8kjejbgwlzr2
-KHUfXXrUeDFGZGEno37kT3r+s7cEvL+RpwDx9lSN/tmFb3av27UUbEAq6T2mUGkP
-qZlCt5oZlj0uve8hWmMg4e+ez12WqwZXj3WGY1WbczIGcWxu0mH1EJtTQ/038UPM
-UDxJQN+kJ1qeb9Svsly8Wf4fWs8k9bwDFPBfQGQkCLFM4IyJ6vJGbozSpkput2dg
-jvS6+YyeGKEUV4OFDJW3Tck5eR+II2rf2W182Px3qOV0FOLJ2irmgrOj8FHU3lxy
-XKmmI12Qo0HcYjKo+ie0B+L2VncEsBvLIpJa9NTtgVZqq1A8EgBE0PiA8F7OkCiA
-VT0it8czQ3KFY34YeInrAe+5/T3wlPnk4Ef1nQ0/J5M306hPnxcq3zh5q6JfvyjN
-2K68VcaCJIywVuw=
+MIIE3zCCAsegAwIBAgIDAeJAMA0GCSqGSIb3DQEBCwUAMCkxEDAOBgNVBAoTB2Jl
+ZWxpdmUxFTATBgNVBAMMDGNlcnRfYmVlbGl2ZTAeFw0yNDA2MDQyMDU5NDhaFw00
+NDA2MDQyMDU5NDhaMCkxEDAOBgNVBAoTB2JlZWxpdmUxFTATBgNVBAMMDGNlcnRf
+YmVlbGl2ZTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANOpmWqQydAd
+U2oJcUxAYo3kL+uIoOvkRxudtupZTTN1K5Puc1cdWKhvZ7E/Dow6rCOX+YkGDGpF
+vZP0H1GTzJAwj6p+UVHNhiZKp7O6mq6SLoRxjQcLzCw8rsF6TKI9Ij6oc7k2XuR1
+6qPvLGuSsqaXLG7Vw0zka4euQGL2OytwM3h/QiU/orE/JlvP4ASnzx0lZgYqCEX1
+U85lbUzx+PbAJ4MrrQCtjw9+JA8jOcBnFBlQEFCdasDoNhOTZsJysYW1RH6YDfog
+dHF2T9BMdr07aL6G/dzF+eiXF0ugcL/PuqAIvahGAXcDeXnDX1tH/BONkh9GOjcl
+dD8Vq+H2ZM30AGmHzMtTrppLIN6+oUSaAoehsBhs2CNlLmXQLyILQXlVYOiTcyM8
+w4UbQraJ6DmkcaheKYgjVAMeuIXwFeVxUbAyG9mgqy4pd7RxPxokeBn2qM943p1m
+6MsxTkHjtOzCYaS5eIqOcIaP77AaZDbeONWCe13ig7IplnyMHc7elJ7L45LnSs/y
+BlvbzEpEuNmpv1WxT2GcUVYSp8kDLmnFb68DRy85roGiFojMlT/dk4b8XrxvaUTS
+V7FnIpw90q19kgBs671V/C0uOSGzJB3A9/hdcaj5/h2N3URTxjhpbAWq1uiOmDGJ
+v/wYzKgIqQkU71Leh11aFgG1MCy9it3RAgMBAAGjEDAOMAwGA1UdEwEB/wQCMAAw
+DQYJKoZIhvcNAQELBQADggIBACibpyuoHjaCgcmRLKFTA9u0HoJG29p6PvjBe1mg
+vR2mUN8cwnQxyM5YiiCUyIapyrT3Qq+ynh9fK/6kOuWobvP+TH3WMj3/1l6aPEY6
+ZXHS26ksxfl2j4PS1nGo0uXlm+RzP3qCR1sn/ubL8pXMwv6h/0JXfPP6/vLVWzRO
+Z1Qno3u7/2DSKXW/kAxUHoiLFTtv+bzZ132nhE8xHSFuSgPRZPLsi2dQMZyuvsnH
+Ubven2PdLClcF/J0DLpOJFEyCXpmlLeJW79cM+WgsIzkIS0qsigh9bWxjv+eZt1O
+o2hWrH+u4kS6oVoL5Nw7Y5+kMCqKn90ne7cvMVaChm5ofvcYVwXe+Np7peJwxyvk
+GxYSxZ3y+CwoaGMyeABMIha7GanE6mqgkI4JG/EXE0K3RXvLWOeQ1NOoWOQhb4Ej
+24QsIdeUuV/OhQwAd/ftnVJxuQLtPntfznqYm98UFX9hb9AhdeyoCnGY6NdW3+V9
+TjJQKkUWz4ww6vW7vdyqU+E5HrV/vVZ/4DurGobKbkwKJai91/vRIKZj2ZL9839Q
+UWdS4gQVX0QTPQy0o4wHAVB6aw4rzAT1Vi3gscKHSfI28lxIYGDOAF3MNzbaQRio
+jqAgo3CTNvU9uVhYrQJkcvLM7gpbYxdQ8KMjwUCS+F0tb7+Xr6piwo8PJmZHWGM/
+FS6o
 -----END CERTIFICATE-----";
 
-    let authenticator = Authenticator::new(None, cert).expect("Cannot create the authenticator");
+    let authenticator = Authenticator::new(Some(Algorithm::RS256), cert, "712b8aaffd9c4c71ab7a")
+        .expect("Cannot create the authenticator");
 
     // Inserzione nuovo evento
     let data = AppData {
         counter: Mutex::new(None),
-        mongodb,
+        mongodb: mongodb.into(),
         authenticator,
     };
     let data = Data::new(data);

@@ -18,7 +18,7 @@ async fn insert_new_event(mongodb_collection: &Collection<Event>, mut event: Eve
     mongodb_collection.insert_one(event, None).await
 }
 
-async fn get_events_by_id(mongodb_events_collection: &Collection<Event>, user_id: String) -> HttpResponse {
+async fn get_events_by_id(mongodb_events_collection: &Collection<Event>, _user: &User) -> HttpResponse {
 
     /*let filter = bson::doc! { "id": user_id };
     let cursor = mongodb_events_collection
@@ -51,7 +51,13 @@ async fn modify_event (mongodb_events_collection: &Collection<Event>, event_id: 
 
     // Controllo operazioni
     match res {
-        Ok(_) => HttpResponse::Ok().finish(),
+        Ok(res) => {
+            if res.modified_count > 0 {
+                HttpResponse::Ok().finish()
+            } else {
+                HttpResponse::NotFound().finish()
+            }
+        },
         Err(_) => HttpResponse::InternalServerError().finish(),
     }
 }
@@ -65,73 +71,75 @@ async fn delete_event (mongodb_events_collection: &Collection<Event>, event_id: 
     // Controllo operazioni
     match res {
         // Se a buon fine -> 200 OK
-        Ok(_) => HttpResponse::Ok().finish(),
+        Ok(result) => {
+            if result.deleted_count > 0 {
+                HttpResponse::Ok().finish()
+            } else {
+                HttpResponse::NotFound().finish()
+            }
+        },
         // Se errore durante l'operazione -> 500 Internal Server Error
         Err(_) => HttpResponse::InternalServerError().finish(),
     }
 }
 
 
+pub struct Dao {
+    /// The collection of events of the database.
+    events: Collection<Event>,
+    /// The collection of generic users of the database.
+    users: Collection<User>,
+    /// The collection of authorized users of the database.
+    authorized_users: Collection<User>,
+}
+
 
 // TODO: composition
-pub trait MongodbExtension {
-
-    /// Gets the collection of events from the database.
-    fn events(&self) -> Collection<Event>;
-    
-    /// Gets the collection of generic users from the database.
-    fn users(&self) -> Collection<User>;
-    
-    /// Gets the collection of authorized users from the database.
-    fn authorized_users(&self) -> Collection<User>;
+impl Dao {
 
     // TODO: in my opinion [id] is responsability of the database (DAO).
     // Shouldn't be passed from outside.
     /// Inserts the given [event] into the [events] collection.
-    async fn insert_new_event(&self, event: Event, id: i32) -> mongodb::error::Result<InsertOneResult> {
-        insert_new_event(&self.events(), event, id).await
+    pub async fn insert_new_event(&self, event: Event, id: i32) -> mongodb::error::Result<InsertOneResult> {
+        insert_new_event(&self.events, event, id).await
     }
 
     /// Gets the list of events of competence of a given [user_id].
-    async fn get_events_of_user(&self, user_id: &str) -> HttpResponse {
-        get_events_by_id(&self.events(), user_id.to_string()).await
+    pub async fn get_events_of_user(&self, user: &User) -> HttpResponse {
+        get_events_by_id(&self.events, user).await
     }
 
     /// Updates the [event_id] with the data in [event].
-    async fn modify_event(&self, event_id: u32, event: &Event) -> HttpResponse {
-        modify_event(&self.events(), event_id, event).await
+    pub async fn modify_event(&self, event_id: u32, event: &Event) -> HttpResponse {
+        modify_event(&self.events, event_id, event).await
     }
 
     /// Deletes the event [event_id].
-    async fn delete_event(&self, event_id: u32) -> HttpResponse {
-        delete_event(&self.events(), event_id).await
+    pub async fn delete_event(&self, event_id: u32) -> HttpResponse {
+        delete_event(&self.events, event_id).await
     }
 
     /// Checks if the [user_id] corresponds to an authorized user.
     ///
     /// Further checks can be performed in order to ensure AC policies.
-    async fn is_authorized(&self, user_id: &str) -> mongodb::error::Result<bool> {
+    pub async fn is_authorized(&self, user_id: &str) -> mongodb::error::Result<Option<User>> {
 
         // Controllo esistenza utente nel db
-        let user = self.authorized_users().find_one(doc! { "id": user_id }, None).await?;
+        let user = self.authorized_users.find_one(doc! { "id": user_id }, None).await?;
 
-        Ok(user.is_some())
+        Ok(user)
     }
 }
 
 
-impl MongodbExtension for Database {
+impl From<Database> for Dao {
 
-    fn events(&self) -> Collection<Event> {
-        self.collection("events")
-    }
-
-    fn users(&self) -> Collection<User> {
-        self.collection("users")
-    }
-
-    fn authorized_users(&self) -> Collection<User> {
-        self.collection("authorized_users")
+    fn from(db: Database) -> Self {
+        Self {
+            events: db.collection("events"),
+            users: db.collection("users"),
+            authorized_users: db.collection("authorized_users"),
+        }
     }
 
 }

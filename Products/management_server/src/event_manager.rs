@@ -5,11 +5,9 @@
 use std::cmp::max;
 use actix_web::HttpResponse;
 
-use futures::StreamExt;
-use mongodb::bson::doc;
 use mongodb::results::InsertOneResult;
 
-use crate::dao::{objects::Event, MongodbExtension};
+use crate::dao::objects::Event;
 use crate::{event_processor, AppData, locker};
 use crate::dao::objects::User;
 
@@ -37,7 +35,7 @@ pub async fn insert_new_event(data: &AppData, mut event: Event, _user: &User) ->
 pub async fn available_event_id(data: &AppData) -> i32 {
     let mut max_ = -1;
 
-    match data.mongodb.events().find(None, None).await { 
+    match data.mongodb.events.find(None, None).await { 
         Ok(mut cursor) => {
             while let Some(Ok(event)) = cursor.next().await {
                 max_ = max(max_, event.id);
@@ -52,7 +50,7 @@ pub async fn available_event_id(data: &AppData) -> i32 {
 }
 
 // TODO: documentare la funzione
-pub async fn check_user_event(user: &User, event_id: u32) -> bool {
+pub async fn check_user_event(_user: &User, _event_id: u32) -> bool {
     // Funzione non ancora implementata, per eventuali sprint futuri
     true
 }

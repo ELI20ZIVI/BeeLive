@@ -24,10 +24,12 @@ import 'event_manager_page.dart';
 ///
 /// Can be used both for creation and modification.
 class _EventListScreenState extends State<EventListScreen>{
-  @override
-  Widget build(BuildContext context) {
 
-    Client.implementation.getEventList().then((v) {
+
+  @override
+  void initState() {
+
+    Client().getEventList().then((v) {
       var (response, list) = v;
       if (list != null) {
         setState(() {
@@ -39,6 +41,13 @@ class _EventListScreenState extends State<EventListScreen>{
         debugPrint("[${response.statusCode}]\n${response.reasonPhrase}\n${response.body}");
       }
     });
+
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
 
 
     return ListView(children: widget.eventList.map((e) {

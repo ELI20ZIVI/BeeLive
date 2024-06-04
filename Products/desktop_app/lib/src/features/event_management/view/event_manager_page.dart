@@ -485,7 +485,7 @@ class EventManagementActionBar extends StatelessWidget {
     //var specific = _specificCommands.map(converter);
     var specific = [CommandBarButton(
       onPressed: () async {
-        http.Response response = await Client.implementation.submitNewEvent(event);
+        http.Response response = await Client.implementation.modifyExistingEvent(event);
         displayInfoBar(context, builder: (context, close) {
 
           String status = "Errore imprevisto. Codice d'errore: ${response.statusCode}";

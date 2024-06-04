@@ -48,9 +48,7 @@ class ManagementWebServerClient implements Client {
       debugPrint("${response.statusCode}");
       debugPrint("${response.body}");
       var json = jsonDecode(response.body) as Iterable;
-      return (response, List<Event>.from(json.map((e) => {
-        Event.fromJson(e)
-      })));
+      return (response, json.map((e) => Event.fromJson(e)).toList());
     } else {
       return (response, null);
     }
@@ -58,8 +56,9 @@ class ManagementWebServerClient implements Client {
 
   @override
   Future<http.Response> modifyExistingEvent(Event event) async {
+    debugPrint("Modifying");
     debugPrint(json.encode(event.toJson()));
-    var uri = Uri.http(uriPath, "$_modifyEventUriSegment/${event.id}");
+    var uri = Uri.parse(uriPath + _modifyEventUriSegment + "/${event.id}");
     return await http.put(uri, headers: {"Content-Type": "application/json", "Authorization": "Bearer ${getAuthToken()}"}, body: json.encode(event.toJson()));
   }
 

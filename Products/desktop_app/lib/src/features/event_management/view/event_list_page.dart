@@ -2,6 +2,7 @@
 
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:desktop_app/src/client/client.dart';
 import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
@@ -19,6 +20,7 @@ import '../map/tiles.dart';
 import 'category_picker.dart';
 import 'datetime_range_picker.dart';
 import 'event_manager_page.dart';
+import 'no_connection_infobar.dart';
 
 /// The screen for visualizing the management of a single event.
 ///
@@ -29,20 +31,27 @@ class _EventListScreenState extends State<EventListScreen>{
   @override
   void initState() {
 
-    Client().getEventList().then((v) {
-      var (response, list) = v;
-      if (list != null) {
-        setState(() {
-          widget.eventList.clear();
-          widget.eventList.addAll(list);
-        });
-      }
-      else {
-        debugPrint("[${response.statusCode}]\n${response.reasonPhrase}\n${response.body}");
-      }
-    });
+    try {
+      Client().getEventList().then((v) {
+        var (response, list) = v;
+        if (list != null) {
+          setState(() {
+            widget.eventList.clear();
+            widget.eventList.addAll(list);
+          });
+        }
+        else {
+          debugPrint("[${response.statusCode}]\n${response.reasonPhrase}\n${response.body}");
+        }
+      }).catchError((err) {
+        debugPrint(err.toString());
+        displayInfoBar(context, builder: NoConnectionInfobar.noConnectionInfobarBuilder);
+      });
 
-    super.initState();
+      super.initState();
+    } catch (e) {
+      displayInfoBar(context, builder: NoConnectionInfobar.noConnectionInfobarBuilder);
+    }
   }
 
   refreshEventList() {

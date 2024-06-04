@@ -4,6 +4,7 @@
 import 'package:desktop_app/src/client/client.dart';
 import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
 import 'package:desktop_app/src/features/event_management/view/geojson_picker.dart';
+import 'package:desktop_app/src/features/event_management/view/no_connection_infobar.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
@@ -402,7 +403,14 @@ class EventCreationActionBar extends StatelessWidget {
     //var specific = _specificCommands.map(converter);
     var specific = [CommandBarButton(
         onPressed: () async {
-          http.Response response = await Client.implementation.submitNewEvent(event);
+          late http.Response response;
+          try {
+            response = await Client.implementation.submitNewEvent(event);
+          } catch (e) {
+            debugPrint(e.toString());
+            displayInfoBar(context, builder: NoConnectionInfobar.noConnectionInfobarBuilder);
+            return;
+          }
           displayInfoBar(context, builder: (context, close) {
 
             String status = "Errore imprevisto. Codice d'errore: ${response.statusCode}";
@@ -485,7 +493,16 @@ class EventManagementActionBar extends StatelessWidget {
     //var specific = _specificCommands.map(converter);
     var specific = [CommandBarButton(
       onPressed: () async {
-        http.Response response = await Client.implementation.modifyExistingEvent(event);
+
+        late http.Response response;
+        try {
+          response = await Client.implementation
+              .modifyExistingEvent(event);
+        } catch (e) {
+          debugPrint(e.toString());
+          displayInfoBar(context, builder: NoConnectionInfobar.noConnectionInfobarBuilder);
+          return;
+        }
         displayInfoBar(context, builder: (context, close) {
 
           String status = "Errore imprevisto. Codice d'errore: ${response.statusCode}";

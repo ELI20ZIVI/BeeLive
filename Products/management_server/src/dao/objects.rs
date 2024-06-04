@@ -35,7 +35,7 @@ impl NullableDateTimeRange {
 
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug, Clone)]
 #[repr(u8)]
-enum RiskLevel {
+pub enum RiskLevel {
     Info = 0,
     Warning = 50,
     Alert = 100, 
@@ -63,6 +63,7 @@ pub struct PrunedEvent {
     visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
     polygons: FeatureCollection,
+    risk_level: RiskLevel,
 }
 
 impl PrunedEvent {
@@ -79,6 +80,7 @@ impl PrunedEvent {
             "visibility": 1,
             "categories": 1,
             "polygons": 1,
+            "risk_level": 1,
         }
     }
 }

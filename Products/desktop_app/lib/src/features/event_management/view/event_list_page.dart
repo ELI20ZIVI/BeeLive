@@ -45,13 +45,16 @@ class _EventListScreenState extends State<EventListScreen>{
     super.initState();
   }
 
+  refreshEventList() {
+    setState(() {
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
 
-
     return ListView(children: widget.eventList.map((e) {
-      return EventListElementWidget(event: e, homePageState: widget.homePageState, refreshHomeScreen: widget.refreshHomeScreen);
+      return EventListElementWidget(event: e, homePageState: widget.homePageState, refreshHomeScreen: widget.refreshHomeScreen, eventList: widget.eventList, refreshEventList: refreshEventList);
     }).toList());
   }
 }
@@ -74,17 +77,23 @@ class EventListScreen extends StatefulWidget {
 
 class EventListElementWidget extends StatelessWidget {
 
+  final Function() refreshEventList;
+  final List<Event> eventList;
   final Event event;
   final HomePageState homePageState;
   final Function() refreshHomeScreen;
 
   static const SizedBox separator = SizedBox(width: 20);
 
-  const EventListElementWidget({super.key, required this.event, required this.homePageState, required this.refreshHomeScreen});
+  const EventListElementWidget({super.key, required this.event, required this.homePageState, required this.refreshHomeScreen, required this.eventList, required this.refreshEventList});
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+
+    bool visible = true;
+    late Visibility eventlistelementwidget;
+
+    eventlistelementwidget = Visibility(visible: visible, child: ListTile(
         leading: Text("[ID: ${event.id}]"),
         title: Row(children: [
           Text(event.title),
@@ -94,9 +103,17 @@ class EventListElementWidget extends StatelessWidget {
             homePageState.selectedPage = 1; // redirect to event management screen
             refreshHomeScreen();
           }),
-          Button(child: const Icon(FluentIcons.delete), onPressed: () {}),
+          Button(child: const Icon(FluentIcons.delete), onPressed: () async {
+            var response = await Client().deleteExistingEvent(event.id as int);
+            debugPrint("Deleting event ${event.id} [${event.title}]");
+            debugPrint("${response.statusCode}");
+            debugPrint("${response.body}");
+            eventList.remove(event);
+            refreshEventList();
+          }),
     ],),
         onPressed: () {},
-      );
+      ));
+    return eventlistelementwidget;
   }
 }

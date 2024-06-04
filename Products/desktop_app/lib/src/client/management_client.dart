@@ -32,7 +32,7 @@ class ManagementWebServerClient implements Client {
   @override
   Future<http.Response> deleteExistingEvent(int eventId) async {
 
-    var uri = Uri.http(uriPath, "$_deleteEventUriSegment/$eventId");
+    var uri = Uri.parse(uriPath + _deleteEventUriSegment + "/$eventId");
 
     return await http.delete(uri, headers: {"Authorization": "Bearer ${getAuthToken()}"});
   }

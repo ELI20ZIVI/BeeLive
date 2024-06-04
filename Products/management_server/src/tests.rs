@@ -42,13 +42,12 @@ mod tests {
         println!("Connecting to MongoDB...");
         let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@localhost:27017").await.unwrap();
         println!("Connected to MongoDB!");
-        let mongodb_events_collection = client.database("beelive_test").collection::<Event>("events");
-        let mongodb_users_collection = client.database("beelive_test").collection::<User>("users");
+        let database = client.database("beelive_test");
 
-        let data = data {
+        let data = AppData {
             counter: Cell::new(None),
-            mongodb_events_collection,
-            mongodb_users_collection,
+            mongodb: database,
+            authenticator,
         };
 
         // Inizializza l'applicazione per il test

@@ -3,17 +3,14 @@
 // Per ora è solo un pass-through al DAO
 
 use std::cmp::max;
-use std::ptr::null;
 use actix_web::HttpResponse;
 
-use actix_web::web::Data;
 use futures::StreamExt;
-use mongodb::{bson, Collection};
 use mongodb::bson::doc;
 use mongodb::results::InsertOneResult;
 
-use crate::dao::{self, objects::Event};
-use crate::{event_processor, ManagementServerData, EventQueryData, locker};
+use crate::dao::{objects::Event, MongodbExtension};
+use crate::{event_processor, AppData, locker};
 use crate::dao::objects::User;
 
 /// Manages the addition of a new event. Uses the counter stored in 'data' as the event's ID and
@@ -22,8 +19,7 @@ use crate::dao::objects::User;
 /// counter value, which will panic if it fails to do so.
 /// This function will panic if, for some reason, the counter contained in 'data' remains None
 /// after trying to load it.
-pub async fn insert_new_event(mut data: Data<ManagementServerData>, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
-
+pub async fn insert_new_event(mut data: &AppData, mut event: Event) -> (mongodb::error::Result<InsertOneResult>, i32) {
     let _ = event_processor::process(&mut event);
 
     if data.counter.get().is_none() {
@@ -32,17 +28,16 @@ pub async fn insert_new_event(mut data: Data<ManagementServerData>, mut event: E
 
     let current_counter: i32 = data.counter.get().unwrap();
 
-    let result = dao::insert_new_event(data.mongodb_events_collection.clone(), event, data.counter.get().unwrap()).await;
+    let result = data.mongodb.insert_new_event(event, data.counter.get().unwrap()).await;
     data.counter.set(Some(current_counter+1));
 
     (result, data.counter.get().unwrap())
 }
 
-pub async fn load_initial_counter(data: &mut Data<ManagementServerData>) {
-
+pub async fn load_initial_counter(data: &mut &AppData) {
     let mut max_ = -1;
 
-    match data.mongodb_events_collection.find(None, None).await { 
+    match data.mongodb.events().find(None, None).await { 
         Ok(mut cursor) => {
             while let Some(Ok(event)) = cursor.next().await {
                 max_ = max(max_, event.id);
@@ -61,49 +56,27 @@ pub async fn check_user_event(user: User, user_id: &str) -> bool {
     true
 }
 
-pub async fn list_events_by_id(data: Data<ManagementServerData>, page: &Option<u64>, user_id: &str) -> HttpResponse {
-
-    // Controllo numero pagina
-    if page < &Some(1) {
+pub async fn list_events_by_id(data: &AppData, page: &Option<u64>, user_id: &str) -> HttpResponse {
+    // Controllo numero pagina. Non può essere negativo.
+    if page.map(|page| page < 1).unwrap_or(false) {
         return HttpResponse::UnprocessableEntity().finish();
     }
 
-    // Ottenimento collezione eventi e utenti
-    let mongodb_events_collection = data.mongodb_events_collection.clone();
-    let mongodb_users_collection = data.mongodb_users_collection.clone();
-
-    // Ccontrollo esistenza utente nel db
-    let user = mongodb_users_collection.find_one(doc! { "id": user_id.clone() }, None).await.unwrap();
-    if user.is_none() {
-        return HttpResponse::Forbidden().body("User not authorized");
-    }
-
-    dao::get_events_by_id(mongodb_events_collection, user_id.to_string()).await
+    data.mongodb.get_events_of_user(user_id).await
 }
 
+// TODO: documentation... checks what?
+// I think this method should be put into [event_processor].
 pub async fn check_event (event: Event) -> bool {
     return true
 }
 
-pub async fn modify_event(data: Data<ManagementServerData>, event_id: u32, mut event: Event, user_id: &str) -> HttpResponse {
-
-    let mongodb_events_collection = data.mongodb_events_collection.clone();
-    let mongodb_users_collection = data.mongodb_users_collection.clone();
-
-    // Controllo esistenza utente nel db
-    let user = mongodb_users_collection.find_one(doc! { "id": user_id.clone() }, None).await.unwrap();
-    if user.is_none() {
-        return HttpResponse::Forbidden().body("User not authorized");
-    }
-
-    // Check evento di competenza
-    if !check_user_event(user.unwrap(), user_id).await {
-        return HttpResponse::Forbidden().body("User not authorized");
-    }
-
-    // Check evento bloccatoù
+pub async fn modify_event(data: &AppData, event_id: u32, mut event: Event, user_id: &str) -> HttpResponse {
+    // Check evento bloccato
     if !locker::is_resource_locked(event_id).await {
         if !locker::is_resource_locked_by_user(event_id, user_id).await {
+            // TODO: the message is not correct. In this branch the event hasn't been locked by
+            // anyone. No action is taken to avoid anarchy.
             return HttpResponse::ImATeapot().body("Evento bloccato da un altro utente");
         }
     } else {
@@ -121,35 +94,32 @@ pub async fn modify_event(data: Data<ManagementServerData>, event_id: u32, mut e
     }
 
     // Controllo esistenza evento nel db
+    // TODO: DAO!
     let filter = doc! { "id": event_id.clone() };
-    let event = mongodb_events_collection.find_one(filter, None).await.unwrap();
-    if event.is_none() {
-        // Se evento non esistente impossibile la modifica - Restituzione errore 404
-        return HttpResponse::NotFound().finish();
-    }
+    let event = match data.mongodb.events().find_one(filter, None).await.unwrap() {
+        None => return HttpResponse::NotFound().finish(),
+        Some(event) => event,
+    };
 
     // Modifica evento
-    let result = dao::modify_event(mongodb_events_collection, event_id.clone(), event.unwrap()).await;
-    result
+    data.mongodb.modify_event(event_id, &event).await
 }
 
-pub async fn delete_event(data: Data<ManagementServerData>, event_id: u32, user_id: &str) -> HttpResponse {
-
-    // Ccontrollo esistenza utente nel db
-    let user = data.mongodb_users_collection.find_one(doc! { "id": user_id.clone() }, None).await.unwrap();
+pub async fn delete_event(data: &AppData, event_id: u32, user_id: &str) -> HttpResponse {
+    // Controllo esistenza utente nel db
+    let user = data.mongodb.authorized_users().find_one(doc! { "id": user_id.clone() }, None).await.unwrap();
     if user.is_none() {
         return HttpResponse::Forbidden().body("User not authorized");
     }
 
-    let mongodb_events_collection = data.mongodb_events_collection.clone();
-
     // Controllo esistenza evento nel db
+    // TODO: DAO!
     let filter = doc! { "id": event_id.clone() };
-    let event = mongodb_events_collection.find_one(filter.clone(), None).await.unwrap();
-    if event.is_none() {
+    let event = match data.mongodb.events().find_one(filter.clone(), None).await.unwrap() {
         // Se evento non esistente impossibile la modifica - Restituzione errore 404
-        return HttpResponse::NotFound().body("Evento non trovato all'interno del database");
-    }
+        None => return HttpResponse::NotFound().body("Evento non trovato all'interno del database"),
+        Some(event) => event,
+    };
 
     // Check evento di competenza
     if !check_user_event(user.unwrap(), user_id).await {
@@ -165,5 +135,5 @@ pub async fn delete_event(data: Data<ManagementServerData>, event_id: u32, user_
         return HttpResponse::Locked().body("Evento bloccato da altro utente");
     }
 
-    dao::delete_event(mongodb_events_collection, event_id.clone()).await
+    data.mongodb.delete_event(event_id).await
 }

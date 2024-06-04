@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:mobile_app/authenticator/errors.dart';
 import 'package:mobile_app/dtos/event.dart';
 
 export 'client/dummy_client.dart';

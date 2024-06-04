@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:io';
 
@@ -6,7 +5,7 @@ import 'package:mobile_app/client.dart';
 import 'package:mobile_app/dtos/event.dart';
 import 'package:mobile_app/dtos/nullable_datetime_range.dart';
 import 'package:mobile_app/dtos/risk_level.dart';
-import 'package:mobile_app/errors.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 
 class DummyClient implements Client {
 

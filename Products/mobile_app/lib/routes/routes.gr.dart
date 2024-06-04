@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
+import 'package:mobile_app/dtos/event.dart' as _i5;
 import 'package:mobile_app/events/view/details_page.dart' as _i1;
 import 'package:mobile_app/events/view/home_page.dart' as _i2;
 
@@ -42,7 +43,7 @@ abstract class $BeeLiveRouter extends _i3.RootStackRouter {
 class DetailsRoute extends _i3.PageRouteInfo<DetailsRouteArgs> {
   DetailsRoute({
     _i4.Key? key,
-    required int eventId,
+    required _i5.EventId eventId,
     List<_i3.PageRouteInfo>? children,
   }) : super(
           DetailsRoute.name,
@@ -67,7 +68,7 @@ class DetailsRouteArgs {
 
   final _i4.Key? key;
 
-  final int eventId;
+  final _i5.EventId eventId;
 
   @override
   String toString() {

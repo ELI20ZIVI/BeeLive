@@ -36,7 +36,6 @@ struct AppData {
 /// Returns the user id if it is authorized.\
 /// Returns an error response status in case of unauthorized access.
 async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb: &Database) -> Result<String, HttpResponse> {
-    return Ok("".to_string());
     let token = auth.token();
 
     let user_id = match authenticator.decode_user_id(token) {

@@ -131,12 +131,14 @@ impl Event {
     }
 }
 
+
+type UserId = String;
+
 // Utente
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct User {
-    pub id: u32,
+    pub id: UserId,
     pub username: String,
-    pub password: String,
     pub email: String,
     pub categories: Vec<u32>,
 }
@@ -144,9 +146,8 @@ pub struct User {
 impl User {
     pub fn test_user() -> User {
         User {
-            id: 0,
+            id: "0",
             username: "test".to_string(),
-            password: "test".to_string(),
             email: "email@email.com".to_string(),
             categories: vec![],
         }

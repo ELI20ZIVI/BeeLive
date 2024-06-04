@@ -128,11 +128,12 @@ class EventListElementWidget extends StatelessWidget {
               case 401:
                 title = "Token invalido";
                 content = "Non è stato fornito un access token valido a questa richiesta. Contattare un amministratore per risolvere il problema.";
-                severity = severity = InfoBarSeverity.error;
+                severity = InfoBarSeverity.error;
                 break;
               case 403:
                 title = "Non autorizzato";
                 content = "Non sei autorizzato ad effettuare questa modifica, oppure questo evento non è di tua competenza.";
+                severity = InfoBarSeverity.error;
                 break;
               case 404:
                 title = "Evento non trovato";

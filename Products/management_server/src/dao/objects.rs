@@ -5,6 +5,7 @@ use geojson::{FeatureCollection, Feature};
 use geojson::Value::Point;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
+use serde_repr::{Serialize_repr, Deserialize_repr};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
@@ -30,6 +31,14 @@ impl NullableDateTimeRange {
     pub fn new(begin : NullableDateTime, end : NullableDateTime) -> NullableDateTimeRange {
         NullableDateTimeRange{begin, end}
     }
+}
+
+#[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug, Clone)]
+#[repr(u8)]
+enum RiskLevel {
+    Info = 0,
+    Warning = 50,
+    Alert = 100, 
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -90,6 +99,7 @@ pub struct Event {
     pub categories: Vec<i32>,
     pub polygons: FeatureCollection,
     pub subevents: Vec<SubEvent>,
+    pub risk_level: RiskLevel,
     #[serde(skip)]
     pub locked_by: Option<i32>,
     #[serde(skip)]
@@ -112,6 +122,7 @@ impl Event {
             locked_by: None,
             polygons: FeatureCollection::from_iter(iter::once(Feature::from(Point(vec![10.0, 6.0])))),
             creator_id: 0,
+            risk_level: RiskLevel::Info,
             subevents: vec![],
             categories: vec![],
         }

@@ -18,12 +18,13 @@ impl Authenticator {
     /// Creates a new authenticator with a predefined signature [algo] and a string pem [cert].
     ///
     /// [algo] defaults to PS512 (RSASSA-PSS + SHA512).
-    pub fn new(algo: Option<Algorithm>, cert: &str) -> Result<Self> {
-        Self {
-           key: DecodingKey::from_rsa_pem(cert.as_bytes())?,
-           // If not provided, PS512 is used.
-           validation: Validation::new(algo.unwrap_or(Algorithm::PS512)),
-        }.into()
+    pub fn new(algo: Option<Algorithm>, cert: &str, client_id: &str) -> Result<Self> {
+        let key = DecodingKey::from_rsa_pem(cert.as_bytes())?;
+        // If not provided, PS512 is used.
+        let mut validation = Validation::new(algo.unwrap_or(Algorithm::PS512));
+        validation.set_audience(&[client_id]);
+
+        Self {key, validation}.into()
     }
 
     /// Creates a new authenticator with a predefined signature [algo] and a pem file [cert].
@@ -31,11 +32,11 @@ impl Authenticator {
     /// [algo] defaults to PS512 (RSASSA-PSS + SHA512).
     ///
     /// Panics if the file is not a valid pem file.
-    pub fn from_file(algo: Option<Algorithm>, cert_file: &mut File) -> Result<Self> {
+    pub fn from_file(algo: Option<Algorithm>, cert_file: &mut File, client_id: &str) -> Result<Self> {
         let mut cert = String::new();
         cert_file.read_to_string(&mut cert).expect("Cannot open the certificate file");
 
-        Self::new(algo, &cert)
+        Self::new(algo, &cert, client_id)
     }
 
     /// Validates and decodes the given [token] extracting the claims.

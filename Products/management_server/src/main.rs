@@ -1,5 +1,5 @@
 
-use std::{fs::File, sync::Mutex};
+use std::{env, fs::File, sync::Mutex};
 
 use actix_web::{middleware::Logger, post, web::{self, Data, Path}, App, HttpResponse, HttpServer, Responder, get, put, delete};
 use actix_web_httpauth::extractors::bearer::BearerAuth;
@@ -151,7 +151,10 @@ async fn main() -> std::io::Result<()> {
     let cert_path = format!("{}/CA/casdoor.pem", base_cert_path);
     let mut cert = File::open(cert_path).expect("Cannot open the CA pem file");
 
-    let authenticator = Authenticator::from_file(Some(Algorithm::RS256), &mut cert, "712b8aaffd9c4c71ab7a")
+    let casdoor_client_id = env::var("BEELIVE_CASDOOR_CLIENT_ID")
+        .expect("Expected BEELIVE_CASDOOR_CLIENT_ID enviroment variable");
+
+    let authenticator = Authenticator::from_file(Some(Algorithm::RS256), &mut cert, &casdoor_client_id)
         .expect("Cannot create the authenticator");
 
     // Inserzione nuovo evento

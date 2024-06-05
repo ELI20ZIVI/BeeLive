@@ -8,51 +8,84 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i2;
-import 'package:flutter/material.dart' as _i3;
-import 'package:mobile_app/events/view/home_page.dart' as _i1;
+import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:flutter/material.dart' as _i4;
+import 'package:mobile_app/dtos/event.dart' as _i5;
+import 'package:mobile_app/events/view/details_page.dart' as _i1;
+import 'package:mobile_app/events/view/home_page.dart' as _i2;
 
-abstract class $BeeLiveRouter extends _i2.RootStackRouter {
+abstract class $BeeLiveRouter extends _i3.RootStackRouter {
   $BeeLiveRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i2.PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
-      return _i2.AutoRoutePage<dynamic>(
+  final Map<String, _i3.PageFactory> pagesMap = {
+    DetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailsRouteArgs>();
+      return _i3.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i1.HomePage(key: args.key),
+        child: _i1.DetailsPage(
+          key: args.key,
+          eventId: args.eventId,
+        ),
       );
-    }
+    },
+    HomeRoute.name: (routeData) {
+      return _i3.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.HomePage(),
+      );
+    },
   };
 }
 
 /// generated route for
-/// [_i1.HomePage]
-class HomeRoute extends _i2.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({
-    _i3.Key? key,
-    List<_i2.PageRouteInfo>? children,
+/// [_i1.DetailsPage]
+class DetailsRoute extends _i3.PageRouteInfo<DetailsRouteArgs> {
+  DetailsRoute({
+    _i4.Key? key,
+    required _i5.EventId eventId,
+    List<_i3.PageRouteInfo>? children,
   }) : super(
+          DetailsRoute.name,
+          args: DetailsRouteArgs(
+            key: key,
+            eventId: eventId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailsRoute';
+
+  static const _i3.PageInfo<DetailsRouteArgs> page =
+      _i3.PageInfo<DetailsRouteArgs>(name);
+}
+
+class DetailsRouteArgs {
+  const DetailsRouteArgs({
+    this.key,
+    required this.eventId,
+  });
+
+  final _i4.Key? key;
+
+  final _i5.EventId eventId;
+
+  @override
+  String toString() {
+    return 'DetailsRouteArgs{key: $key, eventId: $eventId}';
+  }
+}
+
+/// generated route for
+/// [_i2.HomePage]
+class HomeRoute extends _i3.PageRouteInfo<void> {
+  const HomeRoute({List<_i3.PageRouteInfo>? children})
+      : super(
           HomeRoute.name,
-          args: HomeRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
 
-  static const _i2.PageInfo<HomeRouteArgs> page =
-      _i2.PageInfo<HomeRouteArgs>(name);
-}
-
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
-
-  final _i3.Key? key;
-
-  @override
-  String toString() {
-    return 'HomeRouteArgs{key: $key}';
-  }
+  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
 }

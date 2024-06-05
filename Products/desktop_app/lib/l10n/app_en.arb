@@ -11,6 +11,10 @@
   "@eventManagement": {
     "description": "The localized name for the event management screen."
   },
+  "eventCreation": "Create Event",
+  "@eventCreation": {
+    "description": "The localized name for the event creation screen."
+  },
   "showEvents": "Show Events",
   "@showEvents": {
     "description": "The localized name for the event list screen."

@@ -66,6 +66,7 @@ services:
       - "14124:8080"
     environment:
       BEELIVE_MODE: "dev"
+      BEELIVE_CASDOOR_CLIENT_ID: "712b8aaffd9c4c71ab7a"
     volumes:
       - management_server_intermediates:/var/cache/beelive_management/
 

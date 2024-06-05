@@ -2,11 +2,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:mobile_app/authenticator.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:mobile_app/client.dart';
 import 'package:mobile_app/dtos/event.dart';
-import 'package:mobile_app/errors.dart';
-import 'package:result_dart/result_dart.dart';
 
 final class PublicWebServerClient implements Client {
   static final defaultUri = Uri(
@@ -67,6 +65,52 @@ final class PublicWebServerClient implements Client {
           .cast<Map<String, dynamic>>()
           .map<Event>(Event.fromJson)
           .toList(growable: false);
+    } else {
+      throw HttpStatusException(
+        uri,
+        response.statusCode ?? 0,
+        response.statusMessage ?? "Unknown error",
+      );
+    }
+  }
+  
+  /// Fetches the details of a single event.
+  ///
+  /// #### Throws
+  /// Throws [DioException] in case of networking errors.\
+  /// Throws [JsonValidationError] in case of invalid json.\
+  /// Throws [HttpStatusException] in case of status code
+  /// different from [HttpStatus.ok].\
+  /// Throws [TokenRefreshFailureException] in case of errors during
+  /// token refreshing.\
+  /// Throws [AuthenticationNotAskedException].
+  @override
+  Future<Event> getEventDetails(EventId id) async {
+    final uri = this.uri.replace(
+      pathSegments: [..._pathSegments, 'events', id.toString()],
+    );
+
+    // Optional authorization token.
+    String? token = await Authenticator().authorization();
+
+    debugPrint("Authorization: $token");
+
+    // TODO: convert DioException
+    final response = await _client.getUri(
+      uri,
+      options: Options(headers: {
+        if (token != null) "Authorization": token,
+      }),
+    );
+
+    if (response.statusCode == HttpStatus.ok) {
+      final data = response.data;
+
+      if (data is! Map<String, dynamic>) {
+        throw JsonValidationError(uri);
+      }
+
+      return Event.fromJson(data);
     } else {
       throw HttpStatusException(
         uri,

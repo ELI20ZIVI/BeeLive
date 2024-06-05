@@ -1,12 +1,12 @@
 import 'package:auto_route/annotations.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ErrorWidget;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_app/authenticator.dart';
-import 'package:mobile_app/authenticator/errors.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:mobile_app/events/controller/events_controller.dart';
-import 'package:mobile_app/events/view/event_list.dart';
-import 'package:mobile_app/events/view/event_map.dart';
+import 'package:mobile_app/events/view/home/event_list.dart';
+import 'package:mobile_app/events/view/home/event_map.dart';
+import 'package:mobile_app/events/view/home/error_widget.dart';
 
 @RoutePage()
 class HomePage extends ConsumerWidget {
@@ -14,7 +14,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final eventListFuture = ref.watch(EventsController.instance().eventList);
+    final eventListFuture = ref.watch(EventsController.instance().list);
 
     final fab = FloatingActionButton(
       onPressed: () {},
@@ -56,7 +56,7 @@ class HomePage extends ConsumerWidget {
       error: (error, st) {
         if (error is! TokenRefreshFailureException &&
             error is! AuthenticationNotAskedException) {
-          return _Error(error, st);
+          return ErrorWidget(error, st);
         } else {
           _asyncRequestLogin(context, ref);
         }
@@ -76,23 +76,7 @@ class HomePage extends ConsumerWidget {
   void _asyncRequestLogin(final BuildContext context, final WidgetRef ref) {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Authenticator().authenticateIfAppropriate(context);
-      ref.invalidate(EventsController.instance().eventList);
+      ref.invalidate(EventsController.instance().list);
     });
-  }
-}
-
-/// Widget class for visualizing a loading error.
-class _Error extends StatelessWidget {
-  final Object error;
-  final StackTrace stacktrace;
-
-  const _Error(this.error, this.stacktrace);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Text('${error.toString()}\n$stacktrace'),
-    );
   }
 }

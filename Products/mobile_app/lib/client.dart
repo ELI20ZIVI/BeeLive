@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:mobile_app/dtos/event.dart';
-import 'package:result_dart/result_dart.dart';
 
 export 'client/dummy_client.dart';
 export 'client/public_webserver_client.dart';
@@ -34,4 +33,15 @@ abstract interface class Client {
   /// Throws [AuthenticationNotAskedException].
   FutureOr<List<Event>> getEventList();
 
+  /// Fetches the details of a single event.
+  ///
+  /// #### Throws
+  /// Throws [DioException] in case of networking errors.\
+  /// Throws [JsonValidationError] in case of invalid json.\
+  /// Throws [HttpStatusException] in case of status code
+  /// different from [HttpStatus.ok].\
+  /// Throws [TokenRefreshFailureException] in case of errors during
+  /// token refreshing.\
+  /// Throws [AuthenticationNotAskedException].
+  FutureOr<Event> getEventDetails(EventId id);
 }

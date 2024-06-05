@@ -1,10 +1,11 @@
 use std::iter;
-use chrono::{DateTime, Local, Utc};
+use chrono::{DateTime, Utc};
 use chrono::serde::ts_seconds_option;
 use geojson::{FeatureCollection, Feature};
 use geojson::Value::Point;
 use mongodb::bson::{doc, Document};
 use serde::{Serialize, Deserialize};
+use serde_repr::{Serialize_repr, Deserialize_repr};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
@@ -32,6 +33,14 @@ impl NullableDateTimeRange {
     }
 }
 
+#[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug, Clone)]
+#[repr(u8)]
+pub enum RiskLevel {
+    Info = 0,
+    Warning = 50,
+    Alert = 100, 
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SubEvent {
     pub title: String,
@@ -54,6 +63,7 @@ pub struct PrunedEvent {
     visibility: NullableDateTimeRange,
     category_ids: Vec<i32>,
     polygons: FeatureCollection,
+    risk_level: RiskLevel,
 }
 
 impl PrunedEvent {
@@ -70,6 +80,7 @@ impl PrunedEvent {
             "visibility": 1,
             "categories": 1,
             "polygons": 1,
+            "risk_level": 1,
         }
     }
 }
@@ -90,6 +101,7 @@ pub struct Event {
     pub categories: Vec<i32>,
     pub polygons: FeatureCollection,
     pub subevents: Vec<SubEvent>,
+    pub risk_level: RiskLevel,
     #[serde(skip)]
     pub locked_by: Option<i32>,
     #[serde(skip)]
@@ -112,7 +124,31 @@ impl Event {
             locked_by: None,
             polygons: FeatureCollection::from_iter(iter::once(Feature::from(Point(vec![10.0, 6.0])))),
             creator_id: 0,
+            risk_level: RiskLevel::Info,
             subevents: vec![],
+            categories: vec![],
+        }
+    }
+}
+
+
+type UserId = String;
+
+// Utente
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct User {
+    pub id: UserId,
+    pub username: String,
+    pub email: String,
+    pub categories: Vec<u32>,
+}
+
+impl User {
+    pub fn test_user() -> User {
+        User {
+            id: "0".to_owned(),
+            username: "test".to_string(),
+            email: "email@email.com".to_string(),
             categories: vec![],
         }
     }

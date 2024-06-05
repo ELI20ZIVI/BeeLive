@@ -33,16 +33,17 @@ services:
       - ./Mongo/db:/data/db
   # ----------------- Casdoor application configuration ------------------- #
   casdoor:
-    image: casbin/casdoor
     container_name: casdoor
+    build:
+      dockerfile: casdoor.Dockerfile
     ports:
       - '9987:8000'
     environment:
       driverName: sqlite
-      dataSourceName: "file:/var/lib/casdoor/db/casdoor.db?cache=shared"
+      dataSourceName: "file:/var/lib/casdoor/casdoor.db?cache=shared"
       dbName: casdoor
     volumes:
-      - ./casdoor:/var/lib/casdoor/
+      - casdoor:/var/lib/casdoor/
   # ----------------- PublicServer application configuration ------------------- #
   publicserver:
     container_name: public_server

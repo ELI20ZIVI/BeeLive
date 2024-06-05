@@ -1,7 +1,8 @@
 {
   "appName": "BeeLive",
   "settings": "Impostazioni",
-  "eventManagement": "Gestione Evento",
+  "eventManagement": "Modifica Evento",
+  "eventCreation": "Nuovo Evento",
   "showEvents": "Visualizza Eventi",
   "categoriesManagement": "Gestione Categorie",
   "layersManagement": "Gestione Layer"

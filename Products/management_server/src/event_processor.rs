@@ -4,7 +4,7 @@ mod test;
 use std::convert::TryInto;
 use geo::{BooleanOps, Geometry, MultiPolygon};
 use geojson::{FeatureCollection, Feature};
-use crate::dao::objects::{Event};
+use crate::dao::objects::Event;
 use crate::event_processor::errors::Error;
 
 /// Processes an [event] in order to add self-calculated parameters.
@@ -38,6 +38,7 @@ pub fn process(event: &mut Event) -> Result<(), Error> {
     }
 
     // Performs the union of the polygons.
+    
     let polygon = polygons
         .into_iter()
         .fold(MultiPolygon::new(vec![]), |r, p| {
@@ -47,7 +48,12 @@ pub fn process(event: &mut Event) -> Result<(), Error> {
     // TODO: add also the other geometry types.
     let features = vec![Feature::from(geojson::Geometry::from(&polygon))];
 
-    event.polygons = FeatureCollection::from_iter(features.into_iter());
+    //if there are no polygons, then simply create an empty FeatureCollection
+    if !polygon.0.is_empty() {
+        event.polygons = FeatureCollection::from_iter(features.into_iter());
+    } else {
+        event.polygons = FeatureCollection::from_iter(vec![]);
+    }
 
     Ok(())
 }

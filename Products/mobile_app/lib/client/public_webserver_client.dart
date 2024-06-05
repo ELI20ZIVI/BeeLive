@@ -2,10 +2,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:mobile_app/authenticator.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:mobile_app/client.dart';
 import 'package:mobile_app/dtos/event.dart';
-import 'package:mobile_app/errors.dart';
 
 final class PublicWebServerClient implements Client {
   static final defaultUri = Uri(

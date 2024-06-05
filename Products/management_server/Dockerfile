@@ -1,10 +1,14 @@
 FROM rust:latest
 
-WORKDIR /usr/local/src/management_server
+WORKDIR /usr/src/beelive_management
 
 COPY . .
 
-RUN cargo install --path .
+RUN cargo install --path . --target-dir /var/cache/beelive_management
+
+WORKDIR /usr/share/beelive_management
+
+COPY ./assets .
 
 CMD ["management_server"]
 

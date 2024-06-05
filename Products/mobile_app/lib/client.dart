@@ -45,5 +45,4 @@ abstract interface class Client {
   /// token refreshing.\
   /// Throws [AuthenticationNotAskedException].
   FutureOr<Event> getEventDetails(EventId id);
-
 }

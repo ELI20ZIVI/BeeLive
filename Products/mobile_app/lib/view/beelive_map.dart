@@ -55,5 +55,3 @@ const _defaultOptions = MapOptions(
     enableScrollWheel: true,
   ),
 );
-
-

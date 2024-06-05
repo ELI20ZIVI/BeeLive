@@ -1,14 +1,41 @@
-import 'package:desktop_app/src/client/management_client.dart';
-import 'package:desktop_app/src/features/event_management/view/home_page.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:desktop_app/client/management_client.dart';
+import 'package:desktop_app/data_transfer_objects/event.dart';
+import 'package:desktop_app/features/event_management/view/event_list_page.dart';
+import 'package:desktop_app/features/event_management/view/event_manager_page.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:desktop_app/src/client/client.dart';
-import 'package:desktop_app/src/themes/theme.dart';
+import 'package:desktop_app/client/client.dart';
+import 'package:desktop_app/themes/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
+import 'package:shared_preferences/shared_preferences.dart' as sp;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // The URI of the web server.
+  //final mwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 14124);
+  final mwsUri = Uri(scheme: "http", host: "localhost", port: 14124);
+  // The casdoor instance is temporary assumed to be on the same host as the public server.
+  final casdoorUri = mwsUri.replace(scheme: "http", port: 9987);
+
   // Overrides the client with the actual web server client.
-  Client.override(ManagementWebServerClient(Uri.parse("http://93.49.96.13:14124/api/v3/insert_new_event")));
+  Client.override(ManagementWebServerClient(mwsUri.toString()));
+  
+  KeyValueStorage.override(
+    SharedPreferences(await sp.SharedPreferences.getInstance()),
+  );
+
+  // TODO: must find a way to hide the secret when it becomes official.
+  final AuthenticationProvider provider =
+      CasdoorAuthenticationProvider.defaultConfig(
+    clientSecret: "8cd8dde871a54de9f5846b1b061e1040c160833f",
+    serverUrl: casdoorUri,
+  );
+
+  // Authenticator done via JWT.
+  Authenticator.override(JwtAuthenticator(provider));
 
   runApp(const ProviderScope(child: BeeLiveDesktop()));
 }
@@ -33,20 +60,30 @@ class BeeLiveDesktop extends StatelessWidget {
 }
 
 /// The BeeLive home page.
+@RoutePage()
 class HomePage extends StatefulWidget {
   final Client client;
 
   HomePage({super.key}) : client = Client();
 
   @override
-  State<StatefulWidget> createState() => _HomePageState();
+  State<StatefulWidget> createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
+
+  refresh() {
+    setState(() {
+
+    });
+  }
 
   /// The home page is has multiple sub pages.\
   /// This is the variable that stores the state.
   var selectedPage = 0;
+
+  /// Variable to store the selected event, to be used for the EventManagement screen when modifying an event. It's initially null due to no event being initially selected
+  Event? selectedEvent;
 
   @override
   Widget build(BuildContext context) {
@@ -77,15 +114,20 @@ class _HomePageState extends State<HomePage> {
       ],
       items: [
         PaneItem(
-          icon: const Icon(FluentIcons.edit),
-          title: Text(localization.eventManagement),
-          body: const EventManagerScreen(),
+          icon: const Icon(FluentIcons.add),
+          title: Text(localization.eventCreation),
+          body: EventManagerScreen(isCreationScreen: true, event: Event.defaultNewEvent(0)),
         ),
         PaneItem(
-          enabled: false,
+          enabled: selectedEvent != null,
+          icon: const Icon(FluentIcons.edit),
+          title: Text(localization.eventManagement),
+          body: (selectedEvent != null) ? EventManagerScreen(isCreationScreen: false, event: selectedEvent!) : const Text("You shouldn't be able to read this text. Please contact a system administrator."),
+        ),
+        PaneItem(
           icon: const Icon(FluentIcons.eye_shadow),
           title: Text(localization.showEvents),
-          body: const SizedBox.shrink(),
+          body: EventListScreen(homePageState: this, refreshHomeScreen: refresh,),
         ),
         PaneItem(
           enabled: false,
@@ -102,7 +144,19 @@ class _HomePageState extends State<HomePage> {
       ],
     );
 
-    return NavigationView(appBar: appBar, pane: pane);
+    final navigationView = NavigationView(appBar: appBar, pane: pane);
+
+    return FutureBuilder(
+      future: Authenticator().authorization(),
+      builder: (context, snap) {
+        if (snap.hasData) {
+          return navigationView;
+        } else {
+          Authenticator().authenticate(context).then((_) => setState(() {}));
+          return const Center(child: ProgressRing(value: null));
+        }
+      },
+    );
   }
 }
 

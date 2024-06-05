@@ -1,5 +1,5 @@
 
-use std::sync::Mutex;
+use std::{fs::File, sync::Mutex};
 
 use actix_web::{middleware::Logger, post, web::{self, Data, Path}, App, HttpResponse, HttpServer, Responder, get, put, delete};
 use actix_web_httpauth::extractors::bearer::BearerAuth;
@@ -142,39 +142,16 @@ async fn main() -> std::io::Result<()> {
     println!("Connected to MongoDB!");
 
     let mongodb = client.database("beelive_develop");
+    
+    #[cfg(debug_assertions)]
+    let base_cert_path = "assets";
+    #[cfg(not(debug_assertions))]
+    let base_cert_path = "/usr/share/beelive_management";
 
-    // TODO: read from file
-    let cert = "-----BEGIN CERTIFICATE-----
-MIIE3zCCAsegAwIBAgIDAeJAMA0GCSqGSIb3DQEBCwUAMCkxEDAOBgNVBAoTB2Jl
-ZWxpdmUxFTATBgNVBAMMDGNlcnRfYmVlbGl2ZTAeFw0yNDA2MDQyMDU5NDhaFw00
-NDA2MDQyMDU5NDhaMCkxEDAOBgNVBAoTB2JlZWxpdmUxFTATBgNVBAMMDGNlcnRf
-YmVlbGl2ZTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANOpmWqQydAd
-U2oJcUxAYo3kL+uIoOvkRxudtupZTTN1K5Puc1cdWKhvZ7E/Dow6rCOX+YkGDGpF
-vZP0H1GTzJAwj6p+UVHNhiZKp7O6mq6SLoRxjQcLzCw8rsF6TKI9Ij6oc7k2XuR1
-6qPvLGuSsqaXLG7Vw0zka4euQGL2OytwM3h/QiU/orE/JlvP4ASnzx0lZgYqCEX1
-U85lbUzx+PbAJ4MrrQCtjw9+JA8jOcBnFBlQEFCdasDoNhOTZsJysYW1RH6YDfog
-dHF2T9BMdr07aL6G/dzF+eiXF0ugcL/PuqAIvahGAXcDeXnDX1tH/BONkh9GOjcl
-dD8Vq+H2ZM30AGmHzMtTrppLIN6+oUSaAoehsBhs2CNlLmXQLyILQXlVYOiTcyM8
-w4UbQraJ6DmkcaheKYgjVAMeuIXwFeVxUbAyG9mgqy4pd7RxPxokeBn2qM943p1m
-6MsxTkHjtOzCYaS5eIqOcIaP77AaZDbeONWCe13ig7IplnyMHc7elJ7L45LnSs/y
-BlvbzEpEuNmpv1WxT2GcUVYSp8kDLmnFb68DRy85roGiFojMlT/dk4b8XrxvaUTS
-V7FnIpw90q19kgBs671V/C0uOSGzJB3A9/hdcaj5/h2N3URTxjhpbAWq1uiOmDGJ
-v/wYzKgIqQkU71Leh11aFgG1MCy9it3RAgMBAAGjEDAOMAwGA1UdEwEB/wQCMAAw
-DQYJKoZIhvcNAQELBQADggIBACibpyuoHjaCgcmRLKFTA9u0HoJG29p6PvjBe1mg
-vR2mUN8cwnQxyM5YiiCUyIapyrT3Qq+ynh9fK/6kOuWobvP+TH3WMj3/1l6aPEY6
-ZXHS26ksxfl2j4PS1nGo0uXlm+RzP3qCR1sn/ubL8pXMwv6h/0JXfPP6/vLVWzRO
-Z1Qno3u7/2DSKXW/kAxUHoiLFTtv+bzZ132nhE8xHSFuSgPRZPLsi2dQMZyuvsnH
-Ubven2PdLClcF/J0DLpOJFEyCXpmlLeJW79cM+WgsIzkIS0qsigh9bWxjv+eZt1O
-o2hWrH+u4kS6oVoL5Nw7Y5+kMCqKn90ne7cvMVaChm5ofvcYVwXe+Np7peJwxyvk
-GxYSxZ3y+CwoaGMyeABMIha7GanE6mqgkI4JG/EXE0K3RXvLWOeQ1NOoWOQhb4Ej
-24QsIdeUuV/OhQwAd/ftnVJxuQLtPntfznqYm98UFX9hb9AhdeyoCnGY6NdW3+V9
-TjJQKkUWz4ww6vW7vdyqU+E5HrV/vVZ/4DurGobKbkwKJai91/vRIKZj2ZL9839Q
-UWdS4gQVX0QTPQy0o4wHAVB6aw4rzAT1Vi3gscKHSfI28lxIYGDOAF3MNzbaQRio
-jqAgo3CTNvU9uVhYrQJkcvLM7gpbYxdQ8KMjwUCS+F0tb7+Xr6piwo8PJmZHWGM/
-FS6o
------END CERTIFICATE-----";
+    let cert_path = format!("{}/CA/casdoor.pem", base_cert_path);
+    let mut cert = File::open(cert_path).expect("Cannot open the CA pem file");
 
-    let authenticator = Authenticator::new(Some(Algorithm::RS256), cert, "712b8aaffd9c4c71ab7a")
+    let authenticator = Authenticator::from_file(Some(Algorithm::RS256), &mut cert, "712b8aaffd9c4c71ab7a")
         .expect("Cannot create the authenticator");
 
     // Inserzione nuovo evento

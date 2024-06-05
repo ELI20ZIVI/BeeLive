@@ -146,7 +146,7 @@ pub struct User {
 impl User {
     pub fn test_user() -> User {
         User {
-            id: "0",
+            id: "0".to_owned(),
             username: "test".to_string(),
             email: "email@email.com".to_string(),
             categories: vec![],

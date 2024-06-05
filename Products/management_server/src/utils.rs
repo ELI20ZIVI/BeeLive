@@ -1,14 +1,13 @@
 use std::sync::Mutex;
-use std::ops::AddAssign;
 use num::Integer;
 
 
 
-struct AutoincrementCounter<T: num::Integer + std::ops::AddAssign<T>> {
+pub struct AutoincrementCounter<T> {
     value: Mutex<T>,
 }
 
-impl<T: Integer + AddAssign<T> + Copy> AutoincrementCounter<T> {
+impl<T: Integer + Copy> AutoincrementCounter<T> {
     
     pub fn post_increment(&self) -> T {
         let mut lock = self.value.lock().expect("Cannot lock a poisoned mutex");
@@ -24,6 +23,14 @@ impl<T: Integer + AddAssign<T> + Copy> AutoincrementCounter<T> {
         lock.inc();
 
         *lock
+    }
+
+}
+
+impl<T> From<T> for AutoincrementCounter<T> {
+
+    fn from(value: T) -> Self {
+        Self{value: value.into()}
     }
 
 }

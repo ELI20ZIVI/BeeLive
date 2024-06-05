@@ -2,7 +2,6 @@
 // processamento deglie venti che passano tra i due.
 // Per ora è solo un pass-through al DAO
 
-use std::cmp::max;
 use actix_web::HttpResponse;
 
 use mongodb::results::InsertOneResult;
@@ -23,7 +22,7 @@ pub async fn insert_new_event(data: &AppData, mut event: Event, _user: &User) ->
     let mut counter = data.counter.lock().expect("Error: poisoned counter mutex");
     let available_id = match *counter {
         Some(c) => c,
-        None => available_event_id(data).await,
+        None => data.mongodb.available_event_id().await,
     };
 
     let result = data.mongodb.insert_new_event(event, available_id).await;
@@ -32,22 +31,6 @@ pub async fn insert_new_event(data: &AppData, mut event: Event, _user: &User) ->
     (result, available_id)
 }
 
-pub async fn available_event_id(data: &AppData) -> i32 {
-    let mut max_ = -1;
-
-    match data.mongodb.events.find(None, None).await { 
-        Ok(mut cursor) => {
-            while let Some(Ok(event)) = cursor.next().await {
-                max_ = max(max_, event.id);
-            }
-        }
-        Err(error) => {
-            panic!("There was an error while trying to load the initial ID counter's value. Error: {}", error);
-        }
-    }
-
-    max_ + 1
-}
 
 // TODO: documentare la funzione
 pub async fn check_user_event(_user: &User, _event_id: u32) -> bool {

@@ -3,6 +3,7 @@ use futures::StreamExt;
 use mongodb::{results::InsertOneResult, Collection, Database};
 use mongodb::bson::doc;
 use crate::dao::objects::*;
+use std::cmp::max;
 
 pub mod objects;
 
@@ -128,6 +129,19 @@ impl Dao {
         let user = self.authorized_users.find_one(doc! { "id": user_id }, None).await?;
 
         Ok(user)
+    }
+
+    pub async fn available_event_id(&self) -> i32 {
+        match self.events.find(None, None).await { 
+            Ok(cursor) => {
+                cursor
+                    .filter_map(|e| async {e.ok().map(|e| e.id)})
+                    .fold(-1, |res, id| async move {max(res, id)}).await
+            }
+            Err(error) => {
+                panic!("There was an error while trying to load the initial ID counter's value. Error: {}", error);
+            }
+        }
     }
 }
 

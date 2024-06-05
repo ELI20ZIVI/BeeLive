@@ -40,4 +40,10 @@ abstract interface class Authenticator {
   /// Throws [AuthenticationNotAskedException].
   Future<String?> authorization();
 
+  /// Invalidates the token.
+  ///
+  /// This method should be called in case of 401 and 403 errors
+  /// in order to force re-authentication of the user.
+  Future<void> invalidateToken();
+
 }

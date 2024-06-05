@@ -115,6 +115,16 @@ class TokensManager {
     }
     return result;
   }
+  
+
+  /// Invalidates the token.
+  ///
+  /// This method should be called in case of 401 and 403 errors
+  /// in order to force re-authentication of the user.
+  Future<void> invalidate() async {
+    await _store(null);
+  }
+
 }
 
 abstract base class Tokens {

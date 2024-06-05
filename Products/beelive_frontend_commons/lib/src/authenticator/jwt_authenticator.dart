@@ -64,4 +64,13 @@ final class JwtAuthenticator implements Authenticator {
 
     return "${tokens.tokenType} ${tokens.accessToken}";
   }
+  
+
+  /// Invalidates the token.
+  ///
+  /// This method should be called in case of 401 and 403 errors
+  /// in order to force re-authentication of the user.
+  Future<void> invalidateToken() {
+    return _tokensManager.invalidate();
+  }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:desktop_app/client/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +27,7 @@ class ManagementWebServerClient implements Client {
     debugPrint(json.encode(event.toJson()));
     var uri = Uri.parse(uriPath + _submitEventUriSegment);
 
-    return await http.post(uri, headers: {"Content-Type": "application/json", "Authorization": "Bearer ${getAuthToken()}"}, body: json.encode(event.toJson()));
+    return await http.post(uri, headers: {"Content-Type": "application/json", "Authorization": await getAuthToken()}, body: json.encode(event.toJson()));
   }
 
   @override
@@ -34,7 +35,7 @@ class ManagementWebServerClient implements Client {
 
     var uri = Uri.parse(uriPath + _deleteEventUriSegment + "/$eventId");
 
-    return await http.delete(uri, headers: {"Authorization": "Bearer ${getAuthToken()}"});
+    return await http.delete(uri, headers: {"Authorization": await getAuthToken()});
   }
 
   @override
@@ -42,7 +43,7 @@ class ManagementWebServerClient implements Client {
 
     var uri = Uri.parse(uriPath + _getEventListUriSegment);
 
-    var response = await http.get(uri, headers: {"Authorization": "Bearer ${getAuthToken()}",} );
+    var response = await http.get(uri, headers: {"Authorization": await getAuthToken(),} );
 
     if (response.statusCode == 200) {
       debugPrint("${response.statusCode}");
@@ -59,11 +60,15 @@ class ManagementWebServerClient implements Client {
     debugPrint("Modifying");
     debugPrint(json.encode(event.toJson()));
     var uri = Uri.parse(uriPath + _modifyEventUriSegment + "/${event.id}");
-    return await http.put(uri, headers: {"Content-Type": "application/json", "Authorization": "Bearer ${getAuthToken()}"}, body: json.encode(event.toJson()));
+    return await http.put(
+      uri,
+      headers: {"Content-Type": "application/json", "Authorization": await getAuthToken()},
+      body: json.encode(event.toJson()),
+    );
   }
 
-  String getAuthToken() {
-    return "asdfasdf";
+  Future<String> getAuthToken() {
+    return Authenticator().authorization().then((str) => str ?? "");
   }
 
 

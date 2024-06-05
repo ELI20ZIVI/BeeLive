@@ -16,12 +16,13 @@ void main() async {
   
   // The URI of the web server.
   //final mwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 14124);
-  final mwsUri = Uri(scheme: "http", host: "localhost", port: 14124);
+  //final mwsUri = Uri(scheme: "http", host: "localhost", port: 14124);
+  final mwsUri = Uri(scheme: "http", host: "localhost", port: 8080, pathSegments: ["api", "v3"]);
   // The casdoor instance is temporary assumed to be on the same host as the public server.
-  final casdoorUri = mwsUri.replace(scheme: "http", port: 9987);
+  final casdoorUri = mwsUri.replace(scheme: "http", port: 9987, pathSegments: null);
 
   // Overrides the client with the actual web server client.
-  Client.override(ManagementWebServerClient(mwsUri.toString()));
+  Client.override(ManagementWebServerClient("$mwsUri/"));
   
   KeyValueStorage.override(
     SharedPreferences(await sp.SharedPreferences.getInstance()),

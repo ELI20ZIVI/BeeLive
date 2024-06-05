@@ -148,9 +148,15 @@ class HomePageState extends State<HomePage> {
 
     return FutureBuilder(
       future: Authenticator().authorization(),
+      initialData: "",
       builder: (context, snap) {
+        debugPrint(snap.data);
         if (snap.hasData) {
-          return navigationView;
+          if (snap.data?.isEmpty ?? true) {
+            return const Center(child: ProgressRing(value: null));
+          } else {
+            return navigationView;
+          }
         } else {
           Authenticator().authenticate(context).then((_) => setState(() {}));
           return const Center(child: ProgressRing(value: null));

@@ -51,6 +51,8 @@ final class JwtAuthenticator implements Authenticator {
   Future<String?> authorization() async {
     var tokens = await _tokensManager.tokens;
 
+    debugPrint("got tokens: $tokens");
+
     if (tokens == null) {
       final code = _authenticationManager.code();
       if (code == null) {

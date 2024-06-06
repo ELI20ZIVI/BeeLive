@@ -59,6 +59,8 @@ class TokensManager {
     // Tries to retrieve it from shared preferences.
     var tokens = await _load;
 
+    debugPrint("loaded token: $tokens");
+
     // Cannot do nothing without a previous token.
     if (tokens == null) return null;
 
@@ -94,6 +96,7 @@ class TokensManager {
   Future<Tokens?> _refreshIfExpired(final Tokens tokens) async {
     Tokens? result = tokens;
     if (_provider.isTokenExpired(tokens.accessToken)) {
+      debugPrint("Expired token.");
       try {
         result = await _provider.refreshToken(
           tokens.refreshToken,
@@ -112,6 +115,16 @@ class TokensManager {
     }
     return result;
   }
+  
+
+  /// Invalidates the token.
+  ///
+  /// This method should be called in case of 401 and 403 errors
+  /// in order to force re-authentication of the user.
+  Future<void> invalidate() async {
+    await _store(null);
+  }
+
 }
 
 abstract base class Tokens {

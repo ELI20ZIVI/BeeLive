@@ -51,6 +51,8 @@ final class JwtAuthenticator implements Authenticator {
   Future<String?> authorization() async {
     var tokens = await _tokensManager.tokens;
 
+    debugPrint("got tokens: $tokens");
+
     if (tokens == null) {
       final code = _authenticationManager.code();
       if (code == null) {
@@ -61,5 +63,14 @@ final class JwtAuthenticator implements Authenticator {
     }
 
     return "${tokens.tokenType} ${tokens.accessToken}";
+  }
+  
+
+  /// Invalidates the token.
+  ///
+  /// This method should be called in case of 401 and 403 errors
+  /// in order to force re-authentication of the user.
+  Future<void> invalidateToken() {
+    return _tokensManager.invalidate();
   }
 }

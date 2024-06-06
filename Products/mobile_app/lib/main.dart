@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-
 import 'package:mobile_app/client.dart';
 import 'package:mobile_app/routes/routes.dart';
 import 'package:mobile_app/themes/theme.dart';

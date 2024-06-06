@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:desktop_app/client/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -20,13 +22,29 @@ class ManagementWebServerClient implements Client {
 
   ManagementWebServerClient(this.uriPath);
 
+  
+  /// Invalidates the token when the [res] has status code 401 or 403.
+  ///
+  /// This will force tthe application to request the use to reauthenticate.
+  Future<void> _invalidateTokenOnError(final http.Response res) async {
+    if (res.statusCode == HttpStatus.unauthorized || res.statusCode == HttpStatus.forbidden) {
+      await Authenticator().invalidateToken();
+    }
+  } 
+
   @override
   Future<http.Response> submitNewEvent(Event event) async {
 
     debugPrint(json.encode(event.toJson()));
     var uri = Uri.parse(uriPath + "/$_submitEventUriSegment");
 
-    return await http.post(uri, headers: {"Content-Type": "application/json", "Authorization": "Bearer ${getAuthToken()}"}, body: json.encode(event.toJson()));
+    final response = await http.post(uri, headers: {
+      "Content-Type": "application/json",
+      "Authorization": await getAuthToken(),
+    }, body: json.encode(event.toJson()));
+
+    await _invalidateTokenOnError(response);
+    return response;
   }
 
   @override
@@ -34,7 +52,9 @@ class ManagementWebServerClient implements Client {
 
     var uri = Uri.parse(uriPath + "/$_deleteEventUriSegment/$eventId");
 
-    return await http.delete(uri, headers: {"Authorization": "Bearer ${getAuthToken()}"});
+    final response = await http.delete(uri, headers: {"Authorization": await getAuthToken()});
+    await _invalidateTokenOnError(response);
+    return response;
   }
 
   @override
@@ -43,7 +63,7 @@ class ManagementWebServerClient implements Client {
     var uri = Uri.parse(uriPath + "/$_getEventListUriSegment");
     debugPrint(uri.toString());
 
-    var response = await http.get(uri, headers: {"Authorization": "Bearer ${getAuthToken()}",} );
+    var response = await http.get(uri, headers: {"Authorization": await getAuthToken(),} );
 
     if (response.statusCode == 200) {
       debugPrint("${response.statusCode}");
@@ -51,6 +71,7 @@ class ManagementWebServerClient implements Client {
       var json = jsonDecode(response.body) as Iterable;
       return (response, json.map((e) => Event.fromJson(e)).toList());
     } else {
+      await _invalidateTokenOnError(response);
       return (response, null);
     }
   }
@@ -59,12 +80,21 @@ class ManagementWebServerClient implements Client {
   Future<http.Response> modifyExistingEvent(Event event) async {
     debugPrint("Modifying");
     debugPrint(json.encode(event.toJson()));
-    var uri = Uri.parse(uriPath + "/" + _modifyEventUriSegment + "/${event.id}");
-    return await http.put(uri, headers: {"Content-Type": "application/json", "Authorization": "Bearer ${getAuthToken()}"}, body: json.encode(event.toJson()));
+
+    var uri = Uri.parse(uriPath + _modifyEventUriSegment + "/${event.id}");
+    final response = await http.put(
+      uri,
+      headers: {"Content-Type": "application/json", "Authorization": await getAuthToken()},
+      body: json.encode(event.toJson()),
+    );
+
+    await _invalidateTokenOnError(response);
+
+    return response;
   }
 
-  String getAuthToken() {
-    return "asdfasdf";
+  Future<String> getAuthToken() {
+    return Authenticator().authorization().then((str) => str ?? "");
   }
 
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:desktop_app/client/client.dart';
@@ -26,7 +27,9 @@ class ManagementWebServerClient implements Client {
   ///
   /// This will force tthe application to request the use to reauthenticate.
   Future<void> _invalidateTokenOnError(final http.Response res) async {
-    await Authenticator().invalidateToken();
+    if (res.statusCode == HttpStatus.unauthorized || res.statusCode == HttpStatus.forbidden) {
+      await Authenticator().invalidateToken();
+    }
   } 
 
   @override

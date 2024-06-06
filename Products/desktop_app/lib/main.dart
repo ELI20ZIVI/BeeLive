@@ -15,12 +15,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   // The URI of the web server.
-  //final mwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 14124);
-  final mwsUri = Uri(scheme: "http", host: "localhost", port: 14124);
+  final mwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 14124);
+  //final mwsUri = Uri(scheme: "http", host: "localhost", port: 14124);
   // The casdoor instance is temporary assumed to be on the same host as the public server.
   final casdoorUri = mwsUri.replace(scheme: "http", port: 9987);
 
   // Overrides the client with the actual web server client.
+  //Client.override(ManagementWebServerClient("http://localhost:8080/api/v3/"));
   Client.override(ManagementWebServerClient(mwsUri.toString()));
   
   KeyValueStorage.override(

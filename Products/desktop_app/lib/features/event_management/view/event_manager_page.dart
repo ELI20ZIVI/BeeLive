@@ -1,19 +1,20 @@
 
 
 
-import 'package:desktop_app/client/client.dart';
-import 'package:desktop_app/features/event_management/view/geojson_picker.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 
+import '../../../client/client.dart';
 import '../../../data_transfer_objects/event.dart';
 import '../map/map.dart';
 import '../map/tiles.dart';
 import 'category_picker.dart';
 import 'datetime_range_picker.dart';
+import 'geojson_picker.dart';
+import 'no_connection_infobar.dart';
 
 /// The screen for visualizing the management of a single event.
 ///
@@ -401,7 +402,14 @@ class EventCreationActionBar extends StatelessWidget {
     //var specific = _specificCommands.map(converter);
     var specific = [CommandBarButton(
         onPressed: () async {
-          http.Response response = await Client.implementation.submitNewEvent(event);
+          late http.Response response;
+          try {
+            response = await Client.implementation.submitNewEvent(event);
+          } catch (e) {
+            debugPrint(e.toString());
+            displayInfoBar(context, builder: NoConnectionInfobar.noConnectionInfobarBuilder);
+            return;
+          }
           displayInfoBar(context, builder: (context, close) {
 
             String status = "Errore imprevisto. Codice d'errore: ${response.statusCode}";
@@ -484,7 +492,16 @@ class EventManagementActionBar extends StatelessWidget {
     //var specific = _specificCommands.map(converter);
     var specific = [CommandBarButton(
       onPressed: () async {
-        http.Response response = await Client.implementation.submitNewEvent(event);
+
+        late http.Response response;
+        try {
+          response = await Client.implementation
+              .modifyExistingEvent(event);
+        } catch (e) {
+          debugPrint(e.toString());
+          displayInfoBar(context, builder: NoConnectionInfobar.noConnectionInfobarBuilder);
+          return;
+        }
         displayInfoBar(context, builder: (context, close) {
 
           String status = "Errore imprevisto. Codice d'errore: ${response.statusCode}";
@@ -493,17 +510,37 @@ class EventManagementActionBar extends StatelessWidget {
           InfoBarSeverity severity = InfoBarSeverity.error;
 
           switch (response.statusCode) {
-            case 201:
+            case 200:
               status = "Successo";
-              content = "Evento correttamente inserito nel sistema e pubblicato.";
+              content = "Evento correttamente modificato.";
               severity = InfoBarSeverity.success;
               break;
+            case 401:
+              status = "Errore";
+              content = "Non è stato fornito alcun access token alla richiesta.";
+              severity = InfoBarSeverity.error;
+            case 403:
+              status = "Non autorizzato";
+              content = "Non sei autorizzato ad effettuare questa modifica, oppure questo evento non è di tua competenza.";
+              severity = InfoBarSeverity.error;
+            case 404:
+              status = "Evento non trovato";
+              content = "L'evento che si vuole modificare non è più presente a sistema. Forse è già stato eliminato?";
+              severity = InfoBarSeverity.error;
             case 422:
-              status = "Errore, impossibile elaborare l'evento. [${response.statusCode}]";
+              status = "Modifiche non valide. [${response.statusCode}]";
               content = "I dati inseriti sono corretti, però ci sono dei constraint che non vengono rispettati. Hint: questo errore è solitamente associato ad una data di fine"
                   "che precede una data di inizio.";
               severity = InfoBarSeverity.error;
               break;
+            case 418:
+              status = "Errore, evento non bloccato";
+              content = "Questo evento è modificabile ma non è stato precedentemente bloccato. Contattare un amministratore per risolvere il problema.";
+              severity = InfoBarSeverity.error;
+            case 423:
+              status = "Risorsa attualmente non disponibile";
+              content = "Questo evento è attualmente bloccato da un altro utente autorizzato. Si prega di riprovare più tardi, o contattare un amministratore se il problema persiste.";
+              severity = InfoBarSeverity.info;
             case 400:
               status = "Errore, richiesta malformata. [${response.statusCode}]";
               content = "Il server non ha potuto elaborare la richiesta. Questo non dovrebbe accadere: contatta un amministratore di sistema per informarlo di questo errore.\n"

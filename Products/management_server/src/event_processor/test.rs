@@ -4,7 +4,7 @@ mod tests {
     use chrono::{Local, TimeZone, Utc};
     use geo::polygon;
     use geojson::{Feature, FeatureCollection, Geometry, Value};
-    use crate::dao::objects::{NullableDateTimeRange, SubEvent};
+    use crate::dao::objects::{NullableDateTimeRange, RiskLevel, SubEvent};
     use crate::dao::objects::{Event};
     use crate::event_processor;
 
@@ -16,6 +16,7 @@ mod tests {
             summary: "Divieti di fermata e transito.".to_string(),
             description: String::default(),
             creator_id: 0,
+            risk_level: RiskLevel::Warning,
             polygons: FeatureCollection::from_iter(iter::empty()),
             validity: NullableDateTimeRange::new(
                 Utc.with_ymd_and_hms(2024, 3, 14, 22, 0, 0).single(),

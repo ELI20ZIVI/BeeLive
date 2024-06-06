@@ -80,7 +80,7 @@ async fn delete_event (mongodb_events_collection: &Collection<Event>, event_id: 
             }
         },
         // Se errore durante l'operazione -> 500 Internal Server Error
-        Err(_) => HttpResponse::InternalServerError().finish(),
+        Err(e) => HttpResponse::InternalServerError().body("tikes"),
     }
 }
 

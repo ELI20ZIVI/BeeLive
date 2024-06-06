@@ -1,13 +1,7 @@
 
-<<<<<<< HEAD:Products/desktop_app/lib/src/features/event_management/view/event_list_page.dart
-
-
 import 'dart:async';
 import 'dart:io';
 
-import 'package:desktop_app/src/client/client.dart';
-import 'package:desktop_app/src/data_transfer_objects/risk_level.dart';
-import 'package:desktop_app/src/features/event_management/view/geojson_picker.dart';
 import 'package:desktop_app/client/client.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 

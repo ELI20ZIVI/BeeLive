@@ -24,7 +24,7 @@ class ManagementWebServerClient implements Client {
   Future<http.Response> submitNewEvent(Event event) async {
 
     debugPrint(json.encode(event.toJson()));
-    var uri = Uri.parse(uriPath + _submitEventUriSegment);
+    var uri = Uri.parse(uriPath + "/$_submitEventUriSegment");
 
     return await http.post(uri, headers: {"Content-Type": "application/json", "Authorization": "Bearer ${getAuthToken()}"}, body: json.encode(event.toJson()));
   }
@@ -32,7 +32,7 @@ class ManagementWebServerClient implements Client {
   @override
   Future<http.Response> deleteExistingEvent(int eventId) async {
 
-    var uri = Uri.parse(uriPath + _deleteEventUriSegment + "/$eventId");
+    var uri = Uri.parse(uriPath + "/$_deleteEventUriSegment/$eventId");
 
     return await http.delete(uri, headers: {"Authorization": "Bearer ${getAuthToken()}"});
   }
@@ -40,7 +40,8 @@ class ManagementWebServerClient implements Client {
   @override
   Future<(http.Response, List<Event>?)> getEventList() async {
 
-    var uri = Uri.parse(uriPath + _getEventListUriSegment);
+    var uri = Uri.parse(uriPath + "/$_getEventListUriSegment");
+    debugPrint(uri.toString());
 
     var response = await http.get(uri, headers: {"Authorization": "Bearer ${getAuthToken()}",} );
 
@@ -58,7 +59,7 @@ class ManagementWebServerClient implements Client {
   Future<http.Response> modifyExistingEvent(Event event) async {
     debugPrint("Modifying");
     debugPrint(json.encode(event.toJson()));
-    var uri = Uri.parse(uriPath + _modifyEventUriSegment + "/${event.id}");
+    var uri = Uri.parse(uriPath + "/" + _modifyEventUriSegment + "/${event.id}");
     return await http.put(uri, headers: {"Content-Type": "application/json", "Authorization": "Bearer ${getAuthToken()}"}, body: json.encode(event.toJson()));
   }
 

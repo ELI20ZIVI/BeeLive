@@ -24,8 +24,8 @@ services:
     container_name: mongodb
     hostname: beelive.mongo
     restart: always
-    ports: []
-      #- '27017:27017'
+    ports:
+      - '127.0.0.1:27017:27017'
     environment:
       MONGO_INITDB_ROOT_USERNAME: "BeeLive"
       MONGO_INITDB_ROOT_PASSWORD: "BeeLive"
@@ -33,16 +33,17 @@ services:
       - ./Mongo/db:/data/db
   # ----------------- Casdoor application configuration ------------------- #
   casdoor:
-    image: casbin/casdoor
     container_name: casdoor
+    build:
+      dockerfile: casdoor.Dockerfile
     ports:
       - '9987:8000'
     environment:
       driverName: sqlite
-      dataSourceName: "file:/var/lib/casdoor/db/casdoor.db?cache=shared"
+      dataSourceName: "file:/var/lib/casdoor/casdoor.db?cache=shared"
       dbName: casdoor
     volumes:
-      - ./casdoor:/var/lib/casdoor/
+      - casdoor:/var/lib/casdoor/
   # ----------------- PublicServer application configuration ------------------- #
   publicserver:
     container_name: public_server
@@ -51,6 +52,10 @@ services:
       dockerfile: ../public_server/Dockerfile
     ports:
       - "7839:8080"
+    environment:
+      BEELIVE_MODE: "dev"
+    volumes:
+      - public_server_intermediates:/var/cache/beelive_public/
   # ----------------- ManagementServer application configuration ------------------- #
   managementserver:
     container_name: management_server
@@ -59,8 +64,14 @@ services:
       dockerfile: ../management_server/Dockerfile
     ports:
       - "14124:8080"
+    environment:
+      BEELIVE_MODE: "dev"
+      BEELIVE_CASDOOR_CLIENT_ID: "712b8aaffd9c4c71ab7a"
+    volumes:
+      - management_server_intermediates:/var/cache/beelive_management/
 
 
 volumes:
-  public_server:
+  public_server_intermediates:
+  management_server_intermediates:
   casdoor:

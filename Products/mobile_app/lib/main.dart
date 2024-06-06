@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_app/src/authenticator/authentication_provider/authentication_provider.dart';
-import 'package:mobile_app/src/authenticator/authentication_provider/casdoor_authentication_provider.dart';
-import 'package:mobile_app/src/authenticator/authenticator.dart';
-import 'package:mobile_app/src/authenticator/jwt_authenticator.dart';
-import 'package:mobile_app/src/client/client.dart';
-import 'package:mobile_app/src/client/public_webserver_client.dart';
-import 'package:mobile_app/src/logger/riverpod_logger.dart';
-import 'package:mobile_app/src/routes/routes.dart';
-import 'package:mobile_app/src/storage/key_value_storage.dart';
-import 'package:mobile_app/src/storage/key_value_storage/shared_preferences.dart';
-import 'package:mobile_app/src/themes/theme.dart';
+
+
+import 'package:mobile_app/client.dart';
+import 'package:mobile_app/routes/routes.dart';
+import 'package:mobile_app/themes/theme.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 import 'package:shared_preferences/shared_preferences.dart' as sp;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // The URI of the web server.
-  final pwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 7839);
+  // final pwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 7839);
+  final pwsUri = Uri(scheme: "http", host: "192.168.24.43", port: 7839);
+
   // The casdoor instance is temporary assumed to be on the same host as the public server.
-  final casdoorUri = pwsUri.replace(scheme: "http", port: 8000);
+  final casdoorUri = pwsUri.replace(scheme: "http", port: 9987);
 
   // TODO: must find a way to hide the secret when it becomes official.
   Client.override(PublicWebServerClient(

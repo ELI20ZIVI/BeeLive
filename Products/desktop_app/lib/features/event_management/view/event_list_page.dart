@@ -26,6 +26,24 @@ class _EventListScreenState extends State<EventListScreen>{
     try {
       Client().getEventList().then((v) {
         var (response, list) = v;
+
+        switch (response.statusCode){
+          case 200:
+            break;
+          default:
+            displayInfoBar(context, builder: (context, close) {
+            return InfoBar(
+              title: Text("Error [${response.statusCode}: ${response.reasonPhrase}]"),
+              content: Text("${response.body}"),
+              severity: InfoBarSeverity.error,
+              action: IconButton(
+                icon: const Icon(FluentIcons.clear),
+                onPressed: close,
+              ),
+            );
+          });
+        }
+
         if (list != null) {
           setState(() {
             widget.eventList.clear();

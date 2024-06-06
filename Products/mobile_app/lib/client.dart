@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:mobile_app/dtos/event.dart';
+import 'package:beelive_frontend_commons/beelive_frontend_commons.dart';
 
 export 'client/dummy_client.dart';
 export 'client/public_webserver_client.dart';
@@ -44,5 +45,4 @@ abstract interface class Client {
   /// token refreshing.\
   /// Throws [AuthenticationNotAskedException].
   FutureOr<Event> getEventDetails(EventId id);
-
 }

@@ -5,8 +5,8 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    // TODO: implement
-    return const SizedBox.shrink();
+    // Circular progress bar a null
+    return const CircularProgressIndicator(value: null);
   }
 
 }

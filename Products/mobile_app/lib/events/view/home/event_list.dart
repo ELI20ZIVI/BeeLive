@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_placeholder_textlines/flutter_placeholder_textlines.dart';
 import 'package:mobile_app/dtos/event.dart';
+import 'package:mobile_app/routes/routes.gr.dart';
 
 /// Widget class for visualizing an asynchronous list of events.
 ///
@@ -35,19 +37,24 @@ class _EventHeader extends StatelessWidget {
 
     final Widget title, subtitle;
 
+    final Function()? onTap;
+    
     if (event == null) {
       // Placeholders
       title = const PlaceholderLines(count: 1);
       subtitle = const PlaceholderLines(count: 1);
+      onTap = null;
     } else {
       // Effective values
       title = Text(event.title);
       subtitle = Text(event.summary);
+      onTap = () => context.router.push(DetailsRoute(eventId: event.id));
     }
 
     return ListTile(
       title: title,
       subtitle: subtitle,
+      onTap: onTap,
     );
   }
 }

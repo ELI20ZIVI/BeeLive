@@ -518,6 +518,8 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \end{tabularx}
 \end{table}
 
+\clearpage
+
 \subsubsection{Test cases per il modulo \texttt{management\_server}}
 Il modulo \texttt{management\_server} è il modulo che si occupa di gestire le richieste provenienti dall'applicativo desktop.\\
 Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativi desktop installati sui dispositivi degli utenti autorizzati, per permettere di poter eseguire tutte le operazioni sugli eventi disponibili.
@@ -533,18 +535,20 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        1 & Test \texttt{list\_events} senza token di autenticazione & Richiesta GET a \texttt{/list\_events} senza header di autorizzazione & Applicazione inizializzata & Stato della risposta: 401 Unauthorized & \\
+        1 & Test \texttt{list\_events} con numero di pagina valido & Richiesta GET a \texttt{/list\_events} con token di autenticaione valido di utente autorizzato e parametro di pagina \texttt{?page=} valido & Applicazione inizializzata e con utente autorizzato all'operazione & Stato della risposta: 200 OK e lista di tutti gli eventi disponibili nella pagina richiesta & Si può ottenere una lista vuota di eventi anche se il risultato è 200 OK \\
         \hline
-        2 & Test \texttt{list\_events} con utente non autorizzato & Richiesta GET a \texttt{/list\_events} con token non autorizzato & Applicazione inizializzata & Stato della risposta: 403 Forbidden & \\
+        2 & Test \texttt{list\_events} in mancanza di user-token di autenticazione & Richiesta GET a \texttt{/list\_events} con header di autorizzazione vuoto & Applicazione inizializzata & Stato della risposta: 401 Unauthorized & \\
         \hline
-        3 & Test \texttt{list\_events} con pagina negativa & Richiesta GET a \texttt{/list\_events?page=-2} con token valido & Applicazione inizializzata con un utente autorizzato all'operazione & Stato della risposta: 422 Unprocessable Entity & \\
+        3 & Test \texttt{list\_events} in presenza di user-token di autenticazione relativo ad un utente non autorizzato all'operazione & Richiesta GET a \texttt{/list\_events} con header di autenticazione contenente un user-token relativo ad un utente non autorizzato & Applicazione inizializzata & Stato della risposta: 403 Forbidden & \\
         \hline
-        4 & Test \texttt{list\_events} con pagina valida & Richiesta GET a \texttt{/list\_events?page=2} con token valido & Applicazione inizializzata con utente autorizzato all'operazione & Stato della risposta: 200 OK & \\
+        4 & Test \texttt{list\_events} con numero di pagina non proessabile & Richiesta GET a \texttt{/list\_events} con token di autenticazione valido di utente autorizzato e parametro di pagina \texttt{?page=} non processabile & Applicazione inizializzata e con un utente autorizzato all'operazione & Stato della risposta: 422 Unprocessable Entity & \\
         \hline
     \end{tabularx}
     \caption{Casi di test per la route \texttt{/list\_events}}
     \label{tab:test_cases}
 \end{table}
+
+\clearpage
 
 \begin{itemize}
     \item Test case \texttt{insert\_event}:
@@ -557,19 +561,20 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        1 & Test \texttt{insert\_event} con un evento valido & Richiesta PUT a \texttt{insert\_event} con JSON dell'evento valido e user token di utente autorizzato nel body & Applicazione inizializzata con l'utente autorizzato all'inserzione  & Stato della risposta: 201 Created & \\
+        1 & Test \texttt{insert\_event} di un evento da inserire valido & Richiesta PUT a \texttt{insert\_event} con nel body l'user-token di un utente autorizzato e il JSON dell'evento valido & Applicazione inizializzata e con l'utente autorizzato all'inserzione  & Stato della risposta: 201 Created & \\
         \hline
-        2 & Test \texttt{insert\_event} di un evento con body non processabile & Richiesta PUT a \texttt{insert\_event} con JSON dell'evento non processabile e user token di utente autorizzato nel body & Applicazione inizializzata con l'utente autorizzato all'inserzione & Stato della risposta: 400 Bad Request & \\
+        2 & Test \texttt{insert\_event} di un evento non processabile & Richiesta PUT a \texttt{insert\_event} con nel body l'user-token di un utente autorizzato e JSON dell'evento non processabile & Applicazione inizializzata con l'utente autorizzato all'inserzione & Stato della risposta: 400 Bad Request & \\
         \hline
-        3 & Test \texttt{insert\_event} di un evento senza token di autenticazione & Richiesta PUT a \texttt{insert\_event} senza il user token nel body & Applicazione inizializzata & Stato della risposta: 401 Unauthorized & \\
+        3 & Test \texttt{insert\_event} di un evento in mancanza dell'user-token di autenticazione & Richiesta PUT a \texttt{insert\_event} con header di autenticazione vuoto & Applicazione inizializzata & Stato della risposta: 401 Unauthorized & \\
         \hline
-        4 & Test \texttt{insert\_event} di un evento con utente non autorizzato & Richiesta PUT a \texttt{insert\_event} con l'user token di un utente non autorizzato nel body & Applicazione inizializzata con l'utente non autorizzato all'inserzione & Stato della risposta: 403 Forbidden & \\
+        4 & Test \texttt{insert\_event} di un evento da utente non autorizzato & Richiesta PUT a \texttt{insert\_event} con header di autenticazione contenente l'user-token di un utente non autorizzato & Applicazione inizializzata & Stato della risposta: 403 Forbidden & \\
         \hline
-        5 & Test \texttt{insert\_event} di un evento con body non valido & Richiesta PUT a \texttt{insert\_event} con JSON dell'evento non valido e user token di utente autorizzato nel body & Applicazione inizializzata & Stato della risposta: 422 Unprocessable Entity & \\
-        \Xhline{2pt}
+        5 & Test \texttt{insert\_event} di un evento almeno una carateristica non valida & Richiesta PUT a \texttt{insert\_event} con nel body l'user-token di un utente autorizzato e il JSON dell'evento non valido & Applicazione inizializzata e con l'utente autorizzato all'inserzione & Stato della risposta: 422 Unprocessable Entity & \\
+        \hline
     \end{tabularx}
 \end{table}
 
+\clearpage
 
 \begin{itemize}
     \item Test case \texttt{delete\_event}:
@@ -582,21 +587,34 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        1 & Test \texttt{delete\_event} con evento esistente & Richiesta DELETE a \texttt{/delete\_event/0} con header di autorizzazione valido & Evento con id 0 esiste & Stato della risposta 200 OK & \\
+        1 & Test \texttt{delete\_event} di un evento esistente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenente un user-token di utente autorizzato e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con l'utente autorizzato all'operazione e con l'evento da eliminare presente nel database & Stato della risposta 200 OK & \\
         \hline
-        2 & Test \texttt{delete\_event} senza token di autenticazione & Richiesta DELETE a \texttt{/delete\_event/0} senza header di autorizzazione & Nessuna & Stato della risposta 401 Unauthorized & \\
+        2 & Test \texttt{delete\_event} in mancanza di user-token di autenticazione & Richiesta DELETE a \texttt{/delete\_event} con header di autenticazione vuoto & Applicazione inizializzata & Stato della risposta 401 Unauthorized & \\
         \hline
-        3 & Test \texttt{delete\_event} con utente non autorizzato & Richiesta DELETE a \texttt{/delete\_event/0} con header di autorizzazione non valido & Nessuna & Stato della risposta 403 Forbidden & \\
-        \hline
-        4 & Test \texttt{delete\_event} con evento non esistente & Richiesta DELETE a \texttt{/delete\_event/1} con header di autorizzazione valido & Evento con id 1 non esiste & Stato della risposta 404 Not Found & \\
-        \hline
-        5 & Test \texttt{delete\_event} con evento non bloccato dall'utente & Richiesta DELETE a \texttt{/delete\_event/0} con header di autorizzazione valido & Evento con id 0 non bloccato dall'utente & Stato della risposta 418 I'm a teapot & \\
-        \hline
-        6 & Test \texttt{delete\_event} con evento bloccato da un altro utente & Richiesta DELETE a \texttt{/delete\_event/0} con header di autorizzazione valido & Evento con id 0 bloccato da un altro utente & Stato della risposta 423 Locked & Non implementato \\
+        3 & Test \texttt{delete\_event} da utente non autorizzato & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente non autorizzato all'operazione & Applicazione inizializzata & Stato della risposta 403 Forbidden & \\
         \hline
     \end{tabularx}
 \end{table}
 
+\clearpage
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
+        \Xhline{2pt}
+        4 & Test \texttt{delete\_event} di un evento non esistente nel database & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento che non è presente nel database & Applicazione inizializzata e senza l'evento da eliminare presente nel database & Stato della risposta 404 Not Found & \\
+        \hline
+        5 & Test \texttt{delete\_event} di un evento non bloccato dall'utente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con l'utente abilitato all'operazione e l'evento da eliminare presente nel database & Stato della risposta 418 I'm a teapot & \\
+        \hline
+        6 & Test \texttt{delete\_event} di un evento bloccato da un altro utente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con 2 utenti abilitati all'operazione e l'evento da eliminare bloccato dall'altro utente & Stato della risposta 423 Locked & Non implementato \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\clearpage
 
 \begin{itemize}
     \item Test case modify\_event:
@@ -606,24 +624,39 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X |}
-    \Xhline{2pt}
-    \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\ 
-    \Xhline{2pt}
-    1 & Test \texttt{modify\_event} con evento esistente & Evento valido e user token autorizzato nel body & Evento esistente con ID 0 & 200 OK &  \\ 
-    \hline
-    2 & Test \texttt{modify\_event} senza token di autenticazione & Evento valido nel body & Nessun token fornito & 401 Unauthorized &  \\ 
-    \hline
-    3 & Test \texttt{modify\_event} con utente non autorizzato & Evento valido e user token di utente non autorizzato nel body  & Utente non autorizzato & 403 Forbidden &  \\ 
-    \hline
-    4 & Test \texttt{modify\_event} su evento non esistente & Evento nel body con ID non esistente & Evento con ID 1 non esistente & 404 Not Found &  \\ 
-    \hline
-    5 & Test \texttt{modify\_event} ma in conflitto di modifiche simultanee & Evento valido nel body & Evento già modificato da un'altra sessione & 409 Conflict &  \\ 
-    \Xhline{2pt}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\ 
+        \Xhline{2pt}
+        1 & Test \texttt{modify\_event} di un evento esistente & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento presente nel database e nel body il JSON dell'evento modificato & Applicazione inizializzata, con l'utente abilitato alla modifica e l'evento da modificare presente nel database & Stato della risposta: 200 OK &  \\ 
+        \hline
+        2 & Test \texttt{modify\_event} in mancanza di user-token di autenticazione & Richiesta PUT a \texttt{modfy\_event} con header di autenticazione vuoto & Applicazione inizializzata & Stato della risposta: 401 Unauthorized &  \\ 
+        \hline
+        3 & Test \texttt{modify\_event} da utente non autorizzato & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente non autorizzato alla modifica dell'evento & Applicazione inizializzata & Stato della risposta: 403 Forbidden &  \\ 
+        \hline
     \end{tabularx}
     \caption{Test cases per la funzione modify\_event}
     \label{tab:modify_event_tests}
 \end{table}
-    
+
+\clearpage
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| r | X | X | X | X | X |}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\ 
+        \Xhline{2pt}
+        4 & Test \texttt{modify\_event} di un evento non presente nel database & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento non presente nel database e nel body il JSON dell'evento modificato & Applicazione inizializzata, con l'utente abilitato alla modifica e l'evento da modificare non presente nel database & Stato della risposta: 404 Not Found &  \\ 
+        \hline
+        5 & Test \texttt{modify\_event} con il conflitto di modifiche simultanee & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento presente nel database e nel body il JSON dell'evento modificato & Applicazione inizializzata, con 2 utenti abilitati alla modifica e l'evento da modificare in fase di modifica da un altro utente & Stato della risposta: 409 Conflict &  \\ 
+        \hline
+        \end{tabularx}
+    \caption{Test cases per la funzione modify\_event}
+    \label{tab:modify_event_tests}
+\end{table}
+
+\clearpage
 
 \subsection{Sprint review}
 

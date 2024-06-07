@@ -52,7 +52,7 @@
 Cipriani Pietro, 226959\\
 Orlando Dennis, 227688\\
 Ziviani Elia, 228172}
-\date{22 Aprile 2024}
+\date{11 Giugno 2024}
 
 \makeindex % Indica che vogliamo creare un indice
 
@@ -92,23 +92,23 @@ La repository è accessibile al seguente link: \href{https://github.com/ELI20ZIV
 Il secondo link fornito è quello di Apiary. Apiary è uno strumento che permette di creare e documentare in modo molto accurato e approfontido le API utilizzate nel progetto.\\
 Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link Apiary}\\ \\
 Per eseguire un deploy del progetto sarà necessario installare i due applicativi (Mobile e Desktop). Il link per scaricarli e testarli è \href{github-release-page}.\\
-Gli account da utilizzare per il login sono i seguenti:
+Gli account da utilizzare per il login all'applicativo desktop sono i seguenti:
 \begin{itemize}
     \item Utente Autorizzato: Username: \textit{user1}, Password: \textit{password1}
     \item Utente Amministratore: Username: \textit{user2}, Password: \textit{password2}
-    \item L'utente comune non necessita di credenziali di accesso
 \end{itemize}
+L'utilizzo dell'applicativo mobile non richiede un login, in quanto, siccome le funzionalità di un utente autenticato e un utente non sono le stesse, come gruppo abbiamo deciso di focalizzarci su altre funzionalità che abbiamo ritenuto più importanti.
 
 \clearpage
 
 \section{Sezione generale}
 
 \subsection{Strategia di Branching}
-Anche per questo secondo sprint è stata evitata la strategia di branching "Master only", infatti come descritto nel documento "Deliverable 3", per noi la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti lavoravano conteporaneamente a stesse sezioni del progetto. \\
+Anche per questo secondo sprint è stata evitata la strategia di branching "Master only", infatti come descritto nel documento "Deliverable 3", per noi la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto. \\
 
 \noindent
-Abbiamo quindi deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia una \textit{Feature Branching} con però un branch \texttt{develop}, precedente al branch \texttt{main}, sul quale una volta ritenute soddisfacenti le modifiche e le feature aggiunte, queste vengono integrate.\\
-Quando le features sono tutte integrate nel branch \texttt{develop}, questo viene, una volta testato sia tutto funzionante nei minimi dettagli, integrato nel branch \texttt{main} come operazione di 'release'.\\
+Abbiamo quindi deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia la \textit{Feature Branching} con però un branch \texttt{develop}, precedente al branch \texttt{main}, sul quale, una volta ritenute soddisfacenti le modifiche e le feature aggiunte, queste vengono integrate.\\
+Quando le features sono tutte integrate nel branch \texttt{develop}, questo viene, una volta che tutto è testato nei minimi dettagli, integrato nel branch \texttt{main} come operazione di 'release'.\\
 
 \noindent
 Tramite questo approccio puntiamo ad incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitare la gestione delle diverse attività in corso e mantenere inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
@@ -131,7 +131,7 @@ Una volta che sono considerate funzionanti sono quindi integrate nel branch prin
 Branch dedicato alla preview dell'interfaccia grafica dei due applicativi.\\
 E' stato utilizzato al momento della prima presentazione del progetto per mostrare il lavoro svolto ai committenti e per ricevere feedback su eventuali modifiche da apportare.\\
 Integra dei mockup delle varie interfacce, desktop e mobile, che andranno sviluppate.\\
-Parte della preview è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia,
+Parte della preview relativa all'applicativo desktop è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia.
 
 \subsubsection{\texttt{deliverable}}
 
@@ -140,7 +140,7 @@ Creato per mantenere separata la stesura della documentazione dal codice sorgent
 
 \subsubsection{\texttt{refactoring}}
 
-Questo branch nasce per la necessità di effettuare un refactoring del codice. Prima di eseguire il merge in \texttt{main} spesso risulta necessario effettuare delle modifiche al codice per renderlo più leggibile, mantenibile e performante.\\
+Questo branch nasce per la necessità di effettuare refactoring sul codice prodotto. Prima di eseguire il merge in \texttt{main} spesso risulta necessario effettuare delle modifiche al codice per renderlo più leggibile, mantenibile e performante.\\
 Avendo un ambiente separato si annulla la possibilità di introdurre errori nel codice principale.
 
 \subsubsection{\texttt{deployment}}
@@ -163,11 +163,12 @@ In questo branch vengono sviluppate tutte le componenti che caratterizzano l'int
 
 \subsubsection{\texttt{da\_authn}}
 
-...
+Il branch è dedicato allo sviluppo del modulo di autenticazione dell'applicativo desktop.\\
+Include infatti tutto il codice e la logica necessari all'autenticazione degli utenti autorizzati e dell'utente amministratore all'applicativo desktop.
 
 \subsubsection{\texttt{da\_event\_list}}
 
-Branch di sviluppo della funzionalità di visualizzazione a lista degli eventi a disposizione dell'utente in questione sull'applicativo desktop.\\
+Branch di sviluppo della funzionalità di visualizzazione a lista degli eventi a disposizione dell'utente che ha eseguito il login all'applicativo desktop.\\
 E' integrata tutta la logica di richiesta delle informazioni al server e di visualizzazione delle stesse in modo chiaro e ordinato.
 
 \subsubsection{\texttt{ma\_client}}
@@ -183,11 +184,12 @@ Questo branch è stato integrato in \texttt{ma\_client} in quanto sua dipendenza
 
 \subsubsection{\texttt{ma\_details}}
 
-Branch dedicato allo sviluppo dell'interfaccia di visualizzazione degli eventi e dei rispettivi sottoeventi sull'applicativo mobile.
+Il branch nasce con lo scopo di mantenere il codice dell'interfaccia di visualizzazione degli eventi e dei rispettivi sottoeventi sull'applicativo mobile.
+Branch successivamente integrato in \texttt{ma\_client} in quanto sua dipendenza.
 
 \subsubsection{\texttt{ma\_map}}
 
-Branch utilizzato per sviluppare la libreria che permette di integrare la mappa all'interno dell'applicativo mobile.\\
+Branch utilizzato per sviluppare la libreria che permette di integrare la mappa interattiva all'interno dell'applicativo mobile.\\
 Questa libreria permette di visualizzare in modo chiaro e intuitivo le criticita' presenti in citta' e di visualizzare la posizione degli eventi.
 
 \subsubsection{\texttt{ws-fetch-event}}
@@ -214,15 +216,15 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Priorità}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Visualizzazione\\eventi in città} & \makecell{Da utente, voglio visualizzare la lista degli eventi in città} & \makecell{200} & \makecell{8}\\
+        \makecell{Accesso alle\\criticità e ai\\loro dettagli} & \makecell{Da utente, voglio essere in grado di visualizzare la lista\\delle criticità presenti in città} & \makecell{200} & \makecell{8}\\
         \hline
-        \makecell{Aggiunta eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato, devo essere in grado di aggiungere degli eventi\\in modo da comunicare la loro presenza agli utenti} & \makecell{190} & \makecell{8}\\
+        \makecell{Accesso al\\programma\\desktop} & \makecell{\textbf{NUOVO} Da utente autorizzato, voglio essere in grado di accedere\\all'applicativo desktop in modo da poter operare\\sulle criticità a me associate} & \makecell{190} & \makecell{8}\\
         \hline
-        \makecell{Registrazione e\\accesso all'\\app mobile} & \makecell{Da utente, voglio avere la possibilità di accedere ad una\\visualizzazione e descrizione più dettagliata di un evento in modo da\\conoscere meglio le specifiche di tale evento} & \makecell{180} & \makecell{8}\\
+        \makecell{Aggiunta eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato, devo essere in grado di aggiungere degli eventi\\in modo da comunicare la loro presenza agli utenti} & \makecell{180} & \makecell{8}\\
         \hline
-        \makecell{Visualizzazione\\criticità\\su mappa} & \makecell{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi\\eventi, in modo da capire visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{170} & \makecell{6}\\
+        \makecell{Registrazione e\\accesso all'\\app mobile} & \makecell{Da utente, voglio avere la possibilità di accedere ad una\\visualizzazione e descrizione più dettagliata di un evento in modo da\\conoscere meglio le specifiche di tale evento} & \makecell{170} & \makecell{8}\\
         \hline
-        \makecell{Accesso alle\\criticità e ai\\loro dettagli} & \makecell{Da utente, voglio essere in grado di visualizzare la lista\\delle criticità presenti in città} & \makecell{160} & \makecell{8}\\
+        \makecell{Visualizzazione\\criticità\\su mappa} & \makecell{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi\\eventi, in modo da capire visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{160} & \makecell{6}\\
         \Xhline{2pt}
         \makecell{Impostazione\\categorie\\d'interesse\\per gli eventi} & \makecell{Da utente, voglio essere in grado di impostare le categorie di eventi\\alle quali io sono interessato, in modo che la lista di eventi visibile\\dall'applicazione contenga solamente gli eventi che mi interessano,\\e in modo che io non venga notificato di alcun evento\\che io non ritenga appartenere ad una categoria interessante} & \makecell{100} & \makecell{5}\\
         \hline
@@ -267,7 +269,7 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
 
 
 \subsection{Sprint Planning}
-\textbf{User story}: 
+\textbf{User story}: Da utente, voglio visualizzare la lista degli eventi in città
 
 \noindent\textbf{Product backlog}
 \begin{table}[htbp]
@@ -277,9 +279,9 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Sistemazione\\codici di errore\\del public server} & \makecell{} & \makecell{Nello sprint precedente erano\\stati definiti in modo poco chiaro\\alcuni codici di errore, che quindi\\vanno ridefiniti} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{Sistemazione\\codici di errore\\del public server} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Nello sprint precedente erano\\stati definiti in modo poco chiaro\\alcuni codici di errore, che quindi\\vanno ridefiniti} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{Creazione\\dei test} & \makecell{} & \makecell{Creazione dei test sulla\\base dei nuoi codici di\\errore per verificare l'effettivo\\funzionamento del componente} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{Creazione\\dei test} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Creazione dei test sulla\\base dei nuoi codici di\\errore per verificare l'effettivo\\funzionamento del componente} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
     \end{tabularx}
     \caption{Product backlog}
@@ -296,15 +298,15 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Autogenerazione\\IDs} & \makecell{} & \makecell{Creazione del sottocomponente\\che si occupa di autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{Autogenerazione\\IDs} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di\\autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Sistemazione\\codici di errore\\(Management Server)} & \makecell{} & \makecell{Nello sprint precedente erano\\stati definiti in modo poco chiaro\\alcuni codici di errore, che quindi\\vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{Sistemazione\\codici di errore\\(Management Server)} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modificare/\\creare degli eventi} & \makecell{Nello sprint precedente\\erano stati definiti\\in modo poco chiaro\\alcuni codici di errore,\\che quindi vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Restituzione\\nuovo ID} & \makecell{} & \makecell{Creazione del sottocomponente\\che si occupa di restituire l'ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{Restituzione\\nuovo ID} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di restituire\\l'ID} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Redirecting alla\\pagina degli eventi\\dopo il publish} & \makecell{} & \makecell{Creazione logica di redirecting\\alla pagina degli eventi dopo\\la creazione di un evento nuovo} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{Redirecting alla\\pagina degli eventi\\dopo il publish} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{Creazione logica di\\redirecting alla pagina\\degli eventi dopo la\\creazione di un evento} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{No empty multipolygon\\when processing an\\Event with no SubEvents\\with polygons} & \makecell{} & \makecell{...} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{No empty\\multipolygon when\\processing an Event\\with no SubEvents\\with polygons} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{...} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
     \end{tabularx}
     \caption{Product backlog}
@@ -321,7 +323,7 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Token validation} & \makecell{} & \makecell{Creazione della logica di\\validazione del toke ricevuto} & \makecell{Pietro Cipriani} & \makecell{} \\
+        \makecell{Token validation} & \makecell{Da utente autorizzato,\\voglio essere in grado di\\accedere all'applicativo desktop\\in modo da poter operare\\sulle criticità a me associate} & \makecell{Creazione della logica di\\validazione del toke ricevuto} & \makecell{Pietro Cipriani} & \makecell{} \\
         \hline
         \makecell{User info} & \makecell{} & \makecell{} & \makecell{} & \makecell{} \\
         \hline
@@ -340,9 +342,9 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Fix mobile\\application\\map} & \makecell{} & \makecell{Ridefinizione delle caratteristiche\\del modulo di mappa incluso\\nell'applicativo mobile} & \makecell{} & \makecell{} \\
+        \makecell{Fix mobile\\application\\map} & \makecell{Da utente, voglio visualizzare\\su una cartina le zone colpite\\dai diversi eventi,\\in modo da capire visivamente\\se in una zona che mi interessa\\vi è un evento attivo} & \makecell{Ridefinizione delle caratteristiche\\del modulo di mappa incluso\\nell'applicativo mobile} & \makecell{} & \makecell{} \\
         \hline
-        \makecell{Refactoring} & \makecell{} & \makecell{Controllo, aggiornamento e\\miglioramento del codice} & \makecell{} & \makecell{} \\
+        \makecell{Refactoring} & \makecell{Da utente, voglio visualizzare\\su una cartina le zone colpite\\dai diversi eventi,\\in modo da capire visivamente\\se in una zona che mi interessa\\vi è un evento attivo} & \makecell{Controllo, aggiornamento e\\miglioramento del codice} & \makecell{} & \makecell{} \\
         \hline
     \end{tabularx}
     \caption{Product backlog}
@@ -359,9 +361,9 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Details page} & \makecell{} & \makecell{Ricomposizione della pagina che\\mostra i dettagli di ongi evento\\(Mappa e sottoeventi)} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{Details page} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Ricomposizione della pagina che\\mostra i dettagli di ongi evento\\(Mappa e sottoeventi)} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{Details client} & \makecell{} & \makecell{} & \makecell{Pietro Cipriani} & \makecell{} \\
+        \makecell{Details client} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{} & \makecell{Pietro Cipriani} & \makecell{} \\
         \hline
     \end{tabularx}
     \caption{Product backlog}
@@ -397,13 +399,13 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Redirecting\\alla pagina\\di modifica} & \makecell{} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{Redirecting\\alla pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Endpoint:\\Modifica} & \makecell{} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{Endpoint:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{DAO:\\Modifica} & \makecell{} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{DAO:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{Event Manager:\\Modifica} & \makecell{} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{Event Manager:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
     \end{tabularx}
     \caption{Product backlog}
@@ -420,15 +422,15 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Pulsante di\\eliminazione nella\\pagina di modifica} & \makecell{} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{Pulsante di\\eliminazione\\nella pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Dialog di\\conferma} & \makecell{} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{Dialog di\\conferma} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Endpoint:\\Eliminazione} & \makecell{} & \makecell{Sviluppo dell'endpoint che\\si occupa dell'eliminazione di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{Endpoint:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo dell'endpoint che\\si occupa dell'eliminazione di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{DAO:\\Eliminazione} & \makecell{} & \makecell{Sviluppo del modulo che\\si occupa dell'eliminazione\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{DAO:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa dell'eliminazione\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{Event Manager:\\Eliminazione} & \makecell{} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\eliminazione degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{Event Manager:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\eliminazione degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
     \end{tabularx}
     \caption{Product backlog}

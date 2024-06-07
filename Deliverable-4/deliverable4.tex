@@ -503,7 +503,7 @@ Il modulo \texttt{public\_server} è il modulo che si occupa di gestire le richi
 Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativi mobile installati sui dispositivi, andando quindi a reperire dal database tutti gli eventi che sono richiesti nella richiesta stessa.\\
 
 \begin{itemize}
-    \item Test case :
+    \item Test case: \texttt{/events}
 \end{itemize}
 
 \begin{table}[htbp]
@@ -513,7 +513,96 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-         &  &  &  &  &  \\
+        1 & Test \texttt{events} senza parametro di modalità & Richiesta GET a {/events} & Applicazione inizializzata & Stato della risposta: 200 OK e lista intera di tutti gli eventi publicati sul database & Si può ottenere una lista vuota di eventi anche se il risultato è 200 OK \\
+        \hline
+        2 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{overwrite} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{overwrite} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze locali della richiesta & Non implementato \\
+        \hline
+        3 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{combine} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{combine} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze sia locali che remote della richiesta & Non implementato \\
+        \hline
+        4 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{ifempty} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{ifempty} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze remote della richiesta & Non implementato \\
+        \hline
+        5 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato ad un valore non valido & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato ad un valore non valido & Applicazione inizializzata & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        \hline
+    \end{tabularx}
+\end{table}
+        
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
+        \Xhline{2pt}
+        6 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, coniderare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista di elementi vuota \\
+        \hline
+        7 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        \hline
+        8 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, coniderare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 422 UNPROCESSABLE ENTITY & Non implementato \\
+        \hline
+        9 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subi} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista vuota di elementi \\
+        \hline    
+    \end{tabularx}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
+        \Xhline{2pt}
+        10 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?subi} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        \hline
+        11 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori che non sono presenti nel database & Tichiesta GET a \texttt{/events} con il parametr \texttt{?subi} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, consierare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        \hline
+        12 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista vuota di elementi \\
+        \hline
+        13 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        \hline
+        14 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 422 UNPROCESSABLE ENTITY & Non implementato \\
+        \hline
+    \end{tabularx}
+\end{table}     
+        
+\clearpage
+        
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
+        \Xhline{2pt}
+        15 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista vuota di elementi \\
+        \hline
+        16 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        \hline
+        17 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 422 UNPROCESSABLE ENTITY & Non implementato \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\clearpage
+
+\begin{itemize}
+    \item Test case: \texttt{/events/:id}
+\end{itemize}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
+        \Xhline{2pt}
+        \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
+        \Xhline{2pt}
+        1 & Test \texttt{events/:id} con il parametro \texttt{/:id} impostato come valore di \texttt{ID} di un evento presente nel database & Richiesta GET a \texttt{/events/:id} con il parametro \texttt{:id} impostato ad un valore di un evento presente nel database & Applicazione inizializzata e database con salvato l'evento da ritornare & Stato della risposta: 200 OK e dettagli dell'evento richiesto &  \\
+        \hline
+        2 & Test \texttt{events/:id} con il parametro \texttt{/:id} impostato come valore di \texttt{ID} di non compatibile con le specifiche di sistema & Richiesta GET a \texttt{/events/:id} con il parametro \texttt{:id} impostato ad un valore non compatibile con le specifiche di sistema & Applicazione inizializzata & Stato della risposta: 400 BAD REQUEST &  \\
+        \hline
+        3 & Test \texttt{events/:id} con il parametro \texttt{/:id} impostato come valore di \texttt{ID} di un evento non presente nel database & Richiesta GET a \texttt{/events/:id} con il parametro \texttt{:id} impostato ad un valore di un evento non presente nel database & Applicazione inizializzata e database senza l'evento da ritornare & Stato della risposta: 404 NOT FOUND &  \\
         \hline
     \end{tabularx}
 \end{table}
@@ -577,7 +666,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \clearpage
 
 \begin{itemize}
-    \item Test case \texttt{delete\_event}:
+    \item Test case \texttt{delete\_event/:id}:
 \end{itemize}
 
 \begin{table}[htbp]
@@ -617,7 +706,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \clearpage
 
 \begin{itemize}
-    \item Test case modify\_event:
+    \item Test case \texttt{modify\_event/:id}:
 \end{itemize}
 
 \begin{table}[htbp]

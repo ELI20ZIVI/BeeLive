@@ -16,6 +16,7 @@
 \usepackage{booktabs}
 \usepackage{subcaption}
 \usepackage{pgfplots}
+\usepackage{float}
 \usepgfplotslibrary{dateplot} % Per gestire gli assi con date
 
 % Configure header and footer for the first page
@@ -66,6 +67,23 @@ Ziviani Elia, 228172}
 
 \renewcommand{\contentsname}{Indice}
 \tableofcontents
+
+\clearpage
+
+\section{TODO}
+\begin{itemize}
+    \item Revisione generale del documento
+    \item Goal dello sprint
+    \item BurnDown chart
+    \item TestCases - Revisione con test \texttt{public-server}
+    \item Sprint review
+    \item Product backlog refinement
+    \item Sprint retrospective
+    \item Deploy
+    \item Diagramma deploy finale
+    \item Stack tecnologico usato
+    \item Conclusioni
+\end{itemize}
 
 \clearpage
 
@@ -216,15 +234,17 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Priorità}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Accesso alle\\criticità e ai\\loro dettagli} & \makecell{Da utente, voglio essere in grado di visualizzare la lista\\delle criticità presenti in città} & \makecell{200} & \makecell{8}\\
+        \makecell{Accesso alle\\criticità} & \makecell{Da utente, voglio essere in grado di visualizzare la lista\\degli eventi che ci sono in città} & \makecell{200} & \makecell{8}\\
         \hline
         \makecell{Accesso al\\programma\\desktop} & \makecell{\textbf{NUOVO} Da utente autorizzato, voglio essere in grado di accedere\\all'applicativo desktop in modo da poter operare\\sulle criticità a me associate} & \makecell{190} & \makecell{8}\\
         \hline
         \makecell{Aggiunta eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato, devo essere in grado di aggiungere degli eventi\\in modo da comunicare la loro presenza agli utenti} & \makecell{180} & \makecell{8}\\
         \hline
-        \makecell{Registrazione e\\accesso all'\\app mobile} & \makecell{Da utente, voglio avere la possibilità di accedere ad una\\visualizzazione e descrizione più dettagliata di un evento in modo da\\conoscere meglio le specifiche di tale evento} & \makecell{170} & \makecell{8}\\
+        \makecell{Registrazione e\\accesso all'\\app mobile} & \makecell{Da utente, voglio essere in grado di poter registrare un account\\in modo da poter salvare le mie impostazioni\\e le aree di interesse che ho impostato} & \makecell{170} & \makecell{8}\\
         \hline
         \makecell{Visualizzazione\\criticità\\su mappa} & \makecell{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi\\eventi, in modo da capire visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{160} & \makecell{6}\\
+        \hline
+        \makecell{Visualizzazione\\dei dettagli del\\singolo evento} & \makecell{Da utente, voglio avere } & \makecell{150} & \makecell{6}\\
         \Xhline{2pt}
         \makecell{Impostazione\\categorie\\d'interesse\\per gli eventi} & \makecell{Da utente, voglio essere in grado di impostare le categorie di eventi\\alle quali io sono interessato, in modo che la lista di eventi visibile\\dall'applicazione contenga solamente gli eventi che mi interessano,\\e in modo che io non venga notificato di alcun evento\\che io non ritenga appartenere ad una categoria interessante} & \makecell{100} & \makecell{5}\\
         \hline
@@ -234,13 +254,13 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
         \hline
         \makecell{Modifica\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di modificare degli eventi\\in modo da evitare errori comunicativi} & \makecell{75} & \makecell{2}\\
         \hline
+        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare degli eventi} & \makecell{40} & \makecell{2}\\
+        \hline
         \makecell{Accesso\\account\\utente} & \makecell{Da utente registrato, voglio essere in grado di poter accedere al\\mio account in modo da poter riottenere le aree di interesse e\\le impostazioni che ho precedentemente salvato} & \makecell{70} & \makecell{3}\\
         \hline
         \makecell{Visualizzazione\\eventi\\di categorie\\di interesse} & \makecell{Da utente, voglio essere in grado di visualizzare solo\\eventi di categorie di interesse} & \makecell{60} & \makecell{3}\\
         \hline
         \makecell{Selezione\\percorso} & \makecell{Da utente, voglio essere in grado di selezionare un percorso a partire\\da dei waypoint, per impostare dei percorsi di interesse} & \makecell{40} & \makecell{2}\\
-        \hline
-        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare degli eventi} & \makecell{40} & \makecell{2}\\
         \hline
     \end{tabularx}
     \caption{Product backlog}
@@ -268,172 +288,347 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
 \subsection{Goal dello sprint}
 
 
+
 \subsection{Sprint Planning}
-\textbf{User story}: Da utente, voglio visualizzare la lista degli eventi in città
+Seguono le varie tabelle che riportano i task che ci siamo prefissati di portare a termine durante il secondo sprint.\\
+Abbiamo preferito descrivere i task invece delle user stories in quanto per singola user story vi erano svariati sotto task da completare.\\
+In questo modo i task sono stati divisi in modo più chiaro e preciso, permettendo una migliore gestione del lavoro, una maggiore chiarezza sulle attività da svolgere e una più grande possibilità di descrizione.\\
 
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\noindent\textbf{Attività relative alla user story "Accesso alle criticità e ai loro dettagli"}\\
+Include inoltre la ricostituzione di parti del progetto sviluppate durante il primo sprint che abbiamo deciso di correggere e migliorare.
+\vspace{-0.25cm}
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Sistemazione\\codici di errore\\del public server} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Nello sprint precedente erano\\stati definiti in modo poco chiaro\\alcuni codici di errore, che quindi\\vanno ridefiniti} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{1.\\Sistemazione\\codici di errore\\del public server} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Nello sprint precedente erano\\stati definiti in modo poco chiaro\\alcuni codici di errore, che quindi\\vanno ridefiniti} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{Creazione\\dei test} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Creazione dei test sulla\\base dei nuoi codici di\\errore per verificare l'effettivo\\funzionamento del componente} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{2.\\Creazione\\dei test} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Creazione dei test sulla\\base dei nuoi codici di\\errore per verificare l'effettivo\\funzionamento del componente} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        \hline
+        2. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 \\
+        \hline
+    \end{tabularx}
 \end{table}
 
+\clearpage
 
-\noindent\textbf{User story}: 
-
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\noindent\textbf{Tasks riguardanti la gestione degli eventi sul programma desktop}\\
+Sono incluse anche in questo caso operazioni di ridefinizione di parti del codice sviluppato nel primo sprint che abbiamo deciso di correggere e migliorare.
+\vspace{-0.25cm}
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Autogenerazione\\IDs} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di\\autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Autogenerazione\\IDs} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di\\autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Sistemazione\\codici di errore\\(Management Server)} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modificare/\\creare degli eventi} & \makecell{Nello sprint precedente\\erano stati definiti\\in modo poco chiaro\\alcuni codici di errore,\\che quindi vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Sistemazione\\codici di errore\\(Management Server)} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modificare/\\creare degli eventi} & \makecell{Nello sprint precedente\\erano stati definiti\\in modo poco chiaro\\alcuni codici di errore,\\che quindi vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Restituzione\\nuovo ID} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di restituire\\l'ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{3.\\Restituzione\\nuovo ID} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di restituire\\l'ID} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Redirecting alla\\pagina degli eventi\\dopo il publish} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{Creazione logica di\\redirecting alla pagina\\degli eventi dopo la\\creazione di un evento} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{4.\\Redirecting alla\\pagina degli eventi\\dopo il publish} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{Creazione logica di\\redirecting alla pagina\\degli eventi dopo la\\creazione di un evento} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{No empty\\multipolygon when\\processing an Event\\with no SubEvents\\with polygons} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{...} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{5.\\No empty\\multipolygon when\\processing an Event\\with no SubEvents\\with polygons} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{...} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \hline
+        3. & 26 & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
+        \hline
+        4. & 38 & 39 & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 \\
+        \hline
+        5. & 50 & 51 & 52 & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \hline
+        3. & 26 & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
+        \hline
+        4. & 38 & 39 & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 \\
+        \hline
+        5. & 50 & 51 & 52 & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 \\
+        \hline
+    \end{tabularx}
+\end{table}
+\clearpage
+\noindent\textbf{Attività relative all'accesso utente all'applicativo desktop}
+\vspace{-0.25cm}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
+        \Xhline{2pt}
+        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
+        \Xhline{2pt}
+        \makecell{1.\\Token\\validation} & \makecell{Da utente autorizzato,\\voglio essere in grado di\\accedere all'applicativo desktop\\in modo da poter operare\\sulle criticità a me associate} & \makecell{Creazione della logica di\\validazione del toke ricevuto} & \makecell{Pietro Cipriani} & \makecell{} \\
+        \hline
+        \makecell{2.\\User info} & \makecell{} & \makecell{} & \makecell{} & \makecell{} \\
+        \hline
+    \end{tabularx}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        \hline
+        2. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 \\
+        \hline
+    \end{tabularx}
 \end{table}
 
-
-\noindent\textbf{User story}: 
-
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\noindent\textbf{\\Operazioni di ridefinizione e miglioramento del codice relativo all'applicativo mobile}
+\vspace{-0.25cm}
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Token validation} & \makecell{Da utente autorizzato,\\voglio essere in grado di\\accedere all'applicativo desktop\\in modo da poter operare\\sulle criticità a me associate} & \makecell{Creazione della logica di\\validazione del toke ricevuto} & \makecell{Pietro Cipriani} & \makecell{} \\
+        \makecell{1.\\Fix mobile\\application\\map} & \makecell{Da utente, voglio visualizzare su\\una cartina le zone colpite dai\\diversi eventi, in modo da capire\\visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{Ridefinizione delle\\caratteristiche del modulo di\\mappa incluso nell'\\applicativo mobile} & \makecell{} & \makecell{} \\
         \hline
-        \makecell{User info} & \makecell{} & \makecell{} & \makecell{} & \makecell{} \\
+        \makecell{2.\\Refactoring} & \makecell{Da utente, voglio visualizzare su\\una cartina le zone colpite dai\\diversi eventi, in modo da capire\\visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{Controllo, aggiornamento e\\miglioramento del codice} & \makecell{} & \makecell{} \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        \hline
+        2. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 \\
+        \hline
+    \end{tabularx}
 \end{table}
 
+\clearpage
 
-\noindent\textbf{User story}: 
-
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\noindent\textbf{Tasks riguardanti la gestione visualizzazione dei dettagli degli eventi sull'applicativo mobile}
+\vspace{-0.25cm}
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Fix mobile\\application\\map} & \makecell{Da utente, voglio visualizzare\\su una cartina le zone colpite\\dai diversi eventi,\\in modo da capire visivamente\\se in una zona che mi interessa\\vi è un evento attivo} & \makecell{Ridefinizione delle caratteristiche\\del modulo di mappa incluso\\nell'applicativo mobile} & \makecell{} & \makecell{} \\
+        \makecell{1.\\Details page} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Ricomposizione della pagina che\\mostra i dettagli di ongi evento\\(Mappa e sottoeventi)} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{Refactoring} & \makecell{Da utente, voglio visualizzare\\su una cartina le zone colpite\\dai diversi eventi,\\in modo da capire visivamente\\se in una zona che mi interessa\\vi è un evento attivo} & \makecell{Controllo, aggiornamento e\\miglioramento del codice} & \makecell{} & \makecell{} \\
+        \makecell{2.\\Details client} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{} & \makecell{Pietro Cipriani} & \makecell{} \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        \hline
+        2. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 \\
+        \hline
+    \end{tabularx}
 \end{table}
 
-
-\noindent\textbf{User story}: 
-
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\noindent\textbf{\\Attività di ottenimento e visualizzazione delle criticità sull'applicativo desktop}
+\vspace{-0.25cm}
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Details page} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Ricomposizione della pagina che\\mostra i dettagli di ongi evento\\(Mappa e sottoeventi)} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{1.\\Implement event\\list page} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Details client} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{} & \makecell{Pietro Cipriani} & \makecell{} \\
+        \makecell{2.\\Fetch eventi} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        \hline
+        2. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 \\
+        \hline
+    \end{tabularx}
 \end{table}
 
-
-\noindent\textbf{User story}: 
-
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\clearpage
+\noindent\textbf{Tasks riguardanti la gestione del processo di modifica di un evento sull'applicativo desktop}
+\vspace{-0.25cm}
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Implement event\\list page} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Redirecting\\alla pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Fetch eventi} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Endpoint:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
+        \hline
+        \makecell{3.\\DAO:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        \hline
+        \makecell{4.\\Event Manager:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \hline
+        3. & 26 & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
+        \hline
+        4. & 38 & 39 & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \hline
+        3. & 26 & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
+        \hline
+        4. & 38 & 39 & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 \\
+        \hline
+    \end{tabularx}
 \end{table}
 
+\clearpage
 
-\noindent\textbf{User story}: 
-
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\noindent\textbf{Tasks riguardanti la gestione del processo di eliminazione di un evento sull'applicativo desktop}
+\vspace{-0.25cm}
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{Redirecting\\alla pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Pulsante di\\eliminazione\\nella pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{Endpoint:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{2.\\Dialog di\\conferma} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{Dennis Orlando} & \makecell{} \\
         \hline
-        \makecell{DAO:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{3.\\Endpoint:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo dell'endpoint che\\si occupa dell'eliminazione di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
-        \makecell{Event Manager:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{4.\\DAO:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa dell'eliminazione\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        \hline
+        \makecell{5.\\Event Manager:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\eliminazione degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
 \end{table}
-
-
-\noindent\textbf{User story}: 
-
-\noindent\textbf{Product backlog}
-\begin{table}[htbp]
+\vspace{-0.7cm}
+\begin{table}[H]
     \centering
-    \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
-    \begin{tabularx}{\textwidth}{| X | r | r | r | r |}
+    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r |}
         \Xhline{2pt}
-        \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
+        \textbf{No.} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24} & \textbf{25} & \textbf{26} & \textbf{27} & \textbf{28} \\
         \Xhline{2pt}
-        \makecell{Pulsante di\\eliminazione\\nella pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica} & \makecell{Dennis Orlando} & \makecell{} \\
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
         \hline
-        \makecell{Dialog di\\conferma} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{Dennis Orlando} & \makecell{} \\
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
         \hline
-        \makecell{Endpoint:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo dell'endpoint che\\si occupa dell'eliminazione di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
+        3. & 26 & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
         \hline
-        \makecell{DAO:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa dell'eliminazione\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        4. & 38 & 39 & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 \\
         \hline
-        \makecell{Event Manager:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\eliminazione degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
+        5. & 50 & 51 & 52 & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 \\
+        \Xhline{2pt}
+        \textbf{No.} & \textbf{29} & \textbf{30} & \textbf{31} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+        \Xhline{2pt}
+        1. & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        \hline
+        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\
+        \hline
+        3. & 26 & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
+        \hline
+        4. & 38 & 39 & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 \\
+        \hline
+        5. & 50 & 51 & 52 & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 \\
         \hline
     \end{tabularx}
-    \caption{Product backlog}
 \end{table}
 
 \clearpage
@@ -460,8 +655,8 @@ Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta
             thick
         ] table [col sep=comma, x=date, y=planned] {
             date, planned
-            2024-05-01, 122
-            2024-05-16, 0
+            2024-05-17, 122
+            2024-06-11, 0
         };
         \addlegendentry{Planned}
 
@@ -471,22 +666,32 @@ Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta
             thick
         ] table [col sep=comma, x=date, y=actual] {
             date, actual
-            2024-05-01, 122
-            2024-05-02, 117
-            2024-05-03, 115
-            2024-05-04, 113
-            2024-05-05, 109
-            2024-05-06, 96
-            2024-05-07, 83
-            2024-05-08, 79
-            2024-05-09, 76
-            2024-05-10, 74
-            2024-05-11, 65
-            2024-05-12, 60
-            2024-05-13, 48
-            2024-05-14, 42
-            2024-05-15, 42
-            2024-05-16, 42
+            2024-05-17, 122
+            2024-05-18, 117
+            2024-05-19, 115
+            2024-05-20, 113
+            2024-05-21, 109
+            2024-05-22, 96
+            2024-05-23, 83
+            2024-05-24, 79
+            2024-05-25, 76
+            2024-05-26, 74
+            2024-05-27, 65
+            2024-05-28, 60
+            2024-05-29, 48
+            2024-05-30, 42
+            2024-05-31, 42
+            2024-06-01, 42
+            2024-06-02, 42
+            2024-06-03, 42
+            2024-06-04, 42
+            2024-06-05, 42
+            2024-06-06, 42
+            2024-06-07, 42
+            2024-06-08, 42
+            2024-06-09, 42
+            2024-06-10, 42
+            2024-06-11, 42
         };
         \addlegendentry{Actual}
         \end{axis}
@@ -515,13 +720,13 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         1 & Test \texttt{events} senza parametro di modalità & Richiesta GET a {/events} & Applicazione inizializzata & Stato della risposta: 200 OK e lista intera di tutti gli eventi publicati sul database & Si può ottenere una lista vuota di eventi anche se il risultato è 200 OK \\
         \hline
-        2 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{overwrite} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{overwrite} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze locali della richiesta & Non implementato \\
+        2 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{overwrite} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{overwrite} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze locali della richiesta & Temporaneamente non implementato \\
         \hline
-        3 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{combine} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{combine} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze sia locali che remote della richiesta & Non implementato \\
+        3 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{combine} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{combine} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze sia locali che remote della richiesta & Temporaneamente non implementato \\
         \hline
-        4 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{ifempty} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{ifempty} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze remote della richiesta & Non implementato \\
+        4 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato a \texttt{ifempty} & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato a \texttt{ifempty} & Applicazione inizializzata & Stato della risposta: 200 OK e lista di tutti gli eventi pubblicati sul database che rispettano le preferenze remote della richiesta & Temporaneamente non implementato \\
         \hline
-        5 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato ad un valore non valido & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato ad un valore non valido & Applicazione inizializzata & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        5 & Test \texttt{events} con il parametro di modalità \texttt{?mode=} impostato ad un valore non valido & Richiesta GET a {/events} con il parametro \texttt{?mode} impostato ad un valore non valido & Applicazione inizializzata & Stato della risposta: 400 BAD REQUEST & Temporaneamente non implementato \\
         \hline
     \end{tabularx}
 \end{table}
@@ -534,13 +739,13 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        6 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, coniderare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista di elementi vuota \\
+        6 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, coniderare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Temporaneamente non implementato, può ritornare una lista di elementi vuota \\
         \hline
-        7 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        7 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Temporaneamente non implementato \\
         \hline
-        8 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, coniderare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 422 UNPROCESSABLE ENTITY & Non implementato \\
+        8 & Test \texttt{events} con il parametro \texttt{?addi=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addi} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, coniderare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse & Stato della risposta: 422 UNPROCESSABLE ENTITY & Temporaneamente non implementato \\
         \hline
-        9 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subi} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista vuota di elementi \\
+        9 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subi} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Temporaneamente non implementato, può ritornare una lista vuota di elementi \\
         \hline    
     \end{tabularx}
 \end{table}
@@ -554,15 +759,15 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        10 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?subi} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        10 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?subi} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Temporaneamente non implementato \\
         \hline
-        11 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori che non sono presenti nel database & Tichiesta GET a \texttt{/events} con il parametr \texttt{?subi} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, consierare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        11 & Test \texttt{events} con il parametro \texttt{?subi=} impostato a valori che non sono presenti nel database & Tichiesta GET a \texttt{/events} con il parametr \texttt{?subi} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, consierare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse & Stato della risposta: 400 BAD REQUEST & Temporaneamente non implementato \\
         \hline
-        12 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista vuota di elementi \\
+        12 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Temporaneamente non implementato, può ritornare una lista vuota di elementi \\
         \hline
-        13 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        13 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 400 BAD REQUEST & Temporaneamente non implementato \\
         \hline
-        14 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 422 UNPROCESSABLE ENTITY & Non implementato \\
+        14 & Test \texttt{events} con il parametro \texttt{?addb=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?addb} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast & Stato della risposta: 422 UNPROCESSABLE ENTITY & Temporaneamente non implementato \\
         \hline
     \end{tabularx}
 \end{table}     
@@ -576,11 +781,11 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        15 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Non implementato, può ritornare una lista vuota di elementi \\
+        15 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 200 OK e lista di tutti gli eventi che rispettano il parametro impostato & Temporaneamente non implementato, può ritornare una lista vuota di elementi \\
         \hline
-        16 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 400 BAD REQUEST & Non implementato \\
+        16 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori non compatibili con le specifiche di sistema & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori non compatibili con le specifiche di sistema & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 400 BAD REQUEST & Temporaneamente non implementato \\
         \hline
-        17 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 422 UNPROCESSABLE ENTITY & Non implementato \\
+        17 & Test \texttt{events} con il parametro \texttt{?subb=} impostato a valori che non sono presenti nel database & Richiesta GET a \texttt{/events} con il parametro \texttt{?subb} impostato ad una serie di valori non presenti nel database & Applicazione inizializzata, considerare che il parametro seleziona la lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast & Stato della risposta: 422 UNPROCESSABLE ENTITY & Temporaneamente non implementato \\
         \hline
     \end{tabularx}
 \end{table}
@@ -698,7 +903,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \hline
         5 & Test \texttt{delete\_event} di un evento non bloccato dall'utente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con l'utente abilitato all'operazione e l'evento da eliminare presente nel database & Stato della risposta 418 I'm a teapot & \\
         \hline
-        6 & Test \texttt{delete\_event} di un evento bloccato da un altro utente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con 2 utenti abilitati all'operazione e l'evento da eliminare bloccato dall'altro utente & Stato della risposta 423 Locked & Non implementato \\
+        6 & Test \texttt{delete\_event} di un evento bloccato da un altro utente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con 2 utenti abilitati all'operazione e l'evento da eliminare bloccato dall'altro utente & Stato della risposta 423 Locked & Temporaneamente non implementato \\
         \hline
     \end{tabularx}
 \end{table}
@@ -754,6 +959,8 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \subsection{Sprint retrospective}
 
 \subsection{Deploy}
+
+\clearpage
 
 \section{Sezione finale}
 \subsection{Diagramma del deploy finale}

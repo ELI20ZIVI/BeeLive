@@ -53,6 +53,8 @@ mod tests {
 
     fn get_invalid_event(id: i32) -> Event {
 
+        unimplemented!();
+        
         let now = Utc::now();
         let start_of_time = chrono::DateTime::<Utc>::from(UNIX_EPOCH);
 
@@ -123,6 +125,28 @@ mod tests {
     }
 
 // --- Test list_events ---
+
+
+    // 200 - Test list_events con pagina valida
+    #[test]
+    async fn list_events_200() {
+
+        // Ottenimento applicazione
+        let app = create_app().await;
+
+        // Crea una richiesta di test per la route "/list_events"
+        let req = test::TestRequest::get()
+            .uri("/list_events")
+            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
+            .to_request();
+
+        // Esegui la richiesta
+        let resp = test::call_service(&app, req).await;
+
+        // Verifica che lo stato della risposta sia 200 OK
+        assert_eq!(resp.status(), http::StatusCode::OK, "{:?}", nice_response_error(resp));
+    }
+    
     // 401 - Test list_events senza token di autenticazione
     #[test]
     async fn list_events_401() {
@@ -182,26 +206,6 @@ mod tests {
         assert_eq!(resp.status(), http::StatusCode::UNPROCESSABLE_ENTITY, "{:?}", nice_response_error(resp));
     }
 
-    // 200 - Test list_events con pagina valida
-    #[test]
-    async fn list_events_200() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        // Crea una richiesta di test per la route "/list_events"
-        let req = test::TestRequest::get()
-            .uri("/list_events")
-            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .to_request();
-
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        // Verifica che lo stato della risposta sia 200 OK
-        assert_eq!(resp.status(), http::StatusCode::OK, "{:?}", nice_response_error(resp));
-    }
-
 // --- Test insert_event ---
 
     // 201 - Test insert_event con dati validi
@@ -224,6 +228,7 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 201 Created
         assert_eq!(resp.status(), http::StatusCode::CREATED, "{:?}", nice_response_error(resp));
@@ -256,15 +261,20 @@ mod tests {
 
         // Ottenimento applicazione
         let app = create_app().await;
+        let id = 0;
 
         // Crea una richiesta di test per la route "/insert_new_event"
         let req = test::TestRequest::post()
             .uri("/insert_new_event")
-            .set_json(get_valid_event(0))
+            .set_json(get_valid_event(id))
             .to_request();
 
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
+
+        //cleanup (serve nel caso in cui il test fallisce)
+        test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 401 Unauthorized
         assert_eq!(resp.status(), http::StatusCode::UNAUTHORIZED, "{:?}", nice_response_error(resp));
@@ -291,6 +301,7 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
 
         // Verifica che lo stato della risposta sia 403 Forbidden
@@ -300,7 +311,7 @@ mod tests {
     // 422 - Test insert_event con un evento non valido
     #[test]
     async fn insert_event_422() {
-
+        
         // Ottenimento applicazione
         let app = create_app().await;
 
@@ -319,6 +330,7 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 422 Unprocessable Entity
         assert_eq!(resp.status(), http::StatusCode::UNPROCESSABLE_ENTITY, "{:?}", nice_response_error(resp));
@@ -394,6 +406,7 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 403 Forbidden
         assert_eq!(resp.status(), http::StatusCode::FORBIDDEN, "{:?}", nice_response_error(resp));
@@ -517,8 +530,9 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
+    //cleanup
+    test::call_service(&app, delete_event_request(id)).await;
+    assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 200 OK
         assert_eq!(resp.status(), http::StatusCode::OK, "{}", nice_response_error(resp));
@@ -543,8 +557,9 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
+        //cleanup
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 401 Unauthorized
         assert_eq!(resp.status(), http::StatusCode::UNAUTHORIZED, "{:?}", nice_response_error(resp));
@@ -569,8 +584,9 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
+        //cleanup
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 200 OK
         assert_eq!(resp.status(), http::StatusCode::OK);
@@ -598,8 +614,9 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
+        //cleanup
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 404 Not Found
         assert_eq!(resp.status(), http::StatusCode::NOT_FOUND, "{}", nice_response_error(resp));
@@ -625,8 +642,9 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
+        //cleanup
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 418 I'm a teapot
         assert_eq!(resp.status(), http::StatusCode::IM_A_TEAPOT, "{}", nice_response_error(resp));
@@ -652,8 +670,9 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
+        //cleanup
         test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 422 Unprocessable Entity
         assert_eq!(resp.status(), http::StatusCode::UNPROCESSABLE_ENTITY, "{}", nice_response_error(resp));

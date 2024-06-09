@@ -10,6 +10,7 @@ mod tests {
     use geojson::{Feature, FeatureCollection};
     use geojson::Value::Point;
     use mongodb::bson::Document;
+    use mongodb::Database;
     use crate::*;
     use dao::objects::Event;
     use crate::dao::objects::{NullableDateTimeRange, RiskLevel};
@@ -75,20 +76,44 @@ mod tests {
         }
     }
 
+    async fn create_db() -> Database {
+        let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@localhost:27017").await.unwrap();
+        client.database("beelive_test")
+    }
+
+    async fn create_dao() -> Dao {
+        create_db().await.into()
+    }
+
     async fn create_app() -> impl Service<Request, Response = ServiceResponse, Error = Error> {
 
         // Connessione al DB e ottenimento collezione degli eventi
-        println!("Connecting to MongoDB...");
-        let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@localhost:27017").await.unwrap();
-        println!("Connected to MongoDB!");
-        let database = client.database("beelive_test");
-        let authorized_users_count = database.collection::<mongodb::bson::Document>("authorized_users").count_documents(None, None).await;
-        assert_ne!(authorized_users_count.unwrap(), 0, "No authorized user found in the 'beelive_test/authorized_users' collection, which will obviously make all the tests fail.\
-            did you run the 'management_server/scripts/mongobd_create_test_authorized_user.py' script?");
+        let database = create_db().await;
 
-        let events_collection = database.collection::<Document>("events");
-        //assert_eq!(events_collection.count_documents(None, None).await.unwrap(), 0, "'beelive_test/events' collection should be empty before running the test suites, since the \
-        //    data contained in it will be destructively manipulated during tests.");
+        let database : Dao = database.into();
+        database.users.drop(None).await.unwrap();
+
+        database.authorized_users.drop(None).await.unwrap();
+        database.authorized_users.insert_one(User{
+            id: "0b26ece6-33d1-45b3-a4f0-ba69d218a531".to_owned(),
+            username: "BeeLive".to_owned(),
+            email: "example@example.com".to_owned(),
+            categories: vec![],
+        }, None).await.unwrap();
+
+        assert_ne!(
+            database.authorized_users.count_documents(None, None).await.unwrap(),
+            0, 
+            "No authorized user found in the 'beelive_test/authorized_users' collection, which will obviously make all the tests fail.\
+            did you run the 'management_server/scripts/mongobd_create_test_authorized_user.py' script?"
+        );
+
+        database.events.drop(None).await.unwrap();
+        assert_eq!(
+            database.events.count_documents(None, None).await.unwrap(),
+            0,
+            "The events collection should have been dropped"
+        );
 
         #[cfg(debug_assertions)]
             let base_cert_path = "assets";
@@ -106,13 +131,11 @@ mod tests {
 
         let data = AppData {
             counter: Mutex::new(None),
-            mongodb: database.into(),
+            mongodb: database,
             authenticator,
         };
         let data = Data::new(data);
 
-        events_collection.drop(None).await.unwrap();
-        
         // Inizializza l'applicazione per il test
         let app = test::init_service(
             App::new()
@@ -228,10 +251,6 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
         // Verifica che lo stato della risposta sia 201 Created
         assert_eq!(resp.status(), http::StatusCode::CREATED, "{:?}", nice_response_error(resp));
     }
@@ -274,10 +293,6 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
         // Verifica che lo stato della risposta sia 401 Unauthorized
         assert_eq!(resp.status(), http::StatusCode::UNAUTHORIZED, "{:?}", nice_response_error(resp));
     }
@@ -300,11 +315,6 @@ mod tests {
 
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
-
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
 
         // Verifica che lo stato della risposta sia 403 Forbidden
         assert_eq!(resp.status(), http::StatusCode::FORBIDDEN, "{:?}", nice_response_error(resp));
@@ -330,10 +340,6 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
         // Verifica che lo stato della risposta sia 422 Unprocessable Entity
         assert_eq!(resp.status(), http::StatusCode::UNPROCESSABLE_ENTITY, "{:?}", nice_response_error(resp));
     }
@@ -348,7 +354,6 @@ mod tests {
         let app = create_app().await;
 
         // no need to test this, if it fails then the ::delete request fails too
-        assert_events_collection_empty().await;
         let id = 0;
         test::call_service(&app, insert_event_request(id)).await;
 
@@ -363,7 +368,9 @@ mod tests {
 
         // Verifica che lo stato della risposta sia 200 OK
         assert_eq!(resp.status(), http::StatusCode::OK, "{}", nice_response_error(resp));
-        assert_events_collection_empty().await;
+
+        let db = create_dao().await;
+        assert_eq!(db.events.count_documents(None, None).await.unwrap(), 0, "events exist after deletion");
     }
 
     // 401 - Token di autenticazione non fornito
@@ -406,10 +413,6 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
         // Verifica che lo stato della risposta sia 403 Forbidden
         assert_eq!(resp.status(), http::StatusCode::FORBIDDEN, "{:?}", nice_response_error(resp));
     }
@@ -421,7 +424,6 @@ mod tests {
         // Ottenimento applicazione
         let app = create_app().await;
 
-        assert_events_collection_empty().await;
         let id = 0;
 
         // Crea una richiesta di test per la route "/delete_event"
@@ -532,10 +534,6 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
         // Verifica che lo stato della risposta sia 200 OK
         assert_eq!(resp.status(), http::StatusCode::OK, "{}", nice_response_error(resp));
     }
@@ -559,10 +557,6 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
         // Verifica che lo stato della risposta sia 401 Unauthorized
         assert_eq!(resp.status(), http::StatusCode::UNAUTHORIZED, "{:?}", nice_response_error(resp));
     }
@@ -585,10 +579,6 @@ mod tests {
 
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
-
-        //cleanup
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 403
         assert_eq!(resp.status(), http::StatusCode::FORBIDDEN);
@@ -615,10 +605,6 @@ mod tests {
 
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
-
-        //cleanup
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 404 Not Found
         assert_eq!(resp.status(), http::StatusCode::NOT_FOUND, "{}", nice_response_error(resp));
@@ -650,10 +636,6 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-        //cleanup
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
         // Verifica che lo stato della risposta sia 422 Unprocessable Entity
         assert_eq!(resp.status(), http::StatusCode::UNPROCESSABLE_ENTITY, "{}", nice_response_error(resp));
     }
@@ -664,10 +646,4 @@ mod tests {
         unimplemented!()
     }
 
-    async fn assert_events_collection_empty() {
-        let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@localhost:27017").await.unwrap();
-        assert_eq!(client.database("beelive_test").collection::<Document>("events").count_documents(None, None).await.unwrap(), 0,
-                   "'beelive_test/events' collection is not empty.\
-                   ");
-    }
 }

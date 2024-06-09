@@ -87,11 +87,11 @@ async fn delete_event (mongodb_events_collection: &Collection<Event>, event_id: 
 
 pub struct Dao {
     /// The collection of events of the database.
-    events: Collection<Event>,
+    pub events: Collection<Event>,
     /// The collection of generic users of the database.
-    users: Collection<User>,
+    pub users: Collection<User>,
     /// The collection of authorized users of the database.
-    authorized_users: Collection<User>,
+    pub authorized_users: Collection<User>,
 }
 
 

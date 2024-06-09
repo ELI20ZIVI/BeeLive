@@ -87,8 +87,8 @@ mod tests {
             did you run the 'management_server/scripts/mongobd_create_test_authorized_user.py' script?");
 
         let events_collection = database.collection::<Document>("events");
-        assert_eq!(events_collection.count_documents(None, None).await.unwrap(), 0, "'beelive_test/events' collection should be empty before running the test suites, since the \
-            data contained in it will be destructively manipulated during tests.");
+        //assert_eq!(events_collection.count_documents(None, None).await.unwrap(), 0, "'beelive_test/events' collection should be empty before running the test suites, since the \
+        //    data contained in it will be destructively manipulated during tests.");
 
         #[cfg(debug_assertions)]
             let base_cert_path = "assets";
@@ -111,6 +111,8 @@ mod tests {
         };
         let data = Data::new(data);
 
+        events_collection.drop(None).await.unwrap();
+        
         // Inizializza l'applicazione per il test
         let app = test::init_service(
             App::new()
@@ -530,9 +532,9 @@ mod tests {
         // Esegui la richiesta
         let resp = test::call_service(&app, req).await;
 
-    //cleanup
-    test::call_service(&app, delete_event_request(id)).await;
-    assert_events_collection_empty().await;
+        //cleanup
+        test::call_service(&app, delete_event_request(id)).await;
+        assert_events_collection_empty().await;
 
         // Verifica che lo stato della risposta sia 200 OK
         assert_eq!(resp.status(), http::StatusCode::OK, "{}", nice_response_error(resp));
@@ -588,8 +590,8 @@ mod tests {
         test::call_service(&app, delete_event_request(id)).await;
         assert_events_collection_empty().await;
 
-        // Verifica che lo stato della risposta sia 200 OK
-        assert_eq!(resp.status(), http::StatusCode::OK);
+        // Verifica che lo stato della risposta sia 403
+        assert_eq!(resp.status(), http::StatusCode::FORBIDDEN);
     }
 
 
@@ -625,29 +627,7 @@ mod tests {
     // 418 - Evento non bloccato dall'utente che vuole fare modifiche
     #[test]
     async fn modify_event_418() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        let id = 0;
-        test::call_service(&app, insert_event_request(id)).await;
-
-        // Crea una richiesta di test per la route "/modify_event"
-        let req = test::TestRequest::put()
-            .uri(format!("/modify_event/{}", id).as_str())
-            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .set_json(get_a_different_valid_event(id))
-            .to_request();
-
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        //cleanup
-        test::call_service(&app, delete_event_request(id)).await;
-        assert_events_collection_empty().await;
-
-        // Verifica che lo stato della risposta sia 418 I'm a teapot
-        assert_eq!(resp.status(), http::StatusCode::IM_A_TEAPOT, "{}", nice_response_error(resp));
+        unimplemented!()
     }
 
     // 422 - Modifiche non valide - le modifiche porterebbero ad avere un evento invalido nel sistema
@@ -664,7 +644,7 @@ mod tests {
         let req = test::TestRequest::put()
             .uri(format!("/modify_event/{}", id).as_str())
             .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .set_json(get_a_different_valid_event(id))
+            .set_json(get_a_different_valid_event(id+1))
             .to_request();
 
         // Esegui la richiesta

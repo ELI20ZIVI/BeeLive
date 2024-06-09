@@ -83,7 +83,7 @@ pub async fn delete_event(data: &AppData, event_id: u32, user: &User) -> HttpRes
 
     // Check evento di competenza
     if !check_user_event(user, event_id).await {
-        return HttpResponse::Forbidden().body("User not authorized");
+        return HttpResponse::Forbidden().body("User does not have permission over this event");
     }
 
     // Check evento bloccato

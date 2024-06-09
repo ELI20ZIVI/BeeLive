@@ -115,7 +115,7 @@ impl Event {
 
         Event {
             id: 0,
-            title: "test".to_string(),
+            title: "Test Event".to_string(),
             description: "an amazing description".to_string(),
             remote_document: Some("test remote document . org".to_string()),
             summary: "a long summary".to_string(),

@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     use std::iter;
-    use chrono::{Local, TimeZone, Utc};
+    use chrono::{TimeZone, Utc};
     use geo::polygon;
     use geojson::{Feature, FeatureCollection, Geometry, Value};
     use crate::dao::objects::{NullableDateTimeRange, RiskLevel, SubEvent};

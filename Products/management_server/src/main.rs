@@ -50,7 +50,7 @@ async fn is_authorized(auth: &BearerAuth, authenticator: &Authenticator, mongodb
         Err(_) => return Err(HttpResponse::InternalServerError().finish()),
     };
 
-    authorized.ok_or(HttpResponse::Forbidden().finish())
+    authorized.ok_or(HttpResponse::Forbidden().body("User is not authorized"))
 }
 
 // TODO: formalize and document this endpoint
@@ -92,7 +92,7 @@ async fn list_events_by_id(data: Data<AppData>, query: web::Query<EventQueryData
     // Pagina degli eventi
     let page = &query.page;
     if page.is_some() {
-        return HttpResponse::NotImplemented().finish();
+        return HttpResponse::NotImplemented().body("Paging is not yet implemented, please remove 'page' from the query parameters.");
     }
 
 

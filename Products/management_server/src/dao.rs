@@ -76,11 +76,11 @@ async fn delete_event (mongodb_events_collection: &Collection<Event>, event_id: 
             if result.deleted_count > 0 {
                 HttpResponse::Ok().finish()
             } else {
-                HttpResponse::NotFound().finish()
+                HttpResponse::NotFound().body(format!("Event with ID={} was not found", event_id))
             }
         },
         // Se errore durante l'operazione -> 500 Internal Server Error
-        Err(e) => HttpResponse::InternalServerError().body("tikes"),
+        Err(e) => HttpResponse::InternalServerError().body(e.to_string()),
     }
 }
 
@@ -132,7 +132,7 @@ impl Dao {
     }
 
     pub async fn available_event_id(&self) -> i32 {
-        match self.events.find(None, None).await { 
+        let id = match self.events.find(None, None).await {
             Ok(cursor) => {
                 cursor
                     .filter_map(|e| async {e.ok().map(|e| e.id)})
@@ -141,7 +141,8 @@ impl Dao {
             Err(error) => {
                 panic!("There was an error while trying to load the initial ID counter's value. Error: {}", error);
             }
-        }
+        };
+        return id+1
     }
 }
 

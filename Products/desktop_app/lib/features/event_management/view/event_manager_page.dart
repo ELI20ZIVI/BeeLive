@@ -49,7 +49,7 @@ class EventManagerScreen extends StatelessWidget {
 /// This widget shows the modification form for the event attributes.
 class _EventWidget extends StatelessWidget{
 
-  _EventWidget({
+  const _EventWidget({
     required this.event,
   });
 

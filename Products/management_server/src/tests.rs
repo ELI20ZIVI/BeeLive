@@ -20,7 +20,7 @@ mod tests {
         event.id = id;
         event
     }
-    
+
     fn get_a_different_valid_event(id: i32) -> Event {
         let mut event = Event::test_event();
         event.id = id;
@@ -122,36 +122,6 @@ mod tests {
         app
     }
 
-    //alla fine dei test, la collezione 'events' del database 'beelive_test' deve essere vuota.
-    
-
-    // Inserzione nuovo evento prima di fare i test
-
-    // 201 - Test insert_event con body valido
-    #[test]
-    async fn insert_event_201() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        let id = 0;
-
-        let req = test::TestRequest::post()
-            .uri("/insert_new_event")
-            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .set_json(get_valid_event(id))
-            .to_request();
-
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-
-        // Verifica che lo stato della risposta sia 201 Created
-        assert_eq!(resp.status(), http::StatusCode::CREATED, "{:?}", nice_response_error(resp));
-    }
-
 // --- Test list_events ---
     // 401 - Test list_events senza token di autenticazione
     #[test]
@@ -234,6 +204,31 @@ mod tests {
 
 // --- Test insert_event ---
 
+    // 201 - Test insert_event con dati validi
+    #[test]
+    async fn insert_event_201() {
+
+        // Ottenimento applicazione
+        let app = create_app().await;
+
+        let id = 0;
+
+        let req = test::TestRequest::post()
+            .uri("/insert_new_event")
+            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
+            .set_json(get_valid_event(id))
+            .to_request();
+
+        // Esegui la richiesta
+        let resp = test::call_service(&app, req).await;
+
+        //cleanup (serve nel caso in cui il test fallisce)
+        test::call_service(&app, delete_event_request(id)).await;
+
+        // Verifica che lo stato della risposta sia 201 Created
+        assert_eq!(resp.status(), http::StatusCode::CREATED, "{:?}", nice_response_error(resp));
+    }
+
     // 400 - Test insert_event con body non valido
     #[test]
     async fn insert_event_400() {
@@ -275,7 +270,7 @@ mod tests {
         assert_eq!(resp.status(), http::StatusCode::UNAUTHORIZED, "{:?}", nice_response_error(resp));
     }
 
-    // 403 - Test insert_event con utente non autorizzato
+    // 403 - Test insert_event con un token valido che però è per un utente non autorizzato
     #[test]
     async fn insert_event_403() {
 
@@ -302,7 +297,7 @@ mod tests {
         assert_eq!(resp.status(), http::StatusCode::FORBIDDEN, "{:?}", nice_response_error(resp));
     }
 
-    // 422 - Test insert_event con body non valido
+    // 422 - Test insert_event con un evento non valido
     #[test]
     async fn insert_event_422() {
 
@@ -330,6 +325,33 @@ mod tests {
     }
 
 // --- Test delete_event ---
+
+    // 200 - Test delete_event con evento esistente
+    #[test]
+    async fn delete_event_200() {
+
+        // Ottenimento applicazione
+        let app = create_app().await;
+
+        // no need to test this, if it fails then the ::delete request fails too
+        assert_events_collection_empty().await;
+        let id = 0;
+        test::call_service(&app, insert_event_request(id)).await;
+
+        // Crea una richiesta di test per la route "/delete_event"
+        let req = test::TestRequest::delete()
+            .uri(format!("/delete_event/{}", id).as_str())
+            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
+            .to_request();
+
+        // Esegui la richiesta
+        let resp = test::call_service(&app, req).await;
+
+        // Verifica che lo stato della risposta sia 200 OK
+        assert_eq!(resp.status(), http::StatusCode::OK, "{}", nice_response_error(resp));
+        assert_events_collection_empty().await;
+    }
+
     // 401 - Token di autenticazione non fornito
     #[test]
     async fn delete_event_401() {
@@ -337,9 +359,11 @@ mod tests {
         // Ottenimento applicazione
         let app = create_app().await;
 
+        let id = 0;
+
         // Crea una richiesta di test per la route "/delete_event"
         let req = test::TestRequest::delete()
-            .uri("/delete_event/0")
+            .uri(format!("/delete_event/{}", id).as_str())
             .to_request();
 
         // Esegui la richiesta
@@ -349,7 +373,7 @@ mod tests {
         assert_eq!(resp.status(), http::StatusCode::UNAUTHORIZED, "{:?}", nice_response_error(resp));
     }
 
-    // 403 - Utente non autorizzato
+    // 403 - Token valido ma utente non autorizzato
     #[test]
     async fn delete_event_403() {
 
@@ -400,53 +424,18 @@ mod tests {
     // 418 - Evento non bloccato dall'utente che vuole fare modifiche
     #[test]
     async fn delete_event_418() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        let id = 0;
-        test::call_service(&app, insert_event_request(id)).await;
-
-        // Crea una richiesta di test per la route "/delete_event"
-        let req = test::TestRequest::delete()
-            .uri("/delete_event/0")
-            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .to_request();
-
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-
-        // Verifica che lo stato della risposta sia 418 I'm a teapot
-        assert_eq!(resp.status(), http::StatusCode::IM_A_TEAPOT, "{:?}", nice_response_error(resp));
+        unimplemented!()
     }
 
-    /* Non implementato
     // 423 - Evento bloccato da un altro utente
     #[test]
     async fn delete_event_423() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        // Crea una richiesta di test per la route "/delete_event"
-        let req = test::TestRequest::delete()
-            .uri("/delete_event/0")
-            .insert_header(("Authorization", "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlcnQtYnVpbHQtaW4iLCJ0eXAiOiJKV1QifQ.eyJvd25lciI6ImJlZWxpdmUiLCJuYW1lIjoicGlldHJvIiwiaWQiOiIwNDFkZWI2My01NTM0LTQxZjQtYWZmZi01Yzc4ZWUxYzhmNzQiLCJkaXNwbGF5TmFtZSI6IiIsImF2YXRhciI6Imh0dHBzOi8vYXMyLmZ0Y2RuLm5ldC92Mi9qcGcvMDQvMTAvNDMvNzcvMTAwMF9GXzQxMDQzNzczM19oZHE0UTNRT0g5dXdoMG1jcUFoUkZ6T0tmckNSMjRUYS5qcGciLCJlbWFpbCI6IiIsInBob25lIjoiIiwidG9rZW5UeXBlIjoiYWNjZXNzLXRva2VuIiwic2NvcGUiOiJvcGVuaWQiLCJpc3MiOiJodHRwOi8vMTkyLjE2OC4xNDQuNDM6ODAwMCIsInN1YiI6IjA0MWRlYjYzLTU1MzQtNDFmNC1hZmZmLTVjNzhlZTFjOGY3NCIsImF1ZCI6WyI3MTJiOGFhZmZkOWM0YzcxYWI3YSJdLCJleHAiOjE3MTYzMzQzNjcsIm5iZiI6MTcxNTcyOTU2NywiaWF0IjoxNzE1NzI5NTY3LCJqdGkiOiJhZG1pbi85NGYzMTY2OS01NzQ3LTQzOTYtOTdlNi01NzkwMmQ5ZDE3MTcifQ.ugWwX3IXeIQfj-dYJpj-FVMcDaMlAgPjMopeZTOWNKtoSViH95A0WTx8tEHeR6bqQCNwM0Qs1IMAdnkIddS9raO9vUrxOt-DNqU9FYUTzqdcFxQNN_PGH-cyhbGftgI-tqeP5iZN_Gg4pgpJUMWfepI5sP02IViJd4YilER1SWXoyogzU4gsNmE6X-NJAFYoiR58wTz6emc6neHZSR4RrBsjMkWiIEMebkiOw4nbI28yrT01HbVfhsOOOx9cs3POYwYJIUCwXxNNe2Xf7pPE-A1cuHfO_QcbnYrz1lfNA_8804xc2sGWBi8AlDRjFcTjXPD8fNI9MwxLmJ2BpSm3AglNpQj2vxlNl3QajPxCxG8DiVNr5jSdOTGa5lcpePqJ-BJtVr1k5ijfxQvuxCeaUDRyMqiprvG6IBwP-LB7VKwh3fQTqWAbauf7uxVOUQ3D0is8-lYebYNuy57_9YuC_8Ler3lFELnqfONyPXsWw8rCE6Pczk3NuC3WLytxGSjNDDCM9PN2roNAYixHRDTxGIq8nx1C7rWo58kPXKRFd0y2RtPJC3hnRcbavqvkEdkoIGv8u5IWJlL7-luqGmeiJ4pt3KWUCGvQODiEXz0h9PTNptnDYpIGGCxKBKTX0UVs0EGY3mWYAzDWG63U_SZcG8harEhhK8CHLRCNFCscyy8"))
-            .to_request();
-
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        // Verifica che lo stato della risposta sia 423 Locked
-        assert_eq!(resp.status(), http::StatusCode::LOCKED);
+        unimplemented!()
     }
-    */
+
 
 // --- Test modify_event ---
-    // 200 - Test modify_event con evento esistente
+    // 200 - Test modify_event con evento esistente - modifica avvenuta con successo
     #[test]
     async fn modify_event_200() {
 
@@ -455,14 +444,14 @@ mod tests {
 
         let id = 0;
         test::call_service(&app, insert_event_request(id)).await;
-    
+
         // Crea una richiesta di test per la route "/modify_event"
         let req = test::TestRequest::put()
-            .uri("/modify_event/0")
+            .uri(format!("/modify_event/{}", id).as_str())
             .insert_header((http::header::AUTHORIZATION, "Bearer ".to_string()+VALID_TOKEN))
                 .insert_header((http::header::CONTENT_TYPE, "application/json"))
             .set_json(&serde_json::json!({
-                "id": 0,
+                "id": id,
                 "title": "Incontro G7",
                 "summary": "Divieti di fermata e transito.",
                 "description": "",
@@ -530,7 +519,7 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
-    
+
         // Verifica che lo stato della risposta sia 200 OK
         assert_eq!(resp.status(), http::StatusCode::OK, "{}", nice_response_error(resp));
     }
@@ -544,7 +533,7 @@ mod tests {
 
         let id = 0;
         test::call_service(&app, insert_event_request(id)).await;
-        
+
         // Crea una richiesta di test per la route "/modify_event"
         let req = test::TestRequest::put()
             .uri(format!("/modify_event/{}", id).as_str())
@@ -556,12 +545,12 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
-        
+
         // Verifica che lo stato della risposta sia 401 Unauthorized
         assert_eq!(resp.status(), http::StatusCode::UNAUTHORIZED, "{:?}", nice_response_error(resp));
     }
 
-    // 403 - Utente non autorizzato o token non fornito
+    // 403 - Token valido ma utente non autorizzato
     #[test]
     async fn modify_event_403() {
         // Ottenimento applicazione
@@ -571,9 +560,9 @@ mod tests {
         test::call_service(&app, insert_event_request(id)).await;
 
         // Crea una richiesta di test per la route "/modify_event"
-        let mut req = test::TestRequest::put()
-            .uri("/modify_event/0")
-            .insert_header((http::header::AUTHORIZATION, "Bearer ".to_string()+VALID_TOKEN))
+        let req = test::TestRequest::put()
+            .uri(format!("/modify_event/{}", id).as_str())
+            .insert_header((http::header::AUTHORIZATION, "Bearer ".to_string()+UNAUTHORIZED_TOKEN))
             .set_json(get_valid_event(0))
             .to_request();
 
@@ -582,13 +571,13 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
-        
+
         // Verifica che lo stato della risposta sia 200 OK
         assert_eq!(resp.status(), http::StatusCode::OK);
     }
 
 
-    // 404 - Evento non esistente
+    // 404 - Evento non esistente - nessun evento con ID uguale a quello che si vuole modificare
     #[test]
     async fn modify_event_404() {
 
@@ -597,7 +586,7 @@ mod tests {
 
         let id = 0;
         test::call_service(&app, insert_event_request(id)).await;
-        
+
         // Crea una richiesta di test per la route "/modify_event"
         let req = test::TestRequest::put()
             .uri("/modify_event/9999")
@@ -611,7 +600,7 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
-        
+
         // Verifica che lo stato della risposta sia 404 Not Found
         assert_eq!(resp.status(), http::StatusCode::NOT_FOUND, "{}", nice_response_error(resp));
     }
@@ -625,34 +614,7 @@ mod tests {
 
         let id = 0;
         test::call_service(&app, insert_event_request(id)).await;
-        
-        // Crea una richiesta di test per la route "/modify_event"
-        let req = test::TestRequest::put()
-            .uri(format!("/modify_event/{}", id).as_str())
-            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .set_json(get_a_different_valid_event(id)) 
-            .to_request();
 
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-        
-        // Verifica che lo stato della risposta sia 418 I'm a teapot
-        assert_eq!(resp.status(), http::StatusCode::IM_A_TEAPOT, "{}", nice_response_error(resp));
-    }
-
-    // 422 - Evento non valido
-    #[test]
-    async fn modify_event_422() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        let id = 0;
-        test::call_service(&app, insert_event_request(id)).await;
-        
         // Crea una richiesta di test per la route "/modify_event"
         let req = test::TestRequest::put()
             .uri(format!("/modify_event/{}", id).as_str())
@@ -665,7 +627,34 @@ mod tests {
 
         //cleanup (serve nel caso in cui il test fallisce)
         test::call_service(&app, delete_event_request(id)).await;
+
+        // Verifica che lo stato della risposta sia 418 I'm a teapot
+        assert_eq!(resp.status(), http::StatusCode::IM_A_TEAPOT, "{}", nice_response_error(resp));
+    }
+
+    // 422 - Modifiche non valide - le modifiche porterebbero ad avere un evento invalido nel sistema
+    #[test]
+    async fn modify_event_422() {
+
+        // Ottenimento applicazione
+        let app = create_app().await;
         
+        let id = 0;
+        test::call_service(&app, insert_event_request(id)).await;
+
+        // Crea una richiesta di test per la route "/modify_event"
+        let req = test::TestRequest::put()
+            .uri(format!("/modify_event/{}", id).as_str())
+            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
+            .set_json(get_a_different_valid_event(id))
+            .to_request();
+
+        // Esegui la richiesta
+        let resp = test::call_service(&app, req).await;
+
+        //cleanup (serve nel caso in cui il test fallisce)
+        test::call_service(&app, delete_event_request(id)).await;
+
         // Verifica che lo stato della risposta sia 422 Unprocessable Entity
         assert_eq!(resp.status(), http::StatusCode::UNPROCESSABLE_ENTITY, "{}", nice_response_error(resp));
     }
@@ -673,55 +662,7 @@ mod tests {
     // 423 - Evento bloccato da un altro utente
     #[test]
     async fn modify_event_423() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        let id = 0;
-        test::call_service(&app, insert_event_request(id)).await;
-        
-        // Crea una richiesta di test per la route "/modify_event"
-        let req = test::TestRequest::put()
-            .uri("/modify_event/0")
-            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .set_json(get_a_different_valid_event(id))
-            .to_request();
-
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        //cleanup (serve nel caso in cui il test fallisce)
-        test::call_service(&app, delete_event_request(id)).await;
-        
-        // Verifica che lo stato della risposta sia 423 Locked
-        assert_eq!(resp.status(), http::StatusCode::LOCKED, "{}", nice_response_error(resp));
-    }
-
-    // Alla fine per l'eliminazione dell'evento di test
-    // 200 - Test delete_event con evento esistente
-    #[test]
-    async fn delete_event_200() {
-
-        // Ottenimento applicazione
-        let app = create_app().await;
-
-        // no need to test this, if it fails then the ::delete request fails too
-        assert_events_collection_empty().await;
-        let id = 0;
-        test::call_service(&app, insert_event_request(id)).await;
-
-        // Crea una richiesta di test per la route "/delete_event"
-        let req = test::TestRequest::delete()
-            .uri(format!("/delete_event/{}", id).as_str())
-            .insert_header(("Authorization", "Bearer ".to_string()+VALID_TOKEN))
-            .to_request();
-
-        // Esegui la richiesta
-        let resp = test::call_service(&app, req).await;
-
-        // Verifica che lo stato della risposta sia 200 OK
-        assert_eq!(resp.status(), http::StatusCode::OK, "{}", nice_response_error(resp));
-        assert_events_collection_empty().await;
+        unimplemented!()
     }
 
     async fn assert_events_collection_empty() {

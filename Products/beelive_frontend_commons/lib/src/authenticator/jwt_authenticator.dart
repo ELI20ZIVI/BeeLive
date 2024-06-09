@@ -44,12 +44,15 @@ final class JwtAuthenticator implements Authenticator {
   }
 
   /// #### Exceptions
-  /// Throws [TokenRefreshFailureException] in case of errors during token
-  /// refreshing.\
   /// Throws [AuthenticationNotAskedException].
   @override
   Future<String?> authorization() async {
-    var tokens = await _tokensManager.tokens;
+    Tokens? tokens;
+    try {
+      tokens = await _tokensManager.tokens;
+    } on TokenRefreshFailureException catch(_) {
+      tokens = null;
+    }
 
     debugPrint("got tokens: $tokens");
 
@@ -66,11 +69,9 @@ final class JwtAuthenticator implements Authenticator {
   }
   
 
-  /// Invalidates the token.
-  ///
-  /// This method should be called in case of 401 and 403 errors
-  /// in order to force re-authentication of the user.
-  Future<void> invalidateToken() {
-    return _tokensManager.invalidate();
+  @override
+  Future<void> logout() async {
+    await _authenticationManager.invalidate();
+    await _tokensManager.logout();
   }
 }

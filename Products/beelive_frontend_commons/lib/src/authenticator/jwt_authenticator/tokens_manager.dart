@@ -103,12 +103,15 @@ class TokensManager {
           scopes: tokens.scopes,
         );
       } catch (e) { // TODO: do no catch generic exception
+        debugPrint("Error during refresh: $e");
         throw const TokenRefreshFailureException();
       }
 
       if (_provider.isTokenExpired(result.accessToken)) {
         throw const TokenRefreshFailureException();
       }
+
+      debugPrint("Token refreshed.");
 
       final response = await _store(result);
       assert(response, "Could not store token after refresh");
@@ -121,8 +124,15 @@ class TokensManager {
   ///
   /// This method should be called in case of 401 and 403 errors
   /// in order to force re-authentication of the user.
-  Future<void> invalidate() async {
-    await _store(null);
+  Future<void> logout() async {
+    try {
+      final tokens = await this.tokens;
+      if (tokens != null) {
+        await _provider.logout(tokens);
+      }
+    } finally {
+      await _store(null);
+    }
   }
 
 }

@@ -101,7 +101,7 @@ Ziviani Elia, 228172}
 
 \subsection{Scopo del progetto}
 
-Lo scopo del progetto 'BeeLive' è quello di risolvere il problema riguardante la difficoltà nel reperire informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Prevediamo un sistema informativo, dedicato agli utenti cittadini, che mostri visualmente le variazioni della viabilità in città, informando gli stessi di eventuali modifiche che potrebbero colpirli direttamente.
+Lo scopo del progetto 'BeeLive' è quello di creare un sistema informativo, dedicato ai cittadini di Trento, che permetta di reperire facilmente le informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Prevediamo un applicazione mobile che mostri visualmente le variazioni della viabilità in città, informando gli utenti di eventuali modifiche che potrebbero colpirli direttamente. 
 
 \subsection{Link utili}
 Il primo link fornito è quello della repository github. La repository è stata creata appena il corso è cominciato, infatti inizialmente è risultata utile al fine di scrivere in modo collaborativo i primi deliverable.\\
@@ -986,14 +986,14 @@ Per lo sviluppo del progetto abbiamo deciso, dopo approvazione della nostra prop
 La descrizione che segue presenta su quali tecnologie sono ricadute le nostre scelte.
 
 \subsubsection{Backend}
-\textbf{Linguaggio di Programmazione: Rust}
-Rust è stato scelto per il suo sistema di gestione della memoria sicuro e per le sue prestazioni elevate. Rust consente di scrivere codice concorrenziale senza il rischio di data races, grazie al suo sistema di proprietà e borrowing.\\
-Le librerie principali che sono state utilizzate sono:
+\textbf{Linguaggio di Programmazione: Rust}\\
+Abbiamo scelto di usare Rust a causa del suo sistema di gestione della memory-safe e per le sue prestazioni elevate, nonchè per essere un linguaggio type-safe che induce gli utilizzatori a scrivere codice corretto e pulito. Consente inoltre di scrivere codice concorrenziale senza il rischio di data races, grazie al suo sistema di proprietà e borrowing.\\
+Le librerie e i framework principali, che abbiamo utilizzato per creare il `management\_server` e il  `public\_server`, sono:
 \begin{itemize}
-    \item \textbf{Actix-web}: Utilizzata per costruire il web server, Actix-web è una libreria asincrona per Rust che fornisce un'interfaccia semplice ed efficiente per la gestione delle richieste HTTP. Actix-web è nota per le sue prestazioni elevate e la capacità di gestire un gran numero di connessioni simultanee.
+    \item \textbf{Actix-web}: Actix-web è un framework asincrono per Rust utilizzato per costruire web servers; fornisce un'interfaccia semplice ed efficiente per la gestione delle richieste HTTP. Actix-web è nota per le sue prestazioni elevate e la capacità di gestire un gran numero di connessioni simultanee.
     \item \textbf{actix-web-httpauth}: Questa libreria viene utilizzata per l'autenticazione HTTP tramite Bearer tokens, permettendo di proteggere le API con token JWT.
     \item \textbf{jsonwebtoken}: Utilizzata per la gestione e la decodifica dei JSON Web Tokens (JWT), necessari per l'autenticazione e l'autorizzazione degli utenti.
-    \item \textbf{mongodb}: La connessione e le operazioni sul database sono gestite tramite il client MongoDB per Rust, permettendo l'interazione con il database MongoDB per la memorizzazione e il recupero dei dati.
+    \item \textbf{\href{https://www.mongodb.com/docs/drivers/rust/current/}{mongodb}}: La connessione e le operazioni sul database sono gestite attraverso un il driver per Rust di MongoDB, permettendo l'interazione con il database MongoDB per la memorizzazione e il recupero dei dati.
 \end{itemize}
 Inoltre è stato sviluppato un modulo personalizzato per la gestione dell'autenticazione. Il modulo gestisce la decodifica e la verifica dei token JWT, utilizzando l'algoritmo RS256 per garantire la sicurezza dei token.\\
 
@@ -1003,13 +1003,14 @@ E' stato sviluppato uno script di test per eseguire automaticamente tutti i test
 
 \subsubsection{Frontend}
 \textbf{Linguaggio di Programmazione: Dart}\\
-Siccome era nostra intenzione quella di sviluppare due applicativi per tutte le interazioni possibili a sistema, la scelta del linguaggio di programmazione per lo sviluppo dell'applicativo mobile è ricaduta su Dart, nello specifico sul framework Flutter da lui integrato.\\
-Flutter utilizza Dart come linguaggio di programmazione. Dart è un linguaggio sviluppato da Google, ottimizzato per lo sviluppo di applicazioni client su qualsiasi piattaforma. È particolarmente adatto per creare interfacce utente ricche e reattive.\\
-Per lo sviluppo dello stile degli applicativi, sono state due librerie di stile differenti. Per quanto riguarda l'applicativo mobile è stata utilizzata la libreria \textbf{Material Design}, caratteristica del sistema Android, mentre per l'applicativo desktop è stata utilizzata la libreria \textbf{Fluent}, che caratterizza lo stile del sistema Windows 11.\\
-Oltre allo stile sono stati utilizzati anche:
+Siccome era nostra intenzione quella di sviluppare due applicativi per tutte le interazioni possibili a sistema, la scelta del framework per lo sviluppo degli applicativi mobile e desktop sono ricaduti su Flutter, con conseguente utilizzo del linguaggio di programmazione Dart.\\
+ Dart è un linguaggio sviluppato da Google, ottimizzato per lo sviluppo di applicazioni client su qualsiasi piattaforma. È particolarmente adatto per creare interfacce utente ricche e reattive.\\
+Per lo sviluppo dello stile degli applicativi, sono state due librerie di stile differenti. Per quanto riguarda l'applicativo mobile è stata utilizzata la libreria \textbf{Material Design}, sviluppata da Google e caratteristica di Android, mentre per l'applicativo desktop è stata utilizzata la libreria \textbf{Fluent Design}, sviluppata da Microsoft e caratteristica dello stile del sistema Windows 11.\\
+Come librerie aggiuntive abbiamo usato:
 \begin{itemize}
     \item \textbf{flutter\_riverpod}: Utilizzato per la gestione dello stato nell'applicazione. Riverpod è un fornitore di gestione dello stato robusto e reattivo, che offre vantaggi come la sicurezza del tipo e il supporto per la dipendenza tra i provider.
-    \item \textbf{CasdoorAuthenticationProvider}: Implementa un provider di autenticazione utilizzando Casdoor, un sistema di gestione delle identità e degli accessi. Il provider viene configurato con un segreto del client e un URL del server.
+    \item \textbf{CasdoorAuthenticationProvider}: Implementa un provider di autenticazione utilizzando Casdoor, un sistema di gestione delle identità e degli accessi. Il provider viene configurato con un segreto del client e un URL del server. \\
+    Questa libreria ci permette di effettuare l'autenticazione degli utenti attraverso un portale fornito da Casdoor. 
     \item \textbf{JwtAuthenticator}: Utilizzato per autenticare gli utenti tramite JWT (JSON Web Tokens). Questo garantisce che le richieste API siano autorizzate e sicure.
 \end{itemize}
 

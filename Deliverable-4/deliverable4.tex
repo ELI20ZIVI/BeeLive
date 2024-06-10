@@ -110,8 +110,8 @@ Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link A
 Per eseguire un deploy del progetto sarà necessario installare i due applicativi (Mobile e Desktop). Il link per scaricarli e testarli è \href{github-release-page}.\\
 Gli account da utilizzare per il login all'applicativo desktop sono i seguenti:
 \begin{itemize}
-    \item Utente Autorizzato: Username: \textit{user1}, Password: \textit{password1}
-    \item Utente Amministratore: Username: \textit{user2}, Password: \textit{password2}
+    \item Utente Autorizzato: Username: \textit{authz\_user}, Password: \textit{TODO}
+    \item Può essere creato qualsiasi altro account da utente non autorizzato.
 \end{itemize}
 L'utilizzo dell'applicativo mobile non richiede un login, in quanto, siccome le funzionalità di un utente autenticato e un utente non sono le stesse, come gruppo abbiamo deciso di focalizzarci su altre funzionalità che abbiamo ritenuto più importanti.
 
@@ -123,7 +123,7 @@ L'utilizzo dell'applicativo mobile non richiede un login, in quanto, siccome le 
 Anche per questo secondo sprint è stata evitata la strategia di branching "Master only", infatti come descritto nel documento "Deliverable 3", per noi la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto. \\
 
 \noindent
-Abbiamo quindi deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia la \textit{Feature Branching} con però un branch \texttt{develop}, precedente al branch \texttt{main}, sul quale, una volta ritenute soddisfacenti le modifiche e le feature aggiunte, queste vengono integrate.\\
+Abbiamo quindi deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia il \textit{GitFlow Workflow} con però un branch \texttt{develop}, precedente al branch \texttt{main}, sul quale, una volta ritenute soddisfacenti le modifiche e le feature aggiunte, queste vengono integrate.\\
 Quando le features sono tutte integrate nel branch \texttt{develop}, questo viene, una volta che tutto è testato nei minimi dettagli, integrato nel branch \texttt{main} come operazione di 'release'.\\
 
 \noindent

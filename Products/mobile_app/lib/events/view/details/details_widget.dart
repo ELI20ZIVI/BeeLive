@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map_geojson/flutter_map_geojson.dart';
 import 'package:mobile_app/dtos/event.dart';
 import 'package:mobile_app/dtos/nullable_datetime_range.dart';
+import 'package:mobile_app/utils.dart';
 import 'title_widget.dart';
 
 import '../../../view/beelive_map.dart';
@@ -32,7 +33,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     }
 
     // Parse the polygons using GeoJsonParser
-    final parser = GeoJsonParser();
+    final parser = defaultGeoJsonParser;
     parser.parseGeoJson(polygons);
 
     // Create a map widget with the parsed polygons

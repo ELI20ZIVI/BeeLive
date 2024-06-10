@@ -1002,9 +1002,16 @@ I test sono stati scritti per verificare il corretto funzionamento delle API, co
 E' stato sviluppato uno script di test per eseguire automaticamente tutti i test e verificare che tutte le funzionalità siano implementate correttamente attraverso un responso grafico e testuale dei risultati ottenuti.
 
 \subsubsection{Frontend}
-Siccome era nostra idea sviluppare due applicativi, uno mobile e uno desktop, abbiamo deciso di utilizzare il framework Flutter per lo sviluppo del frontend.\\
-Flutter è un framework sviluppato da Google studiato per lo sviluppo dell'interfaccia di applicativi mobile, ma che permette anche di sviluppare l'interfaccia di applicazioni desktop.\\
-
+\textbf{Linguaggio di Programmazione: Dart}\\
+Siccome era nostra intenzione quella di sviluppare due applicativi per tutte le interazioni possibili a sistema, la scelta del linguaggio di programmazione per lo sviluppo dell'applicativo mobile è ricaduta su Dart, nello specifico sul framework Flutter da lui integrato.\\
+Flutter utilizza Dart come linguaggio di programmazione. Dart è un linguaggio sviluppato da Google, ottimizzato per lo sviluppo di applicazioni client su qualsiasi piattaforma. È particolarmente adatto per creare interfacce utente ricche e reattive.\\
+Per lo sviluppo dello stile degli applicativi, sono state due librerie di stile differenti. Per quanto riguarda l'applicativo mobile è stata utilizzata la libreria \textbf{Material Design}, caratteristica del sistema Android, mentre per l'applicativo desktop è stata utilizzata la libreria \textbf{Fluent}, che caratterizza lo stile del sistema Windows 11.\\
+Oltre allo stile sono stati utilizzati anche:
+\begin{itemize}
+    \item \textbf{flutter\_riverpod}: Utilizzato per la gestione dello stato nell'applicazione. Riverpod è un fornitore di gestione dello stato robusto e reattivo, che offre vantaggi come la sicurezza del tipo e il supporto per la dipendenza tra i provider.
+    \item \textbf{CasdoorAuthenticationProvider}: Implementa un provider di autenticazione utilizzando Casdoor, un sistema di gestione delle identità e degli accessi. Il provider viene configurato con un segreto del client e un URL del server.
+    \item \textbf{JwtAuthenticator}: Utilizzato per autenticare gli utenti tramite JWT (JSON Web Tokens). Questo garantisce che le richieste API siano autorizzate e sicure.
+\end{itemize}
 
 \subsection{Conclusioni}
 

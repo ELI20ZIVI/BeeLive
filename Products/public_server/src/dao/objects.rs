@@ -61,7 +61,7 @@ pub struct PrunedEvent {
     summary: String,
     validity : NullableDateTimeRange,
     visibility: NullableDateTimeRange,
-    category_ids: Vec<i32>,
+    categories: Vec<i32>,
     polygons: FeatureCollection,
     risk_level: RiskLevel,
 }

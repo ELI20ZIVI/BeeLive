@@ -73,10 +73,8 @@ Ziviani Elia, 228172}
 \section{TODO}
 \begin{itemize}
     \item Revisione generale del documento
-    \item Goal dello sprint
     \item BurnDown chart
     \item TestCases - Revisione con test \texttt{public-server}
-    \item Sprint review
     \item Product backlog refinement
     \item Sprint retrospective
     \item Deploy
@@ -650,7 +648,7 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
 Il burndown chart è uno strumento utilizzato per monitorare il progresso di un progetto.\\
 Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta procedendo secondo i piani o se ci sono ritardi.\\
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -700,7 +698,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \item Test case: \texttt{/events}
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
@@ -721,7 +719,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \end{table}
         
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
@@ -741,7 +739,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 
 \clearpage
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
@@ -763,7 +761,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         
 \clearpage
         
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
@@ -785,7 +783,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \item Test case: \texttt{/events/:id}
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
@@ -811,7 +809,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \item Test case \texttt{list\_events}:
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{|r|X|X|X|X|X|}
@@ -837,22 +835,22 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \item Test case \texttt{insert\_event}:
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X |}
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        1 & Test \texttt{insert\_event} di un evento da inserire valido & Richiesta PUT a \texttt{insert\_event} con nel body l'user-token di un utente autorizzato e il JSON dell'evento valido & Applicazione inizializzata e con l'utente autorizzato all'inserzione  & Stato della risposta: 201 Created & \\
+        1 & Test \texttt{insert\_event} di un evento da inserire valido & Richiesta PUT a \texttt{insert\_event} con nell' header di autorizzazione un user-token di un utente autorizzato e il JSON dell'evento valido nel body & Applicazione inizializzata e con l'utente autorizzato all'inserzione  & Stato della risposta: 201 Created & \\
         \hline
-        2 & Test \texttt{insert\_event} di un evento non processabile & Richiesta PUT a \texttt{insert\_event} con nel body l'user-token di un utente autorizzato e JSON dell'evento non processabile & Applicazione inizializzata con l'utente autorizzato all'inserzione & Stato della risposta: 400 Bad Request & \\
+        2 & Test \texttt{insert\_event} di un evento non processabile & Richiesta PUT a \texttt{insert\_event} con nell' header di autorizzazione un user-token di un utente autorizzato e JSON dell'evento non processabile nel body & Applicazione inizializzata con l'utente autorizzato all'inserzione & Stato della risposta: 400 Bad Request & \\
         \hline
-        3 & Test \texttt{insert\_event} di un evento in mancanza dell'user-token di autenticazione & Richiesta PUT a \texttt{insert\_event} con header di autenticazione vuoto & Applicazione inizializzata & Stato della risposta: 401 Unauthorized & \\
+        3 & Test \texttt{insert\_event} di un evento in mancanza dell'user-token di autorizzazione & Richiesta PUT a \texttt{insert\_event} con header di autorizzazione vuoto e JSON dell'evento valido nel body & Applicazione inizializzata & Stato della risposta: 401 Unauthorized & \\
         \hline
-        4 & Test \texttt{insert\_event} di un evento da utente non autorizzato & Richiesta PUT a \texttt{insert\_event} con header di autenticazione contenente l'user-token di un utente non autorizzato & Applicazione inizializzata & Stato della risposta: 403 Forbidden & \\
+        4 & Test \texttt{insert\_event} di un evento da utente non autorizzato & Richiesta PUT a \texttt{insert\_event} con header di autorizzazione contenente l'user-token di un utente non autorizzato & Applicazione inizializzata & Stato della risposta: 403 Forbidden & \\
         \hline
-        5 & Test \texttt{insert\_event} di un evento almeno una carateristica non valida & Richiesta PUT a \texttt{insert\_event} con nel body l'user-token di un utente autorizzato e il JSON dell'evento non valido & Applicazione inizializzata e con l'utente autorizzato all'inserzione & Stato della risposta: 422 Unprocessable Entity & \\
+        5 & Test \texttt{insert\_event} di un evento almeno una carateristica non valida & Richiesta PUT a \texttt{insert\_event} con nell' header di autorizzazione un user-token di un utente autorizzato e il JSON dell'evento non valido nel body & Applicazione inizializzata e con l'utente autorizzato all'inserzione & Stato della risposta: 422 Unprocessable Entity & \\
         \hline
     \end{tabularx}
 \end{table}
@@ -863,7 +861,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \item Test case \texttt{delete\_event/:id}:
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
@@ -872,24 +870,24 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \Xhline{2pt}
         1 & Test \texttt{delete\_event} di un evento esistente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenente un user-token di utente autorizzato e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con l'utente autorizzato all'operazione e con l'evento da eliminare presente nel database & Stato della risposta 200 OK & \\
         \hline
-        2 & Test \texttt{delete\_event} in mancanza di user-token di autenticazione & Richiesta DELETE a \texttt{/delete\_event} con header di autenticazione vuoto & Applicazione inizializzata & Stato della risposta 401 Unauthorized & \\
+        2 & Test \texttt{delete\_event} in mancanza di user-token di autorizzazione & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione vuoto & Applicazione inizializzata & Stato della risposta 401 Unauthorized & \\
         \hline
         3 & Test \texttt{delete\_event} da utente non autorizzato & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente non autorizzato all'operazione & Applicazione inizializzata & Stato della risposta 403 Forbidden & \\
+        \hline
+        4 & Test \texttt{delete\_event} di un evento non esistente nel database & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento che non è presente nel database & Applicazione inizializzata e senza l'evento da eliminare presente nel database & Stato della risposta 404 Not Found & \\
         \hline
     \end{tabularx}
 \end{table}
 
 \clearpage
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X | X |}
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\
         \Xhline{2pt}
-        4 & Test \texttt{delete\_event} di un evento non esistente nel database & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento che non è presente nel database & Applicazione inizializzata e senza l'evento da eliminare presente nel database & Stato della risposta 404 Not Found & \\
-        \hline
         5 & Test \texttt{delete\_event} di un evento non bloccato dall'utente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con l'utente abilitato all'operazione e l'evento da eliminare presente nel database & Stato della risposta 418 I'm a teapot & \\
         \hline
         6 & Test \texttt{delete\_event} di un evento bloccato da un altro utente & Richiesta DELETE a \texttt{/delete\_event} con header di autorizzazione contenete un user-token di un utente autorizzato all'operazione e parametro \texttt{/} che identifica un evento presente nel database & Applicazione inizializzata, con 2 utenti abilitati all'operazione e l'evento da eliminare bloccato dall'altro utente & Stato della risposta 423 Locked & Temporaneamente non implementato \\
@@ -903,7 +901,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
     \item Test case \texttt{modify\_event/:id}:
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X |}
@@ -916,6 +914,8 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
         \hline
         3 & Test \texttt{modify\_event} da utente non autorizzato & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente non autorizzato alla modifica dell'evento & Applicazione inizializzata & Stato della risposta: 403 Forbidden &  \\ 
         \hline
+        4 & Test \texttt{modify\_event} di un evento non presente nel database & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento non presente nel database e nel body il JSON dell'evento modificato & Applicazione inizializzata, con l'utente abilitato alla modifica e l'evento da modificare non presente nel database & Stato della risposta: 404 Not Found &  \\ 
+        \hline
     \end{tabularx}
     \caption{Test cases per la funzione modify\_event}
     \label{tab:modify_event_tests}
@@ -923,18 +923,20 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 
 \clearpage
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3} % Imposta lo spazio verticale delle righe
     \begin{tabularx}{\textwidth}{| r | X | X | X | X | X |}
         \Xhline{2pt}
         \makecell{\textbf{No.}} & \makecell{\textbf{Descrizione}} & \makecell{\textbf{Dati}} & \makecell{\textbf{Precondizioni}} & \makecell{\textbf{Risultati attesi}} & \makecell{\textbf{Note}} \\ 
         \Xhline{2pt}
-        4 & Test \texttt{modify\_event} di un evento non presente nel database & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento non presente nel database e nel body il JSON dell'evento modificato & Applicazione inizializzata, con l'utente abilitato alla modifica e l'evento da modificare non presente nel database & Stato della risposta: 404 Not Found &  \\ 
-        \hline
         5 & Test \texttt{modify\_event} con il conflitto di modifiche simultanee & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento presente nel database e nel body il JSON dell'evento modificato & Applicazione inizializzata, con 2 utenti abilitati alla modifica e l'evento da modificare in fase di modifica da un altro utente & Stato della risposta: 409 Conflict &  \\ 
         \hline
-        \end{tabularx}
+        6 & Test \texttt{modify\_event} di un evento non bloccato dall'utente che vuole eseguire la modifica & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento presente nel database e nel body il JSON dell'evento modificato & Applicazione inizializzata, con l'utente abilitato alla modifica e l'evento da modificare presente nel database & Stato della risposta: 418 I'm a teapot & Temporaneamente non implementato \\
+        \hline
+        7 & Test \texttt{modify\_event} di un evento che non rispetta le specifiche di sistema & Richiesta PUT a \texttt{modfy\_event} con header di autorizzazione contenente un user-token di un utente autorizzato all'operazione, parametro \texttt{/} che identifica un evento presente nel database e nel body il JSON dell'evento modificato che non rispetta le specifiche di sistema & Applicazione inizializzata, con l'utente abilitato alla modifica e l'evento da modificare presente nel database & Stato della risposta: 422 Unprocessable Entity &  \\    
+        \hline
+    \end{tabularx}
     \caption{Test cases per la funzione modify\_event}
     \label{tab:modify_event_tests}
 \end{table}
@@ -943,11 +945,36 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 
 \subsection{Sprint review}
 
+In questo secondo sprint siamo riusciti a portare a termine tutti i task che ci eravamo prefissati nel product backlog dello sprint.\\  
+Tutte le criticità citate nel documento precedente sono state risolte e, inoltre, sonos tate integrate le nuove funzionalità descritte precedentemente.\\
+Come poi sarà descritto nel capito di deploy \ref{deploy}, allo stato attuale dello sviluppo del progetto tutte le funzionalità sono integrate ed utilizzabili attraverso gli applicativi desktop e mobile.\\
+
+Ricapitolando, il risultato prodotto in questo sprint è il seguente:
+\begin{itemize}
+    \item Gestione completa (Creazione, modifica ed eliminazione) degli eventi da parte degli utenti autorizzati attraverso l'applicativo desktop
+    \item Accesso completo alla visualizzazone del singolo evento e di tutti i suoi dettagli e sottoeventi da parte dell'utente comune che accede tramite l'applicativo mobile
+\end{itemize}
+
+La struttura funzionale del progetto è stata ampliata dallo scorso sprint, in quanto attualmente i componenti del sistema sono:
+
+\begin{itemize}
+    \item \textbf{public\_server}: Web server che permette agli utenti che accedono tramite l'applicativo mobile di reperire tutti gli eventi pubblicati sul database attraverso la gestione delle richieste HTTP che gli vengono inviate
+    \item \textbf{management\_server}: Web server che permette agli utenti autorizzati che accedono tramite l'applicativo desktop di poter gestire tutti gli eventi presenti sul database attraverso la gestione delle richieste HTTP che gli vengono inviate
+    \item \textbf{Database}: Database MongoDB che contiene tutti gli eventi pubblicati e gestiti dagli utenti autorizzati
+    \item \textbf{Applicativo desktop}: Applicativo che permette agli utenti autorizzati di poter gestire (Creare, modificare ed eliminare) gli eventi presenti sul database in modo rapido ed intuitivo.
+    \item \textbf{Applicativo mobile}: Applicativo che permette agli utenti comuni di poter visualizzare ed avere accesso in modo facile e rapido a tutti gli eventi pubblicati sul database.
+    \item \textbf{Auth/Autn server}: Server che permette di gestire l'autenticazione e l'autorizzazione degli utenti che accedono ai vari servizi del sistema
+\end{itemize}
+
 \subsection{Product backlog refinement}
 
 \subsection{Sprint retrospective}
 
 \subsection{Deploy}
+
+
+
+\label{deploy}
 
 \clearpage
 
@@ -955,6 +982,22 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \subsection{Diagramma del deploy finale}
 
 \subsection{Stack tecnologico usato}
+Per lo sviluppo del progetto abbiamo deciso, dopo approvazione della nostra proposta da parte dei docenti, di discostarci leggermente da quanto il corso prevedeva di utilizzare.\\
+La descrizione che segue presenta su quali tecnologie sono ricadute le nostre scelte.
+
+\subsubsection{Backend}
+Per lo sviluppo del backend abbiamo deciso di utilizzare Rust, un linguaggio di programmazione che offre prestazioni elevate e una gestione della memoria molto efficiente.\\
+Il linguaggio ci ha permesso di sviluppare i due web server in modo molto efficiente e veloce, inoltre la sua gestione della concorrenza ci ha permesso di sviluppare un sistema molto performante.\\
+
+Lo sviluppodei due web server è stato possibile grazie all'utilizzo della libreria \texttt{actix-web}, una libreria molto performante e che offre un'interfaccia molto semplice per la gestione delle richieste HTTP.\\
+Attraverso di essa siamo riusciti a gestire tutte le richieste provenienti dai due applicativi desktop e mobile in modo molto efficiente e veloce, riuscendo a gestire tutte le casistiche possibili.\\
+
+Anche la test suite è stata scritta in Rust, utilizzando la libreria \texttt{actix-web} per testare le funzionalità dei due web server.
+
+\subsubsection{Frontend}
+Siccome era nostra idea sviluppare due applicativi, uno mobile e uno desktop, abbiamo deciso di utilizzare il framework Flutter per lo sviluppo del frontend.\\
+Flutter è un framework sviluppato da Google studiato per lo sviluppo dell'interfaccia di applicativi mobile, ma che permette anche di sviluppare l'interfaccia di applicazioni desktop.\\
+
 
 \subsection{Conclusioni}
 

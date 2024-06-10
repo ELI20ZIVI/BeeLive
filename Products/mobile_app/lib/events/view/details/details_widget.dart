@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map_geojson/flutter_map_geojson.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile_app/dtos/event.dart';
+import 'package:mobile_app/dtos/nullable_datetime_range.dart';
 import 'title_widget.dart';
 
 import '../../../view/beelive_map.dart';
@@ -28,7 +28,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     if (page == 0) {
       polygons = widget.event.polygons.toMap();
     } else {
-      polygons = widget.event.subevents[page - 1].polygons.toMap();
+      polygons = widget.event.subevents![page - 1].polygons.toMap();
     }
 
     // Parse the polygons using GeoJsonParser
@@ -47,7 +47,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
         // Main event details
         _EventDetails(event: widget.event),
         // Sub-event details
-        ...widget.event.subevents.map((e) => _SubEventDetails(event: e))
+        ...widget.event.subevents?.map((e) => _SubEventDetails(event: e)) ?? []
       ],
     );
 
@@ -79,8 +79,7 @@ class _SubEventDetails extends StatelessWidget {
     // Use the shared function to build the event details
     return buildEventDetails(
       title: event.title,
-      begin: event.validity.begin!,
-      end: event.validity.end!,
+      validity: event.validity,
       description: event.description,
     );
   }
@@ -97,9 +96,8 @@ class _EventDetails extends StatelessWidget {
     // Use the shared function to build the event details
     return buildEventDetails(
       title: event.title,
-      begin: event.validity.begin!,
-      end: event.validity.end!,
-      description: event.summary,
+      validity: event.validity,
+      description: event.description ?? "",
     );
   }
 }
@@ -107,30 +105,11 @@ class _EventDetails extends StatelessWidget {
 // Function to build the event details widget
 Widget buildEventDetails({
   required String title,
-  required DateTime begin,
-  required DateTime end,
+  required NullableDateTimeRange validity,
   String? description,
 }) {
-  // Format the date and time
-  final dateFormat = DateFormat("HH:mm dd/MM/YY");
-  final formattedBegin = dateFormat.format(begin);
-  final formattedEnd = dateFormat.format(end);
 
-  // Determine the date range to display
-  String date = "";
-  if (begin.year == end.year) {
-    date = "${begin.day}/${begin.month} - ${end.day}/${end.month}/${end.year}";
-    if (begin.month == end.month) {
-      date = "${begin.day} - ${end.day}/${end.month}/${end.year}";
-      if (begin.day == end.day) {
-        date = "${end.day}/${end.month}/${end.year}";
-      }
-    }
-  }
-
-  // Format the time range
-  String time = "${begin.hour}:${begin.minute} - ${end.hour}:${end.minute}";
-  String titleDateTime = "$time\n$date";
+  String titleDateTime = validity.toString();
 
   // Build and return the event details widget
   return ListView(

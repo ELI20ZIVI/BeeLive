@@ -968,6 +968,27 @@ Come poi sarà descritto nel capito di deploy \ref{deploy}, allo stato attuale d
 
 \subsection{Sprint retrospective}
 
+Il progetto è stato permeato per tutta la sua durata da un grande bisogno di dedicare tempo e lavoro a creare l'implementazione del prodotto. Questo ha fatto in modo che la maggior parte della nostra concentrazione si sia rivolta al prodotto stesso invece che al framework SCRUM con cui abbiamo lavorato.\\
+In particolare, ci sono stati diversi problemi che difficilmente siamo riusciti a far rientrare nella metodologia SCRUM.\\
+Ad esempio:
+\begin{itemize}
+    \item La mancanza di testing, durante il primo sprint, ha fatto in modo che durante il secondo sprint spuntassero dei problemi riguardanti API ambigue o problemi di implementazione e integrazione (ad esempio, durante il deployment abbiamo trovato delle incongruenze per quanto riguarda il formato degli Eventi tra il public\_server, management\_server, DA e MA). Questi problemi ci hanno portato ad effettuare delle modifiche che hanno toccato diversi elementi del progetto, trascendendo completamente i constraint di un `Product Backlog` atomicizzato in quanto siamo andati a lavorare su `User Stories` che in realtà erano già finite. Far rientrare questi problemi tecnici in un classico `product backlog` è difficile, per cui il nostro backlog ha preso più la forma di una "todo list" con priorità, la quale si è concentrata principalmente sul prodotto in sè rispetto all'utente finale. 
+    \item Il nostro sistema ha richiesto fin dall'inizio un'integrazione funzionante e coerente tra le diverse componenti. Questo ha reso virtualmente impossibile il lavorare su una singola user story in modo atomico, in quanto (come accennato prima) c'è stato un costante bisogno di evolvere le diverse componenti per far fronte a problemi che continuavano a sorgere una volta che connettavamo i componenti tra di loro.\\
+\end{itemize}
+
+Diversamente, invece, ci sono diverse cose che sono andate molto bene:
+\begin{itemize}
+    \item \textbf{Progresso generale}: Siamo riusciti a creare un prodotto ben funzionante, senza particolari compromessi riguardanti la nostra idea originale. 
+    \item \textbf{"Tutoring"}: La dimensione del team (di 3 persone) ci ha permesso di essere costantemente in contatto tra di noi e aiutarci su ciò che stavamo facendo. Non c'è stato bisogno di effettuare delle vere e proprie sedute di tutoring prolungate, però ci siamo confrontati in diverse occasioni su vari elementi del nostro tech-stack (e.g. Dart, Rust o anche solo i webtokens) su cui qualcuno di noi aveva dubbi ma su cui un altro membro del team era più "ferrato".
+    \item \textbf{"SCRUM meetings"}: Ci siamo trovati in diverse occasioni, di persona, a lavorare insieme sul progetto e discutere del da farsi. Inoltre, la continua comunicazione via telegram ha fatto in modo che fossimo sempre aggiornati su cosa stiano lavorando gli altri.
+\end{itemize}
+
+\textbf{Prospetti per ipotetici sprint futuri}:
+\begin{itemize}
+    \item Sebbene la continua comunicazione (via telegram) ha fatto in modo che degli "SCRUM meeting" veri e propri fossero ridondanti e per nulla necessari, in futuro avremmo potuto formalizzare dei meeting in cui trovarci, in modo da documentare il nostro progresso e da essere sicuro che nessuno si perda nulla. 
+    \item \textbf{Sprint duration}: I diversi problemi che abbiamo incontrato con SCRUM sono riconducibili al fatto che il nostro prodotto è stato creato da zero e ha richiesto una grandissima quantità di lavoro per raggiungere lo stato di "shippable product". Ora che il nostro prodotto ha le sue componenti core finalizzate, in sprint futuri potremmo attenerci più rigorosamente a SCRUM e quindi sfruttarne le potenzialità. 
+\end{itemize}
+
 \clearpage
 
 \section{Sezione finale}
@@ -988,12 +1009,12 @@ L'architettura del sistema include i seguenti componenti principali:
 
 \subsubsection{Diagramma dell'architettura del sistema}
 
-%\begin{figure}[h]
-%    \centering
-%    \includegraphics[width=0.8\textwidth]{architettura.png}
-%    \caption{Diagramma dell'architettura del sistema}
-%    \label{fig:architettura}
-%\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/Component.png}
+    \caption{Diagramma dell'architettura del sistema}
+    \label{fig:architettura}
+\end{figure}
 
 \subsubsection{Componenti containerizzati}
 E' importante specificare il fatto che alcuni dei componenti precedentemete citati sono stati containerizzati per facilitare il deploy e la gestione del sistema.\\
@@ -1041,11 +1062,13 @@ Come citato in precedenza per eseguire il deploy di questi applicativi risulta n
 \subsubsection{Strumenti di monitoraggio}
 Per monitorare il sistema e verificare che tutti i componenti siano in esecuzione e funzionanti è utilizzato Docker stesso, che permette di visualizzare lo stato dei container e delle risorse utilizzate.\\
 Su un sistema con interfaccia grafica è possibile utilizzare Docker Desktop, mentre su un sistema senza interfaccia grafica è possibile utilizzare Docker CLI.
-
-\noindent\textbf{Docker Desktop}\\
+\begin{itemize}
+    \item \textbf{Docker Desktop}
+\end{itemize}
 Docker Desktop è un'applicazione per desktop che permette di monitorare e gestire i container Docker in modo semplice e intuitivo.
-
-\noindent\textbf{Docker CLI}\\
+\begin{itemize}
+    \item \textbf{Docker CLI}
+\end{itemize}
 Docker CLI è un'interfaccia a riga di comando che permette di gestire i container Docker da terminale. Risulta meno intuitivo e più complesso rispetto a Docker Desktop, ma permette di ottenere le stesse funzionalità.\\
 In questo caso d'uso, per monitorare i container in esecuzione, è utilizzato il comando \texttt{docker ps} che permette di visualizzare tutti i container in esecuzione e le informazioni principali su di essi.
 
@@ -1065,7 +1088,7 @@ Le librerie principali che sono state utilizzate sono:
 \end{itemize}
 Inoltre è stato sviluppato un modulo personalizzato per la gestione dell'autenticazione. Il modulo gestisce la decodifica e la verifica dei token JWT, utilizzando l'algoritmo RS256 per garantire la sicurezza dei token.\\
 
-Per quanto riguarda i test, la test-suite è stata scritta utilizzando il framework di testing nativo di Rust, \textbf{cargo test}.\\
+Per quanto riguarda la test-suite, è stata scritta utilizzando il framework di testing nativo di Rust \texttt{cargo test}.\\
 I test sono stati scritti per verificare il corretto funzionamento delle API, controllando che le risposte siano corrette e che le richieste siano gestite correttamente.\\
 E' stato sviluppato uno script di test per eseguire automaticamente tutti i test e verificare che tutte le funzionalità siano implementate correttamente attraverso un responso grafico e testuale dei risultati ottenuti.
 

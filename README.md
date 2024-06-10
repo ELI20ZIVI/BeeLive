@@ -4,8 +4,6 @@ BeeLive - Progetto del corso di Ingegneria del Software
 
 Questa e' l'unica repository del progetto "BeeLive", e di conseguenza tutti i componenti che abbiamo sviluppato, relativi a questo progetto, sono all'interno di questa repository.
 
-
-
 ### Repository structure
 
 - I deliverable creati per il corso sono nelle cartelle `Deliverable-1...4`. Sono progetti di "TexStudio" per cui e' possibile che sia necessario ri-renderizzarli per poterli vedere in formato PDF.
@@ -14,11 +12,7 @@ Questa e' l'unica repository del progetto "BeeLive", e di conseguenza tutti i co
 
 - in `BeeLive/Products/Docker` vi sono le configurazioni per docker compose e i diversi container, nonche' le configurazioni per mongobd e casdoor (i quali non necessitavano di un progetto a se' stante vero e proprio).
 
-
-
 La repository contiene anche altri file, rimasugli di deliverable precedenti che in quanto tali possono essere tranquillamente ignorati.
-
-
 
 ### Cloning
 
@@ -40,6 +34,8 @@ docker compose up -d
 ```
 
 ### Frontend app running
+
+**NOTA:** il frontend e' attualmente configurato per connettersi al nostro server personale, per cui per connettersi ad un altro server (e.g. localhost) e' necessario modificare, nel codice, l'ip a cui la mobile_app o la desktop_app si connettono (rispettivamente, in `.../desktop_app/lib/main.dart:18` e `.../mobile_app/lib/main.dart:14`)
 
 Per eseguire l'applicazione desktop, e' necessario effettuare alcune operazioni preliminarie prima di runnarla con flutter:
 

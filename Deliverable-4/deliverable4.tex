@@ -77,9 +77,7 @@ Ziviani Elia, 228172}
     \item TestCases - Revisione con test \texttt{public-server}
     \item Product backlog refinement
     \item Sprint retrospective
-    \item Deploy
     \item Diagramma deploy finale
-    \item Stack tecnologico usato
     \item Conclusioni
 \end{itemize}
 
@@ -949,13 +947,13 @@ In questo secondo sprint siamo riusciti a portare a termine tutti i task che ci 
 Tutte le criticità citate nel documento precedente sono state risolte e, inoltre, sonos tate integrate le nuove funzionalità descritte precedentemente.\\
 Come poi sarà descritto nel capito di deploy \ref{deploy}, allo stato attuale dello sviluppo del progetto tutte le funzionalità sono integrate ed utilizzabili attraverso gli applicativi desktop e mobile.\\
 
-Ricapitolando, il risultato prodotto in questo sprint è il seguente:
+\noindent Ricapitolando, il risultato prodotto in questo sprint è il seguente:
 \begin{itemize}
     \item Gestione completa (Creazione, modifica ed eliminazione) degli eventi da parte degli utenti autorizzati attraverso l'applicativo desktop
     \item Accesso completo alla visualizzazone del singolo evento e di tutti i suoi dettagli e sottoeventi da parte dell'utente comune che accede tramite l'applicativo mobile
 \end{itemize}
 
-La struttura funzionale del progetto è stata ampliata dallo scorso sprint, in quanto attualmente i componenti del sistema sono:
+\noindent La struttura funzionale del progetto è stata ampliata dallo scorso sprint, in quanto attualmente i componenti del sistema sono:
 
 \begin{itemize}
     \item \textbf{public\_server}: Web server che permette agli utenti che accedono tramite l'applicativo mobile di reperire tutti gli eventi pubblicati sul database attraverso la gestione delle richieste HTTP che gli vengono inviate
@@ -970,16 +968,86 @@ La struttura funzionale del progetto è stata ampliata dallo scorso sprint, in q
 
 \subsection{Sprint retrospective}
 
-\subsection{Deploy}
-
-
-
-\label{deploy}
-
 \clearpage
 
 \section{Sezione finale}
-\subsection{Diagramma del deploy finale}
+\subsection{Deploy}
+Il deploy del progetto si riferisce al processo di rilascio del software in ambiente operativo. Questo capitolo del documento descrive in dettaglio le fasi e le procedure coinvolte nel deploy del nostro progetto, inclusi gli obiettivi e i risultati attesi.
+
+\subsubsection{Panoramica dell'Architettura}
+L'architettura del sistema include i seguenti componenti principali:
+\begin{itemize}
+    \item Public server
+    \item Management server
+    \item Database MongoDB
+    \item CasDoor (Auth/Autn server)
+    \item OpenRouteService
+    \item Applicativo desktop
+    \item Applicativo mobile
+\end{itemize}
+
+\subsubsection{Diagramma dell'architettura del sistema}
+
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{architettura.png}
+%    \caption{Diagramma dell'architettura del sistema}
+%    \label{fig:architettura}
+%\end{figure}
+
+\subsubsection{Componenti containerizzati}
+E' importante specificare il fatto che alcuni dei componenti precedentemete citati sono stati containerizzati per facilitare il deploy e la gestione del sistema.\\
+Come tecnologia di containerizzazione è stato scelto Docker, in quanto permette di creare, distribuire e gestire applicazioni in container in modo semplice e veloce.\\
+I componenti che sono eseguiti all'interno di container sono:
+\begin{itemize}
+    \item Public server
+    \item Management server
+    \item Database MongoDB
+    \item CasDoor (Auth/Autn server)
+    \item OpenRouteService
+\end{itemize}
+Tutti all'interno di container singoli per semplificare la gestione dei processi, il loro flusso esecutivo e la loro scalabilità.\\
+I container sono attivi su un nostro server proprietario (IP statico: 93.49.96.13), quindi sono raggiungibili dall'esterno.
+
+\subsubsection{Requisiti di deploy}
+Per quanto riguarda i componenti containerizzati, quali i due server web, non vi sono particolari requisiti in quanto già in esecuzione sul server precedentemente citato.\\
+Parlando invece dei due applicativi, i requisiti minimi per la loro installazione e il loro funzionamento sono:
+\begin{itemize}
+    \item \textbf{Applicativo desktop}: Sistema operativo Windows 10, 8.1, 8, 7 % Non so se lo facciamo girare altrove
+    \item \textbf{Applicativo mobile}: Sistema operativo Android 5.0 o superiore
+\end{itemize}
+
+\subsubsection{Preparazione dell'Ambiente}
+Prima di procedere con il deploy, è necessario preparare l'ambiente di produzione.\\
+Come detto in precedenza per l'esecuzione degli applicativi desktop e mobile non sono necessarie particolari configurazioni, ma per i componenti su server è necessario installare il software Docker e Docker Compose.\\
+Per installare Docker, seguire le istruzioni ufficiali per il proprio sistema operativo, trattandosi il nostro di un server linux sono state seguite le istruzioni presenti nella documentazione ufficiale riguardante il sistema operativo specificato.\\
+Per replicare l'ambiente da noi creato sul server, sarà quindi necessario installare Docker e Docker Compose seguendo la guida del sistema operativo in uso.
+
+\subsubsection{Procedura di Deploy}
+\textbf{Componenti nei container all'interno del server}\\
+Per l'esecuzione dei container, una volta che l'ambiente è correttamente configurato, è stato sviluppato un file \texttt{docker-compose} (Nel percorso della directory del progetto \texttt{BeeLive/Products/Docker}) che permette di avviare tutti i container necessari per il funzionamento del sistema con la configurazione corretta.\\
+Quindi per l'avvio dei componenti è utilizzato il comando \texttt{docker-compose up} all'interno della directory sopra citata.\\
+Questo ci permette di avere tutti i componenti in esecuzione e pronti per l'utilizzo senza nessun tipo di configurazione e complicazione aggiuntiva.\\
+
+\noindent Gli step per il deploy di questi componenti sono quindi:
+\begin{enumerate}
+    \item Installare Docker e Docker Compose (Da saltare se già fatto precedentemente)
+    \item Eseguire il comando \texttt{docker-compose up} nella directory del progetto (\texttt{.../BeeLive/Products/Docker})
+\end{enumerate}
+
+\noindent\textbf{Applicativi mobile e desktop}\\
+Come citato in precedenza per eseguire il deploy di questi applicativi risulta necessaria solamente la loro installazione all'interno dei dispositivi in cui si vuole utilizzarli.
+
+\subsubsection{Strumenti di monitoraggio}
+Per monitorare il sistema e verificare che tutti i componenti siano in esecuzione e funzionanti è utilizzato Docker stesso, che permette di visualizzare lo stato dei container e delle risorse utilizzate.\\
+Su un sistema con interfaccia grafica è possibile utilizzare Docker Desktop, mentre su un sistema senza interfaccia grafica è possibile utilizzare Docker CLI.
+
+\noindent\textbf{Docker Desktop}\\
+Docker Desktop è un'applicazione per desktop che permette di monitorare e gestire i container Docker in modo semplice e intuitivo.
+
+\noindent\textbf{Docker CLI}\\
+Docker CLI è un'interfaccia a riga di comando che permette di gestire i container Docker da terminale. Risulta meno intuitivo e più complesso rispetto a Docker Desktop, ma permette di ottenere le stesse funzionalità.\\
+In questo caso d'uso, per monitorare i container in esecuzione, è utilizzato il comando \texttt{docker ps} che permette di visualizzare tutti i container in esecuzione e le informazioni principali su di essi.
 
 \subsection{Stack tecnologico usato}
 Per lo sviluppo del progetto abbiamo deciso, dopo approvazione della nostra proposta da parte dei docenti, di discostarci leggermente da quanto il corso prevedeva di utilizzare.\\

@@ -21,19 +21,19 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
   @override
   Widget build(final BuildContext context) {
-    final polygons;
-    final page = controller.page?.toInt() ?? 0;
+    final Map<String, dynamic> polygons;
+    final page = controller.hasClients ? controller.page?.toInt() ?? 0 : 0;
 
     // Determine which polygons to display based on the current page
     if (page == 0) {
-      polygons = widget.event.polygons?.toMap();
+      polygons = widget.event.polygons.toMap();
     } else {
-      polygons = widget.event.events[page - 1].polygons;
+      polygons = widget.event.subevents[page - 1].polygons.toMap();
     }
 
     // Parse the polygons using GeoJsonParser
     final parser = GeoJsonParser();
-    if (polygons != null) parser.parseGeoJson(polygons);
+    parser.parseGeoJson(polygons);
 
     // Create a map widget with the parsed polygons
     final map = BeeLiveMap(
@@ -47,7 +47,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
         // Main event details
         _EventDetails(event: widget.event),
         // Sub-event details
-        ...widget.event.events.map((e) => _SubEventDetails(event: e))
+        ...widget.event.subevents.map((e) => _SubEventDetails(event: e))
       ],
     );
 
@@ -130,7 +130,7 @@ Widget buildEventDetails({
 
   // Format the time range
   String time = "${begin.hour}:${begin.minute} - ${end.hour}:${end.minute}";
-  String titleDateTime = time + "\n" + date;
+  String titleDateTime = "$time\n$date";
 
   // Build and return the event details widget
   return ListView(

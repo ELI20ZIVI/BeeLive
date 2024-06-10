@@ -4,6 +4,7 @@ import 'package:unixtime/unixtime.dart';
 
 part 'nullable_datetime_range.g.dart';
 
+/// Represention of a range of nullable datetimes.
 @JsonSerializable()
 @_DateTimeToUnix()
 class NullableDateTimeRange {
@@ -19,6 +20,7 @@ class NullableDateTimeRange {
   Map<String, dynamic> toJson() => _$NullableDateTimeRangeToJson(this);
 }
 
+/// Converts a [DateTime] to an Unix time for transfer purposes.
 class _DateTimeToUnix
     extends JsonConverter<DateTime, int> {
   const _DateTimeToUnix();

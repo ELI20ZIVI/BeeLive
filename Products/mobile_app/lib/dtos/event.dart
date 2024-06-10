@@ -1,10 +1,12 @@
+
 import 'package:bson/bson.dart';
+import 'package:mobile_app/dtos/category.dart';
+import 'package:mobile_app/dtos/risk_level.dart';
 import 'package:geojson_vi/geojson_vi.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mobile_app/dtos/category.dart';
 import 'package:mobile_app/dtos/nullable_datetime_range.dart';
-import 'package:mobile_app/dtos/risk_level.dart';
+
 
 part 'event.g.dart';
 
@@ -13,38 +15,50 @@ extension type EventId(int _id) {
   int toJson() => _id;
 }
 
-@JsonSerializable()
+/// The DTO representing an Event.
+@JsonSerializable(fieldRename: FieldRename.snake)
 final class Event with BsonSerializable {
   final EventId id;
-  final String title;
-  final String summary;
-  final Uri? document;
-  final NullableDateTimeRange validity;
-  final NullableDateTimeRange visibility;
+  String title;
+  String summary;
+  String? description;
 
-  @JsonKey(defaultValue: RiskLevel.info)
-  final RiskLevel riskLevel;
-
-  final List<Category> categories;
-
-  @JsonKey(defaultValue: [])
-  final List<SubEvent> events;
+  /// A remote URL that contains additional information to this event.
+  Uri? remoteDocument;
+  NullableDateTimeRange validity;
+  NullableDateTimeRange visibility;
+  RiskLevel riskLevel;
+  List<Category> categories;
+  List<SubEvent>? subevents;
 
   @_GeoJSONFeaturesToMap()
-  final GeoJSONFeatureCollection? polygons;
+  final GeoJSONFeatureCollection polygons;
 
   Event({
     required this.id,
     required this.title,
     required this.summary,
-    this.document,
+    required this.description,
+    this.remoteDocument,
     required this.validity,
     required this.visibility,
     required this.riskLevel,
     this.categories = const [],
-    this.events = const [],
-    this.polygons,
+    this.subevents = const [],
+    required this.polygons,
   });
+
+  Event.defaultNewEvent(int id) : this(
+    id: EventId(id),
+    title: "Nuovo Evento",
+    summary: "",
+    description: "",
+    validity: NullableDateTimeRange(),
+    visibility: NullableDateTimeRange(),
+    riskLevel: RiskLevel.info,
+    subevents: [],
+    polygons: GeoJSONFeatureCollection([]),
+  );
 
   @override
   Map<String, dynamic> get toBson => toJson();
@@ -53,21 +67,24 @@ final class Event with BsonSerializable {
   Map<String, dynamic> toJson() => _$EventToJson(this);
 }
 
+/// The DTO representing a SubEvent.
 @JsonSerializable()
 final class SubEvent {
-  final String title;
-  final String? description;
-  final NullableDateTimeRange validity;
+  String title;
+  String? description;
+  NullableDateTimeRange validity;
 
   @_GeoJSONFeaturesToMap()
-  final GeoJSONFeatureCollection? polygons;
+  GeoJSONFeatureCollection polygons;
 
-  const SubEvent({
+  SubEvent({
     required this.title,
     this.description,
     required this.validity,
-    this.polygons,
+    required this.polygons,
   });
+
+  SubEvent.defaultNewSubevent() : this(title: "Titolo", validity: NullableDateTimeRange(), polygons: GeoJSONFeatureCollection([]));
 
   factory SubEvent.fromJson(Map<String, dynamic> json) {
     return _$SubEventFromJson(json);
@@ -90,17 +107,3 @@ class _GeoJSONFeaturesToMap
   }
 }
 
-class _GeoJSONGeometriesToMap
-    extends JsonConverter<GeoJSONGeometryCollection, Map<String, dynamic>> {
-  const _GeoJSONGeometriesToMap();
-
-  @override
-  GeoJSONGeometryCollection fromJson(Map<String, dynamic> json) {
-    return GeoJSONGeometryCollection.fromMap(json);
-  }
-
-  @override
-  Map<String, dynamic> toJson(GeoJSONGeometryCollection object) {
-    return object.toMap();
-  }
-}

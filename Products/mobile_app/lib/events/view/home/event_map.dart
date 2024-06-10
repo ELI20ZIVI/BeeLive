@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_app/dtos/event.dart';
+import 'package:mobile_app/utils.dart';
 import 'package:mobile_app/view/beelive_map.dart';
 
 class EventMap extends ConsumerWidget {
@@ -13,20 +14,13 @@ class EventMap extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final events = this.events ?? [];
 
-    final polygons =
-        <Polygon>[]; /*events.expand((p) => p.polygons).map((p) {
-      return Polygon(
-        points: p.points,
-        isFilled: true,
-        color: Colors.blue.withOpacity(0.4),
-        borderColor: Colors.blue,
-        borderStrokeWidth: 2,
-        isDotted: false,
-        rotateLabel: true,
-      );
-    }).toList(growable: false);*/
+    final polygons = events.expand((event) {
+      final parser = defaultGeoJsonParser;
+      parser.parseGeoJson(event.polygons.toMap());
+      return parser.polygons;
+    }).toList(growable: false);
 
-    final map = BeeLiveMap();
+    final map = BeeLiveMap(polygons: polygons);
 
     return map;
   }

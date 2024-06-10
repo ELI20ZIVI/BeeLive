@@ -54,11 +54,11 @@ async fn main() -> std::io::Result<()> {
 
     //TODO: solve unwrap
     println!("Connecting to MongoDB...");
-    let client = Client::with_uri_str("mongodb://beelive.mongo:27017/").await.unwrap();
+    let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017/").await.unwrap();
     //let client = Client::with_uri_str("mongodb://@beelive.mongo:27017").await.unwrap();
     println!("Connected to MongoDB!");
-    let mongodb_events_collection = client.database("beelive_test").collection::<Event>("events");
-    let mongodb_categories_collection = client.database("beelive_test").collection::<Category>("categories");
+    let mongodb_events_collection = client.database("beelive_develop").collection::<Event>("events");
+    let mongodb_categories_collection = client.database("beelive_develop").collection::<Category>("categories");
 
     HttpServer::new(move || {
         App::new()

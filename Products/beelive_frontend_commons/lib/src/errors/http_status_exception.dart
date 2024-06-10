@@ -7,4 +7,9 @@ final class HttpStatusException implements Exception {
   final String reasonPhrase;
 
   const HttpStatusException(this.uri, this.statusCode, this.reasonPhrase);
+
+  @override
+    String toString() {
+      return "Unsuccessful request to $uri: $statusCode $reasonPhrase";
+    }
 }

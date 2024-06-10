@@ -6,6 +6,7 @@ import 'package:desktop_app/features/event_management/view/geojson_picker.dart';
 import 'package:desktop_app/features/event_management/view/no_connection_infobar.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_geojson/flutter_map_geojson.dart';
 import 'package:geojson_vi/geojson_vi.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
@@ -49,7 +50,7 @@ class EventManagerScreen extends StatelessWidget {
 /// This widget shows the modification form for the event attributes.
 class _EventWidget extends StatelessWidget{
 
-  _EventWidget({
+  const _EventWidget({
     required this.event,
   });
 
@@ -221,28 +222,13 @@ class _MapManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    List<Polygon> polygons = [];
-    polygons = subEvent.polygons.features.map((p) {
-      List<LatLng> coordinates = [];
-
-      var geometry = p?.geometry;
-      if (geometry is GeoJSONPolygon) {
-        var pol = geometry;
-        coordinates = pol.coordinates[0].map((c) { return LatLng(c[1], c[0]); } ).toList(growable: false);
-      }
-
-      return Polygon(
-        points: coordinates,
-        isFilled: true,
-        color: Colors.blue.withOpacity(0.2),
-        borderColor: Colors.blue,
-        borderStrokeWidth: 2,
-        isDotted: true,
-        rotateLabel: true,
-        //holePointsList: p.holes,
-      );
-    }).toList(growable: false);
+    final parser = GeoJsonParser(
+      defaultPolygonFillColor: Colors.blue.withOpacity(0.2),
+      defaultPolygonBorderColor: Colors.blue,
+      defaultPolygonBorderStroke: 2,
+    );
+    parser.parseGeoJson(subEvent.polygons.toMap());
+    final polygons = parser.polygons;
 
     final mapWidget = BeeLiveMap(
       children: [

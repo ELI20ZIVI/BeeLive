@@ -28,7 +28,7 @@ class ManagementWebServerClient implements Client {
   /// This will force tthe application to request the use to reauthenticate.
   Future<void> _invalidateTokenOnError(final http.Response res) async {
     if (res.statusCode == HttpStatus.unauthorized || res.statusCode == HttpStatus.forbidden) {
-      await Authenticator().invalidateToken();
+      await Authenticator().logout();
     }
   } 
 
@@ -36,7 +36,8 @@ class ManagementWebServerClient implements Client {
   Future<http.Response> submitNewEvent(Event event) async {
 
     debugPrint(json.encode(event.toJson()));
-    var uri = Uri.parse(uriPath + "/$_submitEventUriSegment");
+    var uri = Uri.parse("$uriPath/$_submitEventUriSegment");
+    debugPrint(uri.toString());
 
     final response = await http.post(uri, headers: {
       "Content-Type": "application/json",
@@ -50,7 +51,7 @@ class ManagementWebServerClient implements Client {
   @override
   Future<http.Response> deleteExistingEvent(int eventId) async {
 
-    var uri = Uri.parse(uriPath + "/$_deleteEventUriSegment/$eventId");
+    var uri = Uri.parse("$uriPath/$_deleteEventUriSegment/$eventId");
 
     final response = await http.delete(uri, headers: {"Authorization": await getAuthToken()});
     await _invalidateTokenOnError(response);
@@ -60,14 +61,14 @@ class ManagementWebServerClient implements Client {
   @override
   Future<(http.Response, List<Event>?)> getEventList() async {
 
-    var uri = Uri.parse(uriPath + "/$_getEventListUriSegment");
+    var uri = Uri.parse("$uriPath/$_getEventListUriSegment");
     debugPrint(uri.toString());
 
     var response = await http.get(uri, headers: {"Authorization": await getAuthToken(),} );
 
     if (response.statusCode == 200) {
       debugPrint("${response.statusCode}");
-      debugPrint("${response.body}");
+      debugPrint(response.body);
       var json = jsonDecode(response.body) as Iterable;
       return (response, json.map((e) => Event.fromJson(e)).toList());
     } else {
@@ -81,7 +82,7 @@ class ManagementWebServerClient implements Client {
     debugPrint("Modifying");
     debugPrint(json.encode(event.toJson()));
 
-    var uri = Uri.parse(uriPath + _modifyEventUriSegment + "/${event.id}");
+    var uri = Uri.parse("$uriPath/$_modifyEventUriSegment/${event.id}");
     final response = await http.put(
       uri,
       headers: {"Content-Type": "application/json", "Authorization": await getAuthToken()},

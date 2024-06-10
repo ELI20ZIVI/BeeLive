@@ -99,7 +99,7 @@ Ziviani Elia, 228172}
 
 \subsection{Scopo del progetto}
 
-Lo scopo del progetto 'BeeLive' è quello di risolvere il problema riguardante la difficoltà nel reperire informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Prevediamo un sistema informativo, dedicato agli utenti cittadini, che mostri visualmente le variazioni della viabilità in città, informando gli stessi di eventuali modifiche che potrebbero colpirli direttamente.
+Lo scopo del progetto 'BeeLive' è quello di creare un sistema informativo, dedicato ai cittadini di Trento, che permetta di reperire facilmente le informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Prevediamo un applicazione mobile che mostri visualmente le variazioni della viabilità in città, informando gli utenti di eventuali modifiche che potrebbero colpirli direttamente. 
 
 \subsection{Link utili}
 Il primo link fornito è quello della repository github. La repository è stata creata appena il corso è cominciato, infatti inizialmente è risultata utile al fine di scrivere in modo collaborativo i primi deliverable.\\
@@ -120,16 +120,24 @@ L'utilizzo dell'applicativo mobile non richiede un login, in quanto, siccome le 
 \section{Sezione generale}
 
 \subsection{Strategia di Branching}
-Anche per questo secondo sprint è stata evitata la strategia di branching "Master only", infatti come descritto nel documento "Deliverable 3", per noi la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto. \\
+Anche per questo secondo sprint è stata evitata la strategia di branching "Master only": come descritto nel documento "Deliverable 3", la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto.\\\\
+\noindent
+Abbiamo deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia il \textit{GitFlow Workflow}. Una volta ritenute soddisfacenti le modifiche e le feature di una "feature branch", questa viene integrata in \texttt{develop}.\\
+La branch \texttt{main} è la branch stabile in cui vengono effettuate le pull requests da \texttt{develop} solo una volta testate, determinando il rilascio della \textit{release}.\\\\
+\noindent
+Come specificato in seguito, il deployment è stato eseguito su server personale. Visto lo scope del progetto non è stato ritenuto opportuno perdere tempo nell'implementare meccanismi automatici CICD.\\\\
 
 \noindent
-Abbiamo quindi deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia il \textit{GitFlow Workflow} con però un branch \texttt{develop}, precedente al branch \texttt{main}, sul quale, una volta ritenute soddisfacenti le modifiche e le feature aggiunte, queste vengono integrate.\\
-Quando le features sono tutte integrate nel branch \texttt{develop}, questo viene, una volta che tutto è testato nei minimi dettagli, integrato nel branch \texttt{main} come operazione di 'release'.\\
+Tramite questo approccio siamo riusciti a minimizzare i problemi di  collaborazione tra i membri del team, nonche' ridotto i conflitti e le inconsistenze nel codice, facilitato la gestione delle diverse attività in corso e mantenuto inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.
 
 \noindent
-Tramite questo approccio puntiamo ad incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitare la gestione delle diverse attività in corso e mantenere inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
+Verso la fine del precedente sprint, abbiamo unificato le diverse branches in \texttt{develop} e, all'inizio di questo sprint, abbiamo nuovamente effettuato dei rebranching da \texttt{develop} in modo da lavorare sulle singole features.
+Lo storico della nostra strategia di branching e' visualizzabile sotto il tool "Network Graph" fornito da github, accessibile da questo link:
+\href{https://github.com/ELI20ZIVI/BeeLive/network}{Network Graph}
 
-Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sono state eliminate una volta integrate in \texttt{develop}, per cui su github potrebbero non apparire.
+
+\noindent
+Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sarebbere dovute essere eliminate a seguito del primo sprint ma, come suggerito dai docenti, le abbiamo tenute.
 
 \subsubsection{\texttt{main}}
 
@@ -144,7 +152,7 @@ Una volta che sono considerate funzionanti sono quindi integrate nel branch prin
 
 \subsubsection{\texttt{preview}}
 
-Branch dedicato alla preview dell'interfaccia grafica dei due applicativi.\\
+Branch (obsoleto) dedicato allo sviluppo del mockup dell'interfaccia grafica dei due applicativi.\\
 E' stato utilizzato al momento della prima presentazione del progetto per mostrare il lavoro svolto ai committenti e per ricevere feedback su eventuali modifiche da apportare.\\
 Integra dei mockup delle varie interfacce, desktop e mobile, che andranno sviluppate.\\
 Parte della preview relativa all'applicativo desktop è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia.
@@ -174,51 +182,58 @@ Similmente al branch precedente, questo branch è dedicato allo sviluppo del ser
 
 \subsubsection{\texttt{da\_frontend}}
 
-Branch dedicato allo sviluppo dell'interfaccia grafica dell'applicativo desktop.\\
+Branch (feature) dedicato allo sviluppo dell'interfaccia grafica dell'applicativo desktop.\\
 In questo branch vengono sviluppate tutte le componenti che caratterizzano l'interfaccia grafica dell'applicativo desktop.
 
 \subsubsection{\texttt{da\_authn}}
 
-Il branch è dedicato allo sviluppo del modulo di autenticazione dell'applicativo desktop.\\
+Il branch (feature) è dedicato allo sviluppo del modulo di autenticazione dell'applicativo desktop.\\
 Include infatti tutto il codice e la logica necessari all'autenticazione degli utenti autorizzati e dell'utente amministratore all'applicativo desktop.
 
 \subsubsection{\texttt{da\_event\_list}}
 
-Branch di sviluppo della funzionalità di visualizzazione a lista degli eventi a disposizione dell'utente che ha eseguito il login all'applicativo desktop.\\
+Branch (feature) di sviluppo della funzionalità di visualizzazione a lista degli eventi a disposizione dell'utente che ha eseguito il login all'applicativo desktop.\\
 E' integrata tutta la logica di richiesta delle informazioni al server e di visualizzazione delle stesse in modo chiaro e ordinato.
 
 \subsubsection{\texttt{ma\_client}}
 
-Branch dedicato allo sviluppo del client mobile, i.e. l'applicazione mobile utilizzata dagli utenti comuni (autenticati e non) che intendono visualizzazione le criticita' presenti in citta'.\\
+Branch (feature) dedicato allo sviluppo del client mobile, i.e. l'applicazione mobile utilizzata dagli utenti comuni (autenticati e non) che intendono visualizzazione le criticita' presenti in citta'.\\
 Il branch, una volta concluso lo sviluppo dell'applicativo, e' stato integrato nel branch \texttt{develop} per i test in associata con tutti gli altri moduli.
 
 
 \subsubsection{\texttt{ma\_screen}}
 
-Branch dedicato alla creazione delle schermate dell'applicativo mobile, i.e. tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
+Branch (feature) dedicato alla creazione delle schermate dell'applicativo mobile, i.e. tutte le schermate che l'utente visualizzera' durante l'utilizzo dell'applicativo.\\
 Questo branch è stato integrato in \texttt{ma\_client} in quanto sua dipendenza.
 
 \subsubsection{\texttt{ma\_details}}
 
-Il branch nasce con lo scopo di mantenere il codice dell'interfaccia di visualizzazione degli eventi e dei rispettivi sottoeventi sull'applicativo mobile.
+Il branch (feature) nasce con lo scopo di mantenere il codice dell'interfaccia di visualizzazione degli eventi e dei rispettivi sottoeventi sull'applicativo mobile.
 Branch successivamente integrato in \texttt{ma\_client} in quanto sua dipendenza.
 
 \subsubsection{\texttt{ma\_map}}
 
-Branch utilizzato per sviluppare la libreria che permette di integrare la mappa interattiva all'interno dell'applicativo mobile.\\
+Branch (feature) utilizzato per sviluppare la libreria che permette di integrare la mappa interattiva all'interno dell'applicativo mobile.\\
 Questa libreria permette di visualizzare in modo chiaro e intuitivo le criticita' presenti in citta' e di visualizzare la posizione degli eventi.
 
 \subsubsection{\texttt{ws-fetch-event}}
 
-Branch dedicato allo sviluppo del webserver pubblico, i.e. il webserver in cui sono stati implementati gli endpoint API dedicati al fetching di eventi ad opera dell'applicativo mobile.\\
+Branch (feature) dedicato allo sviluppo del webserver pubblico, i.e. il webserver in cui sono stati implementati gli endpoint API dedicati al fetching di eventi ad opera dell'applicativo mobile.\\
 Una volta che il modulo e' stato completato, e' stato integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.
 
 \subsubsection{\texttt{ws-insert-event}}
 
-Branch dedicato allo sviluppo del webserver gestionale, i.e. il webserver in cui sono stati implementati gli endpoint API dedicati all'inserimento degli eventi all'interno del sistema ad opera dell'applicativo desktop. \\
+Branch (feature) dedicato allo sviluppo del webserver gestionale, i.e. il webserver in cui sono stati implementati gli endpoint API dedicati all'inserimento degli eventi all'interno del sistema ad opera dell'applicativo desktop. \\
 Utile allo sviluppo del modulo utilizzato dall'applicativo desktop per l'inserimento delle criticita' in citta'.
 Una volta che il modulo e' stato completato, e' stato integrato nel branch \texttt{develop} per i test con tutti gli altri moduli.\\
 Delle versioni intermedie di questa branch sono state usate da altre branches, in particolare da \texttt{da\_desktop}, in quanto necessaria per effettuare il testing di quest'ultima.
+
+\subsubsection{\texttt{hotfixes}}
+È stato necessario effettuare correzioni alla branch \texttt{hotfixes} al fine di correggere bug e incongruenze.\\
+L'utilizzo intensivo di questa branch è dovuto al fatto che, visto lo scope del progetto, non è stato possibile effettuare code reviews delle pull requests.
+
+\subsubsection{\texttt{testing}}
+I tests sono stati scritti su branch a parte. Sebbene molti degli integration tests siano relativi a specifiche features, non è stato possibile implementarli in contemporanea per questioni di tempo.
 
 \clearpage
 
@@ -944,7 +959,7 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \subsection{Sprint review}
 
 In questo secondo sprint siamo riusciti a portare a termine tutti i task che ci eravamo prefissati nel product backlog dello sprint.\\  
-Tutte le criticità citate nel documento precedente sono state risolte e, inoltre, sonos tate integrate le nuove funzionalità descritte precedentemente.\\
+Tutte le criticità citate nel documento precedente sono state risolte e, inoltre, sono state integrate le nuove funzionalità descritte precedentemente.\\
 Come poi sarà descritto nel capito di deploy \ref{deploy}, allo stato attuale dello sviluppo del progetto tutte le funzionalità sono integrate ed utilizzabili attraverso gli applicativi desktop e mobile.\\
 
 \noindent Ricapitolando, il risultato prodotto in questo sprint è il seguente:
@@ -974,6 +989,7 @@ Ad esempio:
 \begin{itemize}
     \item La mancanza di testing, durante il primo sprint, ha fatto in modo che durante il secondo sprint spuntassero dei problemi riguardanti API ambigue o problemi di implementazione e integrazione (ad esempio, durante il deployment abbiamo trovato delle incongruenze per quanto riguarda il formato degli Eventi tra il public\_server, management\_server, DA e MA). Questi problemi ci hanno portato ad effettuare delle modifiche che hanno toccato diversi elementi del progetto, trascendendo completamente i constraint di un `Product Backlog` atomicizzato in quanto siamo andati a lavorare su `User Stories` che in realtà erano già finite. Far rientrare questi problemi tecnici in un classico `product backlog` è difficile, per cui il nostro backlog ha preso più la forma di una "todo list" con priorità, la quale si è concentrata principalmente sul prodotto in sè rispetto all'utente finale. 
     \item Il nostro sistema ha richiesto fin dall'inizio un'integrazione funzionante e coerente tra le diverse componenti. Questo ha reso virtualmente impossibile il lavorare su una singola user story in modo atomico, in quanto (come accennato prima) c'è stato un costante bisogno di evolvere le diverse componenti per far fronte a problemi che continuavano a sorgere una volta che connettavamo i componenti tra di loro.\\
+    Una progettazione iniziale più approfondita avrebbe potuto mitigare questo problema, tuttavia abbiamo ritenuto che andasse un po' in contraddizione con la metodologia AGILE. Inoltre non avevamo garanzie di ottenere risultati accettabili vista la mancanza di esperienza.
 \end{itemize}
 
 Diversamente, invece, ci sono diverse cose che sono andate molto bene:
@@ -986,7 +1002,7 @@ Diversamente, invece, ci sono diverse cose che sono andate molto bene:
 \textbf{Prospetti per ipotetici sprint futuri}:
 \begin{itemize}
     \item Sebbene la continua comunicazione (via telegram) ha fatto in modo che degli "SCRUM meeting" veri e propri fossero ridondanti e per nulla necessari, in futuro avremmo potuto formalizzare dei meeting in cui trovarci, in modo da documentare il nostro progresso e da essere sicuro che nessuno si perda nulla. 
-    \item \textbf{Sprint duration}: I diversi problemi che abbiamo incontrato con SCRUM sono riconducibili al fatto che il nostro prodotto è stato creato da zero e ha richiesto una grandissima quantità di lavoro per raggiungere lo stato di "shippable product". Ora che il nostro prodotto ha le sue componenti core finalizzate, in sprint futuri potremmo attenerci più rigorosamente a SCRUM e quindi sfruttarne le potenzialità. 
+    \item \textbf{Sprint duration}: I diversi problemi che abbiamo incontrato con SCRUM sono riconducibili al fatto che il nostro prodotto è stato creato da zero e ha richiesto una grandissima quantità di lavoro per raggiungere lo stato di "shippable product". Ora che il nostro prodotto ha le sue componenti core finalizzate, in sprint futuri potremmo attenerci più rigorosamente a SCRUM e quindi sfruttarne le potenzialità.
 \end{itemize}
 
 \clearpage
@@ -1001,8 +1017,7 @@ L'architettura del sistema include i seguenti componenti principali:
     \item Public server
     \item Management server
     \item Database MongoDB
-    \item CasDoor (Auth/Autn server)
-    \item OpenRouteService
+    \item CasDoor (Authn server)
     \item Applicativo desktop
     \item Applicativo mobile
 \end{itemize}
@@ -1018,14 +1033,13 @@ L'architettura del sistema include i seguenti componenti principali:
 
 \subsubsection{Componenti containerizzati}
 E' importante specificare il fatto che alcuni dei componenti precedentemete citati sono stati containerizzati per facilitare il deploy e la gestione del sistema.\\
-Come tecnologia di containerizzazione è stato scelto Docker, in quanto permette di creare, distribuire e gestire applicazioni in container in modo semplice e veloce.\\
+Come tecnologia di containerizzazione è stato scelto Docker, in quanto permette di creare, distribuire e gestire applicazioni in container in modo semplice e veloce. In questo contesto, la semplicità di utilizzo e la mancanza di esigenze particolari non ha reso opportuno l'utilizzo di orchestratori quali Kubernetes.\\
 I componenti che sono eseguiti all'interno di container sono:
 \begin{itemize}
     \item Public server
     \item Management server
     \item Database MongoDB
     \item CasDoor (Auth/Autn server)
-    \item OpenRouteService
 \end{itemize}
 Tutti all'interno di container singoli per semplificare la gestione dei processi, il loro flusso esecutivo e la loro scalabilità.\\
 I container sono attivi su un nostro server proprietario (IP statico: 93.49.96.13), quindi sono raggiungibili dall'esterno.
@@ -1034,9 +1048,10 @@ I container sono attivi su un nostro server proprietario (IP statico: 93.49.96.1
 Per quanto riguarda i componenti containerizzati, quali i due server web, non vi sono particolari requisiti in quanto già in esecuzione sul server precedentemente citato.\\
 Parlando invece dei due applicativi, i requisiti minimi per la loro installazione e il loro funzionamento sono:
 \begin{itemize}
-    \item \textbf{Applicativo desktop}: Sistema operativo Windows 10, 8.1, 8, 7 % Non so se lo facciamo girare altrove
+    \item \textbf{Applicativo desktop}: Sistema operativo Linux % Non so se lo facciamo girare altrove
     \item \textbf{Applicativo mobile}: Sistema operativo Android 5.0 o superiore
 \end{itemize}
+È possibile utilizzarli anche come webapps, tuttavia non è stato previsto il loro deployment.
 
 \subsubsection{Preparazione dell'Ambiente}
 Prima di procedere con il deploy, è necessario preparare l'ambiente di produzione.\\
@@ -1057,7 +1072,8 @@ Questo ci permette di avere tutti i componenti in esecuzione e pronti per l'util
 \end{enumerate}
 
 \noindent\textbf{Applicativi mobile e desktop}\\
-Come citato in precedenza per eseguire il deploy di questi applicativi risulta necessaria solamente la loro installazione all'interno dei dispositivi in cui si vuole utilizzarli.
+Come citato in precedenza per eseguire il deploy di questi applicativi risulta necessaria solamente la loro installazione all'interno dei dispositivi in cui si vuole utilizzarli.\\
+in caso di deployment in locale risulta necessario assicurarsi della raggiungibilità della macchina che esegue i webserver da parte del dispositivo che esegue la mobile app.
 
 \subsubsection{Strumenti di monitoraggio}
 Per monitorare il sistema e verificare che tutti i componenti siano in esecuzione e funzionanti è utilizzato Docker stesso, che permette di visualizzare lo stato dei container e delle risorse utilizzate.\\
@@ -1077,30 +1093,37 @@ Per lo sviluppo del progetto abbiamo deciso, dopo approvazione della nostra prop
 La descrizione che segue presenta su quali tecnologie sono ricadute le nostre scelte.
 
 \subsubsection{Backend}
-\textbf{Linguaggio di Programmazione: Rust}
-Rust è stato scelto per il suo sistema di gestione della memoria sicuro e per le sue prestazioni elevate. Rust consente di scrivere codice concorrenziale senza il rischio di data races, grazie al suo sistema di proprietà e borrowing.\\
-Le librerie principali che sono state utilizzate sono:
+\textbf{Linguaggio di Programmazione: Rust}\\
+Abbiamo scelto di usare Rust a causa del suo sistema di gestione della memory-safe e per le sue prestazioni elevate, nonchè per essere un linguaggio type-safe che induce gli utilizzatori a scrivere codice corretto e pulito. Consente inoltre di scrivere codice concorrenziale senza il rischio di data races, grazie al suo sistema di proprietà e borrowing.\\
+Le librerie e i framework principali, che abbiamo utilizzato per creare il `management\_server` e il  `public\_server`, sono:
 \begin{itemize}
-    \item \textbf{Actix-web}: Utilizzata per costruire il web server, Actix-web è una libreria asincrona per Rust che fornisce un'interfaccia semplice ed efficiente per la gestione delle richieste HTTP. Actix-web è nota per le sue prestazioni elevate e la capacità di gestire un gran numero di connessioni simultanee.
+    \item \textbf{Actix-web}: Actix-web è un framework asincrono per Rust utilizzato per costruire web servers; fornisce un'interfaccia semplice ed efficiente per la gestione delle richieste HTTP. Actix-web è nota per le sue prestazioni elevate e la capacità di gestire un gran numero di connessioni simultanee.
     \item \textbf{actix-web-httpauth}: Questa libreria viene utilizzata per l'autenticazione HTTP tramite Bearer tokens, permettendo di proteggere le API con token JWT.
     \item \textbf{jsonwebtoken}: Utilizzata per la gestione e la decodifica dei JSON Web Tokens (JWT), necessari per l'autenticazione e l'autorizzazione degli utenti.
-    \item \textbf{mongodb}: La connessione e le operazioni sul database sono gestite tramite il client MongoDB per Rust, permettendo l'interazione con il database MongoDB per la memorizzazione e il recupero dei dati.
+    \item \textbf{\href{https://www.mongodb.com/docs/drivers/rust/current/}{mongodb}}: La connessione e le operazioni sul database sono gestite attraverso un il driver per Rust di MongoDB, permettendo l'interazione con il database MongoDB per la memorizzazione e il recupero dei dati.
 \end{itemize}
 Inoltre è stato sviluppato un modulo personalizzato per la gestione dell'autenticazione. Il modulo gestisce la decodifica e la verifica dei token JWT, utilizzando l'algoritmo RS256 per garantire la sicurezza dei token.\\
+Per semplicità non è stato tuttavia impiegato TLS, il che rende vulnerabile il sistema.\\
 
+\noindent
+Si ricorda che la scelta di utilizzare un autenticatore esterno è stata ritenuta appropriata visto il contesto del progetto (Comune di Trento) nel quale si suppone siano già presenti sistemi di autenticazione.
+La scelta di OpenID Connect potrebbe tuttavia essere limitante, visto il probabile utilizzo di SPID, basato su SAML.\\
+
+\noindent
 Per quanto riguarda la test-suite, è stata scritta utilizzando il framework di testing nativo di Rust \texttt{cargo test}.\\
 I test sono stati scritti per verificare il corretto funzionamento delle API, controllando che le risposte siano corrette e che le richieste siano gestite correttamente.\\
 E' stato sviluppato uno script di test per eseguire automaticamente tutti i test e verificare che tutte le funzionalità siano implementate correttamente attraverso un responso grafico e testuale dei risultati ottenuti.
 
 \subsubsection{Frontend}
 \textbf{Linguaggio di Programmazione: Dart}\\
-Siccome era nostra intenzione quella di sviluppare due applicativi per tutte le interazioni possibili a sistema, la scelta del linguaggio di programmazione per lo sviluppo dell'applicativo mobile è ricaduta su Dart, nello specifico sul framework Flutter da lui integrato.\\
-Flutter utilizza Dart come linguaggio di programmazione. Dart è un linguaggio sviluppato da Google, ottimizzato per lo sviluppo di applicazioni client su qualsiasi piattaforma. È particolarmente adatto per creare interfacce utente ricche e reattive.\\
-Per lo sviluppo dello stile degli applicativi, sono state due librerie di stile differenti. Per quanto riguarda l'applicativo mobile è stata utilizzata la libreria \textbf{Material Design}, caratteristica del sistema Android, mentre per l'applicativo desktop è stata utilizzata la libreria \textbf{Fluent}, che caratterizza lo stile del sistema Windows 11.\\
-Oltre allo stile sono stati utilizzati anche:
+Siccome era nostra intenzione quella di sviluppare due applicativi per tutte le interazioni possibili a sistema, la scelta del framework per lo sviluppo degli applicativi mobile e desktop sono ricaduti su Flutter, con conseguente utilizzo del linguaggio di programmazione Dart.\\
+ Dart è un linguaggio sviluppato da Google, ottimizzato per lo sviluppo di applicazioni client su qualsiasi piattaforma. È particolarmente adatto per creare interfacce utente ricche e reattive.\\
+Per lo sviluppo dello stile degli applicativi, sono state due librerie di stile differenti. Per quanto riguarda l'applicativo mobile è stata utilizzata la libreria \textbf{Material Design}, sviluppata da Google e caratteristica di Android, mentre per l'applicativo desktop è stata utilizzata la libreria \textbf{Fluent Design}, sviluppata da Microsoft e caratteristica dello stile del sistema Windows 11.\\
+Come librerie aggiuntive abbiamo usato:
 \begin{itemize}
     \item \textbf{flutter\_riverpod}: Utilizzato per la gestione dello stato nell'applicazione. Riverpod è un fornitore di gestione dello stato robusto e reattivo, che offre vantaggi come la sicurezza del tipo e il supporto per la dipendenza tra i provider.
-    \item \textbf{CasdoorAuthenticationProvider}: Implementa un provider di autenticazione utilizzando Casdoor, un sistema di gestione delle identità e degli accessi. Il provider viene configurato con un segreto del client e un URL del server.
+    \item \textbf{CasdoorAuthenticationProvider}: Implementa un provider di autenticazione utilizzando Casdoor, un sistema di gestione delle identità e degli accessi. Il provider viene configurato con un segreto del client e un URL del server. \\
+    Questa libreria ci permette di effettuare l'autenticazione degli utenti attraverso un portale fornito da Casdoor. 
     \item \textbf{JwtAuthenticator}: Utilizzato per autenticare gli utenti tramite JWT (JSON Web Tokens). Questo garantisce che le richieste API siano autorizzate e sicure.
 \end{itemize}
 

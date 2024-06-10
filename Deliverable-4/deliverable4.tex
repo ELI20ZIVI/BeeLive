@@ -986,13 +986,20 @@ Per lo sviluppo del progetto abbiamo deciso, dopo approvazione della nostra prop
 La descrizione che segue presenta su quali tecnologie sono ricadute le nostre scelte.
 
 \subsubsection{Backend}
-Per lo sviluppo del backend abbiamo deciso di utilizzare Rust, un linguaggio di programmazione che offre prestazioni elevate e una gestione della memoria molto efficiente.\\
-Il linguaggio ci ha permesso di sviluppare i due web server in modo molto efficiente e veloce, inoltre la sua gestione della concorrenza ci ha permesso di sviluppare un sistema molto performante.\\
+\textbf{Linguaggio di Programmazione: Rust}
+Rust è stato scelto per il suo sistema di gestione della memoria sicuro e per le sue prestazioni elevate. Rust consente di scrivere codice concorrenziale senza il rischio di data races, grazie al suo sistema di proprietà e borrowing.\\
+Le librerie principali che sono state utilizzate sono:
+\begin{itemize}
+    \item \textbf{Actix-web}: Utilizzata per costruire il web server, Actix-web è una libreria asincrona per Rust che fornisce un'interfaccia semplice ed efficiente per la gestione delle richieste HTTP. Actix-web è nota per le sue prestazioni elevate e la capacità di gestire un gran numero di connessioni simultanee.
+    \item \textbf{actix-web-httpauth}: Questa libreria viene utilizzata per l'autenticazione HTTP tramite Bearer tokens, permettendo di proteggere le API con token JWT.
+    \item \textbf{jsonwebtoken}: Utilizzata per la gestione e la decodifica dei JSON Web Tokens (JWT), necessari per l'autenticazione e l'autorizzazione degli utenti.
+    \item \textbf{mongodb}: La connessione e le operazioni sul database sono gestite tramite il client MongoDB per Rust, permettendo l'interazione con il database MongoDB per la memorizzazione e il recupero dei dati.
+\end{itemize}
+Inoltre è stato sviluppato un modulo personalizzato per la gestione dell'autenticazione. Il modulo gestisce la decodifica e la verifica dei token JWT, utilizzando l'algoritmo RS256 per garantire la sicurezza dei token.\\
 
-Lo sviluppodei due web server è stato possibile grazie all'utilizzo della libreria \texttt{actix-web}, una libreria molto performante e che offre un'interfaccia molto semplice per la gestione delle richieste HTTP.\\
-Attraverso di essa siamo riusciti a gestire tutte le richieste provenienti dai due applicativi desktop e mobile in modo molto efficiente e veloce, riuscendo a gestire tutte le casistiche possibili.\\
-
-Anche la test suite è stata scritta in Rust, utilizzando la libreria \texttt{actix-web} per testare le funzionalità dei due web server.
+Per quanto riguarda i test, la test-suite è stata scritta utilizzando il framework di testing nativo di Rust, \textbf{cargo test}.\\
+I test sono stati scritti per verificare il corretto funzionamento delle API, controllando che le risposte siano corrette e che le richieste siano gestite correttamente.\\
+E' stato sviluppato uno script di test per eseguire automaticamente tutti i test e verificare che tutte le funzionalità siano implementate correttamente attraverso un responso grafico e testuale dei risultati ottenuti.
 
 \subsubsection{Frontend}
 Siccome era nostra idea sviluppare due applicativi, uno mobile e uno desktop, abbiamo deciso di utilizzare il framework Flutter per lo sviluppo del frontend.\\

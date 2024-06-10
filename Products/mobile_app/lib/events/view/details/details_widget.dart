@@ -19,11 +19,12 @@ class DetailsWidget extends StatefulWidget {
 
 class _DetailsWidgetState extends State<DetailsWidget> {
   final PageController controller = PageController();
+  int page = 0;
 
   @override
   Widget build(final BuildContext context) {
     final Map<String, dynamic> polygons;
-    final page = controller.hasClients ? controller.page?.toInt() ?? 0 : 0;
+    debugPrint("Changed page: $page");
 
     // Determine which polygons to display based on the current page
     if (page == 0) {
@@ -44,6 +45,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     // Create a PageView to display the main event and its sub-events
     final subEventView = PageView(
       controller: controller,
+      onPageChanged: (page) => setState(() => this.page = page),
       children: [
         // Main event details
         _EventDetails(event: widget.event),

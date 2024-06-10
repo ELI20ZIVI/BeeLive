@@ -120,16 +120,23 @@ L'utilizzo dell'applicativo mobile non richiede un login, in quanto, siccome le 
 \section{Sezione generale}
 
 \subsection{Strategia di Branching}
-Anche per questo secondo sprint è stata evitata la strategia di branching "Master only", infatti come descritto nel documento "Deliverable 3", per noi la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto. \\
+Anche per questo secondo sprint è stata evitata la strategia di branching "Master only": come descritto nel documento "Deliverable 3", la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto. \\
 
 \noindent
-Abbiamo quindi deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia la \textit{Feature Branching} con però un branch \texttt{develop}, precedente al branch \texttt{main}, sul quale, una volta ritenute soddisfacenti le modifiche e le feature aggiunte, queste vengono integrate.\\
-Quando le features sono tutte integrate nel branch \texttt{develop}, questo viene, una volta che tutto è testato nei minimi dettagli, integrato nel branch \texttt{main} come operazione di 'release'.\\
+Abbiamo deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia la \textit{Feature Branching} con però un branch \texttt{develop} precedente al branch \texttt{main}. Una volta volta ritenute soddisfacenti le modifiche e le feature di una "feature branch", questa verra'y integrata in \texttt{develop}.\\
+Una volta che abbastanza features vengono integrate nel branch \texttt{develop} questo viene, una volta che il sistema è stato testato nei minimi dettagli, integrato nel branch \texttt{main} come operazione di 'release'.\\
 
 \noindent
-Tramite questo approccio puntiamo ad incrementare la collaborazione tra i membri del team, ridurre i conflitti e le inconsistenze nel codice, facilitare la gestione delle diverse attività in corso e mantenere inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.\\
+Tramite questo approccio siamo riusciti a minimizzare i problemi di  collaborazione tra i membri del team, nonche' ridotto i conflitti e le inconsistenze nel codice, facilitato la gestione delle diverse attività in corso e mantenuto inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.
 
-Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sono state eliminate una volta integrate in \texttt{develop}, per cui su github potrebbero non apparire.
+\noindent
+Verso la fine del precedente sprint, abbiamo unificato le diverse branches in \texttt{develop} e, all'inizio di questo sprint, abbiamo nuovamente effettuato dei rebranching da \texttt{develop} in modo da lavorare sulle singole features.
+Lo storico della nostra strategia di branching e' visualizzabile sotto il tool "Network Graph" fornito da github, accessibile da questo link:
+\href{https://github.com/ELI20ZIVI/BeeLive/network}{Network Graph}
+
+\\
+\noindent
+Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sarebbere dovute essere eliminate a seguito del primo sprint ma, come suggerito dai docenti, le abbiamo tenute.
 
 \subsubsection{\texttt{main}}
 
@@ -144,7 +151,7 @@ Una volta che sono considerate funzionanti sono quindi integrate nel branch prin
 
 \subsubsection{\texttt{preview}}
 
-Branch dedicato alla preview dell'interfaccia grafica dei due applicativi.\\
+Branch dedicato allo sviluppo preview dell'interfaccia grafica dei due applicativi.\\
 E' stato utilizzato al momento della prima presentazione del progetto per mostrare il lavoro svolto ai committenti e per ricevere feedback su eventuali modifiche da apportare.\\
 Integra dei mockup delle varie interfacce, desktop e mobile, che andranno sviluppate.\\
 Parte della preview relativa all'applicativo desktop è stata poi utilizzata in \texttt{da\_frontend} come punto di partenza per l'interfaccia.

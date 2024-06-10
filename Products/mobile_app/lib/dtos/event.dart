@@ -21,7 +21,7 @@ final class Event with BsonSerializable {
   final EventId id;
   String title;
   String summary;
-  String description;
+  String? description;
 
   /// A remote URL that contains additional information to this event.
   Uri? remoteDocument;
@@ -29,7 +29,7 @@ final class Event with BsonSerializable {
   NullableDateTimeRange visibility;
   RiskLevel riskLevel;
   List<Category> categories;
-  List<SubEvent> subevents;
+  List<SubEvent>? subevents;
 
   @_GeoJSONFeaturesToMap()
   final GeoJSONFeatureCollection polygons;

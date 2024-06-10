@@ -10,7 +10,7 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
       id: EventId.fromJson((json['id'] as num).toInt()),
       title: json['title'] as String,
       summary: json['summary'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       remoteDocument: json['remote_document'] == null
           ? null
           : Uri.parse(json['remote_document'] as String),

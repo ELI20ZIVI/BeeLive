@@ -246,16 +246,16 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
         \makecell{Visualizzazione\\criticità\\su mappa} & \makecell{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi\\eventi, in modo da capire visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{160} & \makecell{6}\\
         \hline
         \makecell{Visualizzazione\\dei dettagli del\\singolo evento} & \makecell{Da utente, voglio avere la possibilità di accedere ad una\\visualizzazione e descrizione più dettagliata di un\\evento in modo da conoscerne meglio le specifiche} & \makecell{150} & \makecell{6}\\
+        \hline
+        \makecell{Modifica\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di modificare degli eventi\\in modo da evitare errori comunicativi} & \makecell{75} & \makecell{2}\\
+        \hline
+        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare degli eventi} & \makecell{40} & \makecell{2}\\
         \Xhline{2pt}
         \makecell{Impostazione\\categorie\\d'interesse\\per gli eventi} & \makecell{Da utente, voglio essere in grado di impostare le categorie di eventi\\alle quali io sono interessato, in modo che la lista di eventi visibile\\dall'applicazione contenga solamente gli eventi che mi interessano,\\e in modo che io non venga notificato di alcun evento\\che io non ritenga appartenere ad una categoria interessante} & \makecell{100} & \makecell{5}\\
         \hline
         \makecell{Impostazione\\zone\\d'interesse} & \makecell{Da utente, voglio essere in grado di impostare delle zone di interesse,\\in modo che io venga notificato di qualsiasi evento che insorga\\in una di queste zone} & \makecell{90} & \makecell{7}\\
         \hline
         \makecell{Visualizzazione\\eventi\\di competenza} & \makecell{Da utente autorizzato, devo essere in grado di visualizzare gli eventi\\di mia competenza, in modo da sapere quali eventi sono stati creati e\\monitorare il loro stato} & \makecell{80} & \makecell{5}\\
-        \hline
-        \makecell{Modifica\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di modificare degli eventi\\in modo da evitare errori comunicativi} & \makecell{75} & \makecell{2}\\
-        \hline
-        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare degli eventi} & \makecell{40} & \makecell{2}\\
         \hline
         \makecell{Accesso\\account\\utente} & \makecell{Da utente registrato, voglio essere in grado di poter accedere al\\mio account in modo da poter riottenere le aree di interesse e\\le impostazioni che ho precedentemente salvato} & \makecell{70} & \makecell{3}\\
         \hline
@@ -680,23 +680,6 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
 \subsection{Burndown chart}
 Il burndown chart è uno strumento utilizzato per monitorare il progresso di un progetto.\\
 Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta procedendo secondo i piani o se ci sono ritardi.\\
-
-L'effort totale delle attività svolte è riassunto nella tabela sottostante e rappresentato nel grafico in figura \ref{fig:burndown}.\\
-
-\begin{table}[H]
-    \centering
-    \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
-        \Xhline{2pt}
-        \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
-        \Xhline{2pt}
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \Xhline{2pt}
-        \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
-        \Xhline{2pt}
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-    \end{tabularx}
-\end{table}
 
 \begin{figure}[H]
     \centering

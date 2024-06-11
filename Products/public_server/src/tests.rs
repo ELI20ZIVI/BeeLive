@@ -1,4 +1,5 @@
-use actix_web::{test, App, web};
+use actix_web::{dev::{Service, ServiceResponse}, test, web, App, Error};
+use actix_http::Request;
 
 use super::*;
     
@@ -33,25 +34,26 @@ async fn test_get_event() {
 
 
 
-fn create_app() {
-    let client = Client::with_uri_str("mongodb://beelive.mongo:27017/").await.unwrap();
-    //let client = Client::with_uri_str("mongodb://@beelive.mongo:27017").await.unwrap();
-    println!("Connected to MongoDB!");
-    let mongodb_events_collection = client.database("beelive_test").collection::<Event>("events");
-    let mongodb_categories_collection = client.database("beelive_test").collection::<Category>("categories");
+async fn create_app() -> impl Service<Request, Response = ServiceResponse, Error = Error> {
+    //TODO: solve unwrap
+    let client = Client::with_uri_str("mongodb://BeeLive:BeeLive@beelive.mongo:27017/").await
+        .expect("Cannot create a client for the database");
 
-    HttpServer::new(move || {
+    let database = client.database("beelive_test");
+
+    let mongodb_events_collection = Data::new(database.collection::<Event>("events"));
+    let mongodb_categories_collection = Data::new(database.collection::<Category>("categories"));
+
+    database.drop(None).await.expect("Cannot drop the database");
+
+    test::init_service(
         App::new()
-            .wrap(Logger::default())
-            .app_data(Data::new(mongodb_events_collection.clone()))
-            .app_data(Data::new(mongodb_categories_collection.clone()))
+            .app_data(mongodb_events_collection)
+            .app_data(mongodb_categories_collection)
             .service(
                 web::scope("/api/v3")
                     .service(get_events)
                     .service(get_event)
             )
-    })
-    .bind(("0.0.0.0", 8080))?
-    .run()
-    .await
+    ).await
 }

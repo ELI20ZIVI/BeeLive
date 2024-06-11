@@ -1,0 +1,15 @@
+*
+
+!OSR/
+!OSR/files/
+!OSR/files/nord-est-latest.osm.pbf
+
+!public_server.Dockerfile
+!casdoor.Dockerfile
+
+!docker-compose.yml
+
+!.gitignore
+
+!Readme.md
+

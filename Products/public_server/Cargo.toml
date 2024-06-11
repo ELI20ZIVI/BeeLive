@@ -1,0 +1,19 @@
+[package]
+name = "public_server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-http = "3.7.0"
+actix-web = "4.5.1"
+chrono = { version = "0.4.38", features = ["serde"] }
+env_logger = "0.11.3"
+futures = "0.3.30"
+geojson = "0.24.1"
+lazy_static = "1.4.0"
+mongodb = "2.8.2"
+rand = "0.8.5"
+serde = "1.0.200"
+serde_repr = "0.1.19"

@@ -1,0 +1,77 @@
+services:
+  # ----------------- ORS application configuration ------------------- #
+  ors-app:
+    build:
+      context: ./
+    container_name: ors-app
+    ports:
+      - "9090:9092"  # Expose the ORS API on port 8080
+      - "9001:9001"  # Expose additional port for monitoring (optional)
+    image: openrouteservice/openrouteservice:v8.0.0
+    volumes: 
+      - ./OSR:/home/ors
+    environment:
+      REBUILD_GRAPHS: False
+      CONTAINER_LOG_LEVEL: DEBUG
+      ORS_CONFIG_LOCATION: /home/ors/config/BeeLive-Config.yml
+      XMS: 1g
+      XMX: 2g
+      ADDITIONAL_JAVA_OPTS: ""
+      ors.engine.source_file: /home/ors/files/nord-est-latest.osm.pbf
+  # ----------------- MongoDB application configuration ------------------- #
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    hostname: beelive.mongo
+    restart: always
+    ports:
+      - '127.0.0.1:27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "BeeLive"
+      MONGO_INITDB_ROOT_PASSWORD: "BeeLive"
+    volumes:
+      - ./Mongo/db:/data/db
+  # ----------------- Casdoor application configuration ------------------- #
+  casdoor:
+    container_name: casdoor
+    build:
+      dockerfile: casdoor.Dockerfile
+    ports:
+      - '9987:8000'
+    environment:
+      driverName: sqlite
+      dataSourceName: "file:/var/lib/casdoor/casdoor.db?cache=shared"
+      dbName: casdoor
+    volumes:
+      - casdoor:/var/lib/casdoor/
+  # ----------------- PublicServer application configuration ------------------- #
+  publicserver:
+    container_name: public_server
+    build:
+      context: ../public_server/
+      dockerfile: ../public_server/Dockerfile
+    ports:
+      - "7839:8080"
+    environment:
+      BEELIVE_MODE: "dev"
+    volumes:
+      - public_server_intermediates:/var/cache/beelive_public/
+  # ----------------- ManagementServer application configuration ------------------- #
+  managementserver:
+    container_name: management_server
+    build:
+      context: ../management_server/
+      dockerfile: ../management_server/Dockerfile
+    ports:
+      - "14124:8080"
+    environment:
+      BEELIVE_MODE: "dev"
+      BEELIVE_CASDOOR_CLIENT_ID: "712b8aaffd9c4c71ab7a"
+    volumes:
+      - management_server_intermediates:/var/cache/beelive_management/
+
+
+volumes:
+  public_server_intermediates:
+  management_server_intermediates:
+  casdoor:

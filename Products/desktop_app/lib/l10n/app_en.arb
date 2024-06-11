@@ -1,0 +1,30 @@
+{
+  "appName": "BeeLive",
+  "@appName": {
+    "description": "The application name."
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "The localized name for settings screen."
+  },
+  "eventManagement": "Event Management",
+  "@eventManagement": {
+    "description": "The localized name for the event management screen."
+  },
+  "eventCreation": "Create Event",
+  "@eventCreation": {
+    "description": "The localized name for the event creation screen."
+  },
+  "showEvents": "Show Events",
+  "@showEvents": {
+    "description": "The localized name for the event list screen."
+  },
+  "categoriesManagement": "Categories Management",
+  "@categoriesManagement": {
+    "description": "The localized name for the categories management screen."
+  },
+  "layersManagement": "Layers Management",
+  "@layersManagement": {
+    "description": "The localized name for the layers management screen"
+  }
+}

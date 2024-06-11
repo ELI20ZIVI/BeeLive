@@ -81,8 +81,7 @@ Le modifiche di cui si parla sono:
     \item Aggiunta di una nuova user story, \textbf{Accesso al programma desktop}, in quanto ritenuta necessaria per la completezza del progetto.
 \end{itemize}
 Questa user story è stata aggiunta in quanto ritenuta necessaria per il corretto funzionamento del progetto.\\
-Si tratta della possibilità, da utente autorizzato, di accedere all'applicativo desktop in modo da poter operare sulle criticità associate.\\
-Per il resto la struttura definita precedentemente è rimasta invariata.
+Si tratta di permettere, all'utente autorizzato, di accedere all'applicativo desktop in modo da poter operare sulle criticità associate.\\
 
 \clearpage
 
@@ -97,14 +96,16 @@ Per il resto la struttura definita precedentemente è rimasta invariata.
 
 \subsection{Scopo del progetto}
 
-Lo scopo del progetto 'BeeLive' è quello di creare un sistema informativo, dedicato ai cittadini di Trento, che permetta di reperire facilmente le informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Prevediamo un applicazione mobile che mostri visualmente le variazioni della viabilità in città, informando gli utenti di eventuali modifiche che potrebbero colpirli direttamente. 
+Lo scopo del progetto 'BeeLive' è quello di creare un sistema informativo, dedicato ai cittadini di Trento, che permetta di reperire facilmente le informazioni riguardanti gli eventi che influenzano la viabilità all'interno del Comune di Trento. Il risultato finale prevede un applicazione mobile che mostri visualmente le variazioni della viabilità in città, informando gli utenti di eventuali modifiche che potrebbero intaccarli direttamente. 
 
 \subsection{Link utili}
-Il primo link fornito è quello della repository github. La repository è stata creata appena il corso è cominciato, infatti inizialmente è risultata utile al fine di scrivere in modo collaborativo i primi deliverable.\\
-E' stato deciso di integrare in questa repository anche le fasi di sprint in quanto come team riteniamo utile la possibilità di accedere alla documentazione redatta nei primi due deliverable.\\
-La repository è accessibile al seguente link: \href{https://github.com/ELI20ZIVI/BeeLive/}{Repository GitHub}\\ \\
+Il seguente link consente l'accesso alla nostra repository github:
+\href{https://github.com/ELI20ZIVI/BeeLive/}{Repository GitHub}\\
+La repository è stata creata appena il corso è cominciato, infatti inizialmente è risultata utile al fine di scrivere in modo collaborativo i primi deliverable.\\
+E' stato deciso di integrare in questa repository anche le fasi di sprint in quanto come team riteniamo utile la possibilità di accedere alla documentazione redatta nei primi due deliverable.\\\\
+Il seguente è il link ad Apiary:
+ \href{https://beelive.docs.apiary.io/#}{Link Apiary}\\ 
 Il secondo link fornito è quello di Apiary. Apiary è uno strumento che permette di creare e documentare in modo molto accurato e approfontido le API utilizzate nel progetto.\\
-Il link di Apiary è il seguente: \href{https://beelive.docs.apiary.io/#}{Link Apiary}\\ \\
 Per eseguire un deploy del progetto sarà necessario installare i due applicativi (Mobile e Desktop). Il link per scaricarli e testarli è \href{github-release-page}.\\
 Gli account da utilizzare per il login all'applicativo desktop sono i seguenti:
 \begin{itemize}
@@ -118,13 +119,13 @@ L'utilizzo dell'applicativo mobile non richiede un login, in quanto, siccome le 
 \section{Sezione generale}
 
 \subsection{Strategia di Branching}
-Anche per questo secondo sprint è stata evitata la strategia di branching "Master only": come descritto nel documento "Deliverable 3", la creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto.\\\\
+Anche per questo secondo sprint è stata evitata la strategia di branching "Master only": come descritto nel documento "Deliverable 3". La creazione e l'utilizzo di un unico branch principale \textit{main} avrebbe causato problemi di collaborazione e conflitti nel momento in cui tutti i componenti sarebbero andati a lavorare conteporaneamente a stesse sezioni del progetto.\\\\
 \noindent
-Abbiamo deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia il \textit{GitFlow Workflow}. Una volta ritenute soddisfacenti le modifiche e le feature di una "feature branch", questa viene integrata in \texttt{develop}.\\
+Abbiamo deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia il \textit{GitFlow Workflow}. Una volta ritenute soddisfacenti le modifiche e le feature di una "feature branch", questa verrà integrata in \texttt{develop}.\\
 La branch \texttt{main} è la branch stabile in cui vengono effettuate le pull requests da \texttt{develop} solo una volta testate, determinando il rilascio della \textit{release}.\\\\
 
 \noindent
-Tramite questo approccio siamo riusciti a minimizzare i problemi di  collaborazione tra i membri del team, nonche' ridotto i conflitti e le inconsistenze nel codice, facilitato la gestione delle diverse attività in corso e mantenuto inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.
+Tramite questo approccio siamo riusciti a minimizzare i problemi di  collaborazione tra i membri del team, riducendo i conflitti e le inconsistenze nel codice, facilitando così la gestione delle diverse attività in corso e mantenendo inoltre una mappatura di tutte le diverse modifiche e progressi del progetto. Così facendo è stata conservata la storia del codice in maniera ben strutturata.
 
 \noindent
 Verso la fine del precedente sprint, abbiamo unificato le diverse branches in \texttt{develop} e, all'inizio di questo sprint, abbiamo nuovamente effettuato dei rebranching da \texttt{develop} in modo da lavorare sulle singole features.
@@ -284,7 +285,7 @@ I criteri inclusi nella nostra 'Definition of Done' definita per il progetto son
     \item \textbf{Codice}: Il codice deve essere revisionato e la sua correttezza / adeguatezza approvata da almeno un altro membro del team.
     \item \textbf{Test}: Il codice deve essere adeguatamente coperto da test unitari, di integrazione e funzionali, che devono essere scritti e superati con successo. Un adeguato numero di questi test deve essere scritto da membri diversi.
     \item \textbf{Documentazione}: Il codice e le funzionalità implementate devono essere adeguatamente documentati. Questo giudizio di adeguatezza deve essere dato da almeno un altro membro del team.
-    \item \textbf{Build e Deployment}: Il codice deve integrarsi con successo nella build principale e la sua inclusione nella build principale non deve assolutamente far fallire dei test, nel caso in cui quest'ultimi venivano correttamente superati priva dell'inclusione.
+    \item \textbf{Build e Deployment}: Il codice deve integrarsi con successo nella build principale e la sua inclusione nella build principale non deve assolutamente far fallire dei test, nel caso in cui quest'ultimi venivano correttamente superati prima dell'inclusione.
     \item \textbf{Performance}: le funzionalità e il codice introdotti non devono causare visibili degradi alle performance di nessun elemento del progetto.
     \item \textbf{Conformità}: Il prodotto deve essere conforme alle normative legali e agli standard di sicurezza e qualità specifici del settore.
 \end{itemize}
@@ -1025,25 +1026,25 @@ Tramite questo approccio siamo riusciti a completare tutti i task che ci eravamo
 
 \subsection{Sprint retrospective}
 
-Il progetto è stato permeato per tutta la sua durata da un grande bisogno di dedicare tempo e lavoro a creare l'implementazione del prodotto. Questo ha fatto in modo che la maggior parte della nostra concentrazione si sia rivolta al prodotto stesso invece che al framework SCRUM con cui abbiamo lavorato.\\
-In particolare, ci sono stati diversi problemi che difficilmente siamo riusciti a far rientrare nella metodologia SCRUM.\\
+Il progetto è stato permeato per tutta la sua durata da un grande bisogno di dedicare tempo e lavoro all'implementazione del prodotto. Questo ha fatto in modo che la maggior parte della nostra concentrazione si sia rivolta alla parte di implementazione rispetto al framework SCRUM che avrebbe dovuto aiutarci con il progetto.\\
+In particolare, ci sono stati diversi problemi che difficilmente siamo riusciti a risolvere tramite la metodologia SCRUM.\\
 Ad esempio:
 \begin{itemize}
-    \item La mancanza di testing, durante il primo sprint, ha fatto in modo che durante il secondo sprint spuntassero dei problemi riguardanti API ambigue o problemi di implementazione e integrazione (ad esempio, durante il deployment abbiamo trovato delle incongruenze per quanto riguarda il formato degli Eventi tra il public\_server, management\_server, DA e MA). Questi problemi ci hanno portato ad effettuare delle modifiche che hanno toccato diversi elementi del progetto, trascendendo completamente i constraint di un `Product Backlog` atomicizzato in quanto siamo andati a lavorare su `User Stories` che in realtà erano già finite. Far rientrare questi problemi tecnici in un classico `product backlog` è difficile, per cui il nostro backlog ha preso più la forma di una "todo list" con priorità, la quale si è concentrata principalmente sul prodotto in sè rispetto all'utente finale. 
-    \item Il nostro sistema ha richiesto fin dall'inizio un'integrazione funzionante e coerente tra le diverse componenti. Questo ha reso virtualmente impossibile il lavorare su una singola user story in modo atomico, in quanto (come accennato prima) c'è stato un costante bisogno di evolvere le diverse componenti per far fronte a problemi che continuavano a sorgere una volta che connettavamo i componenti tra di loro.\\
+    \item La mancanza di testing, durante il primo sprint, ha fatto in modo che durante il secondo sprint spuntassero dei problemi riguardanti API ambigue o problemi di implementazione e integrazione. Ad esempio, durante il deployment abbiamo trovato delle incongruenze per quanto riguarda il formato degli Eventi tra il public\_server, management\_server, DA e MA. Questi problemi ci hanno portato ad effettuare delle modifiche che hanno toccato diversi elementi del progetto, trascendendo completamente i constraint di un `Product Backlog` atomicizzato in quanto siamo andati a lavorare su `User Stories` che in realtà erano già finite. Far rientrare questi problemi tecnici in un classico `product backlog` è complesso, per cui il nostro backlog ha preso più la forma di una "todo list" con priorità, la quale si concentra principalmente sul prodotto in sè rispetto alle user stories. 
+    \item Il nostro sistema ha richiesto fin dall'inizio un'integrazione funzionante e coerente tra le diverse componenti. Questo ha reso impossibile il lavorare su una singola user story in modo atomico, in quanto vi è stato un costante bisogno di portare avanti le diverse componenti simultaneamente, per far fronte a problemi che sorgevano al momento di connessione di più componenti tra di loro.\\
     Una progettazione iniziale più approfondita avrebbe potuto mitigare questo problema, tuttavia abbiamo ritenuto che andasse un po' in contraddizione con la metodologia AGILE. Inoltre non avevamo garanzie di ottenere risultati accettabili vista la mancanza di esperienza.
 \end{itemize}
 
-Diversamente, invece, ci sono diverse cose che sono andate molto bene:
+Diversamente, invece, ci sono diverse cose che si sono svolte nel migliore dei modi:
 \begin{itemize}
     \item \textbf{Progresso generale}: Siamo riusciti a creare un prodotto ben funzionante, senza particolari compromessi riguardanti la nostra idea originale. 
     \item \textbf{"Tutoring"}: La dimensione del team (di 3 persone) ci ha permesso di essere costantemente in contatto tra di noi e aiutarci su ciò che stavamo facendo. Non c'è stato bisogno di effettuare delle vere e proprie sedute di tutoring prolungate, però ci siamo confrontati in diverse occasioni su vari elementi del nostro tech-stack (e.g. Dart, Rust o anche solo i webtokens) su cui qualcuno di noi aveva dubbi ma su cui un altro membro del team era più "ferrato".
-    \item \textbf{"SCRUM meetings"}: Ci siamo trovati in diverse occasioni, di persona, a lavorare insieme sul progetto e discutere del da farsi. Inoltre, la continua comunicazione via telegram ha fatto in modo che fossimo sempre aggiornati su cosa stiano lavorando gli altri.
+    \item \textbf{"SCRUM meetings"}: Ci siamo trovati in diverse occasioni, di persona, a lavorare insieme sul progetto e discutere del da farsi. Inoltre, la continua comunicazione via telegram ha fatto in modo che fossimo sempre aggiornati su cosa, ognuno dei membri del gruppo, stesse lavorando.
 \end{itemize}
 
 \textbf{Prospetti per ipotetici sprint futuri}:
 \begin{itemize}
-    \item Sebbene la continua comunicazione (via telegram) ha fatto in modo che degli "SCRUM meeting" veri e propri fossero ridondanti e per nulla necessari, in futuro avremmo potuto formalizzare dei meeting in cui trovarci, in modo da documentare il nostro progresso e da essere sicuro che nessuno si perda nulla. 
+    \item Sebbene la continua comunicazione (via telegram) ha fatto in modo che degli "SCRUM meeting" veri e propri fossero ridondanti e per nulla necessari, in futuro si potrebbe lavorare sull'organizzazione di meeting di aggiornamento, in modo da documentare il nostro progresso e da essere sicuri che nessuno rimanga indietro rispetto a novità o aggiornamenti.
     \item \textbf{Sprint duration}: I diversi problemi che abbiamo incontrato con SCRUM sono riconducibili al fatto che il nostro prodotto è stato creato da zero e ha richiesto una grandissima quantità di lavoro per raggiungere lo stato di "shippable product". Ora che il nostro prodotto ha le sue componenti core finalizzate, in sprint futuri potremmo attenerci più rigorosamente a SCRUM e quindi sfruttarne le potenzialità.
 \end{itemize}
 
@@ -1176,7 +1177,7 @@ E' stato sviluppato uno script di test per eseguire automaticamente tutti i test
 \textbf{Linguaggio di Programmazione: Dart}\\
 Siccome era nostra intenzione quella di sviluppare due applicativi per tutte le interazioni possibili a sistema, la scelta del framework per lo sviluppo degli applicativi mobile e desktop sono ricaduti su Flutter, con conseguente utilizzo del linguaggio di programmazione Dart.\\
  Dart è un linguaggio sviluppato da Google, ottimizzato per lo sviluppo di applicazioni client su qualsiasi piattaforma. È particolarmente adatto per creare interfacce utente ricche e reattive.\\
-Per lo sviluppo dello stile degli applicativi, sono state due librerie di stile differenti. Per quanto riguarda l'applicativo mobile è stata utilizzata la libreria \textbf{Material Design}, sviluppata da Google e caratteristica di Android, mentre per l'applicativo desktop è stata utilizzata la libreria \textbf{Fluent Design}, sviluppata da Microsoft e caratteristica dello stile del sistema Windows 11.\\
+Per lo sviluppo dello stile degli applicativi, sono state adoperate due librerie di stile differenti. Per quanto riguarda l'applicativo mobile è stata utilizzata la libreria \textbf{Material Design}, sviluppata da Google e caratteristica di Android, mentre per l'applicativo desktop è stata utilizzata la libreria \textbf{Fluent Design}, sviluppata da Microsoft e caratteristica dello stile del sistema Windows 11.\\
 Come librerie aggiuntive abbiamo usato:
 \begin{itemize}
     \item \textbf{flutter\_riverpod}: Utilizzato per la gestione dello stato nell'applicazione. Riverpod è un fornitore di gestione dello stato robusto e reattivo, che offre vantaggi come la sicurezza del tipo e il supporto per la dipendenza tra i provider.
@@ -1189,13 +1190,13 @@ Come librerie aggiuntive abbiamo usato:
 
 \subsection{Conclusioni}
 
-Possiamo quindi affermare che per il progetto BeeLive sono stati conclusi con successo tutti gli obiettivi stabiliti per questo sprint:\\
-Sono state implementate le funzionalità di gestione degli eventi, permettendo agli utenti autorizzati di creare, modificare ed eliminare eventi tramite l'applicazione desktop.\\
+Possiamo quindi affermare che per il progetto BeeLive sono stati raggiunti con successo tutti gli obiettivi stabiliti per questo sprint:\\
+Implementando le funzionalità di gestione degli eventi, si permette agli utenti autorizzati di creare, modificare ed eliminare eventi tramite l'applicazione desktop.\\
 Gli utenti comuni, utilizzando l'applicazione mobile, possono visualizzare tutti i dettagli degli eventi, inclusi i sottoeventi.\\
 L'architettura del sistema include il server pubblico (public\_server), il server di gestione (management\_server), il database MongoDB, il server di autenticazione Casdoor (Auth/Autn server), il servizio di routing OpenRouteService, l'applicazione desktop e l'applicazione mobile.\\
 
 \noindent Nonostante il successo nel raggiungimento degli obiettivi del prodotto, l'applicazione del framework SCRUM ha per noi presentato alcune difficoltà, principalmente dovute alla necessità di focalizzarsi sull'implementazione tecnica.\\
-La mancanza di test approfonditi sviluppati durante il primo sprint ha fatto emergere problemi imprevisti durante lo sviluppo, richiedendo modifiche che hanno coinvolto diverse user story contemporaneamente. Inoltre, l'interdipendenza tra le varie componenti del sistema ha reso complesso lavorare su singole user story in maniera isolata.\\
+La mancanza di test approfonditi sviluppati durante il primo sprint ha fatto emergere problematiche impreviste durante lo sviluppo, richiedendo modifiche che hanno coinvolto diverse user story contemporaneamente. Inoltre, l'interdipendenza tra le varie componenti del sistema ha reso complesso lavorare su singole user story in maniera isolata.\\
 Queste sfide hanno portato il product backlog a trasformarsi in una lista di attività con priorità, orientata più sul prodotto che sull'utente finale.\\
 
 \noindent Tuttavia, la stretta collaborazione tra noi membri del team, facilitata dalla comunicazione costante tramite Telegram e da incontri in presenza, ha permesso di superare queste difficoltà.\\
@@ -1207,5 +1208,5 @@ Inoltre, con le funzionalità principali del prodotto ormai completate, il team 
 \noindent Ad ogni modo è anche doveroso citare il fatto che si è notata una differenza netta tra il primo e questo secondo sprint. In questo ultimo periodo, a differenza di quello precedente, si è vista una maggiore collaborazione tra i membri del team, una maggiore comunicazione e una maggiore condivisione delle conoscenze.\\
 Tutti questi aspetti, nel primo sprint, erano molto più altalenanti, in quanto non avendo mai avuto esperienze di lavoro in team sfruttando questo tipo di metotodologia, si è faticato molto di più a trovare un equilibrio.\\
 Tutto era anche complicato dal fatto che nel primo sprint non c'erano basi o componenti già definite su cui iniziare a lavorare direttamente, quindi ogni componente del team si è focalizzato su una parte del progetto senza favorire la visione d'insieme.\\
-Questo secondo sprint, invece, è stato molto più fluido e ha permesso di lavorare in modo più efficiente e produttivo tra tutti noi membri del team, che abbiamo dato molta più enfasi alla collaborazione piuttosto che al compimento del singolo task.\\
+Questo secondo sprint, invece, è stato molto più fluido e ha permesso di lavorare in modo più efficiente e produttivo tra tutti noi membri del team, dando molta più enfasi alla collaborazione piuttosto che al compimento del singolo task.\\
 \end{document}

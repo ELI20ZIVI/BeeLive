@@ -18,6 +18,7 @@
 \usepackage{pgfplots}
 \usepackage{float}
 \usepgfplotslibrary{dateplot} % Per gestire gli assi con date
+\usepackage{soul}
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -996,49 +997,62 @@ Diversamente, invece, ci sono diverse cose che sono andate molto bene:
 \clearpage
 
 \section{Sezione finale}
-\subsection{Deploy}
-Il deploy del progetto si riferisce al processo di rilascio del software in ambiente operativo. Questo capitolo del documento descrive in dettaglio le fasi e le procedure coinvolte nel deploy del nostro progetto, inclusi gli obiettivi e i risultati attesi.
 
-\subsubsection{Panoramica dell'Architettura}
+\subsection{Deployment}
+Il nostro sistema è attualmente attivo 24h/24h attraverso un deployment su un server domestico di nostra proprietà, con ip statico \texttt{93.49.96.13}.
+Le applicazioni sono configurate automaticamente per connettersi a tale deployment, attraverso le seguenti interfacce che abbiamo esposto:
+\begin{itemize}
+	\item http://93.49.96.13:14124: Management Server
+	\item http://93.49.96.13:7839: Public Server
+	\item http://93.49.96.13:9987: Casdoor
+\end{itemize}
+
+\subsection{Specifiche deployment}
+Ogni componente del nostro \texttt{backend} è racchiuso in un \texttt{Docker Container}, in modo da permettere una grande scalabilità e flessibilità del sistema.
+Il nostro deployment avviene tramite una singola configurazione di \texttt{Docker Compose} che racchiude la gestione dei suddetti \texttt{Docker Container}s.
+Per una visione più dettagliata di tale configurazione, si prega di riferirsi direttamente alla repository e alle configurazioni create.
+
+\subsubsection{Panoramica generale dell'Architettura}
 L'architettura del sistema include i seguenti componenti principali:
 \begin{itemize}
     \item Public server
     \item Management server
+    \item \st{Notification Server} (non ancora implementato)
+    \item \st{OpenRouteService} (non ancora implementato)
     \item Database MongoDB
     \item CasDoor (Auth/Autn server)
-    \item OpenRouteService
     \item Applicativo desktop
     \item Applicativo mobile
 \end{itemize}
 
-\subsubsection{Diagramma dell'architettura del sistema}
+A seguito vi è il diagramma dell'architettura del sistema:
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Images/Component.png}
     \caption{Diagramma dell'architettura del sistema}
     \label{fig:architettura}
 \end{figure}
 
-\subsubsection{Componenti containerizzati}
-E' importante specificare il fatto che alcuni dei componenti precedentemete citati sono stati containerizzati per facilitare il deploy e la gestione del sistema.\\
-Come tecnologia di containerizzazione è stato scelto Docker, in quanto permette di creare, distribuire e gestire applicazioni in container in modo semplice e veloce.\\
-I componenti che sono eseguiti all'interno di container sono:
+\subsubsection{Configurazione di rete - integrazione componenti}
+Tutti i \texttt{Docker Container}s sono in comunicazione tra di loro grazie a  \texttt{Docker Compose}, il quale crea una rete di default attraverso la quale tutti i container di un progetto possono comunicare tra di loro.
+Questa rete è una rete "interna" e non accessibile dall'esterno. \texttt{Docker Compose} permette ovviamente di esporre esplicitamente alcuni container attraverso delle porte accessibili dall'esterno, che nel nostro caso sono:
 \begin{itemize}
-    \item Public server
-    \item Management server
-    \item Database MongoDB
-    \item CasDoor (Auth/Autn server)
-    \item OpenRouteService
+	\item Porta 14124: Management Server
+	\item Porta 7839: Public Server
+	\item Porta 9987: Casdoor
 \end{itemize}
-Tutti all'interno di container singoli per semplificare la gestione dei processi, il loro flusso esecutivo e la loro scalabilità.\\
-I container sono attivi su un nostro server proprietario (IP statico: 93.49.96.13), quindi sono raggiungibili dall'esterno.
+Le applicaizoni desktop e mobile sono configurate per accedere a queste porte. 
+\\\\
+\noindent
+\textit{Nota: nel nostro deployment attivo, abbiamo effettuato ulteriori configurazioni di rete (e.g. per circumnavigare il NAT). Queste configurazioni sono trasparenti al resto del sistema e di conseguenza non le citeremo.}
+
 
 \subsubsection{Requisiti di deploy}
-Per quanto riguarda i componenti containerizzati, quali i due server web, non vi sono particolari requisiti in quanto già in esecuzione sul server precedentemente citato.\\
+Se si volesse effettuare un deployment locale del nostro sistema, allora la natura portabile dei containers Docker fa in modo che, virtualmente, qualsiasi sistema operativo sia capace di poter runnare il nostro progetto \texttt{Docker Compose}.\\
 Parlando invece dei due applicativi, i requisiti minimi per la loro installazione e il loro funzionamento sono:
 \begin{itemize}
-    \item \textbf{Applicativo desktop}: Sistema operativo Windows 10, 8.1, 8, 7 % Non so se lo facciamo girare altrove
+    \item \textbf{Applicativo desktop}: Qualsiasi sistema operativo supportato da Flutter e Dart.
     \item \textbf{Applicativo mobile}: Sistema operativo Android 5.0 o superiore
 \end{itemize}
 

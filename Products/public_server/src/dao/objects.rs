@@ -9,16 +9,16 @@ use serde_repr::{Serialize_repr, Deserialize_repr};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Category {
-    id: i32,
-    name: String,
-    modifiable: bool,
-    supercategory_id: Option<i32>,
-    subcategories_ids: Vec<i32>,
+    pub id: i32,
+    pub name: String,
+    pub modifiable: bool,
+    pub supercategory_id: Option<i32>,
+    pub subcategories_ids: Vec<i32>,
 }
 
 type NullableDateTime = Option<DateTime<Utc>>;
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct NullableDateTimeRange {
     #[serde(with = "ts_seconds_option")]
     pub begin : NullableDateTime,
@@ -41,7 +41,7 @@ pub enum RiskLevel {
     Alert = 100, 
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct SubEvent {
     pub title: String,
     pub description: String,
@@ -89,7 +89,7 @@ impl PrunedEvent {
 /// the client requests information about a single event, aka `/events/{event}`
 /// It is the full representation of an Event, with internal fields like 'creator_id' and
 /// `locked_by` that are not de/serializable, thus are not sent nor received to / from the client. 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct Event {
     pub id: i32,
     pub title: String,

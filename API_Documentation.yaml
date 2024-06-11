@@ -7,16 +7,12 @@ info:
     Some useful links:
     - [BeeLive repository](https://github.com/ELI20ZIVI/BeeLive)
   version: 0.0.1
-servers:
-  - url: https://public.beelive.spavi.dev/api/v3/
-  - url: https://manage.beelive.spavi.dev/api/v3/
-  - url: https://notify.beelive.spavi.dev/api/v3/
 paths:
   # Richiesta di tutti gli eventi disponibili
   /events:
     get:
       servers:
-        - url: https://public.beelive.spavi.dev/api/v3/
+        - url: https://93.49.96.13:7839/api/v3/
       summary: Richiede la lista di eventi
       description: Richiede la lista di tutti gli eventi attualmente presenti e attivi nel sistema, filtranto tale lista in base a dei parametri configurabili.
       operationId: listEventsPublic
@@ -100,7 +96,7 @@ paths:
   /events/{event_id}:
     get:
       servers:
-        - url: https://public.beelive.spavi.dev/api/v3/
+        - url: https://93.49.96.13:7839/api/v3/
       summary: Richiede un evento specifico
       description: Richiede tutte le informazioni pubbliche associate ad un evento specifico identificato da {event_id}
       operationId: eventDetails
@@ -130,7 +126,7 @@ paths:
   /insert_new_event:
     post:
       servers:
-        - url: https://manage.beelive.spavi.dev/api/v3/
+        - url: https://93.49.96.13:14124/api/v3/
       summary: Inserisce un nuovo evento
       description: Inserisce un nuovo evento nel sistema.
       operationId: insertEvent
@@ -156,7 +152,7 @@ paths:
   /events:
     get:
       servers:
-        - url: https://manage.beelive.spavi.dev/api/v3/
+        - url: https://93.49.96.13:14124/api/v3/
       summary: Richiede la lista di eventi di competenza del dipendente comunale.
       description: Richiede la lista di tutti gli eventi presenti nel sistema e di competenza del dipendente comunale che effettua la richiesta.
       operationId: listEventsManage
@@ -188,9 +184,9 @@ paths:
       security:
         - api_key: []
         - bearerAuth: []
-  /events/{event_id}:
+  /modify_event/{event_id}:
     servers:
-      - url: https://manage.beelive.spavi.dev/api/v3/
+      - url: https://93.49.96.13:14124/api/v3/
     put:
       summary: Modifica un evento specifico
       description: Consente la modifica di un evento specifico identificato da {event_id}
@@ -228,6 +224,9 @@ paths:
       security:
         - api_key: []
         - bearerAuth: []
+  /delete_event/{event_id}:
+    servers:
+      - url: https://93.49.96.13:14124/api/v3/
     delete:
       summary: Elimina un evento specifico
       description: Consente l'eliminazione di un evento specifico identificato da {event_id} da parte di un utente autorizzato competente

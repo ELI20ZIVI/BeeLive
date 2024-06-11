@@ -353,15 +353,13 @@ Sono incluse anche in questo caso operazioni di ridefinizione di parti del codic
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Autogenerazione\\IDs} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modiﬁcare/\\creare degli eventi} & \makecell{Creazione del\\sottocomponente che\\si occupa di\\autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Autogenerazione\\IDs} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modiﬁcare/\\creare degli eventi} & \makecell{Creazione del\\sottocomponente che\\si occupa di\\autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{4} \\
         \hline
-        \makecell{2.\\Sistemazione\\codici di errore\\(Management Server)} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modificare/\\creare degli eventi} & \makecell{Nello sprint precedente\\erano stati definiti\\in modo poco chiaro\\alcuni codici di errore,\\che quindi vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Sistemazione\\codici di errore\\(Management Server)} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modificare/\\creare degli eventi} & \makecell{Nello sprint precedente\\erano stati definiti\\in modo poco chiaro\\alcuni codici di errore,\\che quindi vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{3} \\
         \hline
-        \makecell{3.\\Restituzione\\nuovo ID} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modiﬁcare/\\creare degli eventi} & \makecell{Creazione del\\sottocomponente che\\si occupa di restituire\\l'ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{3.\\Restituzione\\nuovo ID} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modiﬁcare/\\creare degli eventi} & \makecell{Creazione del\\sottocomponente che\\si occupa di restituire\\l'ID} & \makecell{Dennis Orlando} & \makecell{1} \\
         \hline
-        \makecell{4.\\Redirecting alla\\pagina degli eventi\\dopo il publish} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{Creazione logica di\\redirecting alla pagina\\degli eventi dopo la\\creazione di un evento} & \makecell{Dennis Orlando} & \makecell{} \\
-        \hline
-        \makecell{5.\\Nessun multipoligono\\vuoto durante\\l'elaborazione\\di un Evento senza\\Sottoeventi con\\poligoni} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{...} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{4.\\Nessun multipoligono\\vuoto durante\\l'elaborazione\\di un Evento senza\\Sottoeventi con\\poligoni} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{Il server costruisce \\dei multipoligoni\\ potenzialmente senza\\ vertici, il che non dovrebbe\\ essere permesso e\\ porterebbe ad errori futuri.} & \makecell{Dennis Orlando} & \makecell{2} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -370,33 +368,17 @@ Sono incluse anche in questo caso operazioni di ridefinizione di parti del codic
     \centering
     \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
         \Xhline{2pt}
-        \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
+        \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} & \textbf{...}\\
         \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1. & 4 & 4 & 4 & 4 & 4 & 4 & 2 & 1 & 4 & 3 & 0 & 0 & 0 & 0\\
         \hline
-        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        2. & 3 & 3 & 3 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
         \hline
-        3. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        3. & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
         \hline
-        4. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        4. & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        5. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \Xhline{2pt}
-        \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
-        \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        3. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        4. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        5. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        Tot. & 9 & 9 & 9 & 8 & 7 & 6 & 2 & 1 & 4 & 3 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -533,9 +515,9 @@ Tasks che compongono la logica di ottenimento e visualizzazione delle criticità
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Implement event\\list page} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Implementazione pagina\\ della lista degli\\eventi} & \makecell{Da utente autorizzato,\\ devo essere in grado\\ di visualizzare gli eventi di\\ mia competenza, in modo\\ da sapere quali\\ eventi sono stati\\ creati e monitorare il\\ loro stato} & \makecell{Creare una pagina\\ per il DA che mostri\\ la pagina degli eventi} & \makecell{Dennis Orlando} & \makecell{5} \\
         \hline
-        \makecell{2.\\Fetch eventi} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Implementazione\\ fetching eventi} & \makecell{\(|\)\(|\) } & \makecell{Popolare la pagina\\ degli eventi del\\ DA con gli eventi\\ ottenuti dal\\ \texttt{management\_server}\\ tramite le API fornite} & \makecell{Dennis Orlando} & \makecell{5} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -544,21 +526,13 @@ Tasks che compongono la logica di ottenimento e visualizzazione delle criticità
     \centering
     \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
         \Xhline{2pt}
-        \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
+        \textbf{No.} & \textbf{...} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{...}\\
         \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1. & 5& 4 & 4 & 3 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        2. & 5 & 5 & 4 & 4 & 2 & 3 & 2 & 1 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \Xhline{2pt}
-        \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
-        \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \hline
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        Tot. & 10 & 9 & 8 & 7 & 5 & 4 & 2 & 1 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -574,13 +548,15 @@ Task che riguardano la logica che permette all'utente autorizzato di modificare 
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Redirecting\\alla pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Creazione pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Creazione della pagina di\\modifica, pubblicazione modifica\\tramite le API fornite} & \makecell{Dennis Orlando} & \makecell{7} \\
         \hline
-        \makecell{2.\\Endpoint:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{5} \\
+        \makecell{2.\\Redirecting\\alla pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{2} \\
         \hline
-        \makecell{3.\\DAO:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{5} \\
+        \makecell{3.\\Endpoint:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
-        \makecell{4.\\Event Manager:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{5} \\
+        \makecell{4.\\DAO:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{5} \\
+        \hline
+        \makecell{5.\\Event Manager:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -591,27 +567,29 @@ Task che riguardano la logica che permette all'utente autorizzato di modificare 
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1. & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 \\
         \hline
-        2. & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        2. & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 \\
         \hline
-        3. & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        3. & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        4. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 \\
+        4. & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        Tot. & 15 & 15 & 15 & 15 & 15 & 13 & 9 & 4 & 1 & 0 & 0 & 0 & 0 \\
+        5. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 24 & 24 & 24 & 24 & 24 & 22 & 18 & 13 & 10 & 9 & 9 & 9 & 9 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1. & 7 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        2. & 2 & 2 & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
         3. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
         4. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        Tot. & 9 & 7 & 5 & 3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -628,9 +606,9 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Pulsante di\\eliminazione\\nella pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Pulsante di\\eliminazione\\nella pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica,\\con tanto di pubblicazione\\della modifica tramite\\API} & \makecell{Dennis Orlando} & \makecell{3} \\
         \hline
-        \makecell{2.\\Dialog di\\conferma} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Dialog di\\conferma} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{\textit{Mai iniziato}} & \makecell{2} \\
         \hline
         \makecell{3.\\Endpoint:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo dell'endpoint che\\si occupa dell'eliminazione di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
@@ -647,9 +625,9 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1. & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 \\
         \hline
-        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        2. & - & - & - & - & - & - & - & - & - & - & - & - & - \\
         \hline
         3. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 \\
         \hline
@@ -657,13 +635,13 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
         \hline
         5. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 \\
         \hline
-        Tot. & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 13 & 9 & 4 & 1 \\
+        Tot. & 17 & 17 & 17 & 17 & 17 & 17 & 17 & 17 & 17 & 15 & 11 & 6 & 3 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1. & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        2. & - & - & - & - & - & - & - & - & - & - & - & - & - \\
         \hline
         3. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
@@ -671,7 +649,7 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
         \hline
         5. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        Tot. & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}

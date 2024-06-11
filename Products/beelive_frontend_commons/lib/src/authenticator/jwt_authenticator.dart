@@ -26,7 +26,13 @@ final class JwtAuthenticator implements Authenticator {
 
   @override
   Future<bool> authenticateIfAppropriate(final BuildContext context) async {
-    final token = await _tokensManager.tokens;
+    Tokens? token;
+
+    try {
+      token = await _tokensManager.tokens;
+    } catch(e) {
+      token = null;
+    }
 
     if (!context.mounted) {
       debugPrint("Unmounted context");
@@ -44,12 +50,17 @@ final class JwtAuthenticator implements Authenticator {
   }
 
   /// #### Exceptions
-  /// Throws [TokenRefreshFailureException] in case of errors during token
-  /// refreshing.\
   /// Throws [AuthenticationNotAskedException].
   @override
   Future<String?> authorization() async {
-    var tokens = await _tokensManager.tokens;
+    Tokens? tokens;
+    try {
+      tokens = await _tokensManager.tokens;
+    } on TokenRefreshFailureException catch(_) {
+      tokens = null;
+    }
+
+    debugPrint("got tokens: $tokens");
 
     if (tokens == null) {
       final code = _authenticationManager.code();
@@ -61,5 +72,12 @@ final class JwtAuthenticator implements Authenticator {
     }
 
     return "${tokens.tokenType} ${tokens.accessToken}";
+  }
+  
+
+  @override
+  Future<void> logout() async {
+    await _authenticationManager.invalidate();
+    await _tokensManager.logout();
   }
 }

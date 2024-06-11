@@ -59,6 +59,8 @@ class TokensManager {
     // Tries to retrieve it from shared preferences.
     var tokens = await _load;
 
+    debugPrint("loaded token: $tokens");
+
     // Cannot do nothing without a previous token.
     if (tokens == null) return null;
 
@@ -94,12 +96,14 @@ class TokensManager {
   Future<Tokens?> _refreshIfExpired(final Tokens tokens) async {
     Tokens? result = tokens;
     if (_provider.isTokenExpired(tokens.accessToken)) {
+      debugPrint("Expired token.");
       try {
         result = await _provider.refreshToken(
           tokens.refreshToken,
           scopes: tokens.scopes,
         );
       } catch (e) { // TODO: do no catch generic exception
+        debugPrint("Error during refresh: $e");
         throw const TokenRefreshFailureException();
       }
 
@@ -107,11 +111,30 @@ class TokensManager {
         throw const TokenRefreshFailureException();
       }
 
+      debugPrint("Token refreshed.");
+
       final response = await _store(result);
       assert(response, "Could not store token after refresh");
     }
     return result;
   }
+  
+
+  /// Invalidates the token.
+  ///
+  /// This method should be called in case of 401 and 403 errors
+  /// in order to force re-authentication of the user.
+  Future<void> logout() async {
+    try {
+      final tokens = await this.tokens;
+      if (tokens != null) {
+        await _provider.logout(tokens);
+      }
+    } finally {
+      await _store(null);
+    }
+  }
+
 }
 
 abstract base class Tokens {

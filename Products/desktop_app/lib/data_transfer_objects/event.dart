@@ -107,17 +107,3 @@ class _GeoJSONFeaturesToMap
   }
 }
 
-class _GeoJSONGeometriesToMap
-    extends JsonConverter<GeoJSONGeometryCollection, Map<String, dynamic>> {
-  const _GeoJSONGeometriesToMap();
-
-  @override
-  GeoJSONGeometryCollection fromJson(Map<String, dynamic> json) {
-    return GeoJSONGeometryCollection.fromMap(json);
-  }
-
-  @override
-  Map<String, dynamic> toJson(GeoJSONGeometryCollection object) {
-    return object.toMap();
-  }
-}

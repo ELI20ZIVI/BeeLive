@@ -40,4 +40,7 @@ abstract interface class Authenticator {
   /// Throws [AuthenticationNotAskedException].
   Future<String?> authorization();
 
+  /// Logs out the user.
+  Future<void> logout();
+
 }

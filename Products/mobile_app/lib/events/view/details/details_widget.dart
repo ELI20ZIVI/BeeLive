@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_geojson/flutter_map_geojson.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile_app/dtos/event.dart';
+import 'package:mobile_app/dtos/nullable_datetime_range.dart';
+import 'package:mobile_app/utils.dart';
 import 'title_widget.dart';
 
 import '../../../view/beelive_map.dart';
@@ -19,22 +19,23 @@ class DetailsWidget extends StatefulWidget {
 
 class _DetailsWidgetState extends State<DetailsWidget> {
   final PageController controller = PageController();
+  int page = 0;
 
   @override
   Widget build(final BuildContext context) {
-    final polygons;
-    final page = controller.page?.toInt() ?? 0;
+    final Map<String, dynamic> polygons;
+    debugPrint("Changed page: $page");
 
     // Determine which polygons to display based on the current page
     if (page == 0) {
-      polygons = widget.event.polygons?.toMap();
+      polygons = widget.event.polygons.toMap();
     } else {
-      polygons = widget.event.events[page - 1].polygons;
+      polygons = widget.event.subevents![page - 1].polygons.toMap();
     }
 
     // Parse the polygons using GeoJsonParser
-    final parser = GeoJsonParser();
-    if (polygons != null) parser.parseGeoJson(polygons);
+    final parser = defaultGeoJsonParser;
+    parser.parseGeoJson(polygons);
 
     // Create a map widget with the parsed polygons
     final map = BeeLiveMap(
@@ -44,11 +45,12 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     // Create a PageView to display the main event and its sub-events
     final subEventView = PageView(
       controller: controller,
+      onPageChanged: (page) => setState(() => this.page = page),
       children: [
         // Main event details
         _EventDetails(event: widget.event),
         // Sub-event details
-        ...widget.event.events.map((e) => _SubEventDetails(event: e))
+        ...widget.event.subevents?.map((e) => _SubEventDetails(event: e)) ?? []
       ],
     );
 
@@ -80,8 +82,7 @@ class _SubEventDetails extends StatelessWidget {
     // Use the shared function to build the event details
     return buildEventDetails(
       title: event.title,
-      begin: event.validity.begin!,
-      end: event.validity.end!,
+      validity: event.validity,
       description: event.description,
     );
   }
@@ -98,9 +99,8 @@ class _EventDetails extends StatelessWidget {
     // Use the shared function to build the event details
     return buildEventDetails(
       title: event.title,
-      begin: event.validity.begin!,
-      end: event.validity.end!,
-      description: event.summary,
+      validity: event.validity,
+      description: event.description ?? "",
     );
   }
 }
@@ -108,30 +108,11 @@ class _EventDetails extends StatelessWidget {
 // Function to build the event details widget
 Widget buildEventDetails({
   required String title,
-  required DateTime begin,
-  required DateTime end,
+  required NullableDateTimeRange validity,
   String? description,
 }) {
-  // Format the date and time
-  final dateFormat = DateFormat("HH:mm dd/MM/YY");
-  final formattedBegin = dateFormat.format(begin);
-  final formattedEnd = dateFormat.format(end);
 
-  // Determine the date range to display
-  String date = "";
-  if (begin.year == end.year) {
-    date = "${begin.day}/${begin.month} - ${end.day}/${end.month}/${end.year}";
-    if (begin.month == end.month) {
-      date = "${begin.day} - ${end.day}/${end.month}/${end.year}";
-      if (begin.day == end.day) {
-        date = "${end.day}/${end.month}/${end.year}";
-      }
-    }
-  }
-
-  // Format the time range
-  String time = "${begin.hour}:${begin.minute} - ${end.hour}:${end.minute}";
-  String titleDateTime = time + "\n" + date;
+  String titleDateTime = validity.toString();
 
   // Build and return the event details widget
   return ListView(

@@ -113,6 +113,10 @@ pub async fn query_full_event_single(mongodb_collection: Data<Collection<Event>>
     let filter = doc! { "id": event_id};
     let result = mongodb_collection.find_one(filter, None).await;
 
+    if let Err(e) = &result {
+        println!("Error during event fetching: {}", e);
+    }
+
     result.ok().flatten()
 }
 

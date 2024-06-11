@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-
 import 'package:mobile_app/client.dart';
 import 'package:mobile_app/routes/routes.dart';
 import 'package:mobile_app/themes/theme.dart';
@@ -12,8 +10,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // The URI of the web server.
-  // final pwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 7839);
-  final pwsUri = Uri(scheme: "http", host: "192.168.24.43", port: 7839);
+  final pwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 7839);
+  // final pwsUri = Uri(scheme: "http", host: "192.168.24.43", port: 7839);
 
   // The casdoor instance is temporary assumed to be on the same host as the public server.
   final casdoorUri = pwsUri.replace(scheme: "http", port: 9987);

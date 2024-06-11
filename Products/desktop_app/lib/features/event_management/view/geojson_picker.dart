@@ -36,20 +36,22 @@ class _GeoJSONFilePickerState extends State<GeoJSONFilePicker> {
                 child: const Text("Sfoglia"),
                 onPressed: () async {
 
-                  FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['json']);
+                  FilePickerResult? result = await FilePicker.platform.pickFiles(
+                    type: FileType.custom,
+                    allowedExtensions: ['json'],
+                  );
 
                   if (result != null && result.paths[0] != null) {
 
-                    String file_path = result.paths[0]!;
+                    String filePath = result.paths[0]!;
 
-                    String file_content = await File(file_path).readAsString();
-                    debugPrint(file_content);
-                    GeoJSONFeatureCollection geojson = GeoJSONFeatureCollection.fromJSON(file_content);
-                    setState(() {
-                      path = basename(file_path);
-                      widget.subevent.polygons = geojson;
-                    });
+                    String fileContent = await File(filePath).readAsString();
+                    debugPrint(fileContent);
+                    GeoJSONFeatureCollection geojson = GeoJSONFeatureCollection.fromJSON(fileContent);
+                    path = basename(filePath);
+                    widget.subevent.polygons = geojson;
 
+                    setState(() {});
                   }
 
                   debugPrint(result.toString());

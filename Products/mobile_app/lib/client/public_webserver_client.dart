@@ -95,6 +95,8 @@ final class PublicWebServerClient implements Client {
 
     debugPrint("Authorization: $token");
 
+    debugPrint("Requesting event #$id to $uri");
+
     // TODO: convert DioException
     final response = await _client.getUri(
       uri,

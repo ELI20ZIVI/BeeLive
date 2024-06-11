@@ -1,6 +1,6 @@
 FROM casbin/casdoor:latest
 
-WORKDIR /var/lib/casdoor
+WORKDIR /var/lib/casdoor/
 
 RUN mkdir db
 RUN touch db/casdoor.db

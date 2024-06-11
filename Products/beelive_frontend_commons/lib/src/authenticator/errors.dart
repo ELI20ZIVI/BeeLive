@@ -8,6 +8,11 @@
 /// perform the action.
 final class TokenRefreshFailureException implements Exception {
   const TokenRefreshFailureException();
+
+  @override
+    String toString() {
+      return "Cannot refresh the token";
+    }
 }
 
 /// Exception thrown if the user was never asked to authenticate.

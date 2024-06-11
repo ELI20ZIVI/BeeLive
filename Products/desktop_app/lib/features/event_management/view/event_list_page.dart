@@ -1,17 +1,10 @@
 
-import 'dart:async';
-import 'dart:io';
 
 import 'package:desktop_app/client/client.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
 import '../../../../main.dart';
 import '../../../data_transfer_objects/event.dart';
-import '../map/map.dart';
-import '../map/tiles.dart';
-import 'category_picker.dart';
-import 'datetime_range_picker.dart';
-import 'event_manager_page.dart';
 import 'no_connection_infobar.dart';
 
 /// The screen for visualizing the management of a single event.
@@ -34,7 +27,7 @@ class _EventListScreenState extends State<EventListScreen>{
             displayInfoBar(context, builder: (context, close) {
             return InfoBar(
               title: Text("Error [${response.statusCode}: ${response.reasonPhrase}]"),
-              content: Text("${response.body}"),
+              content: Text(response.body),
               severity: InfoBarSeverity.error,
               action: IconButton(
                 icon: const Icon(FluentIcons.clear),
@@ -131,7 +124,7 @@ class EventListElementWidget extends StatelessWidget {
               case 200:
                 debugPrint("Deleting event ${event.id} [${event.title}]");
                 debugPrint("${response.statusCode}");
-                debugPrint("${response.body}");
+                debugPrint(response.body);
                 eventList.remove(event);
                 refreshEventList();
                 return;

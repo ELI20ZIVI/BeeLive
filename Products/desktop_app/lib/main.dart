@@ -16,13 +16,11 @@ void main() async {
   
   // The URI of the web server.
   final mwsUri = Uri(scheme: "http", host: "93.49.96.13", port: 14124, pathSegments: ["api", "v3"]);
-  //final mwsUri = Uri(scheme: "http", host: "localhost", port: 14124);
   // The casdoor instance is temporary assumed to be on the same host as the public server.
   final casdoorUri = mwsUri.replace(scheme: "http", port: 9987, pathSegments: []);
 
   // Overrides the client with the actual web server client.
-  //Client.override(ManagementWebServerClient("http://localhost:8080/api/v3/"));
-  Client.override(ManagementWebServerClient(mwsUri.toString()));
+  Client.override(ManagementWebServerClient(mwsUri.toString())); 
   
   KeyValueStorage.override(
     SharedPreferences(await sp.SharedPreferences.getInstance()),
@@ -149,10 +147,19 @@ class HomePageState extends State<HomePage> {
 
     return FutureBuilder(
       future: Authenticator().authorization(),
+      initialData: "",
       builder: (context, snap) {
+        debugPrint(snap.data);
         if (snap.hasData) {
-          return navigationView;
+          if (snap.data?.isEmpty ?? true) {
+            return const Center(child: ProgressRing(value: null));
+          } else {
+            return navigationView;
+          }
         } else {
+          if (snap.hasError) {
+            debugPrint("Error during authentication: ${snap.error}");
+          }
           Authenticator().authenticate(context).then((_) => setState(() {}));
           return const Center(child: ProgressRing(value: null));
         }

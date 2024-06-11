@@ -105,4 +105,9 @@ class AuthenticationManager {
       throw AuthenticationNotAskedException();
     }
   }
+
+
+  Future<void> invalidate() async {
+    _code = null;
+  }
 }

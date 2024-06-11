@@ -77,7 +77,6 @@ Ziviani Elia, 228172}
     \item TestCases - Revisione con test \texttt{public-server}
     \item Product backlog refinement
     \item Sprint retrospective
-    \item Diagramma deploy finale
     \item Conclusioni
 \end{itemize}
 
@@ -132,10 +131,8 @@ Tramite questo approccio siamo riusciti a minimizzare i problemi di  collaborazi
 \noindent
 Verso la fine del precedente sprint, abbiamo unificato le diverse branches in \texttt{develop} e, all'inizio di questo sprint, abbiamo nuovamente effettuato dei rebranching da \texttt{develop} in modo da lavorare sulle singole features.
 Lo storico della nostra strategia di branching e' visualizzabile sotto il tool "Network Graph" fornito da github, accessibile da questo link:
-\href{https://github.com/ELI20ZIVI/BeeLive/network}{Network Graph}
+\href{https://github.com/ELI20ZIVI/BeeLive/network}{Network Graph}\\
 
-\\
-\noindent
 Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sarebbere dovute essere eliminate a seguito del primo sprint ma, come suggerito dai docenti, le abbiamo tenute.
 
 \subsubsection{\texttt{main}}
@@ -1049,18 +1046,21 @@ Parlando invece dei due applicativi, i requisiti minimi per la loro installazion
 Prima di procedere con il deploy, è necessario preparare l'ambiente di produzione.\\
 Come detto in precedenza per l'esecuzione degli applicativi desktop e mobile non sono necessarie particolari configurazioni, ma per i componenti su server è necessario installare il software Docker e Docker Compose.\\
 Per installare Docker, seguire le istruzioni ufficiali per il proprio sistema operativo, trattandosi il nostro di un server linux sono state seguite le istruzioni presenti nella documentazione ufficiale riguardante il sistema operativo specificato.\\
-Per replicare l'ambiente da noi creato sul server, sarà quindi necessario installare Docker e Docker Compose seguendo la guida del sistema operativo in uso.
+Per replicare l'ambiente da noi creato sul server, sarà quindi necessario installare Docker e Docker Compose seguendo la guida del sistema operativo in uso.\\
+Una volta fatto ciò sarà necessario clonare la repository del progetto per avere a disposizione tutti i file necessari alla corretta esecuzione.
 
 \subsubsection{Procedura di Deploy}
 \textbf{Componenti nei container all'interno del server}\\
-Per l'esecuzione dei container, una volta che l'ambiente è correttamente configurato, è stato sviluppato un file \texttt{docker-compose} (Nel percorso della directory del progetto \texttt{BeeLive/Products/Docker}) che permette di avviare tutti i container necessari per il funzionamento del sistema con la configurazione corretta.\\
+Per l'esecuzione dei container, una volta che l'ambiente è correttamente configurato, è stato sviluppato un file \texttt{docker-compose} (Nel percorso della directory del progetto \texttt{BeeLive/Products/Docker}) che permette di avviare tutti i container necessari al funzionamento del sistema con la configurazione corretta.\\
 Quindi per l'avvio dei componenti è utilizzato il comando \texttt{docker-compose up} all'interno della directory sopra citata.\\
 Questo ci permette di avere tutti i componenti in esecuzione e pronti per l'utilizzo senza nessun tipo di configurazione e complicazione aggiuntiva.\\
 
 \noindent Gli step per il deploy di questi componenti sono quindi:
 \begin{enumerate}
     \item Installare Docker e Docker Compose (Da saltare se già fatto precedentemente)
-    \item Eseguire il comando \texttt{docker-compose up} nella directory del progetto (\texttt{.../BeeLive/Products/Docker})
+    \item Clonare la repository del progetto attraverso il comando \texttt{git clone https://github.com/ELI20ZIVI/BeeLive/}
+    \item Posizionarsi nella directory del progetto (\texttt{.../BeeLive/Products/Docker})
+    \item Eseguire il comando \texttt{docker-compose up} nella directory Docker del progetto (\texttt{.../BeeLive/Products/Docker})
 \end{enumerate}
 
 \noindent\textbf{Applicativi mobile e desktop}\\
@@ -1114,4 +1114,23 @@ Come librerie aggiuntive abbiamo usato:
 
 \subsection{Conclusioni}
 
+Possiamo quindi affermare che per il progetto BeeLive sono stati conclusi con successo tutti gli obiettivi stabiliti per questo sprint:\\
+Sono state implementate le funzionalità di gestione degli eventi, permettendo agli utenti autorizzati di creare, modificare ed eliminare eventi tramite l'applicazione desktop.\\
+Gli utenti comuni, utilizzando l'applicazione mobile, possono visualizzare tutti i dettagli degli eventi, inclusi i sottoeventi.\\
+L'architettura del sistema include il server pubblico (public\_server), il server di gestione (management\_server), il database MongoDB, il server di autenticazione Casdoor (Auth/Autn server), il servizio di routing OpenRouteService, l'applicazione desktop e l'applicazione mobile.\\
+
+Nonostante il successo nel raggiungimento degli obiettivi del prodotto, l'applicazione del framework SCRUM ha per noi presentato alcune difficoltà, principalmente dovute alla necessità di focalizzarsi sull'implementazione tecnica.\\
+La mancanza di test approfonditi sviluppati durante il primo sprint ha fatto emergere problemi imprevisti durante lo sviluppo, richiedendo modifiche che hanno coinvolto diverse user story contemporaneamente. Inoltre, l'interdipendenza tra le varie componenti del sistema ha reso complesso lavorare su singole user story in maniera isolata.\\
+Queste sfide hanno portato il product backlog a trasformarsi in una lista di attività con priorità, orientata più sul prodotto che sull'utente finale.\\
+
+Tuttavia, la stretta collaborazione tra noi membri del team, facilitata dalla comunicazione costante tramite Telegram e da incontri in presenza, ha permesso di superare queste difficoltà.\\
+Come team, abbiamo tutti tratto vantaggio da un continuo scambio di conoscenze, specialmente per quanto riguarda gli aspetti tecnici del progetto, come l'uso di Dart, Rust e webtoken.\\
+
+Guardando ai prossimi sprint, riteniamo che si potrebbe migliorare l'organizzazione SCRUM, formalizzando gli incontri del team per documentare i progressi e garantire che tutti i componenti del team siano allineati.\\
+Inoltre, con le funzionalità principali del prodotto ormai completate, il team potrebbe aderire più rigorosamente alla metodologia, sfruttandone a pieno i suoi benefici.\\
+
+Ad ogni modo è anche doveroso citare il fatto che si è notata una differenza netta tra il primo e questo secondo sprint. In questo ultimo periodo, a differenza di quello precedente, si è vista una maggiore collaborazione tra i membri del team, una maggiore comunicazione e una maggiore condivisione delle conoscenze.\\
+Tutti questi aspetti, nel primo sprint, erano molto più altalenanti, in quanto non avendo mai avuto esperienze di lavoro in team sfruttando questo tipo di metotodologia, si è faticato molto di più a trovare un equilibrio.\\
+Tutto era anche complicato dal fatto che nel primo sprint non c'erano basi o componenti già definite su cui iniziare a lavorare direttamente, quindi ogni componente del team si è focalizzato su una parte del progetto senza favorire la visione d'insieme.\\
+Questo secondo sprint, invece, è stato molto più fluido e ha permesso di lavorare in modo più efficiente e produttivo tra tutti noi membri del team, che abbiamo dato molta più enfasi alla collaborazione piuttosto che al compimento del singolo task.\\
 \end{document}

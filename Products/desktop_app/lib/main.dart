@@ -108,7 +108,14 @@ class HomePageState extends State<HomePage> {
           enabled: false,
           icon: const Icon(FluentIcons.settings),
           title: Text(localization.settings),
-          body: const SizedBox.shrink(),
+          body: Center(
+            child: Button(
+              child: const Text("Logout"),
+              onPressed: () async {
+                await Authenticator().logout();
+              },
+            )
+          ),
         ),
       ],
       items: [

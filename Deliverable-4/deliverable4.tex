@@ -18,6 +18,7 @@
 \usepackage{pgfplots}
 \usepackage{float}
 \usepgfplotslibrary{dateplot} % Per gestire gli assi con date
+\usepackage{soul}
 
 % Configure header and footer for the first page
 \fancypagestyle{firstpage}{
@@ -70,21 +71,18 @@ Ziviani Elia, 228172}
 
 \clearpage
 
-\section{TODO}
-\begin{itemize}
-    \item Revisione generale del documento
-    \item BurnDown chart
-    \item TestCases - Revisione con test \texttt{public-server}
-    \item Product backlog refinement
-    \item Sprint retrospective
-    \item Diagramma deploy finale
-    \item Conclusioni
-\end{itemize}
-
-\clearpage
-
 \section{Revisione}
-...
+\label{sec:revisione}
+La struttura del progetto, paragonandola a quella riportata nel deliverable precedente, è rimasta pressoché invariata.\\
+Le uniche modifiche che sono state apportate sono relative al product backlog (\ref{tab:product-backlog}).
+Le modifiche di cui si parla sono:
+\begin{itemize}
+    \item Ridefinizione della user story \textbf{Visualizzazione dei dettagli del singolo evento}, in quanto nello scorso documento risultava poco chiara e di difficile comporensione.
+    \item Aggiunta di una nuova user story, \textbf{Accesso al programma desktop}, in quanto ritenuta necessaria per la completezza del progetto.
+\end{itemize}
+Questa user story è stata aggiunta in quanto ritenuta necessaria per il corretto funzionamento del progetto.\\
+Si tratta della possibilità, da utente autorizzato, di accedere all'applicativo desktop in modo da poter operare sulle criticità associate.\\
+Per il resto la struttura definita precedentemente è rimasta invariata.
 
 \clearpage
 
@@ -124,8 +122,6 @@ Anche per questo secondo sprint è stata evitata la strategia di branching "Mast
 \noindent
 Abbiamo deciso di mantenere la stessa metodologia di branching dello scorso sprint, ossia il \textit{GitFlow Workflow}. Una volta ritenute soddisfacenti le modifiche e le feature di una "feature branch", questa viene integrata in \texttt{develop}.\\
 La branch \texttt{main} è la branch stabile in cui vengono effettuate le pull requests da \texttt{develop} solo una volta testate, determinando il rilascio della \textit{release}.\\\\
-\noindent
-Come specificato in seguito, il deployment è stato eseguito su server personale. Visto lo scope del progetto non è stato ritenuto opportuno perdere tempo nell'implementare meccanismi automatici CICD.\\\\
 
 \noindent
 Tramite questo approccio siamo riusciti a minimizzare i problemi di  collaborazione tra i membri del team, nonche' ridotto i conflitti e le inconsistenze nel codice, facilitato la gestione delle diverse attività in corso e mantenuto inoltre una mappatura di tutte le diverse modifiche e progressi del progetto, mantenendo ben strutturata la storia del codice.
@@ -133,11 +129,10 @@ Tramite questo approccio siamo riusciti a minimizzare i problemi di  collaborazi
 \noindent
 Verso la fine del precedente sprint, abbiamo unificato le diverse branches in \texttt{develop} e, all'inizio di questo sprint, abbiamo nuovamente effettuato dei rebranching da \texttt{develop} in modo da lavorare sulle singole features.
 Lo storico della nostra strategia di branching e' visualizzabile sotto il tool "Network Graph" fornito da github, accessibile da questo link:
-\href{https://github.com/ELI20ZIVI/BeeLive/network}{Network Graph}
-
+\href{https://github.com/ELI20ZIVI/BeeLive/network}{Network Graph}\\
 
 \noindent
-Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sarebbere dovute essere eliminate a seguito del primo sprint ma, come suggerito dai docenti, le abbiamo tenute.
+Segue una lista dei branch utilizzati per lo sviluppo del progetto; da notare che molte di queste branches sarebbero dovute essere eliminate a seguito del primo sprint ma, come suggerito dai docenti, le abbiamo tenute.
 
 \subsubsection{\texttt{main}}
 
@@ -238,6 +233,7 @@ I tests sono stati scritti su branch a parte. Sebbene molti degli integration te
 \clearpage
 
 \subsection{Product Backlog}
+\label{tab:product-backlog}
 Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato per questo progetto. E' possibile notare una linea di demarcazione che limita inferiormente le entries selezionate per il primo sprint.
 
 \begin{table}[!ht]
@@ -249,7 +245,7 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
         \Xhline{2pt}
         \makecell{Accesso alle\\criticità} & \makecell{Da utente, voglio essere in grado di visualizzare la lista\\degli eventi che ci sono in città} & \makecell{200} & \makecell{8}\\
         \hline
-        \makecell{Accesso al\\programma\\desktop} & \makecell{\textbf{NUOVO} Da utente autorizzato, voglio essere in grado di accedere\\all'applicativo desktop in modo da poter operare\\sulle criticità a me associate} & \makecell{190} & \makecell{8}\\
+        \makecell{Accesso al\\programma\\desktop} & \makecell{Da utente autorizzato, voglio essere in grado di accedere\\all'applicativo desktop in modo da poter operare\\sulle criticità a me associate} & \makecell{190} & \makecell{8}\\
         \hline
         \makecell{Aggiunta eventi\\da utente\\autorizzato} & \makecell{Da utente autorizzato, devo essere in grado di aggiungere degli eventi\\in modo da comunicare la loro presenza agli utenti} & \makecell{180} & \makecell{8}\\
         \hline
@@ -257,17 +253,17 @@ Nella pagina seguente vi è riportato il product backlog che abbiamo sviluppato 
         \hline
         \makecell{Visualizzazione\\criticità\\su mappa} & \makecell{Da utente, voglio visualizzare su una cartina le zone colpite dai diversi\\eventi, in modo da capire visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{160} & \makecell{6}\\
         \hline
-        \makecell{Visualizzazione\\dei dettagli del\\singolo evento} & \makecell{Da utente, voglio avere } & \makecell{150} & \makecell{6}\\
+        \makecell{Visualizzazione\\dei dettagli del\\singolo evento} & \makecell{Da utente, voglio avere la possibilità di accedere ad una\\visualizzazione e descrizione più dettagliata di un\\evento in modo da conoscerne meglio le specifiche} & \makecell{150} & \makecell{6}\\
+        \hline
+        \makecell{Modifica\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di modificare degli eventi\\in modo da evitare errori comunicativi} & \makecell{75} & \makecell{2}\\
+        \hline
+        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare degli eventi} & \makecell{40} & \makecell{2}\\
         \Xhline{2pt}
         \makecell{Impostazione\\categorie\\d'interesse\\per gli eventi} & \makecell{Da utente, voglio essere in grado di impostare le categorie di eventi\\alle quali io sono interessato, in modo che la lista di eventi visibile\\dall'applicazione contenga solamente gli eventi che mi interessano,\\e in modo che io non venga notificato di alcun evento\\che io non ritenga appartenere ad una categoria interessante} & \makecell{100} & \makecell{5}\\
         \hline
         \makecell{Impostazione\\zone\\d'interesse} & \makecell{Da utente, voglio essere in grado di impostare delle zone di interesse,\\in modo che io venga notificato di qualsiasi evento che insorga\\in una di queste zone} & \makecell{90} & \makecell{7}\\
         \hline
         \makecell{Visualizzazione\\eventi\\di competenza} & \makecell{Da utente autorizzato, devo essere in grado di visualizzare gli eventi\\di mia competenza, in modo da sapere quali eventi sono stati creati e\\monitorare il loro stato} & \makecell{80} & \makecell{5}\\
-        \hline
-        \makecell{Modifica\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di modificare degli eventi\\in modo da evitare errori comunicativi} & \makecell{75} & \makecell{2}\\
-        \hline
-        \makecell{Eliminazione\\eventi} & \makecell{Da utente autorizzato, devo essere in grado di eliminare degli eventi} & \makecell{40} & \makecell{2}\\
         \hline
         \makecell{Accesso\\account\\utente} & \makecell{Da utente registrato, voglio essere in grado di poter accedere al\\mio account in modo da poter riottenere le aree di interesse e\\le impostazioni che ho precedentemente salvato} & \makecell{70} & \makecell{3}\\
         \hline
@@ -305,12 +301,12 @@ Le funzionalità implementate fino a questo punto sono quelle che possiamo defin
 E' doveroso però specificare il fatto che, essendo il progetto in una fase iniziale, molte delle funzionalità implementate sono state sviluppate in modo molto basilare magari non includendo controlli e/o funzionalità che sarebbero state necessarie in un contesto reale.\\
 Per questo motivo, in questo sprint ci siamo prefissati di migliorare e rifinire le funzionalità già implementate, aggiungendo controlli e funzionalità che riteniamo necessarie per un corretto funzionamento del progetto.\\
 
-Inoltre in questo sprint saranno integrate anche nuove funzionalità, come la modifica e l'eliminazione degli eventi da parte dell'utente autorizzato tramite l'applicativo desktop, su cui ora è funzionante la gestione degli accessi per la verfica effettiva dell'utente.\\
+\noindent Inoltre in questo sprint saranno integrate anche nuove funzionalità, come la modifica e l'eliminazione degli eventi da parte dell'utente autorizzato tramite l'applicativo desktop, su cui ora è funzionante la gestione degli accessi per la verfica effettiva dell'utente.
 
 \subsection{Sprint Planning}
 Seguono le varie tabelle che riportano i task che ci siamo prefissati di portare a termine durante il secondo sprint.\\
-Abbiamo preferito descrivere i task invece delle user stories in quanto per singola user story vi erano svariati sotto task da completare.\\
-In questo modo i task sono stati divisi in modo più chiaro e preciso, permettendo una migliore gestione del lavoro, una maggiore chiarezza sulle attività da svolgere e una più grande possibilità di descrizione.\\
+Abbiamo preferito descrivere i task invece delle user stories, in quanto per singola user story vi erano svariati sotto task da completare.\\
+In questo modo i task sono stati divisi in modo più chiaro e preciso, permettendo una migliore gestione del lavoro, una maggiore chiarezza sulle attività da svolgere e una più grande possibilità di descrizione.
 
 \subsubsection{Accesso alle criticità e ai loro dettagli}
 Attività che riguardano la visualizzazione delle criticità presenti in città e dei dettagli di ciascuna di esse.\\
@@ -322,9 +318,9 @@ Include inoltre la ricostituzione di parti del progetto sviluppate durante il pr
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Sistemazione\\codici di errore\\del public server} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Nello sprint precedente erano\\stati definiti in modo poco chiaro\\alcuni codici di errore, che quindi\\vanno ridefiniti} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{1.\\Sistemazione\\codici di errore\\del public server} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Nello sprint precedente erano\\stati definiti in modo poco chiaro\\alcuni codici di errore, che quindi\\vanno ridefiniti} & \makecell{Elia Ziviani} & \makecell{6} \\
         \hline
-        \makecell{2.\\Creazione\\dei test} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Creazione dei test sulla\\base dei nuoi codici di\\errore per verificare l'effettivo\\funzionamento del componente} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{2.\\Creazione\\dei test} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Creazione dei test sulla\\base dei nuoi codici di\\errore per verificare l'effettivo\\funzionamento del componente} & \makecell{Pietro Cipriani} & \makecell{} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -335,15 +331,19 @@ Include inoltre la ricostituzione di parti del progetto sviluppate durante il pr
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 6 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 6 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -360,15 +360,13 @@ Sono incluse anche in questo caso operazioni di ridefinizione di parti del codic
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Autogenerazione\\IDs} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di\\autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Autogenerazione\\IDs} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modiﬁcare/\\creare degli eventi} & \makecell{Creazione del\\sottocomponente che\\si occupa di\\autogenerare gli ID} & \makecell{Dennis Orlando} & \makecell{4} \\
         \hline
-        \makecell{2.\\Sistemazione\\codici di errore\\(Management Server)} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modificare/\\creare degli eventi} & \makecell{Nello sprint precedente\\erano stati definiti\\in modo poco chiaro\\alcuni codici di errore,\\che quindi vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Sistemazione\\codici di errore\\(Management Server)} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modificare/\\creare degli eventi} & \makecell{Nello sprint precedente\\erano stati definiti\\in modo poco chiaro\\alcuni codici di errore,\\che quindi vanno ridefiniti} & \makecell{Dennis Orlando} & \makecell{3} \\
         \hline
-        \makecell{3.\\Restituzione\\nuovo ID} & \makecell{} & \makecell{Creazione del\\sottocomponente che\\si occupa di restituire\\l'ID} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{3.\\Restituzione\\nuovo ID} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare/modiﬁcare/\\creare degli eventi} & \makecell{Creazione del\\sottocomponente che\\si occupa di restituire\\l'ID} & \makecell{Dennis Orlando} & \makecell{1} \\
         \hline
-        \makecell{4.\\Redirecting alla\\pagina degli eventi\\dopo il publish} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{Creazione logica di\\redirecting alla pagina\\degli eventi dopo la\\creazione di un evento} & \makecell{Dennis Orlando} & \makecell{} \\
-        \hline
-        \makecell{5.\\No empty\\multipolygon when\\processing an Event\\with no SubEvents\\with polygons} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{...} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{4.\\Nessun multipoligono\\vuoto durante\\l'elaborazione\\di un Evento senza\\Sottoeventi con\\poligoni} & \makecell{Da utente autorizzato,\\devo essere in grado di\\aggiungere degli eventi\\in modo da comunicare la\\loro presenza agli utenti} & \makecell{Il server costruisce \\dei multipoligoni\\ potenzialmente senza\\ vertici, il che non dovrebbe\\ essere permesso e\\ porterebbe ad errori futuri.} & \makecell{Dennis Orlando} & \makecell{2} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -377,29 +375,17 @@ Sono incluse anche in questo caso operazioni di ridefinizione di parti del codic
     \centering
     \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
         \Xhline{2pt}
-        \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
+        \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} & \textbf{...}\\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 4 & 4 & 4 & 4 & 4 & 4 & 2 & 1 & 4 & 3 & 0 & 0 & 0 & 0\\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 3 & 3 & 3 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
         \hline
-        3. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 \\
+        3. & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
         \hline
-        4. & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 & 51 & 52 \\
+        4. & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        5. & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 & 62 & 63 & 64 & 65 \\
-        \Xhline{2pt}
-        \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
-        \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
-        \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
-        \hline
-        3. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 \\
-        \hline
-        4. & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 & 51 & 52 \\
-        \hline
-        5. & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 & 62 & 63 & 64 & 65 \\
+        Tot. & 9 & 9 & 9 & 8 & 7 & 6 & 2 & 1 & 4 & 3 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -427,15 +413,19 @@ Tutti i task che riguardano lo sviluppo dell'accesso all'applicativo desktop da 
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -450,9 +440,9 @@ Tutte le modifiche di ridefinizione e miglioramento necessarie a rendere il codi
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Fix mobile\\application\\map} & \makecell{Da utente, voglio visualizzare su\\una cartina le zone colpite dai\\diversi eventi, in modo da capire\\visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{Ridefinizione delle\\caratteristiche del modulo di\\mappa incluso nell'\\applicativo mobile} & \makecell{} & \makecell{} \\
+        \makecell{1.\\Fix mobile\\application\\map} & \makecell{Da utente, voglio visualizzare su\\una cartina le zone colpite dai\\diversi eventi, in modo da capire\\visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{Ridefinizione delle\\caratteristiche del modulo di\\mappa incluso nell'\\applicativo mobile} & \makecell{Pietro Cipriani} & \makecell{} \\
         \hline
-        \makecell{2.\\Refactoring} & \makecell{Da utente, voglio visualizzare su\\una cartina le zone colpite dai\\diversi eventi, in modo da capire\\visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{Controllo, aggiornamento e\\miglioramento del codice} & \makecell{} & \makecell{} \\
+        \makecell{2.\\Refactoring} & \makecell{Da utente, voglio visualizzare su\\una cartina le zone colpite dai\\diversi eventi, in modo da capire\\visivamente se in una zona che mi\\interessa vi è un evento attivo} & \makecell{Controllo, aggiornamento e\\miglioramento del codice} & \makecell{Pietro Cipriani} & \makecell{} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -463,15 +453,19 @@ Tutte le modifiche di ridefinizione e miglioramento necessarie a rendere il codi
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -488,7 +482,7 @@ Task che completano la gestione della visualizzazione dei dettagli degli eventi 
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Details page} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Ricomposizione della pagina che\\mostra i dettagli di ongi evento\\(Mappa e sottoeventi)} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{1.\\Details page} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{Ricomposizione della pagina che\\mostra i dettagli di ongi evento\\(Mappa e sottoeventi)} & \makecell{Elia Ziviani} & \makecell{3} \\
         \hline
         \makecell{2.\\Details client} & \makecell{Da utente, voglio\\visualizzare la lista\\degli eventi in città} & \makecell{} & \makecell{Pietro Cipriani} & \makecell{} \\
         \hline
@@ -501,15 +495,19 @@ Task che completano la gestione della visualizzazione dei dettagli degli eventi 
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 3 & 3 & 3 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 3 & 3 & 3 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -524,9 +522,9 @@ Tasks che compongono la logica di ottenimento e visualizzazione delle criticità
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Implement event\\list page} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Implementazione pagina\\ della lista degli\\eventi} & \makecell{Da utente autorizzato,\\ devo essere in grado\\ di visualizzare gli eventi di\\ mia competenza, in modo\\ da sapere quali\\ eventi sono stati\\ creati e monitorare il\\ loro stato} & \makecell{Creare una pagina\\ per il DA che mostri\\ la pagina degli eventi} & \makecell{Dennis Orlando} & \makecell{5} \\
         \hline
-        \makecell{2.\\Fetch eventi} & \makecell{} & \makecell{} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Implementazione\\ fetching eventi} & \makecell{\(|\)\(|\) } & \makecell{Popolare la pagina\\ degli eventi del\\ DA con gli eventi\\ ottenuti dal\\ \texttt{management\_server}\\ tramite le API fornite} & \makecell{Dennis Orlando} & \makecell{5} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -535,17 +533,13 @@ Tasks che compongono la logica di ottenimento e visualizzazione delle criticità
     \centering
     \begin{tabularx}{\textwidth}{| X | r | r | r | r | r | r | r | r | r | r | r | r | r | r |}
         \Xhline{2pt}
-        \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
+        \textbf{No.} & \textbf{...} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{...}\\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 5& 4 & 4 & 3 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
-        \Xhline{2pt}
-        \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
-        \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        2. & 5 & 5 & 4 & 4 & 2 & 3 & 2 & 1 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        Tot. & 10 & 9 & 8 & 7 & 5 & 4 & 2 & 1 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -561,13 +555,15 @@ Task che riguardano la logica che permette all'utente autorizzato di modificare 
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Redirecting\\alla pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Creazione pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Creazione della pagina di\\modifica, pubblicazione modifica\\tramite le API fornite} & \makecell{Dennis Orlando} & \makecell{7} \\
         \hline
-        \makecell{2.\\Endpoint:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{2.\\Redirecting\\alla pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo della logica di\\rimando alla pagina di modifica\\dell'evento e sviluppo della\\pagina stessa} & \makecell{Dennis Orlando} & \makecell{2} \\
         \hline
-        \makecell{3.\\DAO:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{3.\\Endpoint:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo dell'endpoint che\\si occupa della modifica di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
-        \makecell{4.\\Event Manager:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{4.\\DAO:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa della modifica\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{5} \\
+        \hline
+        \makecell{5.\\Event Manager:\\Modifica} & \makecell{Da utente autorizzato,\\devo essere in grado di\\modiﬁcare degli eventi\\in modo da evitare\\errori comunicativi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\modifica degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -578,23 +574,29 @@ Task che riguardano la logica che permette all'utente autorizzato di modificare 
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 \\
         \hline
-        3. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 \\
+        3. & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        4. & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 & 51 & 52 \\
+        4. & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        5. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 24 & 24 & 24 & 24 & 24 & 22 & 18 & 13 & 10 & 9 & 9 & 9 & 9 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 7 & 5 & 3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & 2 & 2 & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        3. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 \\
+        3. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        4. & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 & 51 & 52 \\
+        4. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 9 & 7 & 5 & 3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -611,15 +613,15 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
         \Xhline{2pt}
         \makecell{\textbf{Nome}} & \makecell{\textbf{User story}} & \makecell{\textbf{Cosa fare}} & \makecell{\textbf{Assegnazione}} & \makecell{\textbf{Stima}} \\
         \Xhline{2pt}
-        \makecell{1.\\Pulsante di\\eliminazione\\nella pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{1.\\Pulsante di\\eliminazione\\nella pagina\\di modifica} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Aggiunta di un pulsante che\\permette l'eliminazione degli\\eventi nella pagina di modifica,\\con tanto di pubblicazione\\della modifica tramite\\API} & \makecell{Dennis Orlando} & \makecell{3} \\
         \hline
-        \makecell{2.\\Dialog di\\conferma} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{Dennis Orlando} & \makecell{} \\
+        \makecell{2.\\Dialog di\\conferma} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Creazione di un dialog di\\conferma dell'operazione che si\\vuole portare a termine} & \makecell{\textit{Mai iniziato}} & \makecell{2} \\
         \hline
-        \makecell{3.\\Endpoint:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo dell'endpoint che\\si occupa dell'eliminazione di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{3.\\Endpoint:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo dell'endpoint che\\si occupa dell'eliminazione di\\un evento selezionato} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
-        \makecell{4.\\DAO:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa dell'eliminazione\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{4.\\DAO:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa dell'eliminazione\\dell'evento agendo direttamente\\sui dati del database} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
-        \makecell{5.\\Event Manager:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\eliminazione degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{} \\
+        \makecell{5.\\Event Manager:\\Eliminazione} & \makecell{Da utente autorizzato,\\devo essere in grado\\di eliminare degli eventi} & \makecell{Sviluppo del modulo che\\si occupa di gestire le richieste di\\eliminazione degli eventi fatte\\al management server} & \makecell{Elia Ziviani} & \makecell{5} \\
         \hline
     \end{tabularx}
 \end{table}
@@ -630,27 +632,31 @@ Tasks che riguardano la logica che permette all'utente autorizzato di eliminare 
         \Xhline{2pt}
         \textbf{No.} & \textbf{17/5} & \textbf{18/5} & \textbf{19/5} & \textbf{20/5} & \textbf{21/5} & \textbf{22/5} & \textbf{23/5} & \textbf{24/5} & \textbf{25/5} & \textbf{26/5} & \textbf{27/5} & \textbf{28/5} & \textbf{29/5} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & - & - & - & - & - & - & - & - & - & - & - & - & - \\
         \hline
-        3. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 \\
+        3. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 & 0 \\
         \hline
-        4. & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 & 51 & 52 \\
+        4. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 0 \\
         \hline
-        5. & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 & 62 & 63 & 64 & 65 \\
+        5. & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 \\
+        \hline
+        Tot. & 17 & 17 & 17 & 17 & 17 & 17 & 17 & 17 & 17 & 15 & 11 & 6 & 3 \\
         \Xhline{2pt}
         \textbf{No.} & \textbf{30/5} & \textbf{31/5} & \textbf{ 1/6} & \textbf{ 2/6} & \textbf{ 3/6} & \textbf{ 4/6} & \textbf{ 5/6} & \textbf{ 6/6} & \textbf{ 7/6} & \textbf{ 8/6} & \textbf{ 9/6} & \textbf{10/6} & \textbf{11/6} \\
         \Xhline{2pt}
-        1. & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+        1. & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        2. & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+        2. & - & - & - & - & - & - & - & - & - & - & - & - & - \\
         \hline
-        3. & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 \\
+        3. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        4. & 40 & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 & 51 & 52 \\
+        4. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
-        5. & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 & 61 & 62 & 63 & 64 & 65 \\
+        5. & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \hline
+        Tot. & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -679,10 +685,10 @@ Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta
             thick
         ] table [col sep=comma, x=date, y=planned] {
             date, planned
-            2024-05-17, 122
+            2024-05-17, 100
             2024-06-11, 0
         };
-        \addlegendentry{Planned}
+        \addlegendentry{Teorico}
 
         \addplot[
             color=red,
@@ -690,10 +696,34 @@ Giorno per giorno si può visualizzare l'andamento dei lavori e capire se si sta
             thick
         ] table [col sep=comma, x=date, y=actual] {
             date, actual
-            2024-05-17, 122
-            2024-06-11, 42
+            2024-05-17, 0
+            2024-05-18, 0
+            2024-05-19, 0
+            2024-05-20, 0
+            2024-05-21, 0
+            2024-05-22, 0
+            2024-05-23, 0
+            2024-05-24, 0
+            2024-05-25, 0
+            2024-05-26, 0
+            2024-05-27, 0
+            2024-05-28, 0
+            2024-05-29, 0
+            2024-05-30, 0
+            2024-05-31, 0
+            2024-06-01, 0
+            2024-06-02, 0
+            2024-06-03, 0
+            2024-06-04, 0
+            2024-06-05, 0
+            2024-06-06, 0
+            2024-06-07, 0
+            2024-06-08, 0
+            2024-06-09, 0
+            2024-06-10, 0
+            2024-06-11, 0
         };
-        \addlegendentry{Actual}
+        \addlegendentry{Reale}
         \end{axis}
     \end{tikzpicture}
     \caption{Burndown Chart}
@@ -710,6 +740,9 @@ Infatti ha il compito di gestire tutte le richieste provenienti dagli applicativ
 \begin{itemize}
     \item Test case: \texttt{/events}
 \end{itemize}
+
+%N.B. Questa richiesta prevede, in via vacoltativa, l'utilizzo di parametri per ottenere un risultato filtrato. Le user stories associate all'implementazione di questi parametri sono però associate ad una bassissima priorità, motivo per cui non sono state implementate.\\
+%Anche i loro test non sono stati implementati in quanto le richieste non sarebbero state gestite, ma sono stati comunque inseriti in questa sezione per completezza.\\
 
 \begin{table}[H]
     \centering
@@ -980,6 +1013,11 @@ Come poi sarà descritto nel capito di deploy \ref{deploy}, allo stato attuale d
 \end{itemize}
 
 \subsection{Product backlog refinement}
+In questo sprint l'utilizzo del product backlog dell'intero progetto, definito nello scorso documento (Deliverable 3), ci è stato utile per poter pianificare, organizzare e svolgere i vari task per il completamento delle varie funzionalita'.\\
+Per essere precisi e' corretto dire che comunque il product backlog del progetto ha dovuto subire alcune modifiche rispetto allo sprint precedente, trattate nella sezione di revizione \ref{sec:revisione}.\\
+
+Come citato il precedenza, in questo sptint non abbiamo definito un vero e proprio sprint backlog. Abbiamo scelto invece di selezionare alcuni task che dovevano essere svolti e di concentrarci su di essi, andandoli e ricollegandoli successivamente alle user stories presenti nel product backlog.\\
+Tramite questo approccio siamo riusciti a completare tutti i task che ci eravamo prefissati e a portare a termine tutte le user stories che avevamo selezionato, preparando un ambiente favorevole alla prosecuzione dello sviluppo del progetto in un possibile sprint successivo al corrente.\\
 
 \subsection{Sprint retrospective}
 
@@ -1008,72 +1046,84 @@ Diversamente, invece, ci sono diverse cose che sono andate molto bene:
 \clearpage
 
 \section{Sezione finale}
-\subsection{Deploy}
-Il deploy del progetto si riferisce al processo di rilascio del software in ambiente operativo. Questo capitolo del documento descrive in dettaglio le fasi e le procedure coinvolte nel deploy del nostro progetto, inclusi gli obiettivi e i risultati attesi.
 
-\subsubsection{Panoramica dell'Architettura}
+\subsection{Deployment}
+Il nostro sistema è attualmente attivo 24h/24h attraverso un deployment su un server domestico di nostra proprietà, con ip statico \texttt{93.49.96.13}.
+Le applicazioni sono configurate automaticamente per connettersi a tale deployment, attraverso le seguenti interfacce che abbiamo esposto:
+\begin{itemize}
+	\item http://93.49.96.13:14124: Management Server
+	\item http://93.49.96.13:7839: Public Server
+	\item http://93.49.96.13:9987: Casdoor
+\end{itemize}
+
+\subsubsection{CICD}
+La "Continuous integration \& continuous deployment" avviene tramite un \texttt{cronjob} che è stato creato sul suddetto server personale.
+Ogni mattina alle 02:00 UTC tale cronjob effettua il pull del branch \texttt{main} della repository ed effettua automaticamente il deployment del docker compose. 
+Eventuali errori in deployment verranno scritti sul \texttt{journal} di Linux.
+
+\textit{Github Actions} sono utilizzate per validare il codice e per generare le release degli applicativi frontend in risposta a push/pull requests sulla branch \texttt{main}. 
+
+\subsection{Specifiche deployment}
+Ogni componente del nostro \texttt{backend} è racchiuso in un \texttt{Docker Container}, in modo da permettere una grande scalabilità e flessibilità del sistema.
+Il nostro deployment avviene tramite una singola configurazione di \texttt{Docker Compose} che racchiude la gestione dei suddetti \texttt{Docker Container}s.
+Per una visione più dettagliata di tale configurazione, si prega di riferirsi direttamente alla repository e alle configurazioni create.
+
+\subsubsection{Panoramica generale dell'Architettura}
 L'architettura del sistema include i seguenti componenti principali:
 \begin{itemize}
     \item Public server
     \item Management server
+    \item \st{Notification Server} (Non ancora implementato)
+    \item \st{OpenRouteService} (Non ancora implementato)
     \item Database MongoDB
     \item CasDoor (Authn server)
     \item Applicativo desktop
     \item Applicativo mobile
 \end{itemize}
 
-\subsubsection{Diagramma dell'architettura del sistema}
+A seguito vi è il diagramma dell'architettura del sistema:
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Images/Component.png}
     \caption{Diagramma dell'architettura del sistema}
     \label{fig:architettura}
 \end{figure}
 
-\subsubsection{Componenti containerizzati}
-E' importante specificare il fatto che alcuni dei componenti precedentemete citati sono stati containerizzati per facilitare il deploy e la gestione del sistema.\\
-Come tecnologia di containerizzazione è stato scelto Docker, in quanto permette di creare, distribuire e gestire applicazioni in container in modo semplice e veloce. In questo contesto, la semplicità di utilizzo e la mancanza di esigenze particolari non ha reso opportuno l'utilizzo di orchestratori quali Kubernetes.\\
-I componenti che sono eseguiti all'interno di container sono:
+\subsubsection{Configurazione di rete - integrazione componenti}
+Tutti i \texttt{Docker Container}s sono in comunicazione tra di loro grazie a  \texttt{Docker Compose}, il quale crea una rete di default attraverso la quale tutti i container di un progetto possono comunicare tra di loro.
+Questa rete è una rete "interna" e non accessibile dall'esterno. \texttt{Docker Compose} permette ovviamente di esporre esplicitamente alcuni container attraverso delle porte accessibili dall'esterno, che nel nostro caso sono:
 \begin{itemize}
-    \item Public server
-    \item Management server
-    \item Database MongoDB
-    \item CasDoor (Auth/Autn server)
+  \item Porta 27017 (localhost): Database MongoDB
+	\item Porta 14124: Management Server
+	\item Porta 7839: Public Server
+	\item Porta 9987: Casdoor
 \end{itemize}
-Tutti all'interno di container singoli per semplificare la gestione dei processi, il loro flusso esecutivo e la loro scalabilità.\\
-I container sono attivi su un nostro server proprietario (IP statico: 93.49.96.13), quindi sono raggiungibili dall'esterno.
+Le applicazioni desktop e mobile sono configurate per accedere a queste porte. 
+\\\\
+\noindent
+\textit{Nota: nel nostro deployment attivo, abbiamo effettuato ulteriori configurazioni di rete (e.g. per circumnavigare il NAT). Queste configurazioni sono trasparenti al resto del sistema e di conseguenza non le citeremo.}
 
-\subsubsection{Requisiti di deploy}
-Per quanto riguarda i componenti containerizzati, quali i due server web, non vi sono particolari requisiti in quanto già in esecuzione sul server precedentemente citato.\\
+
+\subsubsection{Requisiti di sistema}
+Se si volesse effettuare un deployment locale del nostro sistema, allora la natura portabile dei containers Docker fa in modo che, virtualmente, qualsiasi sistema operativo sia capace di poter runnare il nostro progetto \texttt{Docker Compose}.\\
 Parlando invece dei due applicativi, i requisiti minimi per la loro installazione e il loro funzionamento sono:
 \begin{itemize}
-    \item \textbf{Applicativo desktop}: Sistema operativo Linux % Non so se lo facciamo girare altrove
+    \item \textbf{Applicativo desktop}: Qualsiasi sistema operativo supportato da Flutter e Dart.
     \item \textbf{Applicativo mobile}: Sistema operativo Android 5.0 o superiore
 \end{itemize}
 È possibile utilizzarli anche come webapps, tuttavia non è stato previsto il loro deployment.
 
-\subsubsection{Preparazione dell'Ambiente}
-Prima di procedere con il deploy, è necessario preparare l'ambiente di produzione.\\
-Come detto in precedenza per l'esecuzione degli applicativi desktop e mobile non sono necessarie particolari configurazioni, ma per i componenti su server è necessario installare il software Docker e Docker Compose.\\
-Per installare Docker, seguire le istruzioni ufficiali per il proprio sistema operativo, trattandosi il nostro di un server linux sono state seguite le istruzioni presenti nella documentazione ufficiale riguardante il sistema operativo specificato.\\
-Per replicare l'ambiente da noi creato sul server, sarà quindi necessario installare Docker e Docker Compose seguendo la guida del sistema operativo in uso.
+\subsubsection{Istruzioni per il deployment}
+Si presuppone una conoscenza preliminare di Docker e Docker-Compose.
+Le istruzioni per effettuare il deployment e il testing del nostro sistema (\texttt{backend}) sono presenti nel file \texttt{README.md} presente all'interno della nostra repository (nel branch \texttt{main}).
 
-\subsubsection{Procedura di Deploy}
-\textbf{Componenti nei container all'interno del server}\\
-Per l'esecuzione dei container, una volta che l'ambiente è correttamente configurato, è stato sviluppato un file \texttt{docker-compose} (Nel percorso della directory del progetto \texttt{BeeLive/Products/Docker}) che permette di avviare tutti i container necessari per il funzionamento del sistema con la configurazione corretta.\\
-Quindi per l'avvio dei componenti è utilizzato il comando \texttt{docker-compose up} all'interno della directory sopra citata.\\
-Questo ci permette di avere tutti i componenti in esecuzione e pronti per l'utilizzo senza nessun tipo di configurazione e complicazione aggiuntiva.\\
 
-\noindent Gli step per il deploy di questi componenti sono quindi:
-\begin{enumerate}
-    \item Installare Docker e Docker Compose (Da saltare se già fatto precedentemente)
-    \item Eseguire il comando \texttt{docker-compose up} nella directory del progetto (\texttt{.../BeeLive/Products/Docker})
-\end{enumerate}
-
-\noindent\textbf{Applicativi mobile e desktop}\\
-Come citato in precedenza per eseguire il deploy di questi applicativi risulta necessaria solamente la loro installazione all'interno dei dispositivi in cui si vuole utilizzarli.\\
-in caso di deployment in locale risulta necessario assicurarsi della raggiungibilità della macchina che esegue i webserver da parte del dispositivo che esegue la mobile app.
+\subsubsection{Esecuzione applicativi mobile e desktop}
+Provvederemo a fornire delle release già compilate dei due applicativi, in modo che non ci sia bisogno di compilarli da zero.\\
+Gli applicativi mobile e desktop sono stati creati utilizzando Dart e il framework Flutter, per cui se si vuole effettuare il \texttt{build} degli applicativi è necessario avere un ambiente con tali elementi installati e configurati.
+\\
+Le istruzioni per compilare o installare gli applicativi mobile o desktop sono anch'essi all'interno del \texttt{README.md} presente all'interno del branch \texttt{main} della nostra repository. 
 
 \subsubsection{Strumenti di monitoraggio}
 Per monitorare il sistema e verificare che tutti i componenti siano in esecuzione e funzionanti è utilizzato Docker stesso, che permette di visualizzare lo stato dei container e delle risorse utilizzate.\\
@@ -1129,4 +1179,23 @@ Come librerie aggiuntive abbiamo usato:
 
 \subsection{Conclusioni}
 
+Possiamo quindi affermare che per il progetto BeeLive sono stati conclusi con successo tutti gli obiettivi stabiliti per questo sprint:\\
+Sono state implementate le funzionalità di gestione degli eventi, permettendo agli utenti autorizzati di creare, modificare ed eliminare eventi tramite l'applicazione desktop.\\
+Gli utenti comuni, utilizzando l'applicazione mobile, possono visualizzare tutti i dettagli degli eventi, inclusi i sottoeventi.\\
+L'architettura del sistema include il server pubblico (public\_server), il server di gestione (management\_server), il database MongoDB, il server di autenticazione Casdoor (Auth/Autn server), il servizio di routing OpenRouteService, l'applicazione desktop e l'applicazione mobile.\\
+
+\noindent Nonostante il successo nel raggiungimento degli obiettivi del prodotto, l'applicazione del framework SCRUM ha per noi presentato alcune difficoltà, principalmente dovute alla necessità di focalizzarsi sull'implementazione tecnica.\\
+La mancanza di test approfonditi sviluppati durante il primo sprint ha fatto emergere problemi imprevisti durante lo sviluppo, richiedendo modifiche che hanno coinvolto diverse user story contemporaneamente. Inoltre, l'interdipendenza tra le varie componenti del sistema ha reso complesso lavorare su singole user story in maniera isolata.\\
+Queste sfide hanno portato il product backlog a trasformarsi in una lista di attività con priorità, orientata più sul prodotto che sull'utente finale.\\
+
+\noindent Tuttavia, la stretta collaborazione tra noi membri del team, facilitata dalla comunicazione costante tramite Telegram e da incontri in presenza, ha permesso di superare queste difficoltà.\\
+Come team, abbiamo tutti tratto vantaggio da un continuo scambio di conoscenze, specialmente per quanto riguarda gli aspetti tecnici del progetto, come l'uso di Dart, Rust e webtoken.\\
+
+\noindent Guardando ai prossimi sprint, riteniamo che si potrebbe migliorare l'organizzazione SCRUM, formalizzando gli incontri del team per documentare i progressi e garantire che tutti i componenti del team siano allineati.\\
+Inoltre, con le funzionalità principali del prodotto ormai completate, il team potrebbe aderire più rigorosamente alla metodologia, sfruttandone a pieno i suoi benefici.\\
+
+\noindent Ad ogni modo è anche doveroso citare il fatto che si è notata una differenza netta tra il primo e questo secondo sprint. In questo ultimo periodo, a differenza di quello precedente, si è vista una maggiore collaborazione tra i membri del team, una maggiore comunicazione e una maggiore condivisione delle conoscenze.\\
+Tutti questi aspetti, nel primo sprint, erano molto più altalenanti, in quanto non avendo mai avuto esperienze di lavoro in team sfruttando questo tipo di metotodologia, si è faticato molto di più a trovare un equilibrio.\\
+Tutto era anche complicato dal fatto che nel primo sprint non c'erano basi o componenti già definite su cui iniziare a lavorare direttamente, quindi ogni componente del team si è focalizzato su una parte del progetto senza favorire la visione d'insieme.\\
+Questo secondo sprint, invece, è stato molto più fluido e ha permesso di lavorare in modo più efficiente e produttivo tra tutti noi membri del team, che abbiamo dato molta più enfasi alla collaborazione piuttosto che al compimento del singolo task.\\
 \end{document}

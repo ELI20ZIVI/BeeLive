@@ -105,7 +105,7 @@ class HomePageState extends State<HomePage> {
       },
       footerItems: [
         PaneItem(
-          enabled: false,
+          enabled: true,
           icon: const Icon(FluentIcons.settings),
           title: Text(localization.settings),
           body: Center(

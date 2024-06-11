@@ -154,8 +154,7 @@ Parte della preview relativa all'applicativo desktop è stata poi utilizzata in 
 
 \subsubsection{\texttt{deliverable}}
 
-Branch dedicato alla stesura dei vari documenti di deliverable.\\
-Creato per mantenere separata la stesura della documentazione dal codice sorgente e per rispettare la metodologia di branching.
+Branch dedicato alla stesura dei vari documenti di deliverable che è stato creato per mantenere separata la stesura della documentazione dal codice sorgente e per rispettare la metodologia di branching.
 
 \subsubsection{\texttt{refactoring}}
 
@@ -389,7 +388,9 @@ Sono incluse anche in questo caso operazioni di ridefinizione di parti del codic
         \hline
     \end{tabularx}
 \end{table}
+
 \clearpage
+
 \subsubsection{Accesso utente all'applicativo desktop}
 Tutti i task che riguardano lo sviluppo dell'accesso all'applicativo desktop da parte dell'utente autorizzato.\\
 \vspace{-0.3cm}
@@ -545,6 +546,7 @@ Tasks che compongono la logica di ottenimento e visualizzazione delle criticità
 \end{table}
 
 \clearpage
+
 \subsubsection{Modifica di un evento sull'applicativo desktop}
 Task che riguardano la logica che permette all'utente autorizzato di modificare un evento sull'applicativo desktop.\\
 \vspace{-0.3cm}
@@ -1019,6 +1021,8 @@ Per essere precisi e' corretto dire che comunque il product backlog del progetto
 Come citato il precedenza, in questo sptint non abbiamo definito un vero e proprio sprint backlog. Abbiamo scelto invece di selezionare alcuni task che dovevano essere svolti e di concentrarci su di essi, andandoli e ricollegandoli successivamente alle user stories presenti nel product backlog.\\
 Tramite questo approccio siamo riusciti a completare tutti i task che ci eravamo prefissati e a portare a termine tutte le user stories che avevamo selezionato, preparando un ambiente favorevole alla prosecuzione dello sviluppo del progetto in un possibile sprint successivo al corrente.\\
 
+\clearpage
+
 \subsection{Sprint retrospective}
 
 Il progetto è stato permeato per tutta la sua durata da un grande bisogno di dedicare tempo e lavoro a creare l'implementazione del prodotto. Questo ha fatto in modo che la maggior parte della nostra concentrazione si sia rivolta al prodotto stesso invece che al framework SCRUM con cui abbiamo lavorato.\\
@@ -1083,6 +1087,8 @@ L'architettura del sistema include i seguenti componenti principali:
 
 A seguito vi è il diagramma dell'architettura del sistema:
 
+\clearpage
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Images/Component.png}
@@ -1113,6 +1119,8 @@ Parlando invece dei due applicativi, i requisiti minimi per la loro installazion
     \item \textbf{Applicativo mobile}: Sistema operativo Android 5.0 o superiore
 \end{itemize}
 È possibile utilizzarli anche come webapps, tuttavia non è stato previsto il loro deployment.
+
+\clearpage
 
 \subsubsection{Istruzioni per il deployment}
 Si presuppone una conoscenza preliminare di Docker e Docker-Compose.
@@ -1176,6 +1184,8 @@ Come librerie aggiuntive abbiamo usato:
     Questa libreria ci permette di effettuare l'autenticazione degli utenti attraverso un portale fornito da Casdoor. 
     \item \textbf{JwtAuthenticator}: Utilizzato per autenticare gli utenti tramite JWT (JSON Web Tokens). Questo garantisce che le richieste API siano autorizzate e sicure.
 \end{itemize}
+
+\clearpage
 
 \subsection{Conclusioni}
 

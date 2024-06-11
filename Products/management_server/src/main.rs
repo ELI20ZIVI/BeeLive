@@ -108,6 +108,10 @@ async fn modify_event(data: Data<AppData>, path: Path<u32>, event: web::Json<Eve
         Ok(user) => user,
     };
 
+    if i64::from(event.id) != i64::from(*path) {
+        return HttpResponse::UnprocessableEntity().body("Incoherent id");
+    }
+
     // Modifica evento
     event_manager::modify_event(&data, path.into_inner(), event.into_inner(), &user).await
 }

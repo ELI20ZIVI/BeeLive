@@ -1,0 +1,395 @@
+openapi: 3.0.3
+info:
+  title: BeeLive
+  description: |-
+    Specifiche delle API del progetto _BeeLive_.
+    
+    Some useful links:
+    - [BeeLive repository](https://github.com/ELI20ZIVI/BeeLive)
+  version: 0.0.1
+paths:
+  # Richiesta di tutti gli eventi disponibili
+  /events:
+    get:
+      servers:
+        - url: https://93.49.96.13:7839/api/v3/
+      summary: Richiede la lista di eventi
+      description: Richiede la lista di tutti gli eventi attualmente presenti e attivi nel sistema, filtranto tale lista in base a dei parametri configurabili.
+      operationId: listEventsPublic
+      parameters:
+        - name: mode
+          in: query
+          description: Modalità di combinazione fra le preferenze della richiesta e le preferenze salvate in remoto.
+          required: false
+          explode: true
+          schema:
+            type: string
+            enum:
+              - overwrite
+              - combine
+              - ifempty
+        - name: addb
+          in: query
+          description: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi broadcast
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+        - name: subb
+          in: query
+          description: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi broadcast
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+        - name: addi
+          in: query
+          description: Lista di categorie (ID) da aggiungere ai filtraggi degli eventi in zone di interesse
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+        - name: subi
+          in: query
+          description: Lista di categorie (ID) da rimuovere dai filtraggi degli eventi in zone di interesse
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                format: int16
+      responses:
+        '200':
+          description: Operazione eseguita con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventHeader'
+        '422':
+          description: Unprocessable Content
+        '400':
+          description: Bad Request
+      security:
+        - api_key: []
+        - bearerAuth: []
+  # Richiesta di un evento specifico
+  /events/{event_id}:
+    get:
+      servers:
+        - url: https://93.49.96.13:7839/api/v3/
+      summary: Richiede un evento specifico
+      description: Richiede tutte le informazioni pubbliche associate ad un evento specifico identificato da {event_id}
+      operationId: eventDetails
+      parameters:
+        - name: event_id
+          in: path
+          description: ID dell'evento di cui ottenere le informazioni
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Operazione eseguita con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullEvent'
+        '404':
+          description: Non è stato trovato alcun evento con l'ID specificato
+        '400':
+          description: Bad Request
+      security:
+        - api_key: []
+        - bearerAuth: []
+  # Inserimento di un nuovo evento
+  /insert_new_event:
+    post:
+      servers:
+        - url: https://93.49.96.13:14124/api/v3/
+      summary: Inserisce un nuovo evento
+      description: Inserisce un nuovo evento nel sistema.
+      operationId: insertEvent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FullEvent'
+      responses:
+        '201':
+          description: Operazione eseguita con successo
+        '400':
+          description: Bad Request. Cannot process entity.
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato
+        '422':
+          description: Unprocessable Content. Validation failed.
+      security:
+        - api_key: []
+        - bearerAuth: []
+  /events:
+    get:
+      servers:
+        - url: https://93.49.96.13:14124/api/v3/
+      summary: Richiede la lista di eventi di competenza del dipendente comunale.
+      description: Richiede la lista di tutti gli eventi presenti nel sistema e di competenza del dipendente comunale che effettua la richiesta.
+      operationId: listEventsManage
+      parameters:
+        - name: page
+          in: query
+          description: Paginazione per consentire il lazy loading
+          required: false
+          explode: true
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: Operazione eseguita con successo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FullEvent'
+        '400':
+          description: Parametri non processabili
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato
+        '422':
+          description: Parametro di pagina negativo e dunque invalido
+      security:
+        - api_key: []
+        - bearerAuth: []
+  /modify_event/{event_id}:
+    servers:
+      - url: https://93.49.96.13:14124/api/v3/
+    put:
+      summary: Modifica un evento specifico
+      description: Consente la modifica di un evento specifico identificato da {event_id}
+      operationId: editEvent
+      parameters:
+        - name: event_id
+          in: path
+          description: ID dell'evento da modificare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FullEvent'
+      responses:
+        '200':
+          description: Modifica eseguita con successo
+        '400':
+          description: Modifiche non processabili
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato o l'evento non è di sua competenza
+        '404':
+          description: Non è stato trovato alcun evento con l'ID specificato
+        '418':
+          description: La risorsa non è stata bloccata dall'utente che vuole apportare le modifiche. Il sistema non può apportare le modifiche richieste
+        '422':
+          description: Modifiche non valide
+        '423':
+          description: La risorsa è stata bloccata da un altro utente autorizzato
+      security:
+        - api_key: []
+        - bearerAuth: []
+  /delete_event/{event_id}:
+    servers:
+      - url: https://93.49.96.13:14124/api/v3/
+    delete:
+      summary: Elimina un evento specifico
+      description: Consente l'eliminazione di un evento specifico identificato da {event_id} da parte di un utente autorizzato competente
+      operationId: deleteEvent
+      parameters:
+        - name: event_id
+          in: path
+          description: ID dell'evento da eliminare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Eliminazione eseguita con successo
+        '401':
+          description: Access token non fornito
+        '403':
+          description: L'utente non è un utente autorizzato o l'evento non è di sua competenza
+        '404':
+          description: Non è stato trovato alcun evento con l'ID specificato
+        '418':
+          description: La risorsa non è stata bloccata dall'utente che vuole apportare le modifiche. Il sistema non può apportare le modifiche richieste
+        '423':
+          description: La risorsa è stata bloccata da un altro utente autorizzato
+      security:
+        - api_key: []
+        - bearerAuth: []
+    
+  # Registrazione nuovo utente
+  
+components:
+  schemas:
+    NullableDateTimeRange:
+      type: object
+      properties:
+        begin:
+          type: integer
+          description: data d'inizio in formato \"unixtime\" (secondi)
+          example: 1715878019
+        end:
+          type: integer
+          description: data di fine in formato \"unixtime\" (secondi))
+          example: 1716223619
+    EventHeader:
+      type: object
+      required:
+        - id
+        - title
+        - summary
+        - categories
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 198772
+        title:
+          type: string
+          description: Titolo dell'evento.
+          example: Incontro G7
+        summary:
+          type: string
+          description: Breve sommario dell'evento.
+          example: Divieti di fermata e transito.
+        remote_document:
+          type: string
+          format: url
+          example: https://www.ufficiostampa.provincia.tn.it/Comunicati/G7-tutte-le-limitazioni-al-traffico-e-alla-sosta
+        visibility:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        validity:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        risk_level:
+          type: integer
+          description: Livello di rischio dell'evento. Info = 0, Alert = 50, Warning = 100
+          enum: [0, 50, 100]
+          example: 0
+        categories:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int16
+          example:
+            - [0, 1]
+        polygons:
+          type: object
+    FullEvent:
+      type: object
+      required:
+        - id
+        - title
+        - summary
+        - categories
+        - subevents
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 198772
+          description: numero identificativo dell'evento. Nel contesto di "insert_new_event", questo paremetro verrà sovrascritto in backend. 
+        title:
+          type: string
+          description: Titolo dell'evento.
+          example: Incontro G7
+        summary:
+          type: string
+          description: Breve sommario dell'evento.
+          example: Divieti di fermata e transito.
+        description:
+          type: string
+          description: Descrizione dell'evento
+          example: Divieti di fermata in Via XXX, divieto di transito in Via XXX fino alle 23:00 causa sicurezza pubblica
+        remote_document:
+          type: string
+          format: url
+          example: https://www.ufficiostampa.provincia.tn.it/Comunicati/G7-tutte-le-limitazioni-al-traffico-e-alla-sosta
+        visibility:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        validity:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        risk_level:
+          type: integer
+          description: Livello di rischio dell'evento. Info = 0, Alert = 50, Warning = 100
+          enum: [0, 50, 100]
+          example: 50
+        categories:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int16
+          example:
+            - [0, 1]
+        polygons:
+          type: object
+        subevents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subevent'
+    Subevent:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: Titolo del sottoevento.
+          example: Arrivo delle delegazioni
+        description:
+          type: string
+          description: Descrizione del sottoevento.
+        validity:
+          $ref: '#/components/schemas/NullableDateTimeRange'
+        polygons:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    api_key:
+      type: apiKey
+      name: api_key
+      in: query

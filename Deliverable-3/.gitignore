@@ -3,4 +3,5 @@
 !*.tex
 !*.bpmn
 !Images/
-!Images/**
+!**/
+!Images/*.png

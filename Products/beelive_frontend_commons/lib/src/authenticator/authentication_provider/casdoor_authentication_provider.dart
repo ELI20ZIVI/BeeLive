@@ -124,9 +124,14 @@ final class CasdoorAuthenticationProvider implements AuthenticationProvider {
       debugPrint("Casdoor authentication");
       callback = await _casdoor.showFullscreen(context, scope: scope);
       debugPrint("Casdoor authenticated");
-    } on CasdoorAuthCancelledException catch (_) {
-      debugPrint("Casdoor cancelled");
-      return null;
+    } on Type catch (t) {
+      // NOTE: casdoor lib throws the type [CasdoorAuthCancelledException] instead of an instance.
+      if (t == CasdoorAuthCancelledException) {
+        debugPrint("Casdoor cancelled");
+        return null;
+      } else {
+        rethrow;
+      }
     }
 
     // [TypeError] in case of validation error.

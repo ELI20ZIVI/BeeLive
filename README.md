@@ -37,7 +37,9 @@ docker compose up -d
 
 **NOTA:** il frontend e' attualmente configurato per connettersi al nostro server personale, per cui per connettersi ad un altro server (e.g. localhost) e' necessario modificare, nel codice, l'ip a cui la mobile_app o la desktop_app si connettono (rispettivamente, in `.../desktop_app/lib/main.dart:18` e `.../mobile_app/lib/main.dart:14`)
 
-Per eseguire l'applicazione desktop, e' necessario effettuare alcune operazioni preliminarie prima di runnarla con flutter:
+Le due applicazioni sono disponibili precompilate presso la release "0.1" associata a questa repository github: [release 0.1](https://github.com/ELI20ZIVI/BeeLive/releases/tag/0.1)
+
+Per compilare ed eseguire l'applicazione desktop, e' necessario effettuare alcune operazioni preliminarie prima di runnarla con flutter:
 
 ```bash
 cd BeeLive/Products/desktop_app
@@ -46,7 +48,13 @@ dart run build_runner build # run builders
 flutter run
 ```
 
-Per eseguile l'applicazione mobile...
+Per compilare ed eseguire l'applicazione mobile, è necessario connettere un dispositivo android con "USB Debugging" attivo al computer, per poi seguire la stessa procedura dell'applicativo desktop:
+```bash
+cd BeeLive/Products/mobile_app
+flutter pub get # download dependencies
+dart run build_runner build # run builders
+flutter run
+```
 
 ### Testing
 

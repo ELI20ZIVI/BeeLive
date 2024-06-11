@@ -40,4 +40,6 @@ abstract interface class AuthenticationProvider {
   Tokens tokenFromJson(final Map<String, dynamic> json);
 
   Map<String, dynamic> decodeToken(final Token accessToken);
+
+  Future<void> logout(final Tokens tokens);
 }

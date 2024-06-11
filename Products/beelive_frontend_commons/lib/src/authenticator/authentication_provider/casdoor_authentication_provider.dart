@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:casdoor_flutter_sdk/casdoor_flutter_sdk.dart';
 import 'package:flutter/widgets.dart';
@@ -55,7 +56,11 @@ final class CasdoorAuthenticationProvider implements AuthenticationProvider {
     List<Scope> scopes = const [],
   }) async {
     // TODO: check exceptions
-    final response = await _casdoor.refreshToken(refreshToken, _clientSecret);
+    final response = await _casdoor.refreshToken(
+      refreshToken,
+      _clientSecret,
+      scope: scopes.join(" "),
+    );
 
     return _fromResponse(response);
   }
@@ -78,6 +83,7 @@ final class CasdoorAuthenticationProvider implements AuthenticationProvider {
   /// Throws [JsonValidationError] if the response doesn't have a valid body.
   Tokens _fromResponse(final Response response) {
     if (response.statusCode != HttpStatus.ok) {
+      debugPrint(response.body);
       throw HttpStatusException(
         response.request?.url ?? Uri(),
         response.statusCode,
@@ -135,5 +141,30 @@ final class CasdoorAuthenticationProvider implements AuthenticationProvider {
   @override
   Map<String, dynamic> decodeToken(final Token accessToken) {
     return _casdoor.decodedToken(accessToken);
+  }
+
+  @override
+  Future<void> logout(final Tokens tokens) async {
+    // Creates a new random state to prevent CSRF attacks.
+    final randomState = _randomString(4);
+
+    final _ = await _casdoor.tokenLogout(
+      tokens.idToken,
+      _casdoor.config.redirectUri,
+      randomState,
+      clearCache: true,
+    );
+  }
+
+  /// Generates a random string as concatenation of random chunks.\
+  /// A chunk is the hex representation of an integer.
+  String _randomString([int chunks = 4]) {
+    const int maxInt = 1 << 32;
+    final rng = Random.secure();
+
+    return Iterable
+      .generate(chunks, (_) => rng.nextInt(maxInt))
+      .map((n) => n.toRadixString(16).padLeft(8, '0'))
+      .join("-");
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:geojson_vi/geojson_vi.dart';
 import 'package:mobile_app/client.dart';
 import 'package:mobile_app/dtos/event.dart';
 import 'package:mobile_app/dtos/nullable_datetime_range.dart';
@@ -23,6 +24,8 @@ class DummyClient implements Client {
         ),
         riskLevel: RiskLevel.info,
         visibility: NullableDateTimeRange(end: DateTime(2024, 3, 15, 19)),
+        polygons: GeoJSONFeatureCollection(const []),
+        description: "",
       ),
       Event(
         id: EventId(2),
@@ -34,7 +37,9 @@ class DummyClient implements Client {
         ),
         riskLevel: RiskLevel.info,
         visibility: NullableDateTimeRange(end: DateTime(2024, 3, 15, 19)),
-        events: [
+        polygons: GeoJSONFeatureCollection(const []),
+        description: "",
+        subevents: [
           SubEvent(
             title: "Overview",
             description: "",
@@ -42,6 +47,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Fase preparatoria",
@@ -50,6 +56,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Arrivo delegazioni",
@@ -59,7 +66,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
-            polygons: null,
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Evento in corso",
@@ -68,6 +75,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Partenza delle delegazioni",
@@ -76,6 +84,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
         ],
       ),
@@ -86,11 +95,13 @@ class DummyClient implements Client {
         riskLevel: RiskLevel.info,
         validity: NullableDateTimeRange(begin: DateTime(2023, 11, 6)),
         visibility: NullableDateTimeRange(begin: DateTime(2023, 11, 6)),
-        events: [
+        polygons: GeoJSONFeatureCollection(const []),
+        description: "",
+        subevents: [
           SubEvent(
             title: "",
             validity: NullableDateTimeRange(begin: DateTime(2023, 11, 6)),
-            polygons: null,
+            polygons: GeoJSONFeatureCollection(const []),
           ),
         ],
       )
@@ -111,6 +122,8 @@ class DummyClient implements Client {
         ),
         riskLevel: RiskLevel.info,
         visibility: NullableDateTimeRange(end: DateTime(2024, 3, 15, 19)),
+        polygons: GeoJSONFeatureCollection(const []),
+        description: "",
       ),
       2 => Event(
         id: EventId(2),
@@ -122,7 +135,9 @@ class DummyClient implements Client {
         ),
         riskLevel: RiskLevel.info,
         visibility: NullableDateTimeRange(end: DateTime(2024, 3, 15, 19)),
-        events: [
+        polygons: GeoJSONFeatureCollection(const []),
+        description: "",
+        subevents: [
           SubEvent(
             title: "Overview",
             description: "",
@@ -130,6 +145,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Fase preparatoria",
@@ -138,6 +154,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Arrivo delegazioni",
@@ -147,7 +164,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
-            polygons: null,
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Evento in corso",
@@ -156,6 +173,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
           SubEvent(
             title: "Partenza delle delegazioni",
@@ -164,6 +182,7 @@ class DummyClient implements Client {
               begin: DateTime(2024, 3, 14, 22),
               end: DateTime(2024, 3, 15, 19),
             ),
+            polygons: GeoJSONFeatureCollection(const []),
           ),
         ],
       ),
@@ -174,11 +193,13 @@ class DummyClient implements Client {
         riskLevel: RiskLevel.info,
         validity: NullableDateTimeRange(begin: DateTime(2023, 11, 6)),
         visibility: NullableDateTimeRange(begin: DateTime(2023, 11, 6)),
-        events: [
+        polygons: GeoJSONFeatureCollection(const []),
+        description: "",
+        subevents: [
           SubEvent(
             title: "",
             validity: NullableDateTimeRange(begin: DateTime(2023, 11, 6)),
-            polygons: null,
+            polygons: GeoJSONFeatureCollection(const []),
           ),
         ],
       ),

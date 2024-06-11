@@ -20,7 +20,7 @@ void main() async {
   final casdoorUri = mwsUri.replace(scheme: "http", port: 9987, pathSegments: []);
 
   // Overrides the client with the actual web server client.
-  Client.override(ManagementWebServerClient("$mwsUri/"));
+  Client.override(ManagementWebServerClient(mwsUri.toString())); 
   
   KeyValueStorage.override(
     SharedPreferences(await sp.SharedPreferences.getInstance()),
@@ -164,6 +164,9 @@ class HomePageState extends State<HomePage> {
             return navigationView;
           }
         } else {
+          if (snap.hasError) {
+            debugPrint("Error during authentication: ${snap.error}");
+          }
           Authenticator().authenticate(context).then((_) => setState(() {}));
           return const Center(child: ProgressRing(value: null));
         }

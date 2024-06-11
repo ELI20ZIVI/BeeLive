@@ -113,6 +113,7 @@ class HomePageState extends State<HomePage> {
               child: const Text("Logout"),
               onPressed: () async {
                 await Authenticator().logout();
+                setState(() {});
               },
             )
           ),
@@ -174,6 +175,7 @@ class HomePageState extends State<HomePage> {
     );
   }
 }
+
 
 // TODO: mi sa che c'è già qualche package che li supporta adattivi.
 /// The window bar decoration buttons. Style: windows.
